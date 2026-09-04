@@ -1,0 +1,14 @@
+# Deze repo is een statische site: geen build, geen dependencies, geen Node.
+# Staat hier ooit een node_modules/, dan is er iets misgegaan.
+node_modules/
+.next/
+out/
+
+# Windows / macOS rommel
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Lokale editorinstellingen
+.claude/
+.vscode/
