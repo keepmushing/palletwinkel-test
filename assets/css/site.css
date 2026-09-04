@@ -114,6 +114,15 @@ section { padding-block: var(--section); }
 .on-dark p { color: #CFE2EE; }
 .on-sky { background: var(--sky); }
 
+/* --- Kruimelpad -------------------------------------------------------- */
+/* Alleen op productdetailpagina's: die liggen drie niveaus diep en anders
+   weet een bezoeker niet meer waar hij zit. */
+.crumbs { border-bottom: 1px solid var(--line); font-size: .85rem; color: var(--muted); }
+.crumbs .wrap { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; min-height: 46px; }
+.crumbs a { color: var(--blue); font-weight: 700; }
+.crumbs a:hover { text-decoration: underline; }
+.crumbs [aria-current="page"] { color: var(--navy); font-weight: 700; }
+
 /* --- Knoppen ----------------------------------------------------------- */
 /* Scherpe hoeken, zwaar gewicht, 48px hoog. Geen radius, nergens. */
 .btn {
@@ -369,6 +378,17 @@ section { padding-block: var(--section); }
   outline: 2px solid var(--blue); outline-offset: 1px; border-color: var(--blue);
 }
 .req { color: var(--blue); }
+
+/* Formulierindeling. Een formulier van 1180 px breed leest niet: velden
+   blijven binnen de tekstbreedte, en staan per twee waar dat logisch is. */
+.form { max-width: var(--text-max); }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0 18px; }
+.form fieldset { border: 0; border-top: 1px solid var(--line); margin: 0 0 28px; padding: 24px 0 0; }
+.form legend { font-weight: 700; color: var(--navy); font-size: 1.12rem; padding: 0 12px 0 0; }
+.form .consent { display: flex; gap: 10px; align-items: flex-start; font-size: .9rem; }
+.form .consent input { width: 18px; min-height: 18px; flex: none; margin-top: 3px; }
+
+@media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
 
 /* --- Placeholders ------------------------------------------------------ */
 /* Alles wat nog niet BEVESTIGD is in doc 01. Bewust lelijk: dit mag niet

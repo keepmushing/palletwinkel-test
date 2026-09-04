@@ -38,14 +38,15 @@ palletwinkel/
   index.html              Homepage (NL)
   en/                     Engelse versie
   fr/                     Franse versie
-  producten/              Overzicht + zes detailpagina's
+  producten/              Overzicht + zeven detailpagina's
   werkwijze/  realisaties/  over-ons/  faq/  contact/  offerte/
   privacy/  voorwaarden/  cookies/
   assets/
     css/site.css          Designsysteem — alle kleuren, maten en componenten
     js/site.js            Mobiele nav en footerjaartal. Meer niet.
     img/                  Foto's (WebP + JPG-fallback, 480/1024/1920 px)
-    fonts/                Inter en IBM Plex Mono, lokaal gehost
+    fonts/                Leeg. De site draait bewust op Arial — zie site.css.
+  sitemap.xml  robots.txt  Voor zoekmachines
   serve.ps1               Preview-server
 ```
 
@@ -73,16 +74,36 @@ palletwinkel/
 6. **Elke foto krijgt een beschrijvende bestandsnaam én alt-tekst vóór ze de
    site op gaat.** Formaat staat in doc 03. Achteraf toevoegen gebeurt nooit.
 
-## Nog te doen vóór livegang
+7. **Header en footer staan in elk bestand.** Dat is de prijs van geen build:
+   wat de server stuurt, staat letterlijk in de map. Wijzig je de navigatie of de
+   footer, wijzig ze dan overal. Controleer achteraf of het aantal klopt:
+   `findstr /s /m /c:"Hoofdnavigatie" *.html` moet 18 Nederlandse pagina's geven
+   (en/ en fr/ hebben een eigen, vertaalde navigatie).
 
-- [ ] Domein kiezen en `example.be` vervangen in alle `<link rel="canonical">`
-      en `hreflang`-tags
+- [ ] **Formulier-backend.** `/offerte/` is volledig opgebouwd maar verstuurt niets.
+      Waar komt een inzending binnen? (doc 01, sectie J) Zolang dit open staat, mag
+      die pagina niet live.
+- [ ] **Registratienummer ISPM-15 verifiëren.** `BE-1689` staat als bevestigd feit op
+      tien pagina's. Klopt dat nummer? Een fout certificaatnummer op een exportkist is
+      geen tekstfoutje.
+- [ ] **Geel gemarkeerde tekst wegwerken.** Zoek ze met:
+      `findstr /s /c:"class=\"ph" *.html`
+- [ ] **Domein bevestigen.** Overal staat nu `palletje.be` (canonical, hreflang,
+      sitemap). Dat is afgeleid uit het configurator-subdomein, niet expliciet
+      bevestigd — doc 01, blokker 4. Zet de andere domeinen op redirect.
 - [ ] Logo in SVG, favicon (32, 180, SVG) en Open Graph-beeld 1200 × 630
-- [ ] Inter en IBM Plex Mono downloaden naar `assets/fonts/` en `@font-face`
-      toevoegen (nu valt de site terug op Segoe UI)
-- [ ] Foto's uit de shotlist (doc 03)
-- [ ] Formulier-backend: waar komt een inzending binnen? (doc 01, sectie J)
-- [ ] Cookiebanner met gelijkwaardige knoppen Accepteren / Weigeren / Instellingen
-- [ ] Privacybeleid, algemene voorwaarden, cookiebeleid
-- [ ] `sitemap.xml` en `robots.txt`
-- [ ] EN- en FR-copy laten nakijken door een moedertaalspreker
+- [ ] Foto's uit de shotlist (doc 03). Elke `.photo`, `.case-visual` en
+      `.feature-visual` draagt in `data-note` de opdracht voor het beeld.
+- [ ] Privacybeleid, algemene voorwaarden en cookiebeleid laten opstellen. De
+      pagina's staan er, met de structuur; de tekst moet van uw boekhouder of jurist
+      komen. Ze staan op `noindex` tot dat gebeurd is.
+- [ ] EN- en FR-pagina's laten nakijken door een moedertaalspreker. Het zijn nu
+      samenvattingspagina's — de detailpagina's bestaan alleen in het Nederlands.
+- [ ] Beslissen of aankoop, verkoop en herstel van pallets op de site komen. De
+      huidige site palletje.be vermeldt die diensten; de zes vastgelegde categorieën
+      niet. Zie de FAQ.
+- [ ] Beslissen waar "Vloeren" uit de configurator thuishoort (doc 01, blokker 2).
+
+Afgewerkt: sitemap.xml en robots.txt staan er. Een cookiebanner is vandaag niet
+nodig — de site plaatst geen enkele cookie. Dat verandert zodra er een ingesloten
+kaart, statistieken of een externe formulierdienst bij komt; zie `/cookies/`.
