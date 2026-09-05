@@ -33,21 +33,25 @@ hebben:
 - `server.js` — een fikse vijftig regels die de bestanden in deze map
   uitserveren. Gedraagt zich gelijk aan `serve.ps1`, de lokale preview.
 
-### De lege `.next`-map
+### Waarom het buildscript de site naar `.next` kopieert
 
-De webapp staat bij Hostinger vastgepind op framework **Next.js**, en dat is
-daar niet te wijzigen: de wizard onder `Change repository` loopt vast op een
-netwerkfout. Na elke build controleert Hostinger of er een uitvoermap `.next`
-bestaat, en zonder die map faalt de deploy met
-`ERROR: No output directory found after build`.
+De webapp staat bij Hostinger vastgepind op framework **Next.js** en dat is daar
+niet te wijzigen — de wizard onder `Change repository` loopt vast op een
+netwerkfout. Hostinger serveert bij zo'n framework de **uitvoermap** als
+statische bestanden, en voor Next.js is dat `.next`. Een statische site maakt
+die map nooit aan, dus faalde elke deploy op
+`ERROR: No output directory found after build`. En de geslaagde deploy van
+augustus serveerde een `.next` zonder `index.html` in de wortel — vandaar
+maandenlang een 403.
 
-Daarom maakt het buildscript een lege `.next`-map aan met één tekstbestandje
-erin. Er wordt nog steeds niets gebouwd. De map staat in `.gitignore` en komt
-dus niet in de repo terecht.
+Daarom kopieert het buildscript de site naar `.next`. Er wordt nog steeds niets
+gecompileerd; het is letterlijk `cp -R`. `.next/` staat in `.gitignore` en komt
+dus niet in de repo. `package.json`, `server.js`, `serve.ps1` en `README.md`
+worden er weer uit gehaald, zodat die niet publiek geserveerd worden.
 
-**Dit is een omweg, geen oplossing.** Zodra de frameworkinstelling wel op
-`Other` gezet kan worden (build command leeg, output directory `.`), mag het
-buildscript weer terug naar `echo` of helemaal weg.
+**Dit is een omweg, geen oplossing.** Zodra de frameworkinstelling op `Other`
+gezet kan worden — Deployments > Deployment settings, build command leeg,
+output directory `.` — mag het buildscript weg.
 
 **Verhuis je later naar gewone statische hosting** (of naar Hostingers
 `Advanced > Git` op een PHP/HTML-website), dan mogen die twee bestanden weg.

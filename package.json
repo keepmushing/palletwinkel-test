@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "mkdir -p .next && echo statische-site-geen-buildstap > .next/BUILD_INFO.txt",
+    "build": "rm -rf .next && mkdir -p .next && cp -R ./* .next/ && rm -rf .next/node_modules .next/package.json .next/server.js .next/serve.ps1 .next/README.md",
     "start": "node server.js"
   },
   "dependencies": {}
