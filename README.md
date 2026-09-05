@@ -107,3 +107,40 @@ palletwinkel/
 Afgewerkt: sitemap.xml en robots.txt staan er. Een cookiebanner is vandaag niet
 nodig — de site plaatst geen enkele cookie. Dat verandert zodra er een ingesloten
 kaart, statistieken of een externe formulierdienst bij komt; zie `/cookies/`.
+
+## Van staging naar live
+
+Zolang de site op een tijdelijk domein staat, is ze afgeschermd voor
+zoekmachines: elke pagina draagt `noindex, nofollow` en `robots.txt` staat op
+`Disallow: /`. Dat is bewust — er staan nog niet bevestigde teksten in, en die
+mogen niet in Google belanden.
+
+Op de dag van de livegang, in deze volgorde:
+
+1. **Alle gele markeringen weg.** Zoek ze met
+   `findstr /s /c:"class=\"ph" *.html`. Zolang er één overblijft, ga je niet live.
+
+2. **Domein rechtzetten** als het definitieve domein niet `palletje.be` is.
+   Het staat in `canonical`, `hreflang`, `og:url`, de JSON-LD op de homepage,
+   `sitemap.xml` en `robots.txt`. In Git Bash:
+   `grep -rl "palletje.be" . | xargs sed -i "s|palletje\.be|nieuwdomein.be|g"`
+
+3. **De staging-tag verwijderen** uit alle pagina's:
+   `find . -name index.html -exec sed -i "/TIJDELIJK — STAGING/,+2d" {} +`
+
+4. **De drie juridische pagina's terug op noindex zetten.** Die horen ook na de
+   livegang uit de index te blijven, maar hun links moeten wel gevolgd worden.
+   Zet in `privacy/`, `voorwaarden/` en `cookies/` weer
+   `<meta name="robots" content="noindex, follow">` boven de stylesheet.
+
+5. **`robots.txt` terugzetten** op:
+
+   ```
+   User-agent: *
+   Allow: /
+
+   Sitemap: https://palletje.be/sitemap.xml
+   ```
+
+6. **Controleren** met de preview-server: `Disallow` weg, geen `noindex` meer op
+   de 17 gewone pagina's, en alle URL's in `sitemap.xml` op het juiste domein.

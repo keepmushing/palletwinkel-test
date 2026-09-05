@@ -1,10 +1,8 @@
-# 't Palletje — https://palletje.be/
+# 't Palletje
 #
-# LET OP: zet dit bestand op "Disallow: /" zolang de site op een
-# staging- of testdomein staat. Anders indexeert Google de
-# placeholder-teksten.
+# TIJDELIJK — STAGING. De site staat vol nog niet bevestigde teksten en mag
+# niet geindexeerd worden. Zie README, "Van staging naar live", voor hoe je
+# dit terugzet op de dag van de livegang.
 
 User-agent: *
-Allow: /
-
-Sitemap: https://palletje.be/sitemap.xml
+Disallow: /
