@@ -40,7 +40,12 @@
 /* --- Reset ------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  /* De header is sticky en 74px hoog. Zonder dit landt elk anker eronder. */
+  scroll-padding-top: 82px;
+}
 
 body {
   margin: 0;
@@ -104,6 +109,8 @@ section { padding-block: var(--section); }
 .intro p { color: var(--muted); font-size: 1.08rem; }
 
 .grid { display: grid; gap: 18px; margin-top: 38px; }
+/* Nederlandse samenstellingen ("transportverpakking") blazen anders de kolom op. */
+.grid > *, .paths > *, .trust-grid > * { min-width: 0; }
 .grid--2 { grid-template-columns: repeat(2, 1fr); }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
 .grid--4 { grid-template-columns: repeat(4, 1fr); }
@@ -341,6 +348,11 @@ section { padding-block: var(--section); }
 .final p { color: #DFF2FF; max-width: 600px; margin-inline: auto; }
 .final .btn-row { justify-content: center; margin-top: 28px; }
 .final .btn--light { color: var(--blue); }
+/* De lichtblauwe eyebrow haalt op het blauwe eind-CTA-vlak maar 4,2:1. Voor
+   tekst van 12px is 4,5:1 het minimum. Deze tint zit al in het palet en
+   haalt 5,5:1. */
+.final .eyebrow { color: var(--sky-hover); }
+
 .final-tel { margin-top: 40px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,.25); }
 .final-tel a {
   color: var(--white); font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 700;

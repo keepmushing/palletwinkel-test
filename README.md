@@ -88,7 +88,7 @@ palletwinkel/
 2. **Geel gemarkeerde tekst is nog niet bevestigd.** Alles met `class="ph"` of
    `class="ph-block"` komt uit doc 01 — FEITENDOSSIER en staat daar nog op
    TE BEVESTIGEN. Zolang die markering er staat, mag de pagina niet live.
-   Zoek ze allemaal met: `findstr /s /c:"ph-block" *.html`
+   Zoek ze allemaal met: `findstr /s /c:"class=\"ph\"" /c:"class=\"ph-block\"" *.html`
 
 3. **Elke claim moet in doc 01 sectie H op JA staan.** Geen uitzonderingen.
    Raakt een claim niet bevestigd, dan verdwijnt hij — hij wordt niet vervangen
@@ -112,11 +112,11 @@ palletwinkel/
 - [ ] **Formulier-backend.** `/offerte/` is volledig opgebouwd maar verstuurt niets.
       Waar komt een inzending binnen? (doc 01, sectie J) Zolang dit open staat, mag
       die pagina niet live.
-- [ ] **Registratienummer ISPM-15 verifiëren.** `BE-1689` staat als bevestigd feit op
-      tien pagina's. Klopt dat nummer? Een fout certificaatnummer op een exportkist is
+- [ ] **Registratienummer ISPM-15 verifiëren.** `BE-1689` staat 44 keer als bevestigd feit,
+      verspreid over 21 bestanden. Klopt dat nummer? Een fout certificaatnummer op een exportkist is
       geen tekstfoutje.
 - [ ] **Geel gemarkeerde tekst wegwerken.** Zoek ze met:
-      `findstr /s /c:"class=\"ph" *.html`
+      `findstr /s /c:"class=\"ph\"" /c:"class=\"ph-block\"" *.html`
 - [ ] **Zachte 404 oplossen.** Hostinger stuurt op deze webapp élk onbekend pad
       naar `index.html` met status 200 in plaats van 404. Zolang de site op
       `noindex` staat is dat onschadelijk, maar vóór livegang moet een typfout in
@@ -153,7 +153,7 @@ mogen niet in Google belanden.
 Op de dag van de livegang, in deze volgorde:
 
 1. **Alle gele markeringen weg.** Zoek ze met
-   `findstr /s /c:"class=\"ph" *.html`. Zolang er één overblijft, ga je niet live.
+   `findstr /s /c:"class=\"ph\"" /c:"class=\"ph-block\"" *.html`. Zolang er één overblijft, ga je niet live.
 
 2. **Domein rechtzetten** als het definitieve domein niet `palletje.be` is.
    Het staat in `canonical`, `hreflang`, `og:url`, de JSON-LD op de homepage,
