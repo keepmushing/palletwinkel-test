@@ -21,15 +21,22 @@ Zit poort 8080 al bezet, gebruik dan `-Port 8081`.
 
 ## Hosting
 
-Deze repo *is* de site. De wortel van de repo is de webroot: `index.html` hoort
-op `/` te staan.
+Deze repo *is* de site. De HTML-bestanden zijn de bron; er wordt niets gebouwd.
 
-- **Build command:** geen
-- **Output directory:** `.` (de wortel zelf)
-- **Node-versie:** niet van toepassing
+De hosting (Hostinger, `palletwinkel.com`) draait echter een **Node-webapp**, geen
+gewone statische hosting. Die verwacht een `package.json` en een startbestand.
+Daarom staan er twee bestanden in deze map die met de site zelf niets te maken
+hebben:
 
-Stond de hosting eerder ingesteld op een Next.js-build (`next build`, output
-`.next`), dan moet die instelling uit. Er valt niets meer te bouwen.
+- `package.json` — geen enkele dependency, geen buildstap. Enkel
+  `"start": "node server.js"`.
+- `server.js` — een fikse vijftig regels die de bestanden in deze map
+  uitserveren. Gedraagt zich gelijk aan `serve.ps1`, de lokale preview.
+
+**Verhuis je later naar gewone statische hosting** (of naar Hostingers
+`Advanced > Git` op een PHP/HTML-website), dan mogen die twee bestanden weg.
+Zet dan: build command = geen, output directory = `.`. Aan de HTML verandert er
+niets.
 
 ## Mappen
 
@@ -46,7 +53,9 @@ palletwinkel/
     js/site.js            Mobiele nav en footerjaartal. Meer niet.
     img/                  Foto's (WebP + JPG-fallback, 480/1024/1920 px)
     fonts/                Leeg. De site draait bewust op Arial — zie site.css.
+  404.html                Foutpagina, in dezelfde stijl
   sitemap.xml  robots.txt  Voor zoekmachines
+  server.js  package.json  Enkel voor de Node-hosting — zie "Hosting"
   serve.ps1               Preview-server
 ```
 

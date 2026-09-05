@@ -1,0 +1,14 @@
+{
+  "name": "palletje-website",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Statische website van 't Palletje. Geen dependencies, geen buildstap — server.js serveert enkel de bestanden in deze map.",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "build": "echo Geen buildstap - dit is een statische site.",
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
