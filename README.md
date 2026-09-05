@@ -33,6 +33,22 @@ hebben:
 - `server.js` — een fikse vijftig regels die de bestanden in deze map
   uitserveren. Gedraagt zich gelijk aan `serve.ps1`, de lokale preview.
 
+### De lege `.next`-map
+
+De webapp staat bij Hostinger vastgepind op framework **Next.js**, en dat is
+daar niet te wijzigen: de wizard onder `Change repository` loopt vast op een
+netwerkfout. Na elke build controleert Hostinger of er een uitvoermap `.next`
+bestaat, en zonder die map faalt de deploy met
+`ERROR: No output directory found after build`.
+
+Daarom maakt het buildscript een lege `.next`-map aan met één tekstbestandje
+erin. Er wordt nog steeds niets gebouwd. De map staat in `.gitignore` en komt
+dus niet in de repo terecht.
+
+**Dit is een omweg, geen oplossing.** Zodra de frameworkinstelling wel op
+`Other` gezet kan worden (build command leeg, output directory `.`), mag het
+buildscript weer terug naar `echo` of helemaal weg.
+
 **Verhuis je later naar gewone statische hosting** (of naar Hostingers
 `Advanced > Git` op een PHP/HTML-website), dan mogen die twee bestanden weg.
 Zet dan: build command = geen, output directory = `.`. Aan de HTML verandert er

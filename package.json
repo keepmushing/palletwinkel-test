@@ -7,7 +7,7 @@
     "node": ">=20"
   },
   "scripts": {
-    "build": "echo Geen buildstap - dit is een statische site.",
+    "build": "mkdir -p .next && echo statische-site-geen-buildstap > .next/BUILD_INFO.txt",
     "start": "node server.js"
   },
   "dependencies": {}
