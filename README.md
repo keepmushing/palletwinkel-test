@@ -117,6 +117,12 @@ palletwinkel/
       geen tekstfoutje.
 - [ ] **Geel gemarkeerde tekst wegwerken.** Zoek ze met:
       `findstr /s /c:"class=\"ph" *.html`
+- [ ] **Zachte 404 oplossen.** Hostinger stuurt op deze webapp élk onbekend pad
+      naar `index.html` met status 200 in plaats van 404. Zolang de site op
+      `noindex` staat is dat onschadelijk, maar vóór livegang moet een typfout in
+      de URL een echte 404 geven met `404.html` — anders indexeert Google eindeloos
+      veel duplicaten van de homepage. Te regelen in de routering van de hosting.
+
 - [ ] **Domein bevestigen.** Overal staat nu `palletje.be` (canonical, hreflang,
       sitemap). Dat is afgeleid uit het configurator-subdomein, niet expliciet
       bevestigd — doc 01, blokker 4. Zet de andere domeinen op redirect.
