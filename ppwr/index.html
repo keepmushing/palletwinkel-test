@@ -4,15 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Algemene voorwaarden | 't Palletje</title>
-<meta name="description" content="De algemene voorwaarden van 't Palletje: offertes, prijzen, levering, aanvaarding, betaling en aansprakelijkheid.">
+<title>PPWR-beslisroute | 't Palletje</title>
+<meta name="description" content="Beantwoord enkele praktische vragen over uw houten transportverpakking en zie welke PPWR-beslissingen uw onderneming moet nemen, welke gegevens wij nodig hebben en welke documentatie wij kunnen aanleveren.">
 
-<link rel="canonical" href="https://palletje.be/voorwaarden/">
+<link rel="canonical" href="https://palletje.be/ppwr/">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_BE">
-<meta property="og:title" content="Algemene voorwaarden | 't Palletje">
-<meta property="og:description" content="De algemene voorwaarden van 't Palletje: offertes, prijzen, levering, aanvaarding, betaling en aansprakelijkheid.">
-<meta property="og:url" content="https://palletje.be/voorwaarden/">
+<meta property="og:title" content="PPWR-beslisroute | 't Palletje">
+<meta property="og:description" content="Welke PPWR-route past bij uw onderneming? Loop de vragen door en zie wat er van u verwacht wordt.">
+<meta property="og:url" content="https://palletje.be/ppwr/">
 
 <!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
 <meta name="robots" content="noindex, nofollow">
@@ -20,11 +20,11 @@
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css?v=20260906c">
+<link rel="stylesheet" href="/assets/css/ppwr.css?v=20260906c">
 </head>
-<body data-pagina="juridisch">
+<body data-pagina="ppwr">
 
 <a class="skip" href="#top">Naar de inhoud</a>
-
 <div class="topstrip"></div>
 
 <div class="utility">
@@ -52,7 +52,7 @@
   <nav class="nav wrap">
     <a class="brand" href="/"><img class="logomark" src="/assets/img/logo.png" alt="" width="90" height="90">'t <span>Palletje</span></a>
     <div class="links" id="menu">
-      <a href="/producten/">Producten</a>
+      <a class="active" href="/producten/">Producten</a>
       <a href="/#diensten">Diensten</a>
       <a href="/realisaties/">Realisaties</a>
       <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
@@ -66,7 +66,7 @@
       <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
       </button>
-      <a class="nav-cta cfg" href="/configurator/">Start configurator
+      <a class="nav-cta cfg" data-product="pallet" href="/configurator/">Start configurator
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
       <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -89,7 +89,9 @@
   <div class="wrap">
     <a href="/">Home</a>
     <span aria-hidden="true">/</span>
-    <span aria-current="page">Algemene voorwaarden</span>
+    <a href="/#duurzaamheid">Duurzaamheid &amp; regelgeving</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">PPWR-beslisroute</span>
   </div>
 </nav>
 
@@ -98,60 +100,97 @@
   <section class="page-hero">
     <div class="ph-hero"></div>
     <div class="wrap">
-      <div class="eyebrow">Juridisch</div>
-      <h1>Algemene voorwaarden</h1>
-      <p class="lead">De voorwaarden die gelden op elke offerte, bestelling en levering van 't Palletje.</p>
+      <div class="eyebrow">Beslisroute &middot; PPWR &middot; houten transportverpakkingen</div>
+      <h1>Welke PPWR-route past bij uw onderneming?</h1>
+      <p class="lead">Beantwoord enkele praktische vragen over het gebruik van onze houten transportverpakkingen. U ziet vervolgens welke beslissingen uw onderneming moet nemen, welke gegevens wij nodig hebben en welke documentatie &rsquo;t Palletje kan ondersteunen.</p>
+      <div class="hero-note"><span class="dot"></span> De toepasselijke verplichtingen hangen af van het product, het gebruik, de handelsstroom en de rol van iedere betrokken onderneming.</div>
     </div>
   </section>
 
-  <section class="op-wit">
+  <div class="beslisroute">
+
+    <section class="op-wit">
+      <div class="wrap">
+        <div class="intro">
+          <div class="eyebrow b">Doorloop de vragen</div>
+          <h2>Eerst de toepassing bepalen. Daarna het juiste bewijs.</h2>
+          <p>Elke stap hieronder gaat over één beslissing. Rechts groeit ondertussen uw uitkomst mee: de route die bij u past, wie welk stuk moet aanleveren en wat wij daarvan kunnen leveren.</p>
+        </div>
+
+        <div class="layout">
+          <section class="rail" id="rail" aria-label="Beslismomenten"></section>
+          <aside class="panel" id="panel" aria-live="polite" aria-label="Uitkomst"></aside>
+        </div>
+
+        <section class="checklist" id="checklist" hidden aria-label="Actielijst"></section>
+      </div>
+    </section>
+
+    <section class="op-zacht">
+      <div class="wrap">
+        <div class="intro">
+          <div class="eyebrow b">Tijdlijn</div>
+          <h2>Niet alles geldt vanaf dezelfde datum.</h2>
+        </div>
+        <div class="timeline">
+          <div class="tl-grid">
+            <div class="tl-item now">
+              <div class="tl-date">12 augustus 2026 &mdash; nu</div>
+              <ul>
+                <li>Algemeen PPWR-kader wordt toepasselijk.</li>
+                <li>Relevante rollen en handelsstromen identificeren.</li>
+                <li>Belgische EPR- en registratiepositie controleren.</li>
+                <li>Productinformatie en traceerbaarheid organiseren.</li>
+                <li>Bijzondere regels voor voedselcontact respecteren.</li>
+              </ul>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">2028&ndash;2029 &mdash; volgende fase</div>
+              <ul>
+                <li>Bepaalde geharmoniseerde etiketterings- en informatievereisten.</li>
+                <li>Verdere uitvoeringsregels volgen.</li>
+                <li>Dossiers en communicatie actualiseren.</li>
+              </ul>
+            </div>
+            <div class="tl-item">
+              <div class="tl-date">Vanaf 2030 &mdash; verdere eisen</div>
+              <ul>
+                <li>Belangrijke vereisten rond recycleerbaarheid.</li>
+                <li>Verpakkingsminimalisatie.</li>
+                <li>Hergebruikdoelstellingen waar van toepassing.</li>
+                <li>Verdere product- en systeemonderbouwing.</li>
+              </ul>
+            </div>
+          </div>
+          <p class="tl-note">Niet alle PPWR-verplichtingen gelden vanaf dezelfde datum. De toepasselijke timing blijft afhankelijk van het verpakkingstype, de marktrol en de geldende uitvoeringsregels.</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="printsheet" id="printsheet"></div>
+  </div>
+
+  <section class="op-wit" style="padding-top:0">
     <div class="wrap">
-      <div class="prose">
+      <article class="pillar">
+        <h3>Waarvoor deze beslisroute wel en niet dient</h3>
+        <p>Deze beslisroute is algemene ondersteuning en geen juridisch advies of automatische conformiteitsbeoordeling. De uiteindelijke beoordeling hangt af van het concrete product, gebruik, handelsstroom, de toepasselijke marktrol en de geldende regelgeving.</p>
+      </article>
+    </div>
+  </section>
 
-        <p><span class="ph">Deze tekst is nog niet opgesteld.</span> Algemene voorwaarden bepalen wat er gebeurt als er iets misloopt: wie draagt het risico tijdens transport, binnen welke termijn moet een klacht gemeld worden, wanneer gaat de eigendom over. Dat is werk voor uw boekhouder of jurist — een gekopieerd model uit een andere sector is hier gevaarlijker dan geen tekst. De koppen hieronder zijn de structuur die deze pagina moet krijgen.</p>
-
-        <h2>1. Identificatie</h2>
-        <table>
-          <tr><th scope="row">Handelsnaam</th><td>'t Palletje</td></tr>
-          <tr><th scope="row">Officiële naam</th><td><span class="ph">rechtsvorm nog te bevestigen</span></td></tr>
-          <tr><th scope="row">Adres</th><td>Morellestraat 1, 8750 Wingene</td></tr>
-          <tr><th scope="row">Ondernemingsnummer</th><td>BE 0863.163.507</td></tr>
-        </table>
-
-        <h2>2. Toepassingsgebied</h2>
-        <p><span class="ph">Op te stellen.</span></p>
-
-        <h2>3. Offertes en bestellingen</h2>
-        <p><span class="ph">Op te stellen — geldigheidsduur van een offerte, wanneer een bestelling definitief is, of een voorschot gevraagd wordt.</span></p>
-
-        <h2>4. Prijzen</h2>
-        <p><span class="ph">Op te stellen — inclusief of exclusief btw, en of houtprijzen herzienbaar zijn.</span></p>
-
-        <h2>5. Levering en risico-overgang</h2>
-        <p><span class="ph">Op te stellen — levertermijnen indicatief of bindend, wie draagt het risico tijdens transport.</span></p>
-
-        <h2>6. Aanvaarding en klachten</h2>
-        <p><span class="ph">Op te stellen — binnen welke termijn zichtbare gebreken gemeld moeten worden.</span></p>
-
-        <h2>7. Eigendomsvoorbehoud</h2>
-        <p><span class="ph">Op te stellen.</span></p>
-
-        <h2>8. Betaling</h2>
-        <p><span class="ph">Op te stellen — betaaltermijn, verwijlintrest, schadebeding.</span></p>
-
-        <h2>9. Aansprakelijkheid</h2>
-        <p><span class="ph">Op te stellen.</span></p>
-
-        <h2>10. Toepasselijk recht en bevoegde rechtbank</h2>
-        <p><span class="ph">Op te stellen.</span></p>
-
-        <p>Laatst bijgewerkt: <span class="ph">datum</span>.</p>
-
+  <section class="final">
+    <div class="wrap">
+      <div class="eyebrow b">Uw dossier op orde</div>
+      <h2>Wij leveren de productgegevens aan.</h2>
+      <p>Weet u na de route welke stukken u nodig hebt, laat het ons weten. Wij bezorgen wat over onze verpakking gaat: materiaal, gewicht, samenstelling en herkomst.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/offerte/">Stel uw vraag</a>
+        <a class="btn btn-secondary" href="tel:+32499196802">0499 19 68 02</a>
       </div>
     </div>
   </section>
 </main>
-
 <footer>
   <div class="wrap">
     <div class="footer-grid">
@@ -186,5 +225,6 @@
 </footer>
 
 <script src="/assets/js/site.js?v=20260906c"></script>
+<script src="/assets/js/ppwr.js?v=20260906c"></script>
 </body>
 </html>

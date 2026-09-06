@@ -27,8 +27,8 @@
 
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260906b">
-<link rel="stylesheet" href="/configurator/configurator.css?v=20260906b">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260906c">
+<link rel="stylesheet" href="/configurator/configurator.css?v=20260906c">
 </head>
 <body data-pagina="configurator">
 
@@ -43,7 +43,7 @@
       <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
       <div class="dropdown-menu" id="ddMenu">
         <a href="/#ispm15">ISPM-15 en export</a>
-        <a href="/#ppwr">PPWR-wetgeving</a>
+        <a href="/ppwr/">PPWR-wetgeving</a>
       </div>
     </div>
     <a href="/faq/">FAQ</a>
@@ -65,7 +65,7 @@
       <a href="/realisaties/">Realisaties</a>
       <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
       <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
-      <a class="alleen-mobiel" href="/#ppwr">PPWR-wetgeving</a>
+      <a class="alleen-mobiel" href="/ppwr/">PPWR-wetgeving</a>
       <a class="alleen-mobiel" href="/faq/">FAQ</a>
       <a class="alleen-mobiel" href="/contact/">Contact</a>
       <a class="alleen-mobiel" href="tel:+32499196802">0499 19 68 02</a>
@@ -246,7 +246,7 @@
         <h3>Bedrijf</h3>
         <a href="/#diensten">Diensten</a><a href="/werkwijze/">Werkwijze</a>
         <a href="/realisaties/">Realisaties</a><a href="/over-ons/">Over ons</a>
-        <a href="/#ispm15">ISPM-15</a><a href="/#ppwr">PPWR</a><a href="/faq/">FAQ</a>
+        <a href="/#ispm15">ISPM-15</a><a href="/ppwr/">PPWR</a><a href="/faq/">FAQ</a>
       </div>
       <div>
         <h3>Contact</h3>
@@ -261,22 +261,10 @@
   </div>
 </footer>
 
-<dialog id="lightbox" aria-label="Fotoalbum">
-  <button class="lb-sluit" data-lb-sluit aria-label="Sluiten">&times;</button>
-  <div class="lb-stage" id="lbStage"></div>
-  <button class="lb-nav prev" data-lb="-1" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
-  <button class="lb-nav next" data-lb="1" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
-  <div class="lb-bar">
-    <div><strong id="lbTitel"></strong><span id="lbBijschrift"></span></div>
-    <a class="lb-teller" id="lbMeer" href="/producten/" hidden style="color:#8fd3fa;text-decoration:underline">Naar de productpagina</a>
-    <span class="lb-teller" id="lbTeller"></span>
-  </div>
-</dialog>
-
-<script src="/configurator/three.min.js?v=20260906b"></script>
-<script src="/configurator/engine.js?v=20260906b"></script>
-<script src="/configurator/app.js?v=20260906b"></script>
-<script src="/assets/js/site.js?v=20260906b"></script>
+<script src="/configurator/three.min.js?v=20260906c"></script>
+<script src="/configurator/engine.js?v=20260906c"></script>
+<script src="/configurator/app.js?v=20260906c"></script>
+<script src="/assets/js/site.js?v=20260906c"></script>
 <script>
 /* deep-link vanaf de site: ?product=pallet opent meteen de juiste tab */
 (function () {

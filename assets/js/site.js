@@ -95,7 +95,7 @@
     { soort: 'Pagina',  titel: 'Contact', tekst: 'Morellestraat 1, 8750 Wingene. Bel 0499 19 68 02 of mail info@palletje.be.', url: '/contact/' },
     { soort: 'Pagina',  titel: 'Offerte aanvragen', tekst: 'Stuur uw project door met maten, gewicht, aantal en bestemming. Een foto of tekening erbij versnelt alles.', url: '/offerte/' },
     { soort: 'Onderwerp', titel: 'ISPM-15 en export', tekst: 'Exportkisten met onze eigen ISPM-15-markering. Wij kopen behandeld hout aan, produceren zelf en merken onder onze eigen registratie.', url: '/#ispm15' },
-    { soort: 'Onderwerp', titel: 'PPWR-wetgeving', tekst: 'De Europese Packaging and Packaging Waste Regulation verandert de context voor verpakking. Wij volgen de evoluties voor houten oplossingen.', url: '/#ppwr' },
+    { soort: 'Onderwerp', titel: 'PPWR-beslisroute', tekst: 'Welke PPWR-route past bij uw onderneming? Loop de vragen door en zie welke beslissingen u moet nemen en welke documentatie wij kunnen aanleveren.', url: '/ppwr/' },
     { soort: 'Onderwerp', titel: 'Diensten', tekst: 'Verpakkingsontwikkeling, prototyping, kleine testseries, R en D, verpakken in ons atelier, op locatie of inclusief levering.', url: '/#diensten' },
     { soort: 'Pagina',  titel: 'English', tekst: 'Wooden transport solutions made to measure: pallets, crates, export boxes, glass racks.', url: '/en/' },
     { soort: 'Pagina',  titel: 'Francais', tekst: 'Solutions de transport en bois sur mesure: palettes, caisses, caisses export, chevalets a verre.', url: '/fr/' },

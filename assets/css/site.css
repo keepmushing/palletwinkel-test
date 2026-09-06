@@ -198,6 +198,7 @@ section{padding:92px 0}
 .lb-stage img{max-width:100%;max-height:100%;object-fit:contain;border-radius:var(--r-0)}
 .lb-leeg{position:absolute;inset:0;display:grid;place-items:center;background:linear-gradient(135deg,#26506e,#7fb0cc);color:#eaf4f9;font-size:.9rem;text-align:center;padding:24px}
 .lb-nav{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;border-radius:50%;border:0;background:rgba(255,255,255,.92);color:var(--navy);display:grid;place-items:center;cursor:pointer;z-index:3}
+.lb-nav[hidden]{display:none}   /* eigen display-regel wint van [hidden] uit de browser-stylesheet */
 .lb-nav:hover{background:#fff}
 .lb-nav.prev{left:14px}
 .lb-nav.next{right:14px}
@@ -566,7 +567,7 @@ footer{background:var(--navy)}
 .crumbs a{color:var(--blue);font-weight:600}
 .crumbs a:hover{text-decoration:underline}
 .crumbs [aria-current]{color:var(--navy);font-weight:700}
-.crumbs span[aria-hidden]{color:#a8bcc8}
+.crumbs span[aria-hidden]{color:#ccd6dc}
 
 /* --- paginakop: dezelfde donkere band als de hero, maar compact --- */
 .page-hero{background-color:#0a3a5c;color:#fff;position:relative;overflow:hidden;padding:0}
@@ -621,14 +622,14 @@ footer{background:var(--navy)}
 .pillar ul{margin:10px 0 0;padding-left:18px;color:var(--muted);font-size:.94rem}
 .pillar li{margin-bottom:6px}
 .op-lucht .pillar,.op-zacht .pillar{background:#fff}
-.op-navy .pillar{background:#0e3b5c;border-color:rgba(255,255,255,.12);border-top-color:#8fd3fa}
+.op-navy .pillar{background:#0e3b5c;border-color:rgba(255,255,255,.10);border-top-color:#8fd3fa}
 .op-navy .pillar p,.op-navy .pillar li{color:#b9d5e8}
 
 /* --- genummerde stappen --- */
 .stap{padding:24px;background:#fff;border-radius:var(--r-md);border-top:3px solid var(--blue);min-width:0}
 .stap .nr{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:var(--r-pill);background:var(--navy);color:#fff;font-size:.85rem;font-weight:800;margin-bottom:14px}
-.stap h3{margin:0 0 6px;color:var(--navy);font-size:1.08rem;font-weight:700}
-.stap p{margin:0;color:var(--muted);font-size:.93rem}
+.stap h3{margin:0 0 6px;color:var(--navy);font-size:1.12rem;font-weight:700}
+.stap p{margin:0;color:var(--muted);font-size:.92rem}
 
 /* --- twee kolommen met beeldvlak --- */
 .feature{display:grid;grid-template-columns:1.05fr .95fr;gap:52px;align-items:center}

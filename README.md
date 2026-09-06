@@ -14,7 +14,7 @@ uit elkaar gehaald:
   aanvullingen voor de pagina's die de homepage niet is;
 - het gedrag staat in `assets/js/site.js` — hetzelfde script als in het
   ontwerp, maar elk onderdeel kijkt eerst of het op deze pagina bestaat, zodat
-  één bestand op alle 22 pagina's draait;
+  één bestand op alle 23 pagina's draait;
 - de homepage zelf is de body van dat ontwerp, met echte links in plaats van
   ankers en modals.
 
@@ -106,6 +106,7 @@ palletwinkel/
     app.js                Verbindt het formulier met de engine, tekent de 3D
     three.min.js          Three.js r128, meegeleverd zodat het offline werkt
     configurator.css      Alleen wat site.css niet heeft
+  ppwr/                   PPWR-beslisroute — zie hieronder
   werkwijze/  realisaties/  over-ons/  faq/  contact/  offerte/
   privacy/  voorwaarden/  cookies/
   assets/
@@ -138,6 +139,32 @@ Alle knoppen op de site die naar de configurator wijzen, dragen de klasse `cfg`.
 `"kist"` of `"platen"` opent meteen de juiste tab. Verhuist de configurator ooit
 naar een eigen subdomein, dan pas je één regel aan: `CONFIGURATOR_URL` bovenaan
 `assets/js/site.js`.
+
+### De PPWR-beslisroute
+
+`/ppwr/` is de interactieve beslisroute uit
+`ppwr-beslisroute-palletje-nieuwe-huisstijl.html`. De vragenlogica in
+`assets/js/ppwr.js` is ongewijzigd overgenomen; alleen de schil en de stijl zijn
+nieuw.
+
+De stijl staat in `assets/css/ppwr.css` en hangt **volledig onder
+`.beslisroute`**. Dat is geen nettigheid maar noodzaak: de route gebruikt
+klassenamen die de site ook heeft — `.card`, `.step`, `.btn`, `.field`,
+`.panel`, `.wrap`, `.eyebrow`. Zonder die wrapper zouden de twee stylesheets
+elkaar over en weer overschrijven. Om dezelfde reden staan de tokens van de
+route op `.beslisroute` en niet op `:root`: `--wood` betekent in `site.css` het
+bruin van de nog-te-bevestigen markering en in de route het blauwe accent.
+
+Het oorspronkelijke bestand was de oude papier-en-houtversie met een blok
+`/* nieuwe huisstijl */` erbovenop geplakt. Dat dekte de hoofdkleuren af maar
+niet alles: `.chip:hover` bleef beige, en het waarschuwingsblok gebruikte een
+eigen amberfamilie. Hier is er één laag van gemaakt, waarin elke kleur uit het
+palet van de site komt. Te controleren in de browser: geen enkele kleur binnen
+`.beslisroute` valt buiten navy / blauw / lucht / lijn / inkt / grijs, plus de
+bruinfamilie van de site voor de waarschuwing.
+
+Bij afdrukken verbergt `@media print` de kopbalk, het kruimelpad, de paginakop
+en de voettekst, en toont het `.printsheet` — het A4-blad dat `ppwr.js` vult.
 
 ### Waarom Inter lokaal staat
 
@@ -178,7 +205,7 @@ netwerkweergave van de browser: alles komt van het eigen domein.
 
 7. **Header en footer staan in elk bestand.** Dat is de prijs van geen build:
    wat de server stuurt, staat letterlijk in de map. Wijzig je de navigatie of de
-   footer, wijzig ze dan overal — alle 22 pagina's. `controleer.ps1` merkt het
+   footer, wijzig ze dan overal — alle 23 pagina's. `controleer.ps1` merkt het
    als er ergens een id ontbreekt of dubbel staat, maar niet als je een link
    vergeet bij te werken. Neem `producten/pallet-op-maat/index.html` als
    voorbeeld; die is de maat voor alle andere.
@@ -191,13 +218,13 @@ netwerkweergave van de browser: alles komt van het eigen domein.
    stuurt `Cache-Control: max-age=604800` mee: zeven dagen. Zonder stempel krijgt
    een bezoeker die vorige week langskwam de nieuwe HTML met de oude stijl, en
    valt de pagina uit elkaar. Daarom staat achter elke gedeelde stijl en elk
-   gedeeld script `?v=20260906`. Verhoog dat getal in alle pagina's tegelijk:
+   gedeeld script `?v=20260906c`. Verhoog dat getal in alle pagina's tegelijk:
 
    ```
-   grep -rl "?v=20260906" --include="*.html" . | xargs sed -i "s/?v=20260906/?v=20260907/g"
+   grep -rl "?v=20260906c" --include="*.html" . | xargs sed -i "s/?v=20260906c/?v=20260906d/g"
    ```
 
-   Het stempel staat vandaag op `?v=20260906b`. Elke waarde die verandert
+   Het stempel staat vandaag op `?v=20260906c`. Elke waarde die verandert
    volstaat; houd hem in alle pagina's gelijk. Voor de lettertypen en het logo
    is dit niet nodig: die bestanden veranderen niet, en een gewijzigd
    lettertype krijgt gewoon een nieuwe bestandsnaam.
