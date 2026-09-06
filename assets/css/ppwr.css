@@ -144,9 +144,14 @@
 .beslisroute .blk-head h3{margin:0;font-size:12.5px;font-weight:600;letter-spacing:.01em}
 .beslisroute .tag{font-family:var(--mono);font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;
   border:1px solid;border-radius:999px;padding:2px 7px;white-space:nowrap}
-.beslisroute .c-klant{color:var(--wood);border-color:#b9d9e9;background:#eaf4f9}
-.beslisroute .c-pal{color:var(--ink);border-color:#cbdfea;background:#edf3f6}
-.beslisroute .c-samen{color:var(--joint);border-color:#cbdfea;background:#f3f8fb}
+/* Wie doet wat. In het oorspronkelijke ontwerp waren dit bruin, navy en
+   leisteen: drie duidelijk verschillende kleuren. Rechtstreeks omgezet naar
+   het blauwe palet werden het drie bijna gelijke tinten en verdween het
+   onderscheid. Daarom nu een verschil in vulling in plaats van in tint —
+   open, gevuld, zacht gevuld — met alle drie een kleur uit het palet. */
+.beslisroute .c-klant{color:var(--wood);border-color:var(--wood);background:#fff}
+.beslisroute .c-pal{color:#fff;border-color:var(--joint);background:var(--joint)}
+.beslisroute .c-samen{color:var(--joint);border-color:#b9d9e9;background:#eaf4f9}
 .beslisroute ul.list{list-style:none;margin:0;padding:0}
 .beslisroute ul.list li{position:relative;padding-left:16px;font-size:13.4px;color:var(--ink-2);margin-bottom:6px;line-height:1.45}
 .beslisroute ul.list li:before{content:"";position:absolute;left:0;top:8px;width:6px;height:1px;background:var(--wood)}

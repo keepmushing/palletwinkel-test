@@ -218,13 +218,13 @@ netwerkweergave van de browser: alles komt van het eigen domein.
    stuurt `Cache-Control: max-age=604800` mee: zeven dagen. Zonder stempel krijgt
    een bezoeker die vorige week langskwam de nieuwe HTML met de oude stijl, en
    valt de pagina uit elkaar. Daarom staat achter elke gedeelde stijl en elk
-   gedeeld script `?v=20260906c`. Verhoog dat getal in alle pagina's tegelijk:
+   gedeeld script `?v=20260906d`. Verhoog dat getal in alle pagina's tegelijk:
 
    ```
-   grep -rl "?v=20260906c" --include="*.html" . | xargs sed -i "s/?v=20260906c/?v=20260906d/g"
+   grep -rl "?v=20260906d" --include="*.html" . | xargs sed -i "s/?v=20260906d/?v=20260906e/g"
    ```
 
-   Het stempel staat vandaag op `?v=20260906c`. Elke waarde die verandert
+   Het stempel staat vandaag op `?v=20260906d`. Elke waarde die verandert
    volstaat; houd hem in alle pagina's gelijk. Voor de lettertypen en het logo
    is dit niet nodig: die bestanden veranderen niet, en een gewijzigd
    lettertype krijgt gewoon een nieuwe bestandsnaam.

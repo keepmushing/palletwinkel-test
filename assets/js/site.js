@@ -47,15 +47,13 @@
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDd(); });
   }
 
-  /* ====== 4. dialogen (fotoalbum en verdere modals) ====== */
-  $$('[data-dialog]').forEach(btn => {
-    const d = document.getElementById(btn.dataset.dialog);
-    if (d) btn.addEventListener('click', () => d.showModal());
-  });
-  $$('dialog').forEach(d => {
-    $$('[data-close]', d).forEach(b => b.addEventListener('click', () => d.close()));
-    d.addEventListener('click', e => { if (e.target === d) d.close(); });
-  });
+  /* ====== 4. dialogen — vervallen ==============================================
+     De productmodals uit het ontwerp zijn echte pagina's geworden, dus er staan
+     nergens nog [data-dialog]- of [data-close]-knoppen in de HTML. Het enige
+     dialoogvenster dat overblijft is het fotoalbum (#lightbox); dat opent en
+     sluit zichzelf in blok 6. Een algemene dialooglus hier hing daar enkel een
+     tweede, identieke achtergrondsluiter bovenop.
+     ========================================================================== */
 
   /* ====== 4b. een link naar een FAQ-antwoord opent dat antwoord ====== */
   function openFaq() {
@@ -79,6 +77,7 @@
         site doorzoekt. Nieuwe pagina toegevoegd? Zet ze in PAGINAS hieronder.
      ========================================================================== */
   const PAGINAS = [
+    { soort: 'Pagina',  titel: 'Home', tekst: "Startpagina van 't Palletje: pallets, kisten, glasbokken, opzetranden en houten transportoplossingen op maat.", url: '/' },
     { soort: 'Product', titel: 'Pallets op maat', tekst: 'Blokpallet of balkpallet, elke afmeting en elke belasting. Voor intern transport, verzending en herhaalbare logistiek.', url: '/producten/pallet-op-maat/' },
     { soort: 'Product', titel: 'Kisten en kratten', tekst: 'Open of gesloten houten verpakking, afgestemd op product en toepassing. Stapelbaar, nestbaar, met deksel of scharnieren.', url: '/producten/kisten-en-kratten/' },
     { soort: 'Product', titel: 'Exportkisten', tekst: 'Houten exportkisten met ISPM-15-markering onder onze eigen registratie, voor zendingen buiten de Europese Unie.', url: '/producten/exportkisten/' },
