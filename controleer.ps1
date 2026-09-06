@@ -113,11 +113,13 @@ foreach ($p in $paginas) {
         }
     }
 
-    # 8. bronnen (src)
+    # 8. bronnen (src). Het ?v=… erachter is een versiestempel tegen oude
+    #    browsercache; voor het bestaan van het bestand telt dat niet mee.
     foreach ($m in [regex]::Matches($html, 'src="([^"]+)"')) {
         $src = $m.Groups[1].Value
         if ($src -match '^(https?:|data:)') { continue }
         if (-not $src.StartsWith("/")) { Meld $rel "bron" "relatief pad: $src"; continue }
+        if ($src.Contains("?")) { $src = $src.Split("?")[0] }
         $bron = Join-Path $Root ($src.TrimStart("/").Replace("/","\"))
         if (-not (Test-Path $bron)) { Meld $rel "bron" "bestaat niet: $src" }
     }

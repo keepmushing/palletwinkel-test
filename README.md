@@ -187,6 +187,19 @@ netwerkweergave van de browser: alles komt van het eigen domein.
    `assets/js/site.js`, anders vindt de zoekfunctie ze niet, en in
    `sitemap.xml`.
 
+9. **Wijzig je `site.css` of `site.js`, bump dan het versiestempel.** De hosting
+   stuurt `Cache-Control: max-age=604800` mee: zeven dagen. Zonder stempel krijgt
+   een bezoeker die vorige week langskwam de nieuwe HTML met de oude stijl, en
+   valt de pagina uit elkaar. Daarom staat achter elke gedeelde stijl en elk
+   gedeeld script `?v=20260906`. Verhoog dat getal in alle pagina's tegelijk:
+
+   ```
+   grep -rl "?v=20260906" --include="*.html" . | xargs sed -i "s/?v=20260906/?v=20260907/g"
+   ```
+
+   Voor de lettertypen en het logo is dat niet nodig: die bestanden veranderen
+   niet, en een gewijzigd lettertype krijgt gewoon een nieuwe bestandsnaam.
+
 - [ ] **Formulier-backend.** `/offerte/` is volledig opgebouwd maar verstuurt niets.
       Waar komt een inzending binnen? (doc 01, sectie J) Zolang dit open staat, mag
       die pagina niet live.
