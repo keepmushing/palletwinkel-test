@@ -38,7 +38,7 @@
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="apple-touch-icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260906">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260906b">
 
 <script type="application/ld+json">
 {
@@ -480,9 +480,13 @@
           </div>
         </div>
 
-        <form id="projectformulier" method="post" action="#" enctype="multipart/form-data">
+        <!-- Nog geen backend: site.js zet de velden om in een e-mail. Zie
+             README, "Formulier-backend". Het action-attribuut hieronder is de
+             terugval voor bezoekers zonder JavaScript. -->
+        <form id="projectformulier" method="post" action="mailto:info@palletje.be" enctype="text/plain">
           <div class="eyebrow b">Projectaanvraag</div>
           <h3 style="margin:8px 0 18px;font-size:1.5rem;color:var(--navy);letter-spacing:-.03em">Stuur uw project</h3>
+          <p class="hint"><span class="ph">Dit formulier is nog niet op een server aangesloten: uw aanvraag opent in uw eigen e-mailprogramma. Liever rechtstreeks? Mail <a href="mailto:info@palletje.be">info@palletje.be</a> of bel <a href="tel:+32499196802">0499 19 68 02</a>.</span></p>
           <div class="two">
             <div class="field"><label for="naam">Naam *</label><input id="naam" name="naam" required></div>
             <div class="field"><label for="bedrijf">Bedrijf *</label><input id="bedrijf" name="bedrijf" required></div>
@@ -558,6 +562,6 @@
   </div>
 </dialog>
 
-<script src="/assets/js/site.js?v=20260906"></script>
+<script src="/assets/js/site.js?v=20260906b"></script>
 </body>
 </html>

@@ -197,12 +197,22 @@ netwerkweergave van de browser: alles komt van het eigen domein.
    grep -rl "?v=20260906" --include="*.html" . | xargs sed -i "s/?v=20260906/?v=20260907/g"
    ```
 
-   Voor de lettertypen en het logo is dat niet nodig: die bestanden veranderen
-   niet, en een gewijzigd lettertype krijgt gewoon een nieuwe bestandsnaam.
+   Het stempel staat vandaag op `?v=20260906b`. Elke waarde die verandert
+   volstaat; houd hem in alle pagina's gelijk. Voor de lettertypen en het logo
+   is dit niet nodig: die bestanden veranderen niet, en een gewijzigd
+   lettertype krijgt gewoon een nieuwe bestandsnaam.
 
-- [ ] **Formulier-backend.** `/offerte/` is volledig opgebouwd maar verstuurt niets.
-      Waar komt een inzending binnen? (doc 01, sectie J) Zolang dit open staat, mag
-      die pagina niet live.
+- [ ] **Formulier-backend.** Er is nog geen server die een inzending opvangt
+      (doc 01, sectie J). Tot die er is, zet `site.js` de ingevulde velden om in
+      een e-mail die in het mailprogramma van de bezoeker opengaat, met een
+      zichtbare melding erbij. Dat is een noodoplossing, geen eindpunt: een
+      bezoeker zonder mailprogramma in de browser komt er niet mee weg, en een
+      bijlage moet hij zelf toevoegen. **Waarom dit nodig was:** de hosting
+      beantwoordt een POST met status 200 en dezelfde pagina, dus zonder deze
+      afhandeling denkt de bezoeker dat zijn aanvraag verstuurd is terwijl er
+      niets gebeurde. Kies een bestemming (een formulierdienst, een mailscript
+      of een eigen endpoint), zet die in `action`, en verwijder blok 8 uit
+      `assets/js/site.js`.
 - [ ] **Registratienummer ISPM-15 verifiëren.** `BE-1689` staat 19 keer als bevestigd feit,
       verspreid over 12 bestanden. Klopt dat nummer? Een fout certificaatnummer op een exportkist is
       geen tekstfoutje.

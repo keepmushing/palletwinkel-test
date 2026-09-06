@@ -447,4 +447,56 @@
 
   /* ====== 7. jaartal in de voettekst ====== */
   $$('[data-year], [data-jaar]').forEach(el => { el.textContent = new Date().getFullYear(); });
+
+  /* ====== 8. projectformulier ==================================================
+     Er is nog geen server die inzendingen opvangt (README, "Formulier-backend").
+     Zonder deze afhandeling levert de knop niets op: de hosting stuurt een POST
+     gewoon dezelfde pagina terug, met status 200. De bezoeker denkt dan dat zijn
+     aanvraag verstuurd is terwijl er niets gebeurd is.
+
+     Zolang de backend er niet is, zetten we de ingevulde velden om in een
+     e-mail die in het mailprogramma van de bezoeker opengaat. Niet elegant,
+     wel eerlijk: hij ziet wat er verstuurd wordt en aan wie.
+
+     Komt er een echte backend? Verwijder dan dit hele blok en zet het juiste
+     adres in het action-attribuut van het formulier.
+     ========================================================================== */
+  const ONTVANGER = 'info@palletje.be';
+  $$('form#projectformulier').forEach(formulier => {
+    const melding = document.createElement('p');
+    melding.className = 'hint';
+    melding.setAttribute('role', 'status');
+    melding.setAttribute('aria-live', 'polite');
+    formulier.append(melding);
+
+    formulier.addEventListener('submit', ev => {
+      ev.preventDefault();
+      if (!formulier.reportValidity()) return;
+
+      const regels = [];
+      $$('input, select, textarea', formulier).forEach(veld => {
+        if (!veld.name || veld.type === 'file') return;
+        const label = formulier.querySelector('label[for="' + veld.id + '"]');
+        const naam = label ? label.textContent.replace('*', '').trim() : veld.name;
+        const waarde = (veld.value || '').trim();
+        if (waarde) regels.push(naam + ': ' + waarde);
+      });
+
+      const bestand = $('input[type=file]', formulier);
+      if (bestand && bestand.files && bestand.files.length) {
+        regels.push('', 'Bijlagen (voeg ze toe in uw e-mail): ' +
+          Array.from(bestand.files).map(f => f.name).join(', '));
+      }
+
+      const onderwerp = 'Projectaanvraag via de website';
+      const body = regels.join('\n') + '\n\n— verstuurd via palletje.be';
+      location.href = 'mailto:' + ONTVANGER +
+        '?subject=' + encodeURIComponent(onderwerp) +
+        '&body=' + encodeURIComponent(body);
+
+      melding.textContent = 'Uw aanvraag staat klaar in uw e-mailprogramma. ' +
+        (bestand && bestand.files && bestand.files.length ? 'Voeg daar uw bestand nog toe en verstuur de mail. ' : 'Verstuur de mail om ze bij ons te krijgen. ') +
+        'Gaat er niets open? Mail dan rechtstreeks naar ' + ONTVANGER + ' of bel 0499 19 68 02.';
+    });
+  });
 })();
