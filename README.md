@@ -3,6 +3,40 @@
 Statische site. Geen build, geen dependencies, geen Node. Wat je hier ziet, is
 wat de server serveert.
 
+## Het ontwerp
+
+Alle pagina's dragen sinds 6 september 2026 het ontwerp uit
+`palletje-home-v43-logo90.html`: marineblauw en lucht, Inter, en het
+radius-systeem 0 / 4 / 10 / 16 / pill. Dat ontwerpbestand is in drie stukken
+uit elkaar gehaald:
+
+- de stijl staat letterlijk in `assets/css/site.css`, met onderaan een blok
+  aanvullingen voor de pagina's die de homepage niet is;
+- het gedrag staat in `assets/js/site.js` — hetzelfde script als in het
+  ontwerp, maar elk onderdeel kijkt eerst of het op deze pagina bestaat, zodat
+  één bestand op alle 22 pagina's draait;
+- de homepage zelf is de body van dat ontwerp, met echte links in plaats van
+  ankers en modals.
+
+**De signatuurvorm** (`--r-mark`, de vorm met één rechte hoek) hoort exact één
+keer per pagina voor te komen: op het `.final`-blok. `controleer.ps1` bewaakt
+dat.
+
+**De productmodals uit het ontwerp zijn echte pagina's geworden.** In het
+ontwerp opende "Lees meer" een `<dialog>` met de mededeling *worden later echte
+pagina's*. Dat is nu gebeurd: elke kaart linkt naar `/producten/<slug>/`.
+
+## De site nakijken
+
+```
+powershell -ExecutionPolicy Bypass -File controleer.ps1
+```
+
+Loopt elke pagina na op: kapotte interne links, ankers die nergens heen wijzen,
+ontbrekende of dubbele id's, meer dan één `<h1>`, meer dan één `.final`, en
+klassen die in geen enkele stylesheet gedefinieerd staan. Geeft `GEEN FOUTEN`
+of een lijst per pagina. Draai dit voor elke push.
+
 ## De site lokaal bekijken
 
 Dubbelklikken op `index.html` werkt **niet** goed: de pagina's linken naar
@@ -62,22 +96,60 @@ niets.
 
 ```
 palletwinkel/
-  index.html              Homepage (NL)
-  en/                     Engelse versie
-  fr/                     Franse versie
+  index.html              Homepage (NL) — het volledige v43-ontwerp
+  en/                     Engelse samenvattingspagina
+  fr/                     Franse samenvattingspagina
   producten/              Overzicht + zeven detailpagina's
+  configurator/           De configurator, in dezelfde huisstijl
+    index.html            De pagina; schil uit site.css, rest uit configurator.css
+    engine.js             Alle rekenregels. Hier verander je een norm.
+    app.js                Verbindt het formulier met de engine, tekent de 3D
+    three.min.js          Three.js r128, meegeleverd zodat het offline werkt
+    configurator.css      Alleen wat site.css niet heeft
   werkwijze/  realisaties/  over-ons/  faq/  contact/  offerte/
   privacy/  voorwaarden/  cookies/
   assets/
     css/site.css          Designsysteem — alle kleuren, maten en componenten
-    js/site.js            Mobiele nav en footerjaartal. Meer niet.
-    img/                  Foto's (WebP + JPG-fallback, 480/1024/1920 px)
-    fonts/                Leeg. De site draait bewust op Arial — zie site.css.
+    js/site.js            Menu, zoeken, vraagbaak, fotoalbums, configuratorlinks
+    img/                  logo.png + de foto's (zie ALBUMS in site.js)
+    fonts/                Inter, lokaal. Zie hieronder waarom.
   404.html                Foutpagina, in dezelfde stijl
   sitemap.xml  robots.txt  Voor zoekmachines
+  controleer.ps1          Nakijker — zie "De site nakijken"
   server.js  package.json  Enkel voor de Node-hosting — zie "Hosting"
   serve.ps1               Preview-server
 ```
+
+### De configurator
+
+`/configurator/` is een kopie van
+[github.com/djoeneuh/palletje-configurator](https://github.com/djoeneuh/palletje-configurator).
+`engine.js`, `app.js` en `three.min.js` zijn **byte voor byte** overgenomen; het
+rekenwerk is dus niet aangeraakt. Alleen de pagina en de stijl zijn nieuw, zodat
+de configurator dezelfde kopbalk, kleuren en voettekst draagt als de site.
+
+Tien producten: pallet met blokken of balken, kist en krat in drie
+bodemvarianten elk, houten vloer en houten wand. De klant krijgt er een
+3D-weergave, een samenvatting, een CSV voor de CNC en zagerij en een JSON met
+de volledige configuratie.
+
+Alle knoppen op de site die naar de configurator wijzen, dragen de klasse `cfg`.
+`site.js` maakt daar `/configurator/?product=…` van; met `data-product="pallet"`,
+`"kist"` of `"platen"` opent meteen de juiste tab. Verhuist de configurator ooit
+naar een eigen subdomein, dan pas je één regel aan: `CONFIGURATOR_URL` bovenaan
+`assets/js/site.js`.
+
+### Waarom Inter lokaal staat
+
+Het ontwerp laadde Inter bij Google Fonts. Dat stuurt het IP-adres van elke
+bezoeker naar Google voor een bestand dat we net zo goed zelf kunnen serveren —
+in de EU een terugkerend privacybezwaar, en een extra verbinding die de pagina
+vertraagt. De twee bestanden in `assets/fonts/` dekken Latijn en
+Latijn-uitgebreid, genoeg voor Nederlands, Frans en Engels. Het zijn variabele
+fonts: één bestand per subset dekt alle diktes.
+
+**De site doet nu geen enkel extern verzoek meer.** Te controleren in de
+netwerkweergave van de browser: alles komt van het eigen domein.
 
 ## Regels bij het aanpassen
 
@@ -85,10 +157,11 @@ palletwinkel/
    staan in doc 03 — BRAND & ASSETS. Verander ze daar eerst, dan hier. Schrijf
    nooit een losse hex-kleur in een HTML-bestand.
 
-2. **Geel gemarkeerde tekst is nog niet bevestigd.** Alles met `class="ph"` of
-   `class="ph-block"` komt uit doc 01 — FEITENDOSSIER en staat daar nog op
-   TE BEVESTIGEN. Zolang die markering er staat, mag de pagina niet live.
-   Zoek ze allemaal met: `findstr /s /c:"class=\"ph\"" /c:"class=\"ph-block\"" *.html`
+2. **Geel gemarkeerde tekst is nog niet bevestigd.** Alles met `class="ph"`
+   komt uit doc 01 — FEITENDOSSIER en staat daar nog op TE BEVESTIGEN. Zolang
+   die markering er staat, mag de pagina niet live. Vandaag staan er **64**,
+   verspreid over 18 bestanden. Zoek ze met:
+   `findstr /s /c:"class=\"ph\"" *.html`
 
 3. **Elke claim moet in doc 01 sectie H op JA staan.** Geen uitzonderingen.
    Raakt een claim niet bevestigd, dan verdwijnt hij — hij wordt niet vervangen
@@ -105,18 +178,28 @@ palletwinkel/
 
 7. **Header en footer staan in elk bestand.** Dat is de prijs van geen build:
    wat de server stuurt, staat letterlijk in de map. Wijzig je de navigatie of de
-   footer, wijzig ze dan overal. Controleer achteraf of het aantal klopt:
-   `findstr /s /m /c:"Hoofdnavigatie" *.html` moet 18 Nederlandse pagina's geven
-   (en/ en fr/ hebben een eigen, vertaalde navigatie).
+   footer, wijzig ze dan overal — alle 22 pagina's. `controleer.ps1` merkt het
+   als er ergens een id ontbreekt of dubbel staat, maar niet als je een link
+   vergeet bij te werken. Neem `producten/pallet-op-maat/index.html` als
+   voorbeeld; die is de maat voor alle andere.
+
+8. **Nieuwe pagina toegevoegd?** Zet ze ook in `PAGINAS` bovenaan
+   `assets/js/site.js`, anders vindt de zoekfunctie ze niet, en in
+   `sitemap.xml`.
 
 - [ ] **Formulier-backend.** `/offerte/` is volledig opgebouwd maar verstuurt niets.
       Waar komt een inzending binnen? (doc 01, sectie J) Zolang dit open staat, mag
       die pagina niet live.
-- [ ] **Registratienummer ISPM-15 verifiëren.** `BE-1689` staat 44 keer als bevestigd feit,
-      verspreid over 21 bestanden. Klopt dat nummer? Een fout certificaatnummer op een exportkist is
+- [ ] **Registratienummer ISPM-15 verifiëren.** `BE-1689` staat 19 keer als bevestigd feit,
+      verspreid over 12 bestanden. Klopt dat nummer? Een fout certificaatnummer op een exportkist is
       geen tekstfoutje.
-- [ ] **Geel gemarkeerde tekst wegwerken.** Zoek ze met:
-      `findstr /s /c:"class=\"ph\"" /c:"class=\"ph-block\"" *.html`
+- [ ] **Geel gemarkeerde tekst wegwerken.** 64 stuks in 18 bestanden. Zoek ze met:
+      `findstr /s /c:"class=\"ph\"" *.html`
+- [ ] **Foto's.** Alle beeldvlakken zijn nu blauwe placeholders met een
+      bijschrift dat zegt welke foto er hoort. De bestandsnamen staan in
+      `ALBUMS` bovenaan `assets/js/site.js`; leg de bestanden in
+      `assets/img/` en ze verschijnen vanzelf. Ontbreekt er een, dan blijft het
+      blauwe vlak staan — de site blijft dus werken terwijl u ze verzamelt.
 - [ ] **Zachte 404 oplossen.** Hostinger stuurt op deze webapp élk onbekend pad
       naar `index.html` met status 200 in plaats van 404. Zolang de site op
       `noindex` staat is dat onschadelijk, maar vóór livegang moet een typfout in
@@ -126,9 +209,10 @@ palletwinkel/
 - [ ] **Domein bevestigen.** Overal staat nu `palletje.be` (canonical, hreflang,
       sitemap). Dat is afgeleid uit het configurator-subdomein, niet expliciet
       bevestigd — doc 01, blokker 4. Zet de andere domeinen op redirect.
-- [ ] Logo in SVG, favicon (32, 180, SVG) en Open Graph-beeld 1200 × 630
-- [ ] Foto's uit de shotlist (doc 03). Elke `.photo`, `.case-visual` en
-      `.feature-visual` draagt in `data-note` de opdracht voor het beeld.
+- [ ] Logo in SVG en een Open Graph-beeld 1200 × 630. Het logo staat er nu als
+      PNG van 360 × 360 (`assets/img/logo.png`), gebruikt als merkteken én als
+      favicon. Voor een scherpe weergave op grote schermen en in
+      deelvoorbeelden is een SVG en een echt OG-beeld beter.
 - [ ] Privacybeleid, algemene voorwaarden en cookiebeleid laten opstellen. De
       pagina's staan er, met de structuur; de tekst moet van uw boekhouder of jurist
       komen. Ze staan op `noindex` tot dat gebeurd is.
@@ -139,9 +223,16 @@ palletwinkel/
       niet. Zie de FAQ.
 - [ ] Beslissen waar "Vloeren" uit de configurator thuishoort (doc 01, blokker 2).
 
+- [ ] **Duplicaat FAQ.** De vijftig vragen staan zowel op de homepage (zo is het
+      ontwerp) als op `/faq/`. Zolang de site op `noindex` staat is dat
+      onschadelijk. Beslis vóór de livegang welke van de twee de canonieke
+      versie is, of laat de homepage alleen de drie populaire vragen tonen met
+      een doorverwijzing naar `/faq/`.
+
 Afgewerkt: sitemap.xml en robots.txt staan er. Een cookiebanner is vandaag niet
-nodig — de site plaatst geen enkele cookie. Dat verandert zodra er een ingesloten
-kaart, statistieken of een externe formulierdienst bij komt; zie `/cookies/`.
+nodig — de site plaatst geen enkele cookie en doet sinds de lokale fonts geen
+enkel extern verzoek meer. Dat verandert zodra er een ingesloten kaart,
+statistieken of een externe formulierdienst bij komt; zie `/cookies/`.
 
 ## Van staging naar live
 
@@ -153,7 +244,7 @@ mogen niet in Google belanden.
 Op de dag van de livegang, in deze volgorde:
 
 1. **Alle gele markeringen weg.** Zoek ze met
-   `findstr /s /c:"class=\"ph\"" /c:"class=\"ph-block\"" *.html`. Zolang er één overblijft, ga je niet live.
+   `findstr /s /c:"class=\"ph\"" *.html`. Zolang er één overblijft, ga je niet live.
 
 2. **Domein rechtzetten** als het definitieve domein niet `palletje.be` is.
    Het staat in `canonical`, `hreflang`, `og:url`, de JSON-LD op de homepage,
@@ -178,4 +269,6 @@ Op de dag van de livegang, in deze volgorde:
    ```
 
 6. **Controleren** met de preview-server: `Disallow` weg, geen `noindex` meer op
-   de 17 gewone pagina's, en alle URL's in `sitemap.xml` op het juiste domein.
+   de gewone pagina's, en alle URL's in `sitemap.xml` op het juiste domein.
+
+7. **`controleer.ps1` draaien.** Die moet `GEEN FOUTEN` geven voor je pusht.

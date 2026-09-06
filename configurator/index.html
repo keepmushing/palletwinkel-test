@@ -1,0 +1,296 @@
+<!doctype html>
+<!-- ==========================================================
+     'T PALLETJE — CONFIGURATOR
+     Rekenwerk (engine.js), bediening (app.js) en de 3D-weergave
+     komen ongewijzigd uit github.com/djoeneuh/palletje-configurator.
+     De schil is die van de site: /assets/css/site.css levert
+     kleuren, kopbalk, knoppen en voettekst; configurator.css
+     alleen wat daar niet in zit.
+     ========================================================== -->
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Configurator | 't Palletje</title>
+<meta name="description" content="Stel zelf uw pallet, kist, krat, houten vloer of wand samen. Directe 3D-weergave, samenvatting en een CSV-bestand voor de zagerij en de CNC.">
+
+<link rel="canonical" href="https://palletje.be/configurator/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_BE">
+<meta property="og:title" content="Configurator | 't Palletje">
+<meta property="og:description" content="Stel zelf uw pallet, kist, krat, houten vloer of wand samen.">
+<meta property="og:url" content="https://palletje.be/configurator/">
+
+<!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css">
+<link rel="stylesheet" href="/configurator/configurator.css">
+</head>
+<body data-pagina="configurator">
+
+<a class="skip" href="#top">Naar de inhoud</a>
+<div class="topstrip"></div>
+
+<div class="utility">
+  <div class="wrap utility-inner">
+    <a href="/werkwijze/">Werkwijze</a>
+    <a href="/over-ons/">Over ons</a>
+    <div class="dropdown">
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <div class="dropdown-menu" id="ddMenu">
+        <a href="/#ispm15">ISPM-15 en export</a>
+        <a href="/#ppwr">PPWR-wetgeving</a>
+      </div>
+    </div>
+    <a href="/faq/">FAQ</a>
+    <a href="/contact/">Contact</a>
+    <a class="utility-tel" href="tel:+32499196802">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+      0499 19 68 02
+    </a>
+    <span class="taal">NL</span>
+  </div>
+</div>
+
+<header>
+  <nav class="nav wrap">
+    <a class="brand" href="/"><img class="logomark" src="/assets/img/logo.png" alt="" width="90" height="90">'t <span>Palletje</span></a>
+    <div class="links" id="menu">
+      <a href="/producten/">Producten</a>
+      <a href="/#diensten">Diensten</a>
+      <a href="/realisaties/">Realisaties</a>
+      <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
+      <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
+      <a class="alleen-mobiel" href="/#ppwr">PPWR-wetgeving</a>
+      <a class="alleen-mobiel" href="/faq/">FAQ</a>
+      <a class="alleen-mobiel" href="/contact/">Contact</a>
+      <a class="alleen-mobiel" href="tel:+32499196802">0499 19 68 02</a>
+    </div>
+    <div class="nav-acties">
+      <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      </button>
+      <a class="nav-cta cfg" href="/configurator/">Start configurator
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="zoekbalk" id="zoekbalk">
+    <div class="wrap">
+      <div class="zoekveld">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="zoekveld" type="search" placeholder="Zoek een product, dienst of vraag…" autocomplete="off" aria-label="Zoekterm">
+        <button class="zoeksluit" id="zoeksluit" aria-label="Zoeken sluiten">&times;</button>
+      </div>
+      <ul class="zoekresultaten" id="zoekresultaten"></ul>
+    </div>
+  </div>
+</header>
+
+<nav class="crumbs" aria-label="Kruimelpad">
+  <div class="wrap">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Configurator</span>
+  </div>
+</nav>
+
+<section class="page-hero" id="top">
+  <div class="ph-hero"></div>
+  <div class="wrap">
+    <div class="eyebrow">Configurator</div>
+    <!-- app.js zet hier de naam van het gekozen product in -->
+    <h1 id="title">Pallet met blokken</h1>
+    <p class="lead">Vul de afmetingen en het gewicht in. De uitvoering wordt automatisch berekend en u past ze aan waar u wilt. U ziet het resultaat meteen in 3D, met de samenvatting en het bestand voor de zagerij en de CNC.</p>
+    <div class="hero-note"><span class="dot"></span> Past uw vraag niet in de configurator? <a href="/offerte/" style="color:#8fd3fa;text-decoration:underline;margin-left:5px">Stuur uw project door</a>.</div>
+  </div>
+</section>
+<div class="productbar">
+  <div class="wrap topbar">
+    <span class="eyebrow b">Product</span>
+    <nav class="tabs" id="tabs" role="tablist" aria-label="Product"></nav>
+  </div>
+</div>
+
+<main class="layout wrap">
+  <form id="form" class="panel" autocomplete="off">
+
+    <section>
+      <h2 id="dimsTitle">Afmetingen</h2>
+      <p class="note show-box">Geef de afmetingen van de goederen op. De kist krijgt 50 mm speling en wordt afgerond op 100 mm.</p>
+      <div class="grid2">
+        <label>Lengte <span class="unit">mm</span><input type="number" name="length" value="1200" min="200" max="9000" step="1" required></label>
+        <label class="hide-wall">Breedte <span class="unit">mm</span><input type="number" name="width" value="800" min="200" max="2500" step="1" required></label>
+        <label class="show-box show-wall">Hoogte <span class="unit">mm</span><input type="number" name="height" value="300" min="200" max="2500" step="1" required></label>
+        <label class="show-pallet show-box">Gewicht last <span class="unit">kg</span><input type="number" name="weight" value="300" min="0" step="1"></label>
+        <label class="show-floor show-wall">Lattype<select name="latTypeKey"></select></label>
+        <label class="hide-kist" id="distLabel">Tussenafstand latten<select name="distance"></select></label>
+        <label class="show-krat">Tussenafstand zijkanten<select name="sideDistance"></select></label>
+        <label class="show-krat">Tussenafstand deksel<select name="coverDistance"></select></label>
+      </div>
+      <p class="note" id="gapNote"></p>
+      <p class="note warn hidden" id="pbaHint">Een pallet met balken is een meer economische keuze voor pallets met een breedte van 700 mm of minder.</p>
+      <div class="checks">
+        <label class="show-pallet show-box"><input type="checkbox" name="heavyDuty"> Zwaardere uitvoering</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="transpallet"> Compatibel met transpallet</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="onderlatten"> Onderlatten</label>
+        <label class="show-box"><input type="checkbox" name="cover" checked> Deksel</label>
+        <label class="show-wall"><input type="checkbox" name="balken"> Zwaardere palen</label>
+        <label class="show-wall paaltype" id="balkTypeRow">Paaltype<select name="balkTypeKey"></select></label>
+        <label class="show-wall"><input type="checkbox" name="grondpalen"> Grondpalen (500 mm langer)</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Uitvoering</h2>
+      <p class="note">Beginwaarden volgen uit de afmetingen en het gewicht. Pas ze aan met de knoppen; <button type="button" class="link" id="resetOv">herstel automatisch</button>.</p>
+      <div class="grid2" id="steppers">
+        <div class="stepper" data-key="latten"><span class="lbl">Vloerlatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-pallet" data-key="latType"><span class="lbl">Lattype</span><select id="latType"></select></div>
+        <div class="stepper show-PBL show-KIP show-KRP" data-key="poten"><span class="lbl">Poten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-PBL show-KIP show-KRP" data-key="blokken"><span class="lbl">Blokken per poot</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-PBA show-HVL show-KIS show-KIB show-KRS show-KRB" data-key="balken"><span class="lbl">Balken</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-HWA" data-key="balken"><span class="lbl">Palen</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-box" data-key="sideLatten"><span class="lbl">Wandlatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-box" data-key="coverLatten"><span class="lbl">Deksellatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-box" data-key="endPosts"><span class="lbl">Staanders kopzijde</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper" data-key="onderlattenCount"><span class="lbl">Onderlatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>2</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Opties</h2>
+      <div class="checks kolommen">
+        <label class="show-pallet show-box"><input type="checkbox" name="ht"> Moet voldoen aan de HT / ISPM15 regelgeving</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="htCertificate"> Certificaat van HT behandeling</label>
+        <label><input type="checkbox" name="binden"> Samenbinden</label>
+        <label class="show-pallet"><input type="checkbox" name="nestelen"> Nestelen</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="schimmelvrij"> Schimmelvrij hout</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="droog"> Droog hout</label>
+        <label class="show-box"><input type="checkbox" name="unmountableFront"> Demonteerbare voorkant</label>
+        <label class="show-box"><input type="checkbox" name="hingingCover"> Scharnierend deksel</label>
+        <label class="show-box"><input type="checkbox" name="hookAnchors"> Hoekijzers</label>
+        <label class="show-box"><input type="checkbox" name="kit"> Bouwpakket</label>
+        <label class="show-box"><input type="checkbox" name="plasticInside"> Plastiek binnenbekleding</label>
+        <label class="show-box"><input type="checkbox" name="poTray"> PO-houder</label>
+        <label class="show-box"><input type="checkbox" name="airtag"> Airtag</label>
+        <label class="show-box"><input type="checkbox" name="spraySafetySymbols"> Veiligheidssymbolen spuiten</label>
+        <label class="show-box"><input type="checkbox" name="sprayLogo"> Logo spuiten</label>
+      </div>
+    </section>
+  </form>
+
+  <aside class="panel">
+    <section>
+      <h2>3D-weergave</h2>
+      <div class="canvas-wrap"><canvas id="canvas"></canvas><button type="button" class="ghost" id="resetCam">Camera herstellen</button></div>
+      <p class="note">Slepen draait het model, scrollen zoomt, shift ingedrukt houden verschuift.</p>
+    </section>
+
+    <section>
+      <h2>Samenvatting</h2>
+      <dl class="summary" id="summary"></dl>
+    </section>
+
+    <section>
+      <h2>Bestand voor CNC en zagerij</h2>
+      <p class="note">Eén CSV: eerst de nagelpunten (oorsprong linksonder, X langs de lengte, Y langs de breedte, mm; kolommen X;Y;Nagels;Lagen voor boven, dan dezelfde vier voor onder), daarna een blanco regel en de zaaglijst met alle onderdelen.</p>
+      <div class="actions">
+        <button type="button" class="primary" id="download">Download CSV</button>
+        <button type="button" class="ghost" id="downloadJson">Download configuratie (JSON)</button>
+      </div>
+      <div class="sheet-head">
+        <h3>Live weergave van het CSV-bestand</h3>
+        <label class="sheet-toggle"><input type="checkbox" id="rawToggle"> Ruwe tekst</label>
+      </div>
+      <div class="sheet-wrap" id="sheetWrap"><table class="sheet" id="sheet"></table></div>
+      <pre id="preview" class="hidden"></pre>
+    </section>
+  </aside>
+</main>
+
+<section style="padding:0 0 80px">
+  <div class="wrap">
+    <div class="final" style="padding:64px 40px">
+      <div class="eyebrow b">Niet configureerbaar?</div>
+      <h2>Stuur uw tekening, wij rekenen het uit.</h2>
+      <p>Glasbokken, opzetranden en houten constructies op maat maken we op basis van uw plan of foto. U krijgt een voorstel met prijs.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/offerte/">Project doorsturen</a>
+        <a class="btn btn-secondary" href="tel:+32499196802">0499 19 68 02</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/" style="color:#fff">'t <span>Palletje</span></a>
+        <p>Houten transportoplossingen op maat voor industrie, logistiek en export.</p>
+      </div>
+      <div>
+        <h3>Producten</h3>
+        <a href="/producten/pallet-op-maat/">Pallets op maat</a><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
+        <a href="/producten/exportkisten/">Exportkisten</a><a href="/producten/glasbokken/">Glasbokken</a>
+        <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
+        <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a>
+      </div>
+      <div>
+        <h3>Bedrijf</h3>
+        <a href="/#diensten">Diensten</a><a href="/werkwijze/">Werkwijze</a>
+        <a href="/realisaties/">Realisaties</a><a href="/over-ons/">Over ons</a>
+        <a href="/#ispm15">ISPM-15</a><a href="/#ppwr">PPWR</a><a href="/faq/">FAQ</a>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Morellestraat 1<br>8750 Wingene</p>
+        <a href="tel:+32499196802">0499 19 68 02</a>
+        <a href="mailto:info@palletje.be">info@palletje.be</a>
+        <a href="/offerte/">Offerte aanvragen</a>
+      </div>
+    </div>
+    <div class="legal">&copy; <span data-jaar>2026</span> &rsquo;t Palletje &middot; BTW BE 0863.163.507 &middot;
+      <a href="/privacy/">Privacy</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a></div>
+  </div>
+</footer>
+
+<dialog id="lightbox" aria-label="Fotoalbum">
+  <button class="lb-sluit" data-lb-sluit aria-label="Sluiten">&times;</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-nav prev" data-lb="-1" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="lb-nav next" data-lb="1" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="lb-bar">
+    <div><strong id="lbTitel"></strong><span id="lbBijschrift"></span></div>
+    <a class="lb-teller" id="lbMeer" href="/producten/" hidden style="color:#8fd3fa;text-decoration:underline">Naar de productpagina</a>
+    <span class="lb-teller" id="lbTeller"></span>
+  </div>
+</dialog>
+
+<script src="/configurator/three.min.js"></script>
+<script src="/configurator/engine.js"></script>
+<script src="/configurator/app.js"></script>
+<script src="/assets/js/site.js"></script>
+<script>
+/* deep-link vanaf de site: ?product=pallet opent meteen de juiste tab */
+(function () {
+  const MAP = { pallet: "PBL", pallets: "PBL", blokpallet: "PBL", balkpallet: "PBA",
+    kist: "KIS", kisten: "KIS", exportkist: "KIS", exportkisten: "KIS",
+    krat: "KRS", kratten: "KRS",
+    vloer: "HVL", vloeren: "HVL", platen: "HVL", hout: "HVL", wand: "HWA" };
+  const raw = new URLSearchParams(location.search).get("product");
+  if (!raw) return;
+  const code = MAP[raw.toLowerCase()] || raw.toUpperCase();
+  if (!/^[A-Z]{2,4}$/.test(code)) return;
+  const tab = document.querySelector(".tab[data-type=\"" + code + "\"]");
+  if (tab) tab.click();
+})();
+</script>
+</body>
+</html>

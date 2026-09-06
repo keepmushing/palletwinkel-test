@@ -9,7 +9,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://palletje.be/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://palletje.be/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://palletje.be/"/>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/en/</loc>
@@ -17,7 +17,7 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://palletje.be/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://palletje.be/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://palletje.be/"/>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/fr/</loc>
@@ -25,62 +25,67 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://palletje.be/en/"/>
     <xhtml:link rel="alternate" hreflang="fr" href="https://palletje.be/fr/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://palletje.be/"/>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/pallet-op-maat/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/kisten-en-kratten/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/exportkisten/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/glasbokken/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/opzetranden/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/houten-constructies-op-maat/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/producten/hout-en-plaatmateriaal/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/werkwijze/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/realisaties/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/over-ons/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/faq/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/contact/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
   </url>
   <url>
     <loc>https://palletje.be/offerte/</loc>
-    <lastmod>2026-09-04</lastmod>
+    <lastmod>2026-09-06</lastmod>
+  </url>
+  <url>
+    <loc>https://palletje.be/configurator/</loc>
+    <lastmod>2026-09-06</lastmod>
+    <changefreq>monthly</changefreq>
   </url>
 </urlset>

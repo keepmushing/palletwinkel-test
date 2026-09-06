@@ -8,108 +8,146 @@
 <meta name="description" content="Hoe een opdracht bij 't Palletje verloopt: van uw specificaties over het voorstel en de productie in Wingene tot de levering op datum.">
 
 <link rel="canonical" href="https://palletje.be/werkwijze/">
-
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_BE">
 <meta property="og:title" content="Werkwijze — van aanvraag tot levering | 't Palletje">
-<meta property="og:description" content="Hoe een opdracht bij 't Palletje verloopt: van uw specificaties over het voorstel en de productie in Wingene tot de levering op datum.">
+<meta property="og:description" content="Van uw specificaties over het voorstel en de productie in Wingene tot de levering op datum.">
 <meta property="og:url" content="https://palletje.be/werkwijze/">
-<meta property="og:image" content="https://palletje.be/assets/img/og-palletje.jpg">
 
 <!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
 <meta name="robots" content="noindex, nofollow">
 
+<link rel="icon" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
-
-<!-- TODO: favicon 32x32, 180x180 en SVG, af te leiden uit het logo. -->
 </head>
+<body data-pagina="werkwijze">
 
-<body>
-<a class="skip" href="#main">Ga naar de inhoud</a>
+<a class="skip" href="#top">Naar de inhoud</a>
 
-<!-- ===================== HEADER ===================== -->
-<header class="header">
-  <div class="wrap nav-bar">
+<div class="topstrip"></div>
 
-    <!-- Zodra het logobestand in assets/img/ staat, vervang je de tekst
-         hieronder door: <img src="/assets/img/logo-t-palletje.svg" alt="'t Palletje"> -->
-    <a class="brand" href="/">'t <em>Palletje</em></a>
+<div class="utility">
+  <div class="wrap utility-inner">
+    <a href="/werkwijze/">Werkwijze</a>
+    <a href="/over-ons/">Over ons</a>
+    <div class="dropdown">
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <div class="dropdown-menu" id="ddMenu">
+        <a href="/#ispm15">ISPM-15 en export</a>
+        <a href="/#ppwr">PPWR-wetgeving</a>
+      </div>
+    </div>
+    <a href="/faq/">FAQ</a>
+    <a href="/contact/">Contact</a>
+    <a class="utility-tel" href="tel:+32499196802">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+      0499 19 68 02
+    </a>
+    <span class="taal">NL</span>
+  </div>
+</div>
 
-    <nav class="nav" id="nav" aria-label="Hoofdnavigatie">
+<header>
+  <nav class="nav wrap">
+    <a class="brand" href="/"><img class="logomark" src="/assets/img/logo.png" alt="" width="90" height="90">'t <span>Palletje</span></a>
+    <div class="links" id="menu">
       <a href="/producten/">Producten</a>
-      <a href="/werkwijze/" aria-current="page">Werkwijze</a>
+      <a href="/#diensten">Diensten</a>
       <a href="/realisaties/">Realisaties</a>
-      <a href="/over-ons/">Over ons</a>
-      <a href="/faq/">FAQ</a>
-      <a href="/contact/">Contact</a>
-    </nav>
-
-    <div class="nav-actions">
-      <a class="nav-tel" href="tel:+32499196802">
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M6.6 2.5 8.4 6.3 6.6 8c.9 1.9 2.5 3.5 4.4 4.4l1.7-1.8 3.8 1.8v3.1c0 .9-.8 1.6-1.7 1.5C7.6 16.4 3.6 12.4 2.7 5.2 2.6 4.3 3.3 3.5 4.2 3.5h2.4Z"
-                stroke="#082A45" stroke-width="1.6" stroke-linejoin="round"/>
-        </svg>
-        <span class="tel-nr">0499 19 68 02</span>
-        <span class="visually-hidden">Bel ons</span>
-      </a>
-
-      <a class="nav-cta" href="https://configurator.palletje.be/">Start configurator</a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
-        <span class="visually-hidden">Menu</span>
-        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
-          <path d="M0 1h20M0 7h20M0 13h20" stroke="#082A45" stroke-width="2"/>
-        </svg>
+      <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
+      <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
+      <a class="alleen-mobiel" href="/#ppwr">PPWR-wetgeving</a>
+      <a class="alleen-mobiel" href="/faq/">FAQ</a>
+      <a class="alleen-mobiel" href="/contact/">Contact</a>
+      <a class="alleen-mobiel" href="tel:+32499196802">0499 19 68 02</a>
+    </div>
+    <div class="nav-acties">
+      <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
       </button>
+      <a class="nav-cta cfg" href="/configurator/">Start configurator
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="zoekbalk" id="zoekbalk">
+    <div class="wrap">
+      <div class="zoekveld">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="zoekveld" type="search" placeholder="Zoek een product, dienst of vraag…" autocomplete="off" aria-label="Zoekterm">
+        <button class="zoeksluit" id="zoeksluit" aria-label="Zoeken sluiten">&times;</button>
+      </div>
+      <ul class="zoekresultaten" id="zoekresultaten"></ul>
     </div>
   </div>
 </header>
 
-<main id="main">
+<nav class="crumbs" aria-label="Kruimelpad">
+  <div class="wrap">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Werkwijze</span>
+  </div>
+</nav>
 
-  <section>
+<main id="top">
+
+  <section class="page-hero">
+    <div class="ph-hero"></div>
+    <div class="wrap">
+      <div class="eyebrow">Werkwijze</div>
+      <h1>Van aanvraag tot levering.</h1>
+      <p class="lead">Vier stappen. Geen offertetraject van weken, geen tussenpersonen, en geen verrassingen achteraf op de factuur.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary cfg" href="/configurator/">Start configurator</a>
+        <a class="btn btn-secondary" href="/offerte/">Stuur uw project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="op-wit">
     <div class="wrap">
       <div class="intro">
-        <p class="eyebrow">Werkwijze</p>
-        <h1>Van aanvraag tot levering.</h1>
-        <p class="lead">Vier stappen. Geen offertetraject van weken, geen tussenpersonen, en geen verrassingen achteraf op de factuur.</p>
+        <div class="eyebrow b">In vier stappen</div>
+        <h2>Van vraag naar veilige oplossing.</h2>
+        <p>Bij elke stap staat wat wij op dat moment van u nodig hebben. Hoe vollediger dat is, hoe sneller de volgende stap kan starten.</p>
       </div>
-
-      <div class="grid grid--4">
-        <article class="step">
+      <div class="raster raster-4">
+        <article class="stap">
           <div class="nr">01</div>
-          <h3>U stuurt uw specificaties</h3>
-          <p>Via de configurator, of met een foto, PDF of tekening.</p>
+          <h3>U bezorgt de info</h3>
+          <p>Configureer uw product, of stuur foto, tekening, gewicht, aantal en bestemming. Van u: de maten en het gewicht van de last.</p>
         </article>
-        <article class="step">
+        <article class="stap">
           <div class="nr">02</div>
           <h3>Wij bezorgen een voorstel</h3>
-          <p>Met prijs en levertijd, <span class="ph">binnen X werkdagen</span>.</p>
+          <p>Wij bepalen de juiste uitvoering en maken prijs en levertermijn helder, <span class="ph">binnen X werkdagen</span>. Van u: uw akkoord op uitvoering, prijs en datum.</p>
         </article>
-        <article class="step">
+        <article class="stap">
           <div class="nr">03</div>
           <h3>Wij produceren zelf</h3>
-          <p>In onze eigen werkplaats in Wingene.</p>
+          <p>Uw oplossing wordt in onze eigen werkplaats in Wingene gemaakt, volgens de afgesproken specificaties. Van u: of het om één stuk of een reeks gaat, en of er herhaling volgt.</p>
         </article>
-        <article class="step">
+        <article class="stap">
           <div class="nr">04</div>
           <h3>Wij leveren op datum</h3>
-          <p>Op uw adres of rechtstreeks op bestemming.</p>
+          <p>Op uw adres of rechtstreeks op de bestemming van de zending. Van u: het leveradres en de datum waarop het er moet staan.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section class="on-sky">
+  <section class="op-zacht">
     <div class="wrap">
       <div class="intro">
-        <p class="eyebrow">Stap 1</p>
+        <div class="eyebrow b">Stap 1</div>
         <h2>Wat wij van u nodig hebben.</h2>
         <p>Hoe vollediger uw aanvraag, hoe sneller en scherper het voorstel. Ontbreekt er iets, dan bellen we — dat kost een dag.</p>
       </div>
-
-      <div class="grid grid--3">
+      <div class="raster raster-3">
         <article class="pillar">
           <h3>De last</h3>
           <p>Lengte, breedte, hoogte en gewicht van wat vervoerd wordt.</p>
@@ -138,61 +176,52 @@
     </div>
   </section>
 
-  <section>
+  <section class="op-lucht">
     <div class="wrap">
       <div class="intro">
-        <p class="eyebrow">Stap 2 en 3</p>
-        <h2>Voorstel en productie.</h2>
+        <div class="eyebrow b">Stap 2 en 3</div>
+        <h2>Twee routes naar een voorstel.</h2>
+        <p>Pallets, kisten en kratten configureert u zelf. Al het afwijkende werk rekenen wij uit op basis van uw tekening of foto.</p>
       </div>
-
-      <div class="paths">
-        <article class="path path--dark">
-          <p class="eyebrow eyebrow--light">Configureerbaar</p>
-          <h3>Pallets, kisten en kratten</h3>
+      <div class="raster raster-2">
+        <article class="pillar">
+          <h3>Configureerbaar: pallets, kisten en kratten</h3>
           <p>Deze vormen zitten in de configurator. U geeft maten en aantallen op en krijgt meteen een voorstel — zonder te wachten op een terugbelmoment.</p>
-          <a class="btn btn--light" href="https://configurator.palletje.be/">Start configurator</a>
         </article>
-
-        <article class="path">
-          <p class="eyebrow">Op tekening</p>
-          <h3>Al het afwijkende werk</h3>
+        <article class="pillar">
+          <h3>Op tekening: al het afwijkende werk</h3>
           <p>Glasbokken, opzetranden, constructies, exportwerk en hout op maat rekenen wij zelf uit. U krijgt een voorstel met prijs en levertijd terug.</p>
-          <a class="btn btn--primary" href="/offerte/">Stuur uw project</a>
         </article>
       </div>
-
-      <div class="ph-block">
-        Nog te bevestigen vóór livegang: doorlooptijd van een voorstel, gangbare
-        productietijd, of er een minimumbestelling geldt, en of er een prototype
-        of proefstuk mogelijk is. Doc 01, sectie H.
+      <div class="btn-row">
+        <a class="btn btn-navy cfg" href="/configurator/">Start configurator</a>
+        <a class="btn btn-line" href="/offerte/">Stuur uw project</a>
       </div>
+      <p class="lead"><span class="ph">Nog te bevestigen vóór livegang: de doorlooptijd van een voorstel, de gangbare productietijd, of er een minimumbestelling geldt, en of een prototype of proefstuk mogelijk is.</span></p>
     </div>
   </section>
 
-  <section class="on-dark">
+  <section class="op-navy">
     <div class="wrap feature">
       <div>
-        <p class="eyebrow eyebrow--light">Stap 4</p>
+        <div class="eyebrow">Stap 4</div>
         <h2>Levering.</h2>
-        <p>Wij leveren op uw adres of rechtstreeks op de bestemming van de zending. Gaat het buiten Europa, dan is de kist bij vertrek al ISPM-15-gemerkt onder onze eigen registratie <span class="spec" style="color:#8FD3FA">BE-1689</span>.</p>
+        <p>Wij leveren op uw adres of rechtstreeks op de bestemming van de zending. Gaat het buiten Europa, dan is de kist bij vertrek al ISPM-15-gemerkt onder onze eigen registratie <span class="spec">BE-1689</span>.</p>
         <p><span class="ph">Leveringsgebied en leveringsvoorwaarden nog te bevestigen.</span></p>
       </div>
-      <div class="feature-visual" data-note="Beeld — geladen vrachtwagen of laadkade, crop 4:3"></div>
+      <div class="feature-visual"><span>Beeld — geladen vrachtwagen of laadkade, crop 4:3</span></div>
     </div>
   </section>
 
-  <!-- ===================== EIND-CTA ===================== -->
   <section class="final">
     <div class="wrap">
-      <p class="eyebrow eyebrow--light">Klaar om te starten?</p>
+      <div class="eyebrow b">Klaar om te starten?</div>
       <h2>Klaar om te beginnen?</h2>
       <p>Voor pallets, kisten en kratten start u in de configurator. Al het andere stuurt u ons door.</p>
-
-      <div class="btn-row">
-        <a class="btn btn--light" href="https://configurator.palletje.be/">Start configurator</a>
-        <a class="btn btn--ghost" href="/offerte/">Stuur uw project</a>
+      <div class="hero-actions">
+        <a class="btn btn-primary cfg" href="/configurator/">Start configurator</a>
+        <a class="btn btn-secondary" href="/offerte/">Stuur uw project</a>
       </div>
-
       <div class="final-tel">
         <p>Liever meteen iemand aan de lijn?</p>
         <a href="tel:+32499196802">0499 19 68 02</a>
@@ -201,68 +230,36 @@
   </section>
 </main>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer">
+<footer>
   <div class="wrap">
     <div class="footer-grid">
-
       <div>
-        <a class="brand" href="/">'t <em>Palletje</em></a>
+        <a class="brand" href="/" style="color:#fff">'t <span>Palletje</span></a>
         <p>Houten transportoplossingen op maat voor industrie, logistiek en export.</p>
-        <p>
-          Morellestraat 1<br>
-          8750 Wingene<br>
-          BTW BE 0863.163.507<br>
-          ISPM-15 <span class="spec" style="color:#fff">BE-1689</span>
-        </p>
       </div>
-
       <div>
         <h3>Producten</h3>
-        <ul>
-          <li><a href="/producten/pallet-op-maat/">Pallet op maat</a></li>
-          <li><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a></li>
-          <li><a href="/producten/exportkisten/">Exportkisten</a></li>
-          <li><a href="/producten/glasbokken/">Glasbokken</a></li>
-          <li><a href="/producten/opzetranden/">Opzetranden</a></li>
-          <li><a href="/producten/houten-constructies-op-maat/">Houten constructies op maat</a></li>
-          <li><a href="/producten/hout-en-plaatmateriaal/">Hout en plaatmateriaal op maat</a></li>
-        </ul>
+        <a href="/producten/pallet-op-maat/">Pallets op maat</a><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
+        <a href="/producten/exportkisten/">Exportkisten</a><a href="/producten/glasbokken/">Glasbokken</a>
+        <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
+        <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a>
       </div>
-
       <div>
         <h3>Bedrijf</h3>
-        <ul>
-          <li><a href="/werkwijze/">Werkwijze</a></li>
-          <li><a href="/realisaties/">Realisaties</a></li>
-          <li><a href="/over-ons/">Over ons</a></li>
-          <li><a href="/faq/">FAQ</a></li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
+        <a href="/#diensten">Diensten</a><a href="/werkwijze/">Werkwijze</a>
+        <a href="/realisaties/">Realisaties</a><a href="/over-ons/">Over ons</a>
+        <a href="/#ispm15">ISPM-15</a><a href="/#ppwr">PPWR</a><a href="/faq/">FAQ</a>
       </div>
-
       <div>
         <h3>Contact</h3>
-        <ul>
-          <li><a href="tel:+32499196802">0499 19 68 02</a></li>
-          <li><a href="mailto:info@palletje.be">info@palletje.be</a></li>
-          <li><a href="https://configurator.palletje.be/">Start configurator →</a></li>
-        </ul>
+        <p>Morellestraat 1<br>8750 Wingene</p>
+        <a href="tel:+32499196802">0499 19 68 02</a>
+        <a href="mailto:info@palletje.be">info@palletje.be</a>
+        <a href="/offerte/">Offerte aanvragen</a>
       </div>
-
     </div>
-
-    <div class="legal">
-      <span>&copy; <span data-year>2026</span> 't Palletje</span>
-      <a href="/privacy/">Privacybeleid</a>
-      <a href="/voorwaarden/">Algemene voorwaarden</a>
-      <a href="/cookies/">Cookiebeleid</a>
-      <span style="margin-left:auto">
-        <a href="/">NL</a>
-        <a href="/en/">EN</a>
-        <a href="/fr/">FR</a>
-      </span>
-    </div>
+    <div class="legal">&copy; <span data-jaar>2026</span> &rsquo;t Palletje &middot; BTW BE 0863.163.507 &middot;
+      <a href="/privacy/">Privacy</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a></div>
   </div>
 </footer>
 

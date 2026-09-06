@@ -1,14 +1,24 @@
 <!doctype html>
+<!-- ==========================================================
+     'T PALLETJE — HOMEPAGE
+     Ontwerp: palletje-home-v43-logo90.html (06-09-2026).
+     De stijl staat in /assets/css/site.css, het gedrag in
+     /assets/js/site.js. Beide worden door élke pagina gebruikt.
+
+     TE VERVANGEN VOOR LIVE:
+       1. foto's in /assets/img/ (zie ALBUMS in site.js)
+       2. action van het projectformulier
+       3. de regel <meta name="robots" content="noindex, nofollow">
+          hieronder — die hoort bij staging
+     ========================================================== -->
 <html lang="nl-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <title>Houten transportoplossingen op maat | 't Palletje</title>
-<meta name="description" content="'t Palletje bouwt pallets, kisten, glasbokken, opzetranden en houten constructies op maat voor industrie, logistiek en export. Eigen productie in Wingene, eigen ISPM-15-registratie BE-1689.">
+<meta name="description" content="'t Palletje maakt pallets, kisten, glasbokken, opzetranden en houten transportoplossingen op maat. Configureer rechtstreeks of stuur uw tekening.">
 
-<!-- Domein afgeleid uit configurator.palletje.be. Bevestig dit expliciet
-     (doc 01, blokker 4) en zet de andere domeinen op redirect. -->
 <link rel="canonical" href="https://palletje.be/">
 <link rel="alternate" hreflang="nl" href="https://palletje.be/">
 <link rel="alternate" hreflang="en" href="https://palletje.be/en/">
@@ -19,14 +29,16 @@
 <meta property="og:locale" content="nl_BE">
 <meta property="og:title" content="Houten transportoplossingen op maat | 't Palletje">
 <meta property="og:description" content="Pallets, kisten, glasbokken, opzetranden en houten constructies op maat voor industrie, logistiek en export.">
-<meta property="og:image" content="https://palletje.be/assets/img/og-palletje.jpg">
+<meta property="og:url" content="https://palletje.be/">
+<meta property="og:image" content="https://palletje.be/assets/img/logo.png">
 
 <!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
 <meta name="robots" content="noindex, nofollow">
 
+<link rel="icon" href="/assets/img/logo.png">
+<link rel="apple-touch-icon" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
-
-<!-- TODO: favicon 32x32, 180x180 en SVG, af te leiden uit het logo. -->
 
 <script type="application/ld+json">
 {
@@ -45,167 +57,203 @@
     "addressLocality": "Wingene",
     "addressCountry": "BE"
   },
-  "areaServed": ["BE", "NL"]
+  "areaServed": ["BE", "NL", "FR"],
+  "openingHours": "Mo-Fr 08:00-17:00"
 }
 </script>
 </head>
+<body data-pagina="home">
 
-<body>
-<a class="skip" href="#main">Ga naar de inhoud</a>
+<a class="skip" href="#top">Naar de inhoud</a>
+<div class="topstrip"></div>
 
-<!-- ===================== HEADER ===================== -->
-<header class="header">
-  <div class="wrap nav-bar">
+<div class="utility">
+  <div class="wrap utility-inner">
+    <a href="#werkwijze">Werkwijze</a>
+    <a href="#over-ons">Over ons</a>
+    <div class="dropdown">
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <div class="dropdown-menu" id="ddMenu">
+        <a href="#ispm15">ISPM-15 en export</a>
+        <a href="#ppwr">PPWR-wetgeving</a>
+      </div>
+    </div>
+    <a href="#faq">FAQ</a>
+    <a href="#contact">Contact</a>
+    <a class="utility-tel" href="tel:+32499196802">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+      0499 19 68 02
+    </a>
+    <span class="taal">NL</span>
+  </div>
+</div>
 
-    <!-- Zodra het logobestand in assets/img/ staat, vervang je de tekst
-         hieronder door: <img src="/assets/img/logo-t-palletje.svg" alt="'t Palletje"> -->
-    <a class="brand" href="/">'t <em>Palletje</em></a>
-
-    <nav class="nav" id="nav" aria-label="Hoofdnavigatie">
-      <a href="/producten/">Producten</a>
-      <a href="/werkwijze/">Werkwijze</a>
-      <a href="/realisaties/">Realisaties</a>
-      <a href="/over-ons/">Over ons</a>
-      <a href="/faq/">FAQ</a>
-      <a href="/contact/">Contact</a>
-    </nav>
-
-    <div class="nav-actions">
-      <a class="nav-tel" href="tel:+32499196802">
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M6.6 2.5 8.4 6.3 6.6 8c.9 1.9 2.5 3.5 4.4 4.4l1.7-1.8 3.8 1.8v3.1c0 .9-.8 1.6-1.7 1.5C7.6 16.4 3.6 12.4 2.7 5.2 2.6 4.3 3.3 3.5 4.2 3.5h2.4Z"
-                stroke="#082A45" stroke-width="1.6" stroke-linejoin="round"/>
-        </svg>
-        <span class="tel-nr">0499 19 68 02</span>
-        <span class="visually-hidden">Bel ons</span>
-      </a>
-
-      <a class="nav-cta" href="https://configurator.palletje.be/">Start configurator</a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
-        <span class="visually-hidden">Menu</span>
-        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
-          <path d="M0 1h20M0 7h20M0 13h20" stroke="#082A45" stroke-width="2"/>
-        </svg>
+<header>
+  <nav class="nav wrap">
+    <a class="brand" href="#top"><img class="logomark" src="/assets/img/logo.png" alt="" width="90" height="90">'t <span>Palletje</span></a>
+    <div class="links" id="menu">
+      <a href="#producten">Producten</a>
+      <a href="#diensten">Diensten</a>
+      <a href="#realisaties">Realisaties</a>
+      <a class="alleen-mobiel" href="#werkwijze">Werkwijze</a>
+      <a class="alleen-mobiel" href="#ispm15">ISPM-15 en export</a>
+      <a class="alleen-mobiel" href="#ppwr">PPWR-wetgeving</a>
+      <a class="alleen-mobiel" href="#faq">FAQ</a>
+      <a class="alleen-mobiel" href="#contact">Contact</a>
+      <a class="alleen-mobiel" href="tel:+32499196802">0499 19 68 02</a>
+    </div>
+    <div class="nav-acties">
+      <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
       </button>
+      <a class="nav-cta cfg" href="/configurator/">Start configurator
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="zoekbalk" id="zoekbalk">
+    <div class="wrap">
+      <div class="zoekveld">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="zoekveld" type="search" placeholder="Zoek een product, dienst of vraag…" autocomplete="off" aria-label="Zoekterm">
+        <button class="zoeksluit" id="zoeksluit" aria-label="Zoeken sluiten">&times;</button>
+      </div>
+      <ul class="zoekresultaten" id="zoekresultaten"></ul>
     </div>
   </div>
 </header>
 
-<main id="main">
+<main id="top">
 
-  <!-- ===================== 1. HERO ===================== -->
-  <!-- Het herobeeld komt uit doc 03, shotlist beeld 1. Zodra het er is:
-       zet in de CSS  --hero-image: url('/assets/img/hero-productie.webp')
-       Tot dan valt de hero terug op een verloop in dezelfde tonen. -->
   <section class="hero">
+    <div class="ph-hero"></div>
     <div class="wrap hero-inner">
-      <p class="eyebrow eyebrow--light">Houten transportoplossingen op maat</p>
-      <h1>Is uw product moeilijk te vervoeren? Wij bouwen de oplossing.</h1>
-      <p>Pallets, kisten, glasbokken, opzetranden en houten constructies op maat — voor industrie, logistiek en export.</p>
-
-      <div class="btn-row">
-        <a class="btn btn--light" href="https://configurator.palletje.be/">Configureer uw pallet of kist</a>
-        <a class="btn btn--ghost" href="/offerte/">Stuur foto, PDF of tekening</a>
+      <div class="eyebrow">Houten transportoplossingen op maat</div>
+      <h1>Moeilijk te vervoeren?<br>Wij bouwen uw oplossing.</h1>
+      <p>Configureer uw pallet of kist en ontvang prijs.<br>Iets complexer? Foto, schets of tekening volstaat.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary cfg" href="/configurator/">Start configurator</a>
+        <a class="btn btn-secondary" href="#projectformulier">Stuur uw project</a>
       </div>
-
-      <p class="hero-note"><span class="dot"></span> Voor zware, kwetsbare, afwijkende of complexe projecten.</p>
+      <div class="hero-note"><span class="dot"></span> Pallets, kisten, glasbokken en houten transportoplossingen op maat.</div>
     </div>
+    <div class="ph-tag">Beeld 1 — complexe kist of skid in productie</div>
   </section>
 
-  <!-- ===================== 2. VERTROUWENSSTROOK ===================== -->
-  <!-- Alleen wat in doc 01 sectie H op JA staat. Raakt er een niet bevestigd:
-       drie tonen, niet opvullen. -->
   <div class="trust">
     <div class="wrap trust-grid">
-      <div class="trust-item"><b>01</b> <span class="ph">Eigen productie in Wingene</span></div>
-      <div class="trust-item"><b>02</b> <span class="ph">Maatwerk vanaf één stuk</span></div>
-      <div class="trust-item"><b>03</b> Eigen ISPM-15 <span class="spec">BE-1689</span></div>
-      <div class="trust-item"><b>04</b> <span class="ph">Levering België en Nederland</span></div>
+      <div class="trust-item">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.3 5.2h13v10.6h-13z"/><path d="M4.6 7.4h8.4v6.2H4.6z" stroke-width="1"/><path d="M6.7 7.4v6.2M9 7.4v6.2M11.3 7.4v6.2" stroke-width="1"/><path d="M3.9 15.8v1.8M8.8 15.8v1.8M13.7 15.8v1.8"/><path d="M19.7 6.6v9.8" stroke-width="1.4"/><path d="m18.5 7.8 1.2-1.2 1.2 1.2M18.5 15.2l1.2 1.2 1.2-1.2" stroke-width="1.2"/><path d="M18.3 5.2h2.8M18.3 17.6h2.8" stroke-width="1.2"/></svg>
+        <h3>Houten verpakkingen op maat</h3>
+        <span>2004</span>
+      </div>
+      <div class="trust-item">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" stroke="none" aria-hidden="true"><path d="M2 19v-7.7l5.6-5.1 4.6 4.2 4.6-5 5.2 5.5V19H2Zm2.3-5.6h6.1v4.3H4.3v-4.3Zm8.3 0h6.9v4.3h-6.9v-4.3Z"/></svg>
+        <h3>Lokale productie</h3>
+        <span>Wingene West-Vlaanderen</span>
+      </div>
+      <div class="trust-item">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="currentColor" fill-rule="evenodd" stroke="none" aria-hidden="true"><path d="M2 6.9h11.6v8.2H2zM14.8 9.6h3.2l2.9 2.6v2.9h-6.1V9.6Zm1.4 1.3v2.4h3.6l-2-1.9-1.6-.5Z"/><path d="M2 15.1h18.9v1.5H2z"/><circle cx="6.4" cy="17.6" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/><circle cx="16.8" cy="17.6" r="2" fill="none" stroke="currentColor" stroke-width="1.7"/></svg>
+        <h3>Eigen transport</h3>
+        <span>Afhalen mogelijk</span>
+      </div>
+      <div class="trust-item">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.2 2.6h7.6l4.1 3.9v13.9H3.2z"/><path d="M10.8 2.6v3.9h4.1"/><path d="M6 9.3h5.9M6 11.9h5.9M6 14.5h4.1" stroke-width="1.1"/><circle cx="18" cy="16.3" r="3.4"/><path d="m16.4 16.3 1.2 1.2 2.1-2.3" stroke-width="1.3"/><path d="M16.1 19.1 15 22.3l3-1.4 3 1.4-1.1-3.2" stroke-width="1.3"/></svg>
+        <h3>ISPM-15</h3>
+        <span>Levering buiten de EU</span>
+      </div>
     </div>
   </div>
 
-  <!-- ===================== 3. PRODUCTGRID ===================== -->
   <section id="producten">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Wat we maken</p>
+          <div class="eyebrow b">Wat we maken</div>
           <h2>Geen catalogus. Wel de juiste oplossing voor uw transport.</h2>
         </div>
-        <p>U vraagt.<br>Wij maken.</p>
+        <a class="btn btn-line" href="#realisaties">Bekijk realisaties
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
       </div>
-
-      <div class="grid grid--3">
+      <div class="grid">
 
         <article class="card">
-          <div class="photo" data-note="Productbeeld 1 — pallet op maat, crop 4:3"></div>
+          <div class="photo" data-album="pallets"></div>
           <div class="card-body">
-            <h3>Pallet op maat</h3>
-            <p>Blok- en balkpallets in elke afmeting, berekend op uw gewicht, stapelwijze en hefwijze.</p>
-            <div class="card-actions">
-              <a class="btn btn--primary" href="https://configurator.palletje.be/">Vraag offerte aan</a>
-              <a class="link-arrow" href="/producten/pallet-op-maat/">Lees meer →</a>
+            <h3>Pallets op maat</h3>
+            <p>Elke afmeting en elke belasting. Voor intern transport, verzending en herhaalbare logistiek.</p>
+            <div class="card-links">
+              <a class="cfg" data-product="pallet" href="/configurator/">Vraag offerte</a>
+              <a href="/producten/pallet-op-maat/">Lees meer</a>
+              <button type="button" data-album-open="pallets">Bekijk realisaties</button>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="photo" data-note="Productbeeld 2 — kist en krat, crop 4:3"></div>
+          <div class="photo" data-album="kisten"></div>
           <div class="card-body">
             <h3>Kisten &amp; kratten</h3>
-            <p>Gesloten kisten en open kratten, met balken onderkader of palletbodem.</p>
-            <div class="card-actions">
-              <a class="btn btn--primary" href="https://configurator.palletje.be/">Vraag offerte aan</a>
-              <a class="link-arrow" href="/producten/kisten-en-kratten/">Lees meer →</a>
+            <p>Open of gesloten houten verpakking, afgestemd op product en toepassing. Ook als exportkist onder ons eigen ISPM-15-nummer.</p>
+            <div class="card-links">
+              <a class="cfg" data-product="kist" href="/configurator/">Vraag offerte</a>
+              <a href="/producten/kisten-en-kratten/">Lees meer</a>
+              <button type="button" data-album-open="kisten">Bekijk realisaties</button>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="photo" data-note="Productbeeld 3 — glasbok, crop 4:3"></div>
+          <div class="photo" data-album="glas"></div>
           <div class="card-body">
             <h3>Glasbokken</h3>
-            <p>Glasbokken en multiplex bakjes op tekening, voor glas dat niet mag schuiven of breken.</p>
-            <div class="card-actions">
-              <a class="btn btn--primary" href="/offerte/">Vraag offerte aan</a>
-              <a class="link-arrow" href="/producten/glasbokken/">Lees meer →</a>
+            <p>Voor glas dat niet mag breken, verschuiven of beschadigen. Van standaard bokken tot bakjes op klanttekening.</p>
+            <div class="card-links">
+              <a href="#projectformulier">Stuur uw project</a>
+              <a href="/producten/glasbokken/">Lees meer</a>
+              <button type="button" data-album-open="glas">Bekijk realisaties</button>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="photo" data-note="Productbeeld 4 — opzetrand met deksel, crop 4:3"></div>
+          <div class="photo" data-album="randen"></div>
           <div class="card-body">
-            <h3>Opzetranden</h3>
-            <p>Opzetranden en deksels die van een bestaande pallet een gesloten, stapelbare laadeenheid maken.</p>
-            <div class="card-actions">
-              <a class="btn btn--primary" href="/offerte/">Vraag offerte aan</a>
-              <a class="link-arrow" href="/producten/opzetranden/">Lees meer →</a>
+            <h3>Palletranden / opzetranden</h3>
+            <p>Standaard en op maat gemaakte randen voor flexibel stapelen, transporteren en stockeren.</p>
+            <div class="card-links">
+              <a href="#projectformulier">Vraag offerte</a>
+              <a href="/producten/opzetranden/">Lees meer</a>
+              <button type="button" data-album-open="randen">Bekijk realisaties</button>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="photo" data-note="Productbeeld 5 — skid of transportwieg, crop 4:3"></div>
+          <div class="photo" data-album="platen"></div>
           <div class="card-body">
-            <h3>Houten constructies op maat</h3>
-            <p>Skids, transportwiegen en draagconstructies voor wat niet op een gewone pallet past.</p>
-            <div class="card-actions">
-              <a class="btn btn--primary" href="/offerte/">Vraag offerte aan</a>
-              <a class="link-arrow" href="/producten/houten-constructies-op-maat/">Lees meer →</a>
+            <h3>Hout en platen op maat</h3>
+            <p>Houten vloer- en wandpanelen uit pallethout. Voor een tijdelijk terras, een werfvloer of een overbrugging van ruw terrein.</p>
+            <div class="card-links">
+              <a class="cfg" data-product="platen" href="/configurator/">Vraag offerte</a>
+              <a href="/producten/hout-en-plaatmateriaal/">Lees meer</a>
+              <button type="button" data-album-open="platen">Bekijk realisaties</button>
             </div>
           </div>
         </article>
 
         <article class="card">
-          <div class="photo" data-note="Productbeeld 6 — gezaagd hout en plaatmateriaal, crop 4:3"></div>
+          <div class="photo" data-album="constructies"></div>
           <div class="card-body">
-            <h3>Hout en plaatmateriaal op maat</h3>
-            <p>Hout en plaatmateriaal op maat gezaagd en afgekort, klaar om af te halen of te laten leveren.</p>
-            <div class="card-actions">
-              <a class="btn btn--primary" href="/offerte/">Vraag offerte aan</a>
-              <a class="link-arrow" href="/producten/hout-en-plaatmateriaal/">Lees meer →</a>
+            <h3>Constructies op maat</h3>
+            <p>Skids, transportwiegen, machineverpakking, verdeelbakjes en alles wat rond uw product bedacht moet worden.</p>
+            <div class="card-links">
+              <a href="#projectformulier">Stuur uw project</a>
+              <a href="/producten/houten-constructies-op-maat/">Lees meer</a>
+              <button type="button" data-album-open="constructies">Bekijk realisaties</button>
             </div>
           </div>
         </article>
@@ -214,242 +262,301 @@
     </div>
   </section>
 
-  <!-- ===================== 3b. EXPORTKISTEN — ZEVENDE CATEGORIE ===================== -->
-  <!-- Aparte categorie op jouw vraag. Ze staat bewust niet als zevende kaart
-       in het raster maar als uitgelicht blok: het is de enige categorie met
-       een eigen registratienummer, en dus je sterkste onderscheid. -->
-  <section class="on-dark" id="exportkisten">
-    <div class="wrap feature">
-      <div>
-        <p class="eyebrow eyebrow--light">Export</p>
-        <h2>Exportkisten met onze eigen ISPM-15-markering.</h2>
-        <p>Voor zendingen buiten Europa moet houten verpakking fytosanitair behandeld en gemerkt zijn. Wij kopen behandeld hout aan, zagen en produceren zelf, en brengen de markering aan onder onze eigen registratie <span class="spec" style="color:#8FD3FA">BE-1689</span>.</p>
-        <p>Dat betekent dat de kist die u bestelt, hier gemerkt wordt — niet elders, en niet pas achteraf.</p>
-        <div class="btn-row" style="margin-top:24px">
-          <a class="btn btn--light" href="/offerte/">Bespreek uw exportvraag</a>
-          <a class="btn btn--ghost" href="/producten/exportkisten/">Over ISPM-15 →</a>
-        </div>
-      </div>
-      <div class="feature-visual" data-note="Beeld 7 — detail brandmerk ISPM-15 op houten kist"></div>
-    </div>
-  </section>
-
-  <!-- ===================== 4. BEWIJS — DRIE REALISATIES ===================== -->
-  <section id="realisaties">
+  <section class="services" id="diensten">
     <div class="wrap">
       <div class="section-head">
         <div>
-          <p class="eyebrow">Bewijs uit de praktijk</p>
-          <h2>Werk dat de deur uit ging.</h2>
+          <div class="eyebrow">Diensten</div>
+          <h2>Van verpakkingsvraag tot transportklaar.</h2>
         </div>
-        <p>Met de cijfers erbij.<br>Anders is het decoratie.</p>
+        <p><span class="dot"></span>We denken mee, bouwen de verpakking en helpen waar nodig tot bij vertrek.</p>
       </div>
 
-      <div class="ph-block">
-        Er is vandaag één realisatie bekend (doc 01, sectie I). Er zijn er acht tot
-        twaalf nodig, elk met foto, uitdaging, oplossing en echte cijfers.
-      </div>
-
-      <div class="grid grid--3">
-
-        <article class="case">
-          <div class="case-visual" data-note="Foto: multiplex glasbakjes met restauratieglas"></div>
-          <h3>Multiplex glasbakjes op klanttekening</h3>
-          <p>Restauratie van kerkramen: gebrandschilderd glas dat niet mocht schuiven of trillen tijdens transport en behandeling.</p>
-          <dl class="specs">
-            <div><dt>Afmeting</dt><dd class="ph">L × B × H</dd></div>
-            <div><dt>Gewicht</dt><dd class="ph">kg</dd></div>
-            <div><dt>Aantal</dt><dd class="ph">stuks</dd></div>
-            <div><dt>Bestemming</dt><dd class="ph">?</dd></div>
-            <div><dt>Doorlooptijd</dt><dd class="ph">dagen</dd></div>
-          </dl>
+      <div class="service-grid">
+        <article class="service primary">
+          <h3>Verpakkingsontwikkeling</h3>
+          <p>Uw product, transportwijze en risico's bepalen de verpakking. We ontwikkelen samen met u een oplossing die beschermt, werkt in uw proces en logisch blijft in kost en uitvoering.</p>
         </article>
-
-        <article class="case">
-          <div class="case-visual" data-note="Foto: realisatie 2"></div>
-          <h3><span class="ph">Realisatie 2 — titel</span></h3>
-          <p><span class="ph">Uitdaging in één zin.</span> <span class="ph">Oplossing in één zin.</span></p>
-          <dl class="specs">
-            <div><dt>Afmeting</dt><dd class="ph">L × B × H</dd></div>
-            <div><dt>Gewicht</dt><dd class="ph">kg</dd></div>
-            <div><dt>Aantal</dt><dd class="ph">stuks</dd></div>
-            <div><dt>Bestemming</dt><dd class="ph">?</dd></div>
-            <div><dt>Doorlooptijd</dt><dd class="ph">dagen</dd></div>
-          </dl>
+        <article class="service">
+          <h3>Prototyping</h3>
+          <p>Eerst één exemplaar, dan pas een serie. We bouwen het prototype zodat u het in uw eigen proces kunt uitproberen voor u zich vastlegt.</p>
         </article>
-
-        <article class="case">
-          <div class="case-visual" data-note="Foto: realisatie 3"></div>
-          <h3><span class="ph">Realisatie 3 — titel</span></h3>
-          <p><span class="ph">Uitdaging in één zin.</span> <span class="ph">Oplossing in één zin.</span></p>
-          <dl class="specs">
-            <div><dt>Afmeting</dt><dd class="ph">L × B × H</dd></div>
-            <div><dt>Gewicht</dt><dd class="ph">kg</dd></div>
-            <div><dt>Aantal</dt><dd class="ph">stuks</dd></div>
-            <div><dt>Bestemming</dt><dd class="ph">?</dd></div>
-            <div><dt>Doorlooptijd</dt><dd class="ph">dagen</dd></div>
-          </dl>
+        <article class="service">
+          <h3>Kleine testseries</h3>
+          <p>Een beperkte reeks om de verpakking te toetsen op de werkvloer en onderweg. Werkt ze, dan schalen we op. Werkt ze niet, dan passen we ze aan.</p>
         </article>
-
-      </div>
-
-      <div class="btn-row" style="margin-top:38px">
-        <a class="btn btn--outline" href="/realisaties/">Bekijk alle realisaties</a>
+        <article class="service">
+          <h3>R&amp;D verpakkingsoplossingen</h3>
+          <p>Bestaat de oplossing nog niet? Dan zoeken we ze uit — materiaal, constructie en werkwijze — tot uw goederen veilig en werkbaar verpakt raken.</p>
+        </article>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 5. ZO WERKT HET ===================== -->
-  <section class="on-sky" id="werkwijze">
+  <section class="services-light">
+    <div class="wrap">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">Diensten</div>
+          <h2>Ook wanneer de goederen niet naar ons kunnen komen.</h2>
+        </div>
+        <p><span class="dot"></span>Praktische ondersteuning rond een concreet transportprobleem.</p>
+      </div>
+      <div class="service-grid">
+        <article class="service">
+          <h3>Verpakken in ons atelier</h3>
+          <p>U brengt de goederen, wij verpakken ze vakkundig en maken ze transportklaar.</p>
+        </article>
+        <article class="service">
+          <h3>Verpakken op locatie</h3>
+          <p>Voor goederen die op uw site beschermd, verpakt of voorbereid moeten worden. Ons team komt ter plaatse.</p>
+        </article>
+        <article class="service">
+          <h3>Verpakken en leveren</h3>
+          <p>Wij verpakken en zorgen voor het transport tot op de afgesproken bestemming. Eén partij, één aanspreekpunt.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="export" id="ispm15">
+    <div class="wrap export-grid">
+      <div>
+        <div class="eyebrow">Export</div>
+        <h2>Exportkisten met onze eigen ISPM-15-markering.</h2>
+        <p>Voor zendingen buiten Europa moet houten verpakking fytosanitair behandeld en gemerkt zijn. Wij kopen behandeld hout aan, zagen en produceren zelf, en brengen de markering aan onder onze eigen registratie <span class="reg">BE-1689</span>.</p>
+        <p>Dat betekent dat de kist die u bestelt, hier gemerkt wordt — niet elders, en niet pas achteraf.</p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projectformulier">Bespreek uw exportvraag</a>
+          <a class="btn btn-secondary" href="#faq-ispm15">Over ISPM-15
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="export-beeld"><span>Beeld 7 — detail brandmerk ISPM-15 op houten kist</span></div>
+    </div>
+  </section>
+
+  <section id="duurzaamheid">
     <div class="wrap">
       <div class="intro">
-        <p class="eyebrow">Werkwijze</p>
-        <h2>Van aanvraag tot levering.</h2>
+        <div class="eyebrow b">Duurzaamheid &amp; regelgeving</div>
+        <h2>Houten verpakking met aandacht voor de regels die ertoe doen.</h2>
+        <p>Internationale zendingen en veranderende verpakkingsregels vragen om duidelijke keuzes. Hier bundelen we wat relevant is voor houten transportverpakking.</p>
       </div>
-
-      <div class="grid grid--4">
-        <article class="step">
-          <div class="nr">01</div>
-          <h3>U stuurt uw specificaties</h3>
-          <p>Via de configurator, of met een foto, PDF of tekening.</p>
+      <div class="paths">
+        <article class="path" id="ppwr">
+          <div class="eyebrow b">PPWR-wetgeving</div>
+          <h3>Verpakking in beweging.</h3>
+          <p>De Europese Packaging and Packaging Waste Regulation verandert de context voor verpakking. Wij volgen de evoluties voor houten oplossingen en delen hier de praktische gevolgen.</p>
+          <a class="btn btn-line" href="#projectformulier">Stel uw vraag</a>
         </article>
-        <article class="step">
-          <div class="nr">02</div>
-          <h3>Wij bezorgen een voorstel</h3>
-          <p>Met prijs en levertijd, <span class="ph">binnen X werkdagen</span>.</p>
+        <article class="path">
+          <div class="eyebrow b">ISPM-15</div>
+          <h3>Hout voor internationale export.</h3>
+          <p>Wij bouwen met ISPM-conform hout en merken onder onze eigen registratie. Zo blijft uw zending niet aan de douane staan bij export buiten de EU.</p>
+          <a class="btn btn-line" href="#ispm15">Lees hoe wij dat doen</a>
         </article>
-        <article class="step">
-          <div class="nr">03</div>
-          <h3>Wij produceren zelf</h3>
-          <p>In onze eigen werkplaats in Wingene.</p>
-        </article>
-        <article class="step">
-          <div class="nr">04</div>
-          <h3>Wij leveren op datum</h3>
-          <p>Op uw adres of rechtstreeks op bestemming.</p>
-        </article>
-      </div>
-
-      <div class="btn-row" style="margin-top:38px">
-        <a class="btn btn--outline" href="/werkwijze/">Lees meer over onze werkwijze</a>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 6. WAAROM 'T PALLETJE ===================== -->
-  <section id="waarom">
+  <section class="philosophy" id="over-ons" aria-labelledby="philosophy-title">
+    <div class="wrap">
+      <div class="eyebrow b">Van vraag tot verzending</div>
+      <h2 id="philosophy-title">Technisch genoeg om mee te denken.<br>Praktisch genoeg om vooruit te gaan.</h2>
+      <p>U legt uit wat er vervoerd moet worden. Wij vertalen dat naar een houten oplossing die beschermt, werkt in uw proces en haalbaar blijft in prijs en uitvoering.</p>
+    </div>
+  </section>
+
+  <section id="werkwijze">
     <div class="wrap">
       <div class="intro">
-        <p class="eyebrow">Waarom 't Palletje</p>
-        <h2>Vier redenen, geen slogans.</h2>
+        <div class="eyebrow b">Werkwijze</div>
+        <h2>Van vraag naar veilige oplossing.</h2>
       </div>
-
-      <div class="grid grid--4">
-        <article class="pillar">
-          <h3>Op maat, niet bij benadering</h3>
-          <p>Vraagt u <span class="spec">1187 mm</span>, dan krijgt u <span class="spec">1187 mm</span>.</p>
-        </article>
-        <article class="pillar">
-          <h3>Eigen productie</h3>
-          <p>Geen tussenhandel, geen uitbestedingsketen.</p>
-        </article>
-        <article class="pillar">
-          <h3>Zelf ISPM-15-gemerkt</h3>
-          <p>Onder onze eigen registratie <span class="spec">BE-1689</span>.</p>
-        </article>
-        <article class="pillar">
-          <h3>Duidelijk</h3>
-          <p>Heldere prijs, duidelijke levertijd, geen verrassingen op de factuur.</p>
-        </article>
+      <div class="steps">
+        <article class="step"><svg class="stap-ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 15.5V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-3.5"/><path d="M12 3v12"/><path d="M7.5 7.5 12 3l4.5 4.5"/></svg><h3>U bezorgt de info</h3><p>Configureer uw product, of stuur foto, tekening, gewicht, aantal en bestemming.</p></article>
+        <article class="step"><svg class="stap-ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2.5h8l4 4v15H6z"/><path d="M14 2.5v4h4"/><path d="M9 12.5h6M9 16.5h6"/></svg><h3>Wij bezorgen voorstel</h3><p>We bepalen de juiste uitvoering en maken prijs en levertermijn helder.</p></article>
+        <article class="step"><svg class="stap-ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2.5 21.5 10l-3.5 3.5L10.5 6z"/><path d="M12.2 7.8 3 17v2.2L5.8 22 15 12.8"/></svg><h3>Produceren en leveren</h3><p>Uw oplossing wordt in Wingene gemaakt volgens de afgesproken specificaties.</p></article>
+        <article class="step"><svg class="stap-ico" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2.5 20 7v10l-8 4.5L4 17V7z"/><path d="M8.6 12.2 11 14.6l4.6-4.6"/></svg><h3>Uw product correct verpakt</h3></article>
       </div>
     </div>
   </section>
 
-  <!-- ===================== 7. EIND-CTA ===================== -->
-  <section class="final" id="offerte-routes">
+  <section id="realisaties">
+    <div class="wrap case">
+      <div>
+        <div class="eyebrow b">Bewijs uit de praktijk</div>
+        <h2>Precisie voor restauratieglas.</h2>
+        <p>Voor restaurateurs van kerkramen maken we multiplex glasbakjes op klanttekening, zodat authentiek glas en lood veilig kunnen worden vervoerd en behandeld.</p>
+        <a class="btn btn-navy" href="#projectformulier" style="margin-top:18px">Bespreek uw project</a>
+      </div>
+      <div class="case-visual"><span>Foto — multiplex glasbakjes op klanttekening</span></div>
+    </div>
+  </section>
+
+  <div class="sectors">
     <div class="wrap">
-      <p class="eyebrow eyebrow--light">Klaar om te starten?</p>
-      <h2>Prijs nodig? Twee routes.</h2>
-      <p>Voor pallets, kisten en kratten start u rechtstreeks in de configurator. Voor glasbokken, constructies op maat en al het afwijkende werk sturen we een voorstel uit.</p>
-
-      <div class="btn-row">
-        <a class="btn btn--light" href="https://configurator.palletje.be/">Start configurator</a>
-        <a class="btn btn--ghost" href="/offerte/">Stuur uw project</a>
-      </div>
-
-      <div class="final-tel">
-        <p>Liever meteen iemand aan de lijn?</p>
-        <a href="tel:+32499196802">0499 19 68 02</a>
-      </div>
-    </div>
-  </section>
-
-</main>
-
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer-grid">
-
-      <div>
-        <a class="brand" href="/">'t <em>Palletje</em></a>
-        <p>Houten transportoplossingen op maat voor industrie, logistiek en export.</p>
-        <p>
-          Morellestraat 1<br>
-          8750 Wingene<br>
-          BTW BE 0863.163.507<br>
-          ISPM-15 <span class="spec" style="color:#fff">BE-1689</span>
-        </p>
-      </div>
-
-      <div>
-        <h3>Producten</h3>
-        <ul>
-          <li><a href="/producten/pallet-op-maat/">Pallet op maat</a></li>
-          <li><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a></li>
-          <li><a href="/producten/exportkisten/">Exportkisten</a></li>
-          <li><a href="/producten/glasbokken/">Glasbokken</a></li>
-          <li><a href="/producten/opzetranden/">Opzetranden</a></li>
-          <li><a href="/producten/houten-constructies-op-maat/">Houten constructies op maat</a></li>
-          <li><a href="/producten/hout-en-plaatmateriaal/">Hout en plaatmateriaal op maat</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Bedrijf</h3>
-        <ul>
-          <li><a href="/werkwijze/">Werkwijze</a></li>
-          <li><a href="/realisaties/">Realisaties</a></li>
-          <li><a href="/over-ons/">Over ons</a></li>
-          <li><a href="/faq/">FAQ</a></li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <h3>Contact</h3>
-        <ul>
-          <li><a href="tel:+32499196802">0499 19 68 02</a></li>
-          <li><a href="mailto:info@palletje.be">info@palletje.be</a></li>
-          <li><a href="https://configurator.palletje.be/">Start configurator →</a></li>
-        </ul>
-      </div>
-
-    </div>
-
-    <div class="legal">
-      <span>&copy; <span data-year>2026</span> 't Palletje</span>
-      <a href="/privacy/">Privacybeleid</a>
-      <a href="/voorwaarden/">Algemene voorwaarden</a>
-      <a href="/cookies/">Cookiebeleid</a>
-      <span style="margin-left:auto">
-        <a href="/" aria-current="page">NL</a>
-        <a href="/en/">EN</a>
-        <a href="/fr/">FR</a>
-      </span>
+      <h2 style="color:var(--navy);font-size:clamp(1.6rem,3vw,2.4rem);letter-spacing:-.04em;margin:0;font-weight:800">Verpakking voor uiteenlopende sectoren.</h2>
+      <ul class="sector-list">
+        <li>Machinebouw &amp; metaal</li>
+        <li>Techniek, pompen &amp; installaties</li>
+        <li>Chemie, labo &amp; farma</li>
+        <li>Voeding, drank &amp; agro</li>
+      </ul>
+      <ul class="sector-list">
+        <li>Bouw &amp; bouwmaterialen</li>
+        <li>Logistiek &amp; transport</li>
+        <li>Interieur, design &amp; standenbouw</li>
+      </ul>
+      <ul class="sector-list">
+        <li>Glas, kunst &amp; restauratie</li>
+        <li>Print, papier &amp; karton</li>
+        <li>Kunststoffen &amp; composieten</li>
+        <li>Maritiem &amp; scheepsbouw</li>
+      </ul>
     </div>
   </div>
+
+<section id="faq" aria-labelledby="faq-title">
+    <div class="wrap">
+      <div class="intro"><div class="eyebrow b">Veelgestelde vragen</div><h2 id="faq-title">Praktische vragen, helder beantwoord.</h2><p>Kies een thema of zoek uw vraag. Van offerte tot laden en lossen.</p></div>
+      <div class="faq-controls" hidden>
+        <div class="faq-search"><label for="faq-query">Waar wilt u meer over weten?</label><div class="faq-search-field"><input id="faq-query" type="search" placeholder="Zoek op prijs, kist, laadklep…" autocomplete="off" aria-controls="faq-list"><button id="faq-clear" type="button" hidden aria-label="Zoekopdracht wissen">Wissen</button></div></div>
+        <div class="faq-topics" aria-label="Thema’s"><button type="button" data-topic-button="0" aria-pressed="false" aria-controls="faq-list"><strong>Prijs &amp; offerte</strong><span>6 vragen</span></button><button type="button" data-topic-button="1" aria-pressed="false" aria-controls="faq-list"><strong>Kiezen &amp; afmetingen</strong><span>7 vragen</span></button><button type="button" data-topic-button="2" aria-pressed="false" aria-controls="faq-list"><strong>Bestellen</strong><span>6 vragen</span></button><button type="button" data-topic-button="3" aria-pressed="false" aria-controls="faq-list"><strong>Levering &amp; afhalen</strong><span>6 vragen</span></button><button type="button" data-topic-button="4" aria-pressed="false" aria-controls="faq-list"><strong>Laden &amp; lossen</strong><span>8 vragen</span></button><button type="button" data-topic-button="5" aria-pressed="false" aria-controls="faq-list"><strong>Verpakken &amp; beschermen</strong><span>6 vragen</span></button><button type="button" data-topic-button="6" aria-pressed="false" aria-controls="faq-list"><strong>Export &amp; regels</strong><span>5 vragen</span></button><button type="button" data-topic-button="7" aria-pressed="false" aria-controls="faq-list"><strong>Hergebruik &amp; hout</strong><span>6 vragen</span></button></div>
+        <div class="faq-results-heading"><h3 id="faq-heading">Vaak gevraagd</h3><button id="faq-reset" type="button" hidden>Terug naar vaak gevraagd</button></div>
+        <p id="faq-status" class="faq-status" role="status" aria-live="polite"></p>
+      </div>
+      <div class="faq" id="faq-list"><details id="faq-wat-bepaalt-de-prijs" data-topic="0" data-popular="false"><summary>Wat bepaalt de prijs?</summary><div class="faq-answer"><div class="faq-copy">Afmetingen, draagkracht, materiaal, uitvoering en aantal bepalen samen de prijs. Ook extra bescherming en transport tellen mee. Geef aan wat u wilt vervoeren: zo kunnen we gericht vergelijken.</div><div class="faq-share"><a href="#faq-wat-bepaalt-de-prijs" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wat-bepaalt-de-prijs">Kopieer link</button></div></div></details><details id="faq-welke-info-hebben-jullie-nodig-voor-een-offerte" data-topic="0" data-popular="true"><summary>Welke info hebben jullie nodig voor een offerte?</summary><div class="faq-answer"><div class="faq-copy">Afmetingen, gewicht, aantal, toepassing en bestemming. Een foto of tekening erbij versnelt alles. Vermeld ook hoe u wilt laden en lossen en wanneer u de verpakking nodig hebt.</div><div class="faq-share"><a href="#faq-welke-info-hebben-jullie-nodig-voor-een-offerte" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-welke-info-hebben-jullie-nodig-voor-een-offerte">Kopieer link</button></div></div></details><details id="faq-hoe-kan-ik-mijn-verpakking-goedkoper-maken" data-topic="0" data-popular="false"><summary>Hoe kan ik mijn verpakking goedkoper maken?</summary><div class="faq-answer"><div class="faq-copy">Vertel wat de verpakking echt moet kunnen. Soms kunnen een eenvoudiger uitvoering, aangepaste maat of gezamenlijke bestelling materiaal en werk besparen. Bespaar niet op de bodem of bescherming die uw transport nodig heeft.</div><div class="faq-share"><a href="#faq-hoe-kan-ik-mijn-verpakking-goedkoper-maken" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-kan-ik-mijn-verpakking-goedkoper-maken">Kopieer link</button></div></div></details><details id="faq-is-een-standaardmaat-goedkoper-dan-maatwerk" data-topic="0" data-popular="false"><summary>Is een standaardmaat goedkoper dan maatwerk?</summary><div class="faq-answer"><div class="faq-copy">Dat hangt af van de uitvoering en het aantal. Een standaardmaat kan voordelig zijn, maar extra loze ruimte kost ook plaats en bescherming. Vergelijk daarom verpakking én transport samen.</div><div class="faq-share"><a href="#faq-is-een-standaardmaat-goedkoper-dan-maatwerk" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-is-een-standaardmaat-goedkoper-dan-maatwerk">Kopieer link</button></div></div></details><details id="faq-wordt-de-prijs-lager-bij-grotere-aantallen" data-topic="0" data-popular="false"><summary>Wordt de prijs lager bij grotere aantallen?</summary><div class="faq-answer"><div class="faq-copy">Bij een serie kunnen voorbereiding en productie over meer stuks worden verdeeld. Vraag een vergelijking voor de aantallen die u overweegt; de besparing hangt af van het product.</div><div class="faq-share"><a href="#faq-wordt-de-prijs-lager-bij-grotere-aantallen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wordt-de-prijs-lager-bij-grotere-aantallen">Kopieer link</button></div></div></details><details id="faq-zijn-transportkosten-inbegrepen" data-topic="0" data-popular="false"><summary>Zijn transportkosten inbegrepen?</summary><div class="faq-answer"><div class="faq-copy">Controleer dit in uw offerte. Geef het leveradres en de gewenste losmethode door, zodat duidelijk is wat de levering omvat.</div><div class="faq-share"><a href="#faq-zijn-transportkosten-inbegrepen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-zijn-transportkosten-inbegrepen">Kopieer link</button></div></div></details><details id="faq-kies-ik-een-pallet-kist-of-krat" data-topic="1" data-popular="false"><summary>Kies ik een pallet, kist of krat?</summary><div class="faq-answer"><div class="faq-copy">Een pallet ondersteunt uw product. Een krat voegt een open houten ombouw toe. Een kist sluit het product verder af. De juiste keuze hangt af van kwetsbaarheid, behandeling en transport.</div><div class="faq-share"><a href="#faq-kies-ik-een-pallet-kist-of-krat" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kies-ik-een-pallet-kist-of-krat">Kopieer link</button></div></div></details><details id="faq-welke-afmetingen-moet-ik-doorgeven" data-topic="1" data-popular="false"><summary>Welke afmetingen moet ik doorgeven?</summary><div class="faq-answer"><div class="faq-copy">Geef lengte × breedte × hoogte van uw product door, inclusief uitstekende delen. Vermeld of u productmaten, binnenmaten of buitenmaten opgeeft. Voeg het gewicht toe.</div><div class="faq-share"><a href="#faq-welke-afmetingen-moet-ik-doorgeven" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-welke-afmetingen-moet-ik-doorgeven">Kopieer link</button></div></div></details><details id="faq-wat-is-het-verschil-tussen-binnenmaat-en-buitenmaat" data-topic="1" data-popular="false"><summary>Wat is het verschil tussen binnenmaat en buitenmaat?</summary><div class="faq-answer"><div class="faq-copy">De binnenmaat is de ruimte voor uw product. De buitenmaat is de totale ruimte die de verpakking inneemt, inclusief bodem en uitstekende delen. Voor uw voertuig telt de buitenmaat.</div><div class="faq-share"><a href="#faq-wat-is-het-verschil-tussen-binnenmaat-en-buitenmaat" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wat-is-het-verschil-tussen-binnenmaat-en-buitenmaat">Kopieer link</button></div></div></details><details id="faq-hoeveel-vrije-ruimte-laat-ik-rond-mijn-product" data-topic="1" data-popular="false"><summary>Hoeveel vrije ruimte laat ik rond mijn product?</summary><div class="faq-answer"><div class="faq-copy">Dat hangt af van bescherming, bevestiging en de manier waarop het product in de kist komt. Geef eerst de exacte productmaat door. We spreken de benodigde speling af vóór de bouw.</div><div class="faq-share"><a href="#faq-hoeveel-vrije-ruimte-laat-ik-rond-mijn-product" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoeveel-vrije-ruimte-laat-ik-rond-mijn-product">Kopieer link</button></div></div></details><details id="faq-welke-bodem-heeft-mijn-kist-nodig" data-topic="1" data-popular="false"><summary>Welke bodem heeft mijn kist nodig?</summary><div class="faq-answer"><div class="faq-copy">Kies de bodem op basis van gewicht, voertuig en losmethode. De plaats van balken of blokken bepaalt waar vorken onder kunnen. Een palletbodem kan extra opnamemogelijkheden bieden, afhankelijk van de uitvoering. <a href="#faq-gesloten-vrachtwagen">Bekijk het laadvoorbeeld.</a></div><div class="faq-share"><a href="#faq-welke-bodem-heeft-mijn-kist-nodig" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-welke-bodem-heeft-mijn-kist-nodig">Kopieer link</button></div></div></details><details id="faq-hoe-geef-ik-het-gewicht-en-de-gewichtsverdeling-door" data-topic="1" data-popular="false"><summary>Hoe geef ik het gewicht en de gewichtsverdeling door?</summary><div class="faq-answer"><div class="faq-copy">Vermeld het totale productgewicht en waar de zwaarste delen zitten. Een machine met één zware zijde vraagt een andere ondersteuning dan een gelijkmatig verdeelde lading. Duid steunpunten aan op een tekening.</div><div class="faq-share"><a href="#faq-hoe-geef-ik-het-gewicht-en-de-gewichtsverdeling-door" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-geef-ik-het-gewicht-en-de-gewichtsverdeling-door">Kopieer link</button></div></div></details><details id="faq-kan-mijn-verpakking-gestapeld-worden" data-topic="1" data-popular="false"><summary>Kan mijn verpakking gestapeld worden?</summary><div class="faq-answer"><div class="faq-copy">Alleen als ze daarvoor is ontworpen. Geef aan hoeveel verpakkingen boven elkaar komen en wat elke gevulde verpakking weegt. Stapelen tijdens opslag en stapelen tijdens vervoer kunnen andere eisen stellen.</div><div class="faq-share"><a href="#faq-kan-mijn-verpakking-gestapeld-worden" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-mijn-verpakking-gestapeld-worden">Kopieer link</button></div></div></details><details id="faq-vanaf-hoeveel-stuks-kan-ik-bestellen" data-topic="2" data-popular="false"><summary>Vanaf hoeveel stuks kan ik bestellen?</summary><div class="faq-answer"><div class="faq-copy">Vanaf één stuk. Of dat economisch interessant is, hangt af van het product. Geef ook eventuele vervolgaantallen door, zodat we de uitvoering daarop kunnen afstemmen.</div><div class="faq-share"><a href="#faq-vanaf-hoeveel-stuks-kan-ik-bestellen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-vanaf-hoeveel-stuks-kan-ik-bestellen">Kopieer link</button></div></div></details><details id="faq-wanneer-gebruik-ik-de-configurator" data-topic="2" data-popular="false"><summary>Wanneer gebruik ik de configurator?</summary><div class="faq-answer"><div class="faq-copy">Voor pallets, kisten en platen die binnen de beschikbare opties vallen. U ontvangt daarna automatisch een offerte met prijs. Voor afwijkende projecten kiest u <a href="#projectformulier">Stuur uw project</a>.</div><div class="faq-share"><a href="#faq-wanneer-gebruik-ik-de-configurator" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wanneer-gebruik-ik-de-configurator">Kopieer link</button></div></div></details><details id="faq-kan-ik-een-foto-of-tekening-doorsturen" data-topic="2" data-popular="false"><summary>Kan ik een foto of tekening doorsturen?</summary><div class="faq-answer"><div class="faq-copy">Ja. Stuur uw tekening of foto mee via <a href="#projectformulier">het projectformulier</a>. Vermeld de maten, het gewicht, het aantal en het gebruik. Een foto zonder maten is meestal onvoldoende om exact te bouwen.</div><div class="faq-share"><a href="#faq-kan-ik-een-foto-of-tekening-doorsturen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-ik-een-foto-of-tekening-doorsturen">Kopieer link</button></div></div></details><details id="faq-kunnen-jullie-ook-complexe-maatwerkconstructies-maken" data-topic="2" data-popular="false"><summary>Kunnen jullie ook complexe maatwerkconstructies maken?</summary><div class="faq-answer"><div class="faq-copy">Ja. Voor afwijkende, zware of kwetsbare goederen bekijken we de toepassing en werken we een passende houten oplossing uit. Stuur uw maten, gewicht en een foto of tekening door.</div><div class="faq-share"><a href="#faq-kunnen-jullie-ook-complexe-maatwerkconstructies-maken" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kunnen-jullie-ook-complexe-maatwerkconstructies-maken">Kopieer link</button></div></div></details><details id="faq-kan-ik-mijn-bestelling-nog-wijzigen" data-topic="2" data-popular="false"><summary>Kan ik mijn bestelling nog wijzigen?</summary><div class="faq-answer"><div class="faq-copy">Neem zo snel mogelijk contact op. Of een wijziging nog kan, hangt af van de voorbereiding en productie. Laat de aangepaste uitvoering, prijs en leverdatum bevestigen.</div><div class="faq-share"><a href="#faq-kan-ik-mijn-bestelling-nog-wijzigen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-ik-mijn-bestelling-nog-wijzigen">Kopieer link</button></div></div></details><details id="faq-hoe-bestel-ik-dezelfde-verpakking-opnieuw" data-topic="2" data-popular="false"><summary>Hoe bestel ik dezelfde verpakking opnieuw?</summary><div class="faq-answer"><div class="faq-copy">Vermeld uw vorige offerte- of ordernummer, het aantal en de gewenste datum. Geef ook door of product, gewicht, bestemming of losmethode zijn veranderd.</div><div class="faq-share"><a href="#faq-hoe-bestel-ik-dezelfde-verpakking-opnieuw" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-bestel-ik-dezelfde-verpakking-opnieuw">Kopieer link</button></div></div></details><details id="faq-wat-is-de-standaard-levertijd" data-topic="3" data-popular="false"><summary>Wat is de standaard levertijd?</summary><div class="faq-answer"><div class="faq-copy">Onze standaard levertijd is 10 werkdagen. De concrete leverdatum spreken we af bij uw bestelling. Moet het sneller? Meld dat meteen.</div><div class="faq-share"><a href="#faq-wat-is-de-standaard-levertijd" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wat-is-de-standaard-levertijd">Kopieer link</button></div></div></details><details id="faq-kan-mijn-bestelling-sneller-klaar-zijn" data-topic="3" data-popular="true"><summary>Kan mijn bestelling sneller klaar zijn?</summary><div class="faq-answer"><div class="faq-copy">Spoed is mogelijk: in sommige gevallen kunnen we de volgende dag al leveren. Dat hangt af van uitvoering, materiaal en planning en spreken we vooraf af. Even gebeld en er wordt gesneld. <a href="tel:+32499196802">Bel 0499 19 68 02.</a></div><div class="faq-share"><a href="#faq-kan-mijn-bestelling-sneller-klaar-zijn" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-mijn-bestelling-sneller-klaar-zijn">Kopieer link</button></div></div></details><details id="faq-waar-leveren-jullie" data-topic="3" data-popular="false"><summary>Waar leveren jullie?</summary><div class="faq-answer"><div class="faq-copy">België, Nederland en Noord-Frankrijk. Geef het exacte leveradres door voor de transportafspraak. Uw goederen kunnen daarna uiteraard verder de wereld rond.</div><div class="faq-share"><a href="#faq-waar-leveren-jullie" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-waar-leveren-jullie">Kopieer link</button></div></div></details><details id="faq-kan-ik-zelf-komen-afhalen" data-topic="3" data-popular="false"><summary>Kan ik zelf komen afhalen?</summary><div class="faq-answer"><div class="faq-copy">Stem het afhaalmoment vooraf met ons af. Geef door met welk voertuig u komt, hoe de laadruimte opengaat en hoe u op de bestemming gaat lossen. <a href="#faq-gesloten-vrachtwagen">Controleer de laadwijze.</a></div><div class="faq-share"><a href="#faq-kan-ik-zelf-komen-afhalen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-ik-zelf-komen-afhalen">Kopieer link</button></div></div></details><details id="faq-hoe-spreken-we-het-levermoment-af" data-topic="3" data-popular="false"><summary>Hoe spreken we het levermoment af?</summary><div class="faq-answer"><div class="faq-copy">Geef de gewenste datum, openingsuren en contactpersoon door bij uw bestelling. Vermeld tijdsloten of aanmeldregels. Houd de bevestigde afspraak aan voor uw planning.</div><div class="faq-share"><a href="#faq-hoe-spreken-we-het-levermoment-af" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-spreken-we-het-levermoment-af">Kopieer link</button></div></div></details><details id="faq-welke-info-hebben-jullie-nodig-over-de-leverplaats" data-topic="3" data-popular="false"><summary>Welke info hebben jullie nodig over de leverplaats?</summary><div class="faq-answer"><div class="faq-copy">Leveradres, contactpersoon, bereikbaarheid en openingsuren. Vermeld of er een heftruck of laadkade is, of een laadklep nodig is en of er beperkingen zijn voor grote vrachtwagens.</div><div class="faq-share"><a href="#faq-welke-info-hebben-jullie-nodig-over-de-leverplaats" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-welke-info-hebben-jullie-nodig-over-de-leverplaats">Kopieer link</button></div></div></details><details id="faq-past-mijn-kist-ook-door-de-laadopening" data-topic="4" data-popular="false"><summary>Past mijn kist ook door de laadopening?</summary><div class="faq-answer"><div class="faq-copy">Controleer de buitenmaat van de volledige kist én de vrije breedte en hoogte van de opening. De binnenruimte kan groter zijn dan de deur. Houd ook rekening met de ruimte die nodig is om de kist op te tillen en recht in te laden.</div><div class="faq-share"><a href="#faq-past-mijn-kist-ook-door-de-laadopening" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-past-mijn-kist-ook-door-de-laadopening">Kopieer link</button></div></div></details><details id="faq-gesloten-vrachtwagen" data-topic="4" data-popular="true"><summary>Kan mijn kist in een gesloten vrachtwagen?</summary><div class="faq-answer"><div class="faq-copy"><strong>Dat hangt af van de bodem én de manier van laden.</strong> Alleen de binnenlengte controleren is niet genoeg.<div class="faq-checks"><div><b>1. Oppakken</b><span>Waar kunnen de vorken onder de bodem?</span></div><div><b>2. Inladen</b><span>Past de kist recht door de achteropening?</span></div><div><b>3. Uitladen</b><span>Kan de ontvanger ze er op dezelfde manier uit krijgen?</span></div></div><p>Een kist van 3 meter kan qua lengte passen, maar toch niet op de vereiste manier via de achterdeur geladen worden. Ook draaien in de laadruimte is niet vanzelfsprekend.</p><p><strong>Spreek voertuig en losmethode af vóór u de bodem kiest.</strong> Een aangepaste palletbodem kan opname vanaf de benodigde zijde mogelijk maken. Welke zijden bereikbaar zijn, hangt af van de concrete uitvoering.</p><a href="#faq-open-zijkant">Wanneer is een open zijkant nodig?</a></div><div class="faq-share"><a href="#faq-gesloten-vrachtwagen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-gesloten-vrachtwagen">Kopieer link</button></div></div></details><details id="faq-open-zijkant" data-topic="4" data-popular="false"><summary>Wanneer is een vrachtwagen met open zijkant nodig?</summary><div class="faq-answer"><div class="faq-copy">Wanneer de kist langs de zijkant moet worden geladen en dit via de achterdeur niet mogelijk is. Een schuifzeilwagen, ook bâché genoemd, kan daarvoor geschikt zijn. Controleer de vrije zijopening, eventuele stijlen én hoe er op de bestemming gelost wordt.</div><div class="faq-share"><a href="#faq-open-zijkant" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-open-zijkant">Kopieer link</button></div></div></details><details id="faq-langs-welke-kant-kan-mijn-kist-worden-opgetild" data-topic="4" data-popular="false"><summary>Langs welke kant kan mijn kist worden opgetild?</summary><div class="faq-answer"><div class="faq-copy">Dat wordt bepaald door de onderbouw. Balken en blokken kunnen bepaalde zijden afsluiten. Geef aan vanaf welke zijde uw heftruck of transpallet moet kunnen opnemen. Laat die opnamerichting vastleggen bij de bestelling.</div><div class="faq-share"><a href="#faq-langs-welke-kant-kan-mijn-kist-worden-opgetild" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-langs-welke-kant-kan-mijn-kist-worden-opgetild">Kopieer link</button></div></div></details><details id="faq-kan-mijn-kist-met-een-laadklep-worden-gelost" data-topic="4" data-popular="false"><summary>Kan mijn kist met een laadklep worden gelost?</summary><div class="faq-answer"><div class="faq-copy">Laat uw vervoerder vooraf controleren of de klep geschikt is voor de afmetingen, het totale gewicht en de positie van de lading. Ook de ruimte en het gewicht van het gebruikte hulpmiddel tellen mee. De kist moet tot op de klep kunnen worden verplaatst; reken niet op draaien in de vrachtwagen.</div><div class="faq-share"><a href="#faq-kan-mijn-kist-met-een-laadklep-worden-gelost" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-mijn-kist-met-een-laadklep-worden-gelost">Kopieer link</button></div></div></details><details id="faq-kan-mijn-kist-via-een-laadkade-worden-gelost" data-topic="4" data-popular="false"><summary>Kan mijn kist via een laadkade worden gelost?</summary><div class="faq-answer"><div class="faq-copy">Dat hangt af van de toegang via de achterdeur, de laadbrug en het beschikbare hulpmiddel. Controleer of de bodem geschikt is voor dat hulpmiddel en of de route voldoende ruimte biedt. Een kist die zijdelings geladen werd, kan niet automatisch achteraan worden gelost.</div><div class="faq-share"><a href="#faq-kan-mijn-kist-via-een-laadkade-worden-gelost" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-mijn-kist-via-een-laadkade-worden-gelost">Kopieer link</button></div></div></details><details id="faq-kan-ik-mijn-kist-met-een-transpallet-verplaatsen" data-topic="4" data-popular="false"><summary>Kan ik mijn kist met een transpallet verplaatsen?</summary><div class="faq-answer"><div class="faq-copy">Alleen als de bodem daarvoor geschikt is. De vorken en wielen moeten vrij onder de kist kunnen en het hulpmiddel moet de gevulde kist kunnen dragen. Geef vooraf door dat u een transpallet of palletwagen gebruikt.</div><div class="faq-share"><a href="#faq-kan-ik-mijn-kist-met-een-transpallet-verplaatsen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-ik-mijn-kist-met-een-transpallet-verplaatsen">Kopieer link</button></div></div></details><details id="faq-wat-past-er-in-een-bestelwagen-of-aanhangwagen" data-topic="4" data-popular="false"><summary>Wat past er in een bestelwagen of aanhangwagen?</summary><div class="faq-answer"><div class="faq-copy">Dat verschilt per voertuig. Controleer vrije laadlengte, breedte, hoogte, deuropening en toegestaan laadgewicht. Meet bij een bestelwagen ook tussen de wielkasten. Bij een aanhangwagen of remorque tellen de toegang en laadwijze mee. Geef deze gegevens door, samen met de buitenmaat en het gewicht van de verpakking.</div><div class="faq-share"><a href="#faq-wat-past-er-in-een-bestelwagen-of-aanhangwagen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wat-past-er-in-een-bestelwagen-of-aanhangwagen">Kopieer link</button></div></div></details><details id="faq-hoe-zet-ik-mijn-product-vast" data-topic="5" data-popular="false"><summary>Hoe zet ik mijn product vast?</summary><div class="faq-answer"><div class="faq-copy">Dat hangt af van het gewicht, de vorm en de punten waarop uw product krachten mag opnemen. Geef aan waar het mag worden ondersteund of bevestigd. Een passend ontwerp voorkomt dat het product vrij in de verpakking kan bewegen.</div><div class="faq-share"><a href="#faq-hoe-zet-ik-mijn-product-vast" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-zet-ik-mijn-product-vast">Kopieer link</button></div></div></details><details id="faq-hoe-bescherm-ik-mijn-product-tegen-vocht" data-topic="5" data-popular="false"><summary>Hoe bescherm ik mijn product tegen vocht?</summary><div class="faq-answer"><div class="faq-copy">Een houten kist is op zichzelf geen garantie tegen vocht of condens. Geef transportduur, route en opslagomstandigheden door. Dan kan worden bepaald of extra vochtbescherming nodig is.</div><div class="faq-share"><a href="#faq-hoe-bescherm-ik-mijn-product-tegen-vocht" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-bescherm-ik-mijn-product-tegen-vocht">Kopieer link</button></div></div></details><details id="faq-hoe-bescherm-ik-breekbare-onderdelen" data-topic="5" data-popular="false"><summary>Hoe bescherm ik breekbare onderdelen?</summary><div class="faq-answer"><div class="faq-copy">Duid kwetsbare delen aan op een foto of tekening. Geef aan waar het product wel en niet mag worden geraakt of ondersteund. Stem fixatie en bescherming af op de behandeling onderweg.</div><div class="faq-share"><a href="#faq-hoe-bescherm-ik-breekbare-onderdelen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-bescherm-ik-breekbare-onderdelen">Kopieer link</button></div></div></details><details id="faq-kunnen-jullie-mijn-product-verpakken" data-topic="5" data-popular="false"><summary>Kunnen jullie mijn product verpakken?</summary><div class="faq-answer"><div class="faq-copy">Bespreek uw product en de gewenste verpakking met ons. We bekijken hoe het kan worden verpakt en welke gegevens of hulpmiddelen nodig zijn. Vermeld ook afmetingen, gewicht en planning.</div><div class="faq-share"><a href="#faq-kunnen-jullie-mijn-product-verpakken" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kunnen-jullie-mijn-product-verpakken">Kopieer link</button></div></div></details><details id="faq-kunnen-jullie-bij-ons-komen-verpakken" data-topic="5" data-popular="false"><summary>Kunnen jullie bij ons komen verpakken?</summary><div class="faq-answer"><div class="faq-copy">Ja, we bieden verpakken op locatie aan. Stuur foto’s, maten, gewicht, locatie en gewenste datum door. Vermeld de beschikbare werkruimte en hefmiddelen.</div><div class="faq-share"><a href="#faq-kunnen-jullie-bij-ons-komen-verpakken" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kunnen-jullie-bij-ons-komen-verpakken">Kopieer link</button></div></div></details><details id="faq-kunnen-jullie-een-verpakking-mee-ontwikkelen" data-topic="5" data-popular="false"><summary>Kunnen jullie een verpakking mee ontwikkelen?</summary><div class="faq-answer"><div class="faq-copy">Ja. We vertrekken van uw product, transport en werkwijze. Samen bekijken we bescherming, handling en materiaalgebruik. Ook een bestaande verpakking kan het vertrekpunt zijn.</div><div class="faq-share"><a href="#faq-kunnen-jullie-een-verpakking-mee-ontwikkelen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kunnen-jullie-een-verpakking-mee-ontwikkelen">Kopieer link</button></div></div></details><details id="faq-ispm15" data-topic="6" data-popular="false"><summary>Wat betekent ISPM-15 voor mijn zending?</summary><div class="faq-answer"><div class="faq-copy">ISPM 15 gaat over het beperken van de verspreiding van schadelijke organismen via houten verpakkingen in internationale handel. Of uw zending eraan moet voldoen, hangt af van bestemming en materiaal. Geef het bestemmingsland door vóór u bestelt. <a href="https://www.ippc.int/publications/regulation-wood-packaging-material-international-trade-0" target="_blank" rel="noopener">Uitleg van IPPC</a>.</div><div class="faq-share"><a href="#faq-ispm15" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-ispm15">Kopieer link</button></div></div></details><details id="faq-wat-betekent-het-merkteken-op-het-hout" data-topic="6" data-popular="false"><summary>Wat betekent het merkteken op het hout?</summary><div class="faq-answer"><div class="faq-copy">Het ISPM 15-merkteken bevat onder meer het land, de geregistreerde producent of behandelaar en de behandelingscode. Het gaat over de houtbehandeling, niet over draagkracht of waterdichtheid. <a href="https://www.ippc.int/static/media/files/publication/en/2017/02/ISPM_15_ED_En_2017-02-10.pdf" target="_blank" rel="noopener">Toelichting van IPPC</a>.</div><div class="faq-share"><a href="#faq-wat-betekent-het-merkteken-op-het-hout" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wat-betekent-het-merkteken-op-het-hout">Kopieer link</button></div></div></details><details id="faq-gelden-dezelfde-regels-voor-multiplex" data-topic="6" data-popular="false"><summary>Gelden dezelfde regels voor multiplex?</summary><div class="faq-answer"><div class="faq-copy">Verwerkt hout zoals multiplex valt buiten de houtverpakkingen waarop ISPM 15 betrekking heeft. Massieve balken of latten in dezelfde kist kunnen er wel onder vallen. Kijk dus naar de volledige verpakking. <a href="https://www.ippc.int/publications/regulation-wood-packaging-material-international-trade-0" target="_blank" rel="noopener">Bekijk de norm bij IPPC</a>.</div><div class="faq-share"><a href="#faq-gelden-dezelfde-regels-voor-multiplex" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-gelden-dezelfde-regels-voor-multiplex">Kopieer link</button></div></div></details><details id="faq-welke-info-geef-ik-door-voor-een-exportverpakking" data-topic="6" data-popular="false"><summary>Welke info geef ik door voor een exportverpakking?</summary><div class="faq-answer"><div class="faq-copy">Bestemmingsland, transportwijze, productmaten, gewicht en eventuele eisen van uw klant of vervoerder. Vermeld ook opslag, laad- en loswijze en kwetsbare onderdelen.</div><div class="faq-share"><a href="#faq-welke-info-geef-ik-door-voor-een-exportverpakking" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-welke-info-geef-ik-door-voor-een-exportverpakking">Kopieer link</button></div></div></details><details id="faq-wat-betekent-ppwr-voor-mijn-verpakking" data-topic="6" data-popular="false"><summary>Wat betekent PPWR voor mijn verpakking?</summary><div class="faq-answer"><div class="faq-copy">PPWR is de Europese verordening voor verpakkingen en verpakkingsafval. Ze richt zich onder meer op minder afval, hergebruik en recycleerbaarheid. Welke verplichtingen voor u gelden, hangt af van uw rol en verpakking; verschillende maatregelen hebben verschillende ingangsdata. <a href="https://environment.ec.europa.eu/topics/waste-and-recycling/packaging-waste_en" target="_blank" rel="noopener">Actuele uitleg van de Europese Commissie</a>.</div><div class="faq-share"><a href="#faq-wat-betekent-ppwr-voor-mijn-verpakking" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wat-betekent-ppwr-voor-mijn-verpakking">Kopieer link</button></div></div></details><details id="faq-kan-ik-mijn-verpakking-opnieuw-gebruiken" data-topic="7" data-popular="false"><summary>Kan ik mijn verpakking opnieuw gebruiken?</summary><div class="faq-answer"><div class="faq-copy">Dat kan als de uitvoering en staat geschikt zijn voor het volgende gebruik. Controleer de bodem, verbindingen en bescherming. Geef bij de bestelling al aan of u de verpakking vaker wilt gebruiken.</div><div class="faq-share"><a href="#faq-kan-ik-mijn-verpakking-opnieuw-gebruiken" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-ik-mijn-verpakking-opnieuw-gebruiken">Kopieer link</button></div></div></details><details id="faq-kan-de-kist-makkelijk-open-en-weer-dicht" data-topic="7" data-popular="false"><summary>Kan de kist makkelijk open en weer dicht?</summary><div class="faq-answer"><div class="faq-copy">Dat kan in het ontwerp worden meegenomen. Geef aan hoe vaak de kist open moet en welke zijden bereikbaar moeten zijn. Dan kunnen sluiting en opbouw daarop worden afgestemd.</div><div class="faq-share"><a href="#faq-kan-de-kist-makkelijk-open-en-weer-dicht" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-kan-de-kist-makkelijk-open-en-weer-dicht">Kopieer link</button></div></div></details><details id="faq-hoe-bewaar-ik-lege-houten-verpakkingen" data-topic="7" data-popular="false"><summary>Hoe bewaar ik lege houten verpakkingen?</summary><div class="faq-answer"><div class="faq-copy">Bewaar ze bij voorkeur droog, geventileerd en beschermd tegen beschadiging. Vermijd langdurig contact met een natte ondergrond. Stapel alleen zoals voor de uitvoering is afgesproken.</div><div class="faq-share"><a href="#faq-hoe-bewaar-ik-lege-houten-verpakkingen" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-bewaar-ik-lege-houten-verpakkingen">Kopieer link</button></div></div></details><details id="faq-wat-doe-ik-met-een-beschadigde-pallet-of-kist" data-topic="7" data-popular="false"><summary>Wat doe ik met een beschadigde pallet of kist?</summary><div class="faq-answer"><div class="faq-copy">Gebruik ze niet opnieuw voor een beladen transport zonder beoordeling van de schade. Stuur foto’s van de beschadiging en gegevens van de lading door. Dan kan worden bekeken of herstel of vervanging nodig is.</div><div class="faq-share"><a href="#faq-wat-doe-ik-met-een-beschadigde-pallet-of-kist" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-wat-doe-ik-met-een-beschadigde-pallet-of-kist">Kopieer link</button></div></div></details><details id="faq-hoe-voer-ik-mijn-houten-verpakking-af" data-topic="7" data-popular="false"><summary>Hoe voer ik mijn houten verpakking af?</summary><div class="faq-answer"><div class="faq-copy">Vraag uw afvalinzamelaar welke houtstroom geschikt is. Meld eventuele vervuiling en andere materialen, zoals folie of schuim. Scheid deze waar dat mogelijk is.</div><div class="faq-share"><a href="#faq-hoe-voer-ik-mijn-houten-verpakking-af" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-voer-ik-mijn-houten-verpakking-af">Kopieer link</button></div></div></details><details id="faq-hoe-beperken-we-het-materiaalgebruik" data-topic="7" data-popular="false"><summary>Hoe beperken we het materiaalgebruik?</summary><div class="faq-answer"><div class="faq-copy">Door de verpakking af te stemmen op het product en de echte transportbelasting. Ook passende afmetingen en hergebruik kunnen helpen. Geef daarom niet alleen de maat door, maar ook hoe de verpakking wordt gebruikt.</div><div class="faq-share"><a href="#faq-hoe-beperken-we-het-materiaalgebruik" class="faq-permalink">Link naar dit antwoord</a><button type="button" data-copy="faq-hoe-beperken-we-het-materiaalgebruik">Kopieer link</button></div></div></details></div>
+      <div id="faq-empty" hidden><h3>Uw vraag nog niet gevonden?</h3><p>Probeer een ander woord of kies een thema. U kunt uw vraag ook <a href="#contact">rechtstreeks aan ons stellen</a>.</p></div>
+      <div class="faq-bottom"><span>Uw situatie is net anders?</span> <a href="#projectformulier">Stel uw vraag <span aria-hidden="true">↗</span></a></div>
+      <span id="faq-copy-status" class="faq-sr" role="status" aria-live="polite"></span>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="eyebrow">Klaar om te starten?</div>
+      <h2>Uw transportvraag verdient een oplossing die past.</h2>
+      <p>Voor pallets, kisten en platen start u rechtstreeks in de configurator. Voor al het andere sturen we graag een voorstel uit.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary cfg" href="/configurator/">Start configurator</a>
+        <a class="btn btn-secondary" href="#projectformulier">Stuur uw project</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact" style="padding-top:92px">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Contact</div>
+        <h2>Liever meteen iemand spreken?</h2>
+      </div>
+      <div class="contact-grid">
+        <div>
+          <div class="contact-block">
+            <span class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></span>
+            <div class="contact-tekst">
+              <span class="sr-only">Bellen</span>
+              <a class="primair" href="tel:+32499196802">0499 19 68 02</a>
+              <p>Ma–vr, 8u–17u</p>
+            </div>
+          </div>
+          <div class="contact-block">
+            <span class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2.5" y="4.8" width="19" height="14.4" rx="2"/><path d="m3.2 6.4 8.8 6.3 8.8-6.3"/></svg></span>
+            <div class="contact-tekst">
+              <span class="sr-only">Mailen</span>
+              <a class="primair" href="mailto:info@palletje.be">info@palletje.be</a>
+            </div>
+          </div>
+          <div class="contact-block">
+            <span class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21.4s7-5.7 7-11.2a7 7 0 1 0-14 0c0 5.5 7 11.2 7 11.2z"/><circle cx="12" cy="10.1" r="2.5" fill="currentColor" stroke="none"/></svg></span>
+            <div class="contact-tekst">
+              <span class="sr-only">Langskomen</span>
+              <p class="primair">Morellestraat 1, 8750 Wingene</p>
+              <p>Enkel op afspraak</p>
+            </div>
+          </div>
+        </div>
+
+        <form id="projectformulier" method="post" action="#" enctype="multipart/form-data">
+          <div class="eyebrow b">Projectaanvraag</div>
+          <h3 style="margin:8px 0 18px;font-size:1.5rem;color:var(--navy);letter-spacing:-.03em">Stuur uw project</h3>
+          <div class="two">
+            <div class="field"><label for="naam">Naam *</label><input id="naam" name="naam" required></div>
+            <div class="field"><label for="bedrijf">Bedrijf *</label><input id="bedrijf" name="bedrijf" required></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="email">E-mail *</label><input type="email" id="email" name="email" required></div>
+            <div class="field"><label for="tel">Telefoon</label><input type="tel" id="tel" name="telefoon"></div>
+          </div>
+          <div class="field"><label for="omschrijving">Wat moet er vervoerd of verpakt worden? *</label><textarea id="omschrijving" name="omschrijving" required></textarea></div>
+          <div class="two">
+            <div class="field"><label for="afm">Afmetingen L × B × H (mm) *</label><input id="afm" name="afmetingen" placeholder="1200 × 800 × 900" required></div>
+            <div class="field"><label for="gew">Gewicht (kg)</label><input id="gew" name="gewicht"></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="aantal">Aantal *</label><input type="number" min="1" id="aantal" name="aantal" required></div>
+            <div class="field"><label for="transport">Transportwijze</label>
+              <select id="transport" name="transport">
+                <option value="">Kies…</option><option>Over de weg</option><option>Zeevracht</option>
+                <option>Luchtvracht</option><option>Intern transport</option><option>Weet ik nog niet</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="bestemming">Bestemming</label><input id="bestemming" name="bestemming"></div>
+          <div class="field"><label for="bestand">Foto, PDF of tekening</label><input type="file" id="bestand" name="bestand" accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png"><p class="hint">pdf, dwg, dxf, jpg of png — max 25 MB</p></div>
+          <button class="btn btn-navy" type="submit" style="width:100%">Verstuur aanvraag</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <a class="brand" href="/" style="color:#fff">'t <span>Palletje</span></a>
+        <p>Houten transportoplossingen op maat voor industrie, logistiek en export.</p>
+      </div>
+      <div>
+        <h3>Producten</h3>
+        <a href="/producten/pallet-op-maat/">Pallets op maat</a><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
+        <a href="/producten/exportkisten/">Exportkisten</a><a href="/producten/glasbokken/">Glasbokken</a>
+        <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
+        <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a>
+      </div>
+      <div>
+        <h3>Bedrijf</h3>
+        <a href="/#diensten">Diensten</a><a href="/werkwijze/">Werkwijze</a>
+        <a href="/realisaties/">Realisaties</a><a href="/over-ons/">Over ons</a>
+        <a href="/#ispm15">ISPM-15</a><a href="/#ppwr">PPWR</a><a href="/faq/">FAQ</a>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>Morellestraat 1<br>8750 Wingene</p>
+        <a href="tel:+32499196802">0499 19 68 02</a>
+        <a href="mailto:info@palletje.be">info@palletje.be</a>
+        <a href="/offerte/">Offerte aanvragen</a>
+      </div>
+    </div>
+    <div class="legal">&copy; <span data-jaar>2026</span> &rsquo;t Palletje &middot; BTW BE 0863.163.507 &middot;
+      <a href="/privacy/">Privacy</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a></div>
+  </div>
 </footer>
+
+<dialog id="lightbox" aria-label="Fotoalbum">
+  <button class="lb-sluit" data-lb-sluit aria-label="Sluiten">&times;</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-nav prev" data-lb="-1" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="lb-nav next" data-lb="1" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="lb-bar">
+    <div><strong id="lbTitel"></strong><span id="lbBijschrift"></span></div>
+    <a class="lb-teller" id="lbMeer" href="/producten/" hidden style="color:#8fd3fa;text-decoration:underline">Naar de productpagina</a>
+    <span class="lb-teller" id="lbTeller"></span>
+  </div>
+</dialog>
 
 <script src="/assets/js/site.js"></script>
 </body>

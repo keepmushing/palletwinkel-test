@@ -4,152 +4,233 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<title>Glasbokken en multiplex bakjes op tekening | 't Palletje</title>
-<meta name="description" content="Glasbokken en multiplex bakjes op maat, gebouwd op uw tekening. Voor glas en vlakke platen die tijdens transport niet mogen schuiven, kantelen of breken.">
+<title>Glasbokken en glasverpakking op maat | 't Palletje</title>
+<meta name="description" content="Glasbokken en multiplex transportbakjes op klanttekening, voor glas en vlakke platen die tijdens transport niet mogen schuiven, kantelen of breken.">
 
 <link rel="canonical" href="https://palletje.be/producten/glasbokken/">
-
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_BE">
-<meta property="og:title" content="Glasbokken en multiplex bakjes op tekening | 't Palletje">
-<meta property="og:description" content="Glasbokken en multiplex bakjes op maat, gebouwd op uw tekening. Voor glas en vlakke platen die tijdens transport niet mogen schuiven, kantelen of breken.">
+<meta property="og:title" content="Glasbokken en glasverpakking op maat | 't Palletje">
+<meta property="og:description" content="Glasbokken en multiplex transportbakjes op klanttekening, voor glas dat niet mag schuiven, kantelen of breken.">
 <meta property="og:url" content="https://palletje.be/producten/glasbokken/">
-<meta property="og:image" content="https://palletje.be/assets/img/og-palletje.jpg">
 
 <!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
 <meta name="robots" content="noindex, nofollow">
 
+<link rel="icon" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="stylesheet" href="/assets/css/site.css">
-
-<!-- TODO: favicon 32x32, 180x180 en SVG, af te leiden uit het logo. -->
 </head>
+<body data-pagina="product">
 
-<body>
-<a class="skip" href="#main">Ga naar de inhoud</a>
+<a class="skip" href="#top">Naar de inhoud</a>
 
-<!-- ===================== HEADER ===================== -->
-<header class="header">
-  <div class="wrap nav-bar">
+<div class="topstrip"></div>
 
-    <!-- Zodra het logobestand in assets/img/ staat, vervang je de tekst
-         hieronder door: <img src="/assets/img/logo-t-palletje.svg" alt="'t Palletje"> -->
-    <a class="brand" href="/">'t <em>Palletje</em></a>
+<div class="utility">
+  <div class="wrap utility-inner">
+    <a href="/werkwijze/">Werkwijze</a>
+    <a href="/over-ons/">Over ons</a>
+    <div class="dropdown">
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <div class="dropdown-menu" id="ddMenu">
+        <a href="/#ispm15">ISPM-15 en export</a>
+        <a href="/#ppwr">PPWR-wetgeving</a>
+      </div>
+    </div>
+    <a href="/faq/">FAQ</a>
+    <a href="/contact/">Contact</a>
+    <a class="utility-tel" href="tel:+32499196802">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+      0499 19 68 02
+    </a>
+    <span class="taal">NL</span>
+  </div>
+</div>
 
-    <nav class="nav" id="nav" aria-label="Hoofdnavigatie">
-      <a href="/producten/" aria-current="page">Producten</a>
-      <a href="/werkwijze/">Werkwijze</a>
+<header>
+  <nav class="nav wrap">
+    <a class="brand" href="/"><img class="logomark" src="/assets/img/logo.png" alt="" width="90" height="90">'t <span>Palletje</span></a>
+    <div class="links" id="menu">
+      <a class="active" href="/producten/">Producten</a>
+      <a href="/#diensten">Diensten</a>
       <a href="/realisaties/">Realisaties</a>
-      <a href="/over-ons/">Over ons</a>
-      <a href="/faq/">FAQ</a>
-      <a href="/contact/">Contact</a>
-    </nav>
-
-    <div class="nav-actions">
-      <a class="nav-tel" href="tel:+32499196802">
-        <svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-          <path d="M6.6 2.5 8.4 6.3 6.6 8c.9 1.9 2.5 3.5 4.4 4.4l1.7-1.8 3.8 1.8v3.1c0 .9-.8 1.6-1.7 1.5C7.6 16.4 3.6 12.4 2.7 5.2 2.6 4.3 3.3 3.5 4.2 3.5h2.4Z"
-                stroke="#082A45" stroke-width="1.6" stroke-linejoin="round"/>
-        </svg>
-        <span class="tel-nr">0499 19 68 02</span>
-        <span class="visually-hidden">Bel ons</span>
-      </a>
-
-      <a class="nav-cta" href="https://configurator.palletje.be/">Start configurator</a>
-
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav">
-        <span class="visually-hidden">Menu</span>
-        <svg width="20" height="14" viewBox="0 0 20 14" fill="none" aria-hidden="true">
-          <path d="M0 1h20M0 7h20M0 13h20" stroke="#082A45" stroke-width="2"/>
-        </svg>
+      <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
+      <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
+      <a class="alleen-mobiel" href="/#ppwr">PPWR-wetgeving</a>
+      <a class="alleen-mobiel" href="/faq/">FAQ</a>
+      <a class="alleen-mobiel" href="/contact/">Contact</a>
+      <a class="alleen-mobiel" href="tel:+32499196802">0499 19 68 02</a>
+    </div>
+    <div class="nav-acties">
+      <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
       </button>
+      <a class="nav-cta cfg" href="/configurator/">Start configurator
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="zoekbalk" id="zoekbalk">
+    <div class="wrap">
+      <div class="zoekveld">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="zoekveld" type="search" placeholder="Zoek een product, dienst of vraag…" autocomplete="off" aria-label="Zoekterm">
+        <button class="zoeksluit" id="zoeksluit" aria-label="Zoeken sluiten">&times;</button>
+      </div>
+      <ul class="zoekresultaten" id="zoekresultaten"></ul>
     </div>
   </div>
 </header>
 
-<main id="main">
-  <nav class="crumbs" aria-label="Kruimelpad">
-    <div class="wrap">
-      <a href="/">Home</a>
-      <span aria-hidden="true">/</span>
-      <a href="/producten/">Producten</a>
-      <span aria-hidden="true">/</span>
-      <span aria-current="page">Glasbokken</span>
-    </div>
-  </nav>
+<nav class="crumbs" aria-label="Kruimelpad">
+  <div class="wrap">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/producten/">Producten</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Glasbokken</span>
+  </div>
+</nav>
 
-  <section>
+<main id="top">
+
+  <section class="page-hero">
+    <div class="ph-hero"></div>
     <div class="wrap">
-      <div class="intro">
-        <p class="eyebrow">Glasbokken</p>
-        <h1>Glas breekt niet door de rit. Het breekt door de beweging.</h1>
-        <p class="lead">Een glasbok moet het glas klemmen, dragen en rechtop houden — en dat over de hele weg, niet alleen bij het inladen. Wij bouwen ze op uw tekening, of op de maten van de platen die u vervoert.</p>
+      <div class="eyebrow">Product</div>
+      <h1>Glas breekt niet door de rit. Het breekt door de beweging.</h1>
+      <p class="lead">Een glasbok moet het glas klemmen, dragen en rechtop houden — over de hele weg, niet alleen bij het inladen. Wij bouwen glasbokken en multiplex transportbakjes op uw tekening, of op de maten van de platen die u vervoert.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/offerte/">Stuur uw tekening</a>
+        <a class="btn btn-secondary" href="/realisaties/">Bekijk realisaties</a>
       </div>
     </div>
   </section>
 
-  <section class="on-dark">
+  <section class="op-wit">
     <div class="wrap feature">
       <div>
+        <div class="eyebrow b">Op maat</div>
         <h2>Op tekening, of op de plaat.</h2>
         <p>Hebt u een tekening, dan bouwen we die. Hebt u er geen, dan volstaan de afmetingen en het gewicht van de platen, plus hoe ze vervoerd worden — staand, hellend of plat.</p>
-        <p>Voor kleiner en kwetsbaarder werk maken we multiplex bakjes: gesloten bakken met tussenschotten, zodat stukken elkaar niet raken.</p>
-        <div class="btn-row" style="margin-top:24px">
-          <a class="btn btn--light" href="/offerte/">Stuur uw tekening</a>
+        <p>Typisch werk voor glas, kunst en restauratie, en voor iedereen die kwetsbare panelen verplaatst. Dit is maatwerk: er loopt geen configurator over, u bezorgt ons uw gegevens en wij rekenen de bok erbij uit.</p>
+        <div class="btn-row">
+          <a class="btn btn-navy" href="/offerte/">Vraag uw offerte aan</a>
+          <a class="btn btn-line" href="/werkwijze/">Zo werken we</a>
         </div>
       </div>
-      <div class="feature-visual" data-note="Productbeeld 3 — glasbok, crop 4:3"></div>
+      <div class="feature-visual"><span>Productbeeld 3 — glasbok, crop 4:3</span></div>
     </div>
   </section>
 
-  <section>
+  <section class="op-zacht">
     <div class="wrap">
       <div class="intro">
-        <p class="eyebrow">Wat wij nodig hebben</p>
-        <h2>Vier gegevens en we kunnen rekenen.</h2>
+        <div class="eyebrow b">Wat wij maken</div>
+        <h2>Van bok tot bakje.</h2>
+        <p>Voor glas dat niet mag verschuiven, kantelen of beschadigen — hoe groot of hoe klein het ook is.</p>
       </div>
-
-      <div class="grid grid--4">
-        <article class="step">
-          <div class="nr">01</div>
-          <h3>Plaatmaat</h3>
-          <p>Lengte en breedte van de grootste plaat die erop moet.</p>
+      <div class="raster raster-3">
+        <article class="pillar">
+          <h3>Glasbokken</h3>
+          <p>Een frame dat de platen klemt, draagt en rechtop houdt. Tot <span class="ph">maximale plaatmaat</span>, met een draagvermogen van <span class="ph">bereik in kg</span>.</p>
         </article>
-        <article class="step">
-          <div class="nr">02</div>
-          <h3>Gewicht</h3>
-          <p>Per plaat, en hoeveel platen er samen op gaan.</p>
+        <article class="pillar">
+          <h3>Multiplex transportbakjes</h3>
+          <p>Gesloten bakjes met tussenschotten, zodat stukken elkaar niet raken. Op klanttekening, voor kleiner en kwetsbaarder werk.</p>
         </article>
-        <article class="step">
-          <div class="nr">03</div>
-          <h3>Stand</h3>
-          <p>Staand, hellend of plat vervoerd.</p>
+        <article class="pillar">
+          <h3>Bescherming en hergebruik</h3>
+          <p>Tegen krassen: <span class="ph">bekleding met rubber of vilt</span>. Wij bouwen even goed voor één transport als voor een bok die blijft terugkomen.</p>
         </article>
-        <article class="step">
-          <div class="nr">04</div>
-          <h3>Herbruikbaar?</h3>
-          <p>Eenmalig transport of een bok die blijft terugkomen.</p>
-        </article>
-      </div>
-
-      <div class="ph-block">
-        Nog te bevestigen: maximale plaatmaat en draagvermogen, en of er met
-        rubber of vilt bekleed wordt tegen krassen. Doc 01, sectie H.
       </div>
     </div>
   </section>
 
-  <!-- ===================== EIND-CTA ===================== -->
+  <section class="op-lucht">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Aanpak</div>
+        <h2>Wat wij van u nodig hebben.</h2>
+        <p>Hoe vollediger dit is, hoe scherper de prijs en hoe korter de levertijd.</p>
+      </div>
+      <div class="raster raster-4">
+        <article class="stap">
+          <div class="nr">01</div>
+          <h3>Glasmaat</h3>
+          <p>Lengte en breedte van de grootste plaat die erop moet.</p>
+        </article>
+        <article class="stap">
+          <div class="nr">02</div>
+          <h3>Gewicht per stuk</h3>
+          <p>Wat één plaat weegt.</p>
+        </article>
+        <article class="stap">
+          <div class="nr">03</div>
+          <h3>Aantal per bok</h3>
+          <p>Hoeveel platen er samen op gaan.</p>
+        </article>
+        <article class="stap">
+          <div class="nr">04</div>
+          <h3>Laden en lossen</h3>
+          <p>Hoe u laadt en lost, en of het glas staand, hellend of plat meegaat.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="op-navy">
+    <div class="wrap feature">
+      <div>
+        <div class="eyebrow b">Realisatie</div>
+        <h2>Precisie voor restauratieglas.</h2>
+        <p>Voor restaurateurs van kerkramen maken we multiplex glasbakjes op klanttekening, zodat authentiek glas en lood veilig kunnen worden vervoerd en behandeld.</p>
+        <div class="btn-row">
+          <a class="btn btn-line" href="/realisaties/">Bekijk de realisaties</a>
+        </div>
+      </div>
+      <div class="feature-visual"><span>Foto — multiplex glasbakjes op klanttekening</span></div>
+    </div>
+  </section>
+
+  <section class="op-wit">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Verder kijken</div>
+        <h2>Is een bok niet wat u zoekt?</h2>
+      </div>
+      <div class="verwant">
+        <a href="/producten/houten-constructies-op-maat/">
+          <strong>Constructies op maat</strong>
+          <span>Skids en transportwiegen voor zware, ronde of afwijkende lasten.</span>
+          <em>Bekijk constructies &rarr;</em>
+        </a>
+        <a href="/producten/kisten-en-kratten/">
+          <strong>Kisten &amp; kratten</strong>
+          <span>Wanneer het product ook aan de zijkanten en bovenaan beschermd moet worden.</span>
+          <em>Bekijk kisten &amp; kratten &rarr;</em>
+        </a>
+        <a href="/producten/opzetranden/">
+          <strong>Palletranden / opzetranden</strong>
+          <span>Om de lading op de pallet te verhogen, af te schermen en stapelbaar te maken.</span>
+          <em>Bekijk opzetranden &rarr;</em>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="final">
     <div class="wrap">
-      <p class="eyebrow eyebrow--light">Klaar om te starten?</p>
+      <div class="eyebrow b">Klaar om te starten?</div>
       <h2>Glas dat niet mag schuiven?</h2>
-      <p>Stuur uw tekening of de plaatmaten door. Wij rekenen de bok erbij uit.</p>
-
-      <div class="btn-row">
-        <a class="btn btn--light" href="/offerte/">Stuur foto, PDF of tekening</a>
-        <a class="btn btn--ghost" href="tel:+32499196802">Bel 0499 19 68 02</a>
+      <p>Stuur uw tekening of de glasmaten door. Wij rekenen de bok erbij uit.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/offerte/">Stuur foto, PDF of tekening</a>
+        <a class="btn btn-secondary" href="/contact/">Neem contact op</a>
       </div>
-
       <div class="final-tel">
         <p>Liever meteen iemand aan de lijn?</p>
         <a href="tel:+32499196802">0499 19 68 02</a>
@@ -158,68 +239,36 @@
   </section>
 </main>
 
-<!-- ===================== FOOTER ===================== -->
-<footer class="footer">
+<footer>
   <div class="wrap">
     <div class="footer-grid">
-
       <div>
-        <a class="brand" href="/">'t <em>Palletje</em></a>
+        <a class="brand" href="/" style="color:#fff">'t <span>Palletje</span></a>
         <p>Houten transportoplossingen op maat voor industrie, logistiek en export.</p>
-        <p>
-          Morellestraat 1<br>
-          8750 Wingene<br>
-          BTW BE 0863.163.507<br>
-          ISPM-15 <span class="spec" style="color:#fff">BE-1689</span>
-        </p>
       </div>
-
       <div>
         <h3>Producten</h3>
-        <ul>
-          <li><a href="/producten/pallet-op-maat/">Pallet op maat</a></li>
-          <li><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a></li>
-          <li><a href="/producten/exportkisten/">Exportkisten</a></li>
-          <li><a href="/producten/glasbokken/">Glasbokken</a></li>
-          <li><a href="/producten/opzetranden/">Opzetranden</a></li>
-          <li><a href="/producten/houten-constructies-op-maat/">Houten constructies op maat</a></li>
-          <li><a href="/producten/hout-en-plaatmateriaal/">Hout en plaatmateriaal op maat</a></li>
-        </ul>
+        <a href="/producten/pallet-op-maat/">Pallets op maat</a><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
+        <a href="/producten/exportkisten/">Exportkisten</a><a href="/producten/glasbokken/">Glasbokken</a>
+        <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
+        <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a>
       </div>
-
       <div>
         <h3>Bedrijf</h3>
-        <ul>
-          <li><a href="/werkwijze/">Werkwijze</a></li>
-          <li><a href="/realisaties/">Realisaties</a></li>
-          <li><a href="/over-ons/">Over ons</a></li>
-          <li><a href="/faq/">FAQ</a></li>
-          <li><a href="/contact/">Contact</a></li>
-        </ul>
+        <a href="/#diensten">Diensten</a><a href="/werkwijze/">Werkwijze</a>
+        <a href="/realisaties/">Realisaties</a><a href="/over-ons/">Over ons</a>
+        <a href="/#ispm15">ISPM-15</a><a href="/#ppwr">PPWR</a><a href="/faq/">FAQ</a>
       </div>
-
       <div>
         <h3>Contact</h3>
-        <ul>
-          <li><a href="tel:+32499196802">0499 19 68 02</a></li>
-          <li><a href="mailto:info@palletje.be">info@palletje.be</a></li>
-          <li><a href="https://configurator.palletje.be/">Start configurator →</a></li>
-        </ul>
+        <p>Morellestraat 1<br>8750 Wingene</p>
+        <a href="tel:+32499196802">0499 19 68 02</a>
+        <a href="mailto:info@palletje.be">info@palletje.be</a>
+        <a href="/offerte/">Offerte aanvragen</a>
       </div>
-
     </div>
-
-    <div class="legal">
-      <span>&copy; <span data-year>2026</span> 't Palletje</span>
-      <a href="/privacy/">Privacybeleid</a>
-      <a href="/voorwaarden/">Algemene voorwaarden</a>
-      <a href="/cookies/">Cookiebeleid</a>
-      <span style="margin-left:auto">
-        <a href="/">NL</a>
-        <a href="/en/">EN</a>
-        <a href="/fr/">FR</a>
-      </span>
-    </div>
+    <div class="legal">&copy; <span data-jaar>2026</span> &rsquo;t Palletje &middot; BTW BE 0863.163.507 &middot;
+      <a href="/privacy/">Privacy</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a></div>
   </div>
 </footer>
 
