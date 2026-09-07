@@ -111,11 +111,94 @@
     <div class="hero-note"><span class="dot"></span> Past uw vraag niet in de configurator? <a href="/offerte/" style="color:#8fd3fa;text-decoration:underline;margin-left:5px">Stuur uw project door</a>.</div>
   </div>
 </section>
-<div class="productbar">
+<section id="kiezer" class="op-wit">
+  <div class="wrap">
+    <div class="intro">
+      <div class="eyebrow b">Stap 1</div>
+      <h2>Wat wilt u laten maken?</h2>
+      <p>Kies eerst het product. Daarna vult u de afmetingen en het gewicht in, en ziet u het resultaat meteen in 3D.</p>
+    </div>
+
+    <div class="kiezer-groep" id="grp-palletten">
+      <h3>Palletten</h3>
+      <div class="kiezer-grid">
+        <button type="button" class="kiezer-kaart" data-kies="PBL">
+          <span class="kiezer-beeld"><img src="/assets/img/pallet-op-maat-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Pallet met blokken</span>
+          <span class="kiezer-uitleg">Aan vier zijden onderrijdbaar. Draagt het zwaarst.</span>
+        </button>
+        <button type="button" class="kiezer-kaart" data-kies="PBA">
+          <span class="kiezer-beeld"><img src="/assets/img/pallet-op-maat-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Pallet met balken</span>
+          <span class="kiezer-uitleg">Lichter en voordeliger. Aan twee zijden te heffen.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="kiezer-groep" id="grp-kisten">
+      <h3>Kisten</h3>
+      <p class="kiezer-noot">Gesloten wanden — beschermt tegen stof, vocht en zicht.</p>
+      <div class="kiezer-grid">
+        <button type="button" class="kiezer-kaart" data-kies="KIS">
+          <span class="kiezer-beeld"><img src="/assets/img/kist-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Kist standaard</span>
+          <span class="kiezer-uitleg">Vlakke bodem. Voor lichter werk.</span>
+        </button>
+        <button type="button" class="kiezer-kaart" data-kies="KIB">
+          <span class="kiezer-beeld"><img src="/assets/img/kist-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Kist met balken onderkader</span>
+          <span class="kiezer-uitleg">Op balken, zodat een hefwagen eronder kan.</span>
+        </button>
+        <button type="button" class="kiezer-kaart" data-kies="KIP">
+          <span class="kiezer-beeld"><img src="/assets/img/kist-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Kist met palletbodem</span>
+          <span class="kiezer-uitleg">Volwaardige pallet eronder. Voor zwaar transport.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="kiezer-groep" id="grp-kratten">
+      <h3>Kratten</h3>
+      <p class="kiezer-noot">Open wanden met tussenruimte — lichter, en laat lucht door.</p>
+      <div class="kiezer-grid">
+        <button type="button" class="kiezer-kaart" data-kies="KRS">
+          <span class="kiezer-beeld"><img src="/assets/img/krat-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Krat standaard</span>
+          <span class="kiezer-uitleg">Vlakke bodem. Voor lichter werk.</span>
+        </button>
+        <button type="button" class="kiezer-kaart" data-kies="KRB">
+          <span class="kiezer-beeld"><img src="/assets/img/krat-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Krat met balken onderkader</span>
+          <span class="kiezer-uitleg">Op balken, zodat een hefwagen eronder kan.</span>
+        </button>
+        <button type="button" class="kiezer-kaart" data-kies="KRP">
+          <span class="kiezer-beeld"><img src="/assets/img/krat-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Krat met palletbodem</span>
+          <span class="kiezer-uitleg">Volwaardige pallet eronder. Voor zwaar transport.</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="kiezer-groep" id="grp-vloeren">
+      <h3>Deksels / Vloeren</h3>
+      <p class="kiezer-noot">Vlakke panelen — als deksel op een kist, of als vloer.</p>
+      <div class="kiezer-grid">
+        <button type="button" class="kiezer-kaart" data-kies="HVL">
+          <span class="kiezer-beeld"><img src="/assets/img/platen-1.jpg" alt="" loading="lazy"></span>
+          <span class="kiezer-naam">Houten vloer</span>
+          <span class="kiezer-uitleg">Latten op een frame, in de maat die u opgeeft.</span>
+        </button>
+      </div>
+    </div>
+
+    <p class="kiezer-anders">Past uw vraag hier niet in? <a href="/offerte/">Stuur uw project door</a> — foto, schets of tekening volstaat.</p>
+  </div>
+</section><div class="productbar">
   <div class="wrap topbar">
     <span class="eyebrow b">Product</span>
     <!-- Geen tablist: app.js vult dit met groepskoppen en gewone knoppen, en er is geen tabpanel. -->
     <div class="tabs" id="tabs" role="group" aria-label="Product"></div>
+    <button type="button" class="kiezer-terug" id="anderProduct">Ander product kiezen</button>
   </div>
 </div>
 
@@ -199,7 +282,7 @@
       <dl class="summary" id="summary"></dl>
     </section>
 
-    <section>
+    <section id="cncBlok" hidden>
       <h2>Bestand voor CNC en zagerij</h2>
       <p class="note">Eén CSV: eerst de nagelpunten (oorsprong linksonder, X langs de lengte, Y langs de breedte, mm; kolommen X;Y;Nagels;Lagen voor boven, dan dezelfde vier voor onder), daarna een blanco regel en de zaaglijst met alle onderdelen.</p>
       <div class="actions">
@@ -274,18 +357,69 @@
 <script src="/configurator/app.js?v=20260906d"></script>
 <script src="/assets/js/site.js?v=20260906d"></script>
 <script>
+/* Intern blok: de CSV met nagelpunten en de zaaglijst zijn productiegegevens en
+   horen niet bij wat een klant te zien krijgt. Zet aan met ?intern=1, uit met
+   ?intern=0; de keuze blijft in deze browser bewaard.
+   LET OP: dit verbergt, het beveiligt niet. Moet het echt afgeschermd zijn, zet
+   dan een wachtwoord op de map via hPanel > Beveiliging > Mappen beveiligen. */
+(function () {
+  const q = new URLSearchParams(location.search).get("intern");
+  if (q === "1") localStorage.setItem("cnc", "1");
+  if (q === "0") localStorage.removeItem("cnc");
+  const blok = document.getElementById("cncBlok");
+  if (blok && localStorage.getItem("cnc") === "1") blok.hidden = false;
+})();
+
 /* deep-link vanaf de site: ?product=pallet opent meteen de juiste tab */
 (function () {
   const MAP = { pallet: "PBL", pallets: "PBL", blokpallet: "PBL", balkpallet: "PBA",
     kist: "KIS", kisten: "KIS", exportkist: "KIS", exportkisten: "KIS",
     krat: "KRS", kratten: "KRS",
-    vloer: "HVL", vloeren: "HVL", platen: "HVL", hout: "HVL", wand: "HWA" };
+    vloer: "HVL", vloeren: "HVL", platen: "HVL", hout: "HVL", deksel: "HVL", deksels: "HVL" };
   const raw = new URLSearchParams(location.search).get("product");
   if (!raw) return;
   const code = MAP[raw.toLowerCase()] || raw.toUpperCase();
   if (!/^[A-Z]{2,4}$/.test(code)) return;
   const tab = document.querySelector(".tab[data-type=\"" + code + "\"]");
   if (tab) tab.click();
+})();
+/* Productkiezer: zonder ?product= begint de bezoeker bij de keuze, niet bij een
+   formulier voor een product dat hij niet gekozen heeft. */
+(function () {
+  const kiezer = document.getElementById("kiezer");
+  const balk   = document.querySelector(".productbar");
+  const layout = document.querySelector("main.layout");
+  const titel  = document.getElementById("title");
+  const lead   = document.querySelector(".page-hero .lead");
+  if (!kiezer) return;
+
+  const LEAD_KIEZEN = "Kies hieronder wat u wilt laten maken. Daarna vult u de afmetingen en het gewicht in, en ziet u het resultaat meteen in 3D.";
+  const LEAD_VULLEN = "Vul de afmetingen en het gewicht in. De uitvoering wordt automatisch berekend en u past ze aan waar u wilt. U ziet het resultaat meteen in 3D, met de samenvatting erbij.";
+
+  function toon(kiezen) {
+    kiezer.hidden = !kiezen;
+    if (balk)   balk.hidden   = kiezen;
+    if (layout) layout.hidden = kiezen;
+    if (lead)   lead.textContent = kiezen ? LEAD_KIEZEN : LEAD_VULLEN;
+    if (titel && kiezen) titel.textContent = "Configurator";
+  }
+
+  kiezer.addEventListener("click", function (e) {
+    const kaart = e.target.closest("[data-kies]");
+    if (!kaart) return;
+    const tab = document.querySelector('.tab[data-type="' + kaart.dataset.kies + '"]');
+    if (tab) tab.click();
+    toon(false);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  const terug = document.getElementById("anderProduct");
+  if (terug) terug.addEventListener("click", function () {
+    toon(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  toon(!new URLSearchParams(location.search).has("product"));
 })();
 </script>
 </body>

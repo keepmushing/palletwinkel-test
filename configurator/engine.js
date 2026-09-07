@@ -43,8 +43,7 @@
     KRS: { name: 'Krat standaard', group: 'Kratten', kind: 'box', floor: 'S', gaps: true },
     KRB: { name: 'Krat met balken onderkader', group: 'Kratten', kind: 'box', floor: 'B', gaps: true },
     KRP: { name: 'Krat met palletbodem', group: 'Kratten', kind: 'box', floor: 'P', gaps: true },
-    HVL: { name: 'Houten vloer', group: 'Vloeren', kind: 'floor' },
-    HWA: { name: 'Houten wand', group: 'Vloeren', kind: 'wall' },
+    HVL: { name: 'Houten vloer', group: 'Deksels / Vloeren', kind: 'floor' },
   };
 
   // ---- helpers (identical to the original) ----

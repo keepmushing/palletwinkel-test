@@ -15,9 +15,12 @@
   const CONFIGURATOR_URL = "/configurator/";
   const PRODUCT_PARAM    = "product";   // wordt CONFIGURATOR_URL?product=pallet
 
+  /* data-product springt meteen naar dat product; data-anker laat de bezoeker
+     eerst kiezen, maar dan wel bij de juiste groep in de productkiezer. */
   $$('a.cfg').forEach(a => {
     const p = a.dataset.product;
-    a.href = p ? `${CONFIGURATOR_URL}?${PRODUCT_PARAM}=${encodeURIComponent(p)}` : CONFIGURATOR_URL;
+    const anker = a.dataset.anker ? '#' + a.dataset.anker : '';
+    a.href = (p ? `${CONFIGURATOR_URL}?${PRODUCT_PARAM}=${encodeURIComponent(p)}` : CONFIGURATOR_URL) + anker;
   });
 
   /* ====== 2. mobiel menu ====== */
