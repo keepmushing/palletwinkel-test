@@ -307,7 +307,9 @@ section{padding:92px 0}
 .final .btn-primary{color:var(--blue)}
 
 .contact{padding-top:0}
-.contact-grid{display:grid;grid-template-columns:1fr;gap:44px;margin-top:38px}
+/* Drie contactblokken naast elkaar; het projectformulier stond hier ook en is
+   verhuisd naar /offerte/, waar het thuishoort. */
+.contact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:44px;margin-top:38px}
 .contact-block{margin-bottom:26px}
 .contact-block h3{margin:0 0 4px;font-size:1.05rem;color:var(--navy)}
 .contact-block a,.contact-block p{margin:2px 0;color:var(--muted);font-size:.95rem}
@@ -817,3 +819,10 @@ footer .brand .woordmerk{color:#fff}
 @media (max-width: 980px) {
   .hero .ph-hero { background-size: cover; }
 }
+
+/* De exportfoto is breder (1200x800, dus 1,5) dan het vak was (1,08). Met cover
+   werd de kist aan beide kanten afgesneden. Het vak volgt nu de verhouding van
+   de foto en toont hem volledig, met wat lucht eromheen. De rand is een tint
+   lichter dan de sectie, zodat die ruimte als kader leest en niet als gat. */
+.export-beeld { aspect-ratio: 1.5; background: #0b3552; }
+.export-beeld img { object-fit: contain; padding: 16px; }
