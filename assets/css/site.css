@@ -177,6 +177,12 @@ section{padding:92px 0}
 .slide{position:absolute;inset:0;opacity:0;transition:opacity .35s;display:flex;align-items:flex-end;padding:12px;pointer-events:none}
 .slide.on{opacity:1;pointer-events:auto}
 .slide img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+/* De productrenders staan op wit en vulden hun vak tot tegen de rand. Met
+   contain en wat lucht eromheen ademt de kaart, en omdat de renders zelf ook
+   wit zijn loopt de achtergrond naadloos door. Onderaan wat meer ruimte, zodat
+   het product niet achter het bijschrift verdwijnt. Komen er later echte
+   werkplaatsfotos, dan wil je voor die albums cover terug. */
+.slide img{object-fit:contain;padding:30px 30px 46px;background:#fff}
 .slide .bijschrift{position:relative;background:rgba(8,42,69,.82);color:#fff;font-size:.7rem;letter-spacing:.03em;padding:6px 8px;border-radius:var(--r-sm);max-width:85%}
 .photo-nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.94);color:var(--navy);display:grid;place-items:center;cursor:pointer;opacity:0;transition:.2s;box-shadow:0 2px 10px rgba(8,42,69,.25);z-index:3}
 .photo-nav:hover{background:#fff}
