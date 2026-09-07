@@ -286,20 +286,36 @@ statistieken of een externe formulierdienst bij komt; zie `/cookies/`.
 
 ## Na elke wijziging aan CSS of JS: verhoog de versiestempel
 
-De stylesheet en het script worden geladen als `site.css?v=JJJJMMDDx`. Hostinger
-stuurt daar `Cache-Control: public, max-age=604800` bij mee: **zeven dagen in de
-browser van de bezoeker**, niet alleen in de CDN. Verander je de CSS zonder de
-stempel te verhogen, dan ziet niemand het — ook niet na `Clear cache` bij
-Hostinger, want dat raakt alleen hun eigen laag.
+De stylesheet en het script worden geladen als `site.css?v=JJJJMMDDx`. Zonder
+stempel blijft een oud bestand in de browser van de bezoeker staan en valt de
+pagina uit elkaar. De stempel staat op twee plaatsen en die moeten gelijklopen:
+achter elke `<link>` en `<script>` in de HTML, én in `ASSET_V` bovenaan
+`assets/js/site.js` (dat stempelt de foto's die het script zelf inlaadt).
+
+Verhogen doe je overal tegelijk. Van `20260908a` naar `20260908b`:
 
 ```
-for f in $(grep -rl "v=20260907e" --include=*.html .); do sed -i "s/v=20260907e/v=20260907e/g" "$f"; done
+OUD=20260908a; NIEUW=20260908b
+grep -rl "v=$OUD" --include=*.html . | xargs sed -i "s/v=$OUD/v=$NIEUW/g"
+sed -i "s/ASSET_V = \"$OUD\"/ASSET_V = \"$NIEUW\"/" assets/js/site.js
 ```
 
 Dit is op 7 september 2026 twee keer misgegaan: drie CSS-wijzigingen onder
 dezelfde stempel, waardoor de opdrachtgever dagenlang naar een oude versie keek
 en dacht dat er niets veranderde.
 
+### En de HTML zelf?
+
+Die kan geen stempel dragen — `/werkwijze/` is nu eenmaal `/werkwijze/`. Daarom
+zet `server.js` er sinds 8 september 2026 zelf `Cache-Control: no-cache` op,
+plus een `ETag`. Zonder die regel plakt de hosting er ongevraagd
+`max-age=604800` op en ziet een bezoeker de nieuwe opbouw pas een week later.
+`Clear cache` bij Hostinger helpt daar niet tegen: dat raakt alleen hun eigen
+laag, niet de browser van de bezoeker.
+
+Dat kostte een hele avond zoeken: de knop "Toevoegen aan offerte" werkte al,
+maar de opdrachtgever kreeg de oude paginaopbouw te zien en dacht dat er niets
+was veranderd.
 ## Van staging naar live
 
 Zolang de site op een tijdelijk domein staat, is ze afgeschermd voor

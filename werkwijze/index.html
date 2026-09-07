@@ -19,7 +19,7 @@
 
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260907e">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260908a">
 </head>
 <body data-pagina="werkwijze">
 
@@ -208,8 +208,9 @@
         <h2>Levering.</h2>
         <p>Wij leveren op uw adres of rechtstreeks op de bestemming van de zending. Gaat het buiten Europa, dan is de kist bij vertrek al ISPM-15-gemerkt onder onze eigen registratie <span class="spec">BE-1689</span>.</p>
         <p><span class="ph">Leveringsgebied en leveringsvoorwaarden nog te bevestigen.</span></p>
+        <div class="btn-row"><button type="button" class="btn btn-line" data-album-open="transport">Bekijk transportbeelden</button></div>
       </div>
-      <div class="feature-visual"><span>Beeld — geladen vrachtwagen of laadkade, crop 4:3</span></div>
+      <div class="feature-visual"><img src="/assets/img/transport-3.webp?v=20260908a" alt="Laden met de heftruck: pallets op maat gaan op de oplegger" loading="lazy"><span>Laden met de heftruck: pallets op maat gaan op de oplegger</span></div>
     </div>
   </section>
 
@@ -270,6 +271,19 @@
   </div>
 </footer>
 
-<script src="/assets/js/site.js?v=20260907e"></script>
+<dialog id="lightbox" aria-label="Fotoalbum">
+  <button class="lb-sluit" data-lb-sluit aria-label="Sluiten">&times;</button>
+  <div class="lb-stage" id="lbStage"></div>
+  <button class="lb-nav prev" data-lb="-1" aria-label="Vorige foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></svg></button>
+  <button class="lb-nav next" data-lb="1" aria-label="Volgende foto"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg></button>
+  <div class="lb-bar">
+    <div><strong id="lbTitel"></strong><span id="lbBijschrift"></span></div>
+    <a class="lb-teller" id="lbMeer" href="/producten/" hidden style="color:#8fd3fa;text-decoration:underline">Naar de productpagina</a>
+    <span class="lb-teller" id="lbTeller"></span>
+  </div>
+</dialog>
+
+
+<script src="/assets/js/site.js?v=20260908a"></script>
 </body>
 </html>

@@ -17,7 +17,7 @@
      wijzigen, dan blijft de oude een week hangen — dat is hier al twee keer
      gebeurd. Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld
      vervangen wordt. */
-  const ASSET_V = "20260907e";
+  const ASSET_V = "20260908a";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -344,8 +344,14 @@
     ]},
     glas: { titel: 'Glasbokken', pagina: '/producten/glasbokken/', fotos: [
       { src: '/assets/img/glasbok-1.jpg', bijschrift: 'Glasbok op maat' },
-      { src: '/assets/img/glasbok-2.jpg', bijschrift: 'Multiplex glasbakjes voor restauratieglas' },
-      { src: '/assets/img/glasbok-3.jpg', bijschrift: 'Beladen bok, klaar voor transport' }
+      { src: '/assets/img/glasbok-3.webp', bijschrift: 'Dubbelzijdige A-bok voor grote glasplaten' },
+      { src: '/assets/img/glasbok-8.webp', bijschrift: 'Enkelzijdige bok met volledig beplankte voet' },
+      { src: '/assets/img/glasbok-7.webp', bijschrift: 'A-bok met schuine steunen, smalle voetafdruk' },
+      { src: '/assets/img/glasbok-9.webp', bijschrift: 'Bok met rubberen aanslagblokken tegen beschadiging' },
+      { src: '/assets/img/glasbok-4.webp', bijschrift: 'Meerlaagse bok voor plaatmateriaal' },
+      { src: '/assets/img/glasbok-5.webp', bijschrift: 'Lage transportbok, vooraanzicht' },
+      { src: '/assets/img/glasbok-6.webp', bijschrift: 'Reeks bokken, klaar voor levering' },
+      { src: '/assets/img/glasbok-2.webp', bijschrift: 'Multiplex glasbakjes voor restauratieglas' }
     ]},
     randen: { titel: 'Palletranden / opzetranden', pagina: '/producten/opzetranden/', fotos: [
       { src: '/assets/img/opzetrand-1.jpg', bijschrift: 'Opzetrand op europallet' },
@@ -360,6 +366,16 @@
       { src: '/assets/img/constructie-1.jpg', bijschrift: 'Skid voor zware machine' },
       { src: '/assets/img/constructie-2.jpg', bijschrift: 'Transportwieg' },
       { src: '/assets/img/constructie-3.jpg', bijschrift: 'Verdeelbakjes voor onderdelen' }
+    ]},
+    transport: { titel: 'Levering en transport', pagina: '/werkwijze/', fotos: [
+      { src: '/assets/img/transport-2.webp', bijschrift: 'Volle lading nieuwe pallets, klaar om te vertrekken' },
+      { src: '/assets/img/transport-3.webp', bijschrift: 'Laden met de heftruck op de oplegger' },
+      { src: '/assets/img/transport-7.webp', bijschrift: 'Vastgesjorde stapels pallets op de oplegger' },
+      { src: '/assets/img/transport-5.webp', bijschrift: 'Beladen zeiloplegger met verpakte goederen' },
+      { src: '/assets/img/transport-4.webp', bijschrift: 'Twee kisten vastgesjord op de aanhanger' },
+      { src: '/assets/img/transport-8.webp', bijschrift: 'Bestelwagen met aanhanger voor grote kisten' },
+      { src: '/assets/img/transport-6.webp', bijschrift: 'Zwaar hout en balken op de laadvloer' },
+      { src: '/assets/img/transport-1.webp', bijschrift: 'Levering tot in Parijs' }
     ]}
   };
 

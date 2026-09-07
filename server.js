@@ -88,12 +88,42 @@ function resolveFile(urlPath) {
   return st && st.isFile() ? full : null;
 }
 
-function sendFile(res, file, status, headOnly) {
+function cacheKop(file, heeftStempel) {
+  var ext = path.extname(file).toLowerCase();
+
+  /* De pagina zelf mag nooit blijven hangen. Zonder deze regel zet de CDN van
+     de hosting er zelf max-age=604800 op, en dan ziet een bezoeker na een
+     nieuwe versie nog een week lang de oude opbouw. Geen enkele knop in het
+     hostingpaneel haalt dat uit zijn browser. */
+  if (ext === '.html' || ext === '.xml' || ext === '.txt' || ext === '.json') {
+    return 'no-cache';
+  }
+
+  /* Een bestand met ?v=... in de URL is per versie uniek en mag blijven staan.
+     Zonder stempel houden we het op één dag, zodat een vervangen foto onder
+     dezelfde naam vanzelf doorkomt. Zie README, "versiestempel". */
+  return heeftStempel ? 'public, max-age=31536000, immutable' : 'public, max-age=86400';
+}
+
+function sendFile(res, file, status, headOnly, heeftStempel, inm) {
   var type = MIME[path.extname(file).toLowerCase()] || 'application/octet-stream';
+  var st = fs.statSync(file);
+  var etag = '"' + st.mtimeMs.toString(36) + '-' + st.size.toString(36) + '"';
+
+  /* Kwam de browser terug met dezelfde ETag, dan sturen we alleen 304 en geen
+     bestand. Zo kost no-cache op HTML bijna niets. */
+  if (inm && inm === etag) {
+    res.writeHead(304, { 'ETag': etag, 'Cache-Control': cacheKop(file, heeftStempel) });
+    res.end();
+    return;
+  }
+
   var body = fs.readFileSync(file);
   res.writeHead(status, {
     'Content-Type': type,
     'Content-Length': body.length,
+    'Cache-Control': cacheKop(file, heeftStempel),
+    'ETag': etag,
     'X-Content-Type-Options': 'nosniff'
   });
   res.end(headOnly ? undefined : body);
@@ -111,7 +141,7 @@ function sendText(res, status, text) {
 function notFound(res, headOnly) {
   var page = path.join(ROOT, '404.html');
   if (statOrNull(page)) {
-    sendFile(res, page, 404, headOnly);
+    sendFile(res, page, 404, headOnly, false, null);
   } else {
     sendText(res, 404, '<!doctype html><meta charset="utf-8"><title>404</title><h1>404</h1>');
   }
@@ -133,12 +163,15 @@ var server = http.createServer(function (req, res) {
     return;
   }
 
-  var urlPath = req.url.split('?')[0].split('#')[0];
+  var stukken = req.url.split('#')[0].split('?');
+  var urlPath = stukken[0];
+  var heeftStempel = /(^|&)v=/.test(stukken[1] || '');
+  var inm = req.headers['if-none-match'];
   var file = resolveFile(urlPath);
 
   try {
     if (file) {
-      sendFile(res, file, 200, method === 'HEAD');
+      sendFile(res, file, 200, method === 'HEAD', heeftStempel, inm);
     } else {
       notFound(res, method === 'HEAD');
     }
