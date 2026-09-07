@@ -812,12 +812,18 @@ footer .brand .woordmerk{color:#fff}
 
 @media (max-width:540px){ .kiezer-grid{grid-template-columns:1fr} }
 
-/* Op smalle schermen wordt een panoramafoto van 1915x821 met contain een strook
-   van een vijfde van het vlak, dwars door de tekst. Daar vult hij dus wel,
-   en snijdt hij links en rechts weg — op die breedte is de hele foto toch niet
-   te lezen. Vanaf 980px past de volledige foto wel en blijft contain staan. */
+/* Op smalle schermen staat de foto niet achter de tekst maar erboven, op zijn
+   eigen verhouding (1915x821). Zo hoeft er niets weggesneden te worden en houdt
+   de tekst zijn eigen ruimte eronder. Het verloop over de foto verdwijnt daar:
+   dat was er alleen om tekst leesbaar te houden, en die staat er nu niet meer
+   overheen. */
 @media (max-width: 980px) {
-  .hero .ph-hero { background-size: cover; }
+  .hero { display: block; min-height: 0; }
+  .hero .ph-hero { position: relative; inset: auto; width: 100%;
+                   aspect-ratio: 1915 / 821; background-size: cover; }
+  .hero::after { display: none; }
+  .hero-inner { padding: 40px 0 56px; }
+  .hero h1, .hero p { text-shadow: none; }
 }
 
 /* De exportfoto is breder (1200x800, dus 1,5) dan het vak was (1,08). Met cover
