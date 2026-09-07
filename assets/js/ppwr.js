@@ -78,7 +78,26 @@ const FUNCTIES = "Logistiek · aankoop · verkoop · kwaliteit/compliance · dir
 
 /* ---------------- helpers ---------------- */
 const esc = s => String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const ic = (id,size,cls) => `<svg class="ic ${cls||""}" width="${size||16}" height="${size||16}" viewBox="0 0 16 16" aria-hidden="true"><use href="#${id}"/></svg>`;
+
+/* De iconen stonden als <use href="#i-check"> in de opmaak, maar de sprite met
+   die symbolen stond nergens in de pagina. Gevolg: elk vinkje, elk chevron en
+   elke blokkop was een leeg vierkantje. Wie een antwoord aanvinkte, zag dus
+   niets gebeuren en dacht dat de knop niet werkte. Daarom staan de tekeningen
+   nu hier, in het bestand dat ze gebruikt. */
+const ICONS = {
+  "i-check": '<path d="M2.9 8.3 6.2 11.6 13.1 4.6"/>',
+  "i-chev":  '<path d="M4 6.2 8 10.2l4-4"/>',
+  "i-arrow": '<path d="M2.8 8h9.4M8.6 4.4 12.2 8l-3.6 3.6"/>',
+  "i-route": '<circle cx="4" cy="4" r="2"/><circle cx="12" cy="12" r="2"/><path d="M4 6.3v3.3a2.4 2.4 0 0 0 2.4 2.4h3.3"/>',
+  "i-klant": '<circle cx="8" cy="5.2" r="2.4"/><path d="M3.1 13.4a4.9 4.9 0 0 1 9.8 0"/>',
+  "i-samen": '<circle cx="5.4" cy="5.6" r="1.9"/><circle cx="10.6" cy="5.6" r="1.9"/><path d="M1.9 12.9a3.6 3.6 0 0 1 7 0M7.1 12.9a3.6 3.6 0 0 1 7 0"/>',
+  "i-pal":   '<path d="M3.3 2.4h5.4l3.9 3.9v7.3H3.3z"/><path d="M8.6 2.4v4h4"/><path d="M5.6 9.4h4.6M5.6 11.4h3.2"/>',
+  "i-open":  '<circle cx="8" cy="8" r="5.9"/><path d="M8 4.7v4M8 11.1h.01"/>'
+};
+const ic = (id,size,cls) =>
+  `<svg class="ic ic-${id} ${cls||""}" width="${size||16}" height="${size||16}" viewBox="0 0 16 16"
+        fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"
+        aria-hidden="true">${ICONS[id]||""}</svg>`;
 const has = (a,v) => a.indexOf(v) !== -1;
 const label = (n,v) => { const st = STEPS.find(s=>s.n===n); const o = st.opts.find(o=>o.v===v); return o?o.l:v; };
 
@@ -307,9 +326,19 @@ function body(st){
   if(st.n===6 && has(S.q6,"machine"))
     h += note("Mogelijke bijzondere beoordeling","Het feit dat een verpakking op maat is gemaakt, volstaat op zichzelf niet om een uitzondering toe te passen.");
 
+  /* Bij een enkelvoudige vraag springt de route vanzelf door zodra je kiest.
+     Bij een meerkeuzevraag kan dat niet — je mag er meerdere aanvinken — en
+     dan gebeurt er na het aanvinken niets meer. Met alleen een grijze tekstlink
+     onderaan lopen mensen daar vast. Vandaar een echte knop, die pas oplicht
+     zodra er iets gekozen is, en op de laatste vraag meteen doorgaat naar de
+     actielijst. */
+  const nx = nextStep(st.n);
+  const klaar = answered(st.n);
   h += `<div class="step-foot">`;
   if(st.n>1) h += `<button class="linkbtn" data-go="${prevStep(st.n)}">Vorige vraag</button>`;
-  if(nextStep(st.n)) h += `<button class="linkbtn" data-go="${nextStep(st.n)}">Volgende vraag</button>`;
+  h += nx
+    ? `<button class="btn stap-verder" data-go="${nx}"${klaar?"":" disabled"}>Volgende vraag ${ic("i-arrow",14)}</button>`
+    : `<button class="btn stap-verder" data-makelist${klaar?"":" disabled"}>Maak mijn actielijst ${ic("i-arrow",14)}</button>`;
   h += `</div>`;
   return h;
 }
@@ -423,9 +452,24 @@ function renderPrint(){
     : "Niet meer documentatie dan nodig. Niet minder bewijs dan vereist.";
 
   document.getElementById("printsheet").innerHTML = `
+  <header class="p-brief">
+    <div class="p-brief-links">
+      <img class="p-logo" src="/assets/img/logo.png" alt="">
+      <div>
+        <div class="p-naam">’t Palletje BV</div>
+        <div class="p-slogan">Houten transportoplossingen op maat<br>voor industrie, logistiek en export.</div>
+      </div>
+    </div>
+    <div class="p-brief-rechts">
+      Morellestraat 1 · 8750 Wingene · België<br>
+      0499 19 68 02 · info@palletje.be · palletje.be<br>
+      BTW BE 0863.163.507
+    </div>
+  </header>
+
   <div class="p-head">
     <div>
-      <div class="p-brand">’t Palletje · beslisroute · houten transportverpakkingen</div>
+      <div class="p-brand">Beslisroute · PPWR · houten transportverpakkingen</div>
       <h1>Welke PPWR-route past bij uw onderneming?</h1>
       ${r?`<p class="p-route">${ROUTES[r].tag} · ${esc(ROUTES[r].name)}</p>
       <p class="p-claim">${esc(claim)}</p>`:`<p class="p-route">Nog geen route bepaald</p>`}
@@ -448,8 +492,10 @@ function renderPrint(){
   </div>
   <div class="p-foot">
     <span class="p-disc">Deze beslisroute is algemene ondersteuning en geen juridisch advies of automatische conformiteitsbeoordeling. De uiteindelijke beoordeling hangt af van het concrete product, gebruik, handelsstroom, de toepasselijke marktrol en de geldende regelgeving. Niet alle PPWR-verplichtingen gelden vanaf dezelfde datum.</span>
-    <span class="p-sig">’t Palletje BV — houten transportverpakkingen<br>PPWR-documentatie op productniveau</span>
-  </div>`;
+    <span class="p-sig">’t Palletje BV<br>PPWR-documentatie op productniveau</span>
+  </div>
+
+  <div class="p-strook">’t Palletje BV · Morellestraat 1, 8750 Wingene · 0499 19 68 02 · info@palletje.be — werkfiche ${stamp}${S.ref.trim()?" · "+esc(S.ref.trim()):""}</div>`;
 }
 
 /* ---------------- tekstexport ---------------- */
