@@ -27,8 +27,8 @@
 
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260907a">
-<link rel="stylesheet" href="/configurator/configurator.css?v=20260907a">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260907b">
+<link rel="stylesheet" href="/configurator/configurator.css?v=20260907b">
 </head>
 <body data-pagina="configurator">
 
@@ -268,6 +268,24 @@
         <label class="show-box"><input type="checkbox" name="sprayLogo"> Logo spuiten</label>
       </div>
     </section>
+    <section>
+      <h2>Bestelling</h2>
+      <div class="grid2">
+        <label>Aantal <span class="unit">stuks</span><input type="number" id="bestelAantal" value="1" min="1" step="1"></label>
+      </div>
+      <label class="vol">Opmerkingen
+        <textarea id="bestelOpmerking" rows="3" placeholder="Plaats extra opmerkingen hier…"></textarea>
+      </label>
+      <label class="vol">Bijlage
+        <input type="file" id="bestelBijlage" multiple accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png">
+      </label>
+      <p class="note">De namen van uw bestanden gaan mee met de aanvraag. De bestanden zelf voegt u toe aan de e-mail die straks opent.</p>
+      <div class="actions">
+        <button type="button" class="primary" id="toevoegen">Toevoegen aan offerte</button>
+        <a class="ghost knop" href="/offerte-aanvraag/" id="naarOfferte" hidden>Naar mijn offerte (<span data-offerte-teller>0</span>)</a>
+      </div>
+      <p class="note ok hidden" id="toegevoegdMelding" role="status"></p>
+    </section>
   </form>
 
   <aside class="panel">
@@ -352,10 +370,11 @@
   </div>
 </footer>
 
-<script src="/configurator/three.min.js?v=20260907a"></script>
-<script src="/configurator/engine.js?v=20260907a"></script>
-<script src="/configurator/app.js?v=20260907a"></script>
-<script src="/assets/js/site.js?v=20260907a"></script>
+<script src="/configurator/three.min.js?v=20260907b"></script>
+<script src="/configurator/engine.js?v=20260907b"></script>
+<script src="/configurator/app.js?v=20260907b"></script>
+<script src="/assets/js/offerte.js?v=20260907b"></script>
+<script src="/assets/js/site.js?v=20260907b"></script>
 <script>
 /* Intern blok: de CSV met nagelpunten en de zaaglijst zijn productiegegevens en
    horen niet bij wat een klant te zien krijgt. Zet aan met ?intern=1, uit met

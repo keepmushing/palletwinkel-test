@@ -284,6 +284,22 @@ nodig — de site plaatst geen enkele cookie en doet sinds de lokale fonts geen
 enkel extern verzoek meer. Dat verandert zodra er een ingesloten kaart,
 statistieken of een externe formulierdienst bij komt; zie `/cookies/`.
 
+## Na elke wijziging aan CSS of JS: verhoog de versiestempel
+
+De stylesheet en het script worden geladen als `site.css?v=JJJJMMDDx`. Hostinger
+stuurt daar `Cache-Control: public, max-age=604800` bij mee: **zeven dagen in de
+browser van de bezoeker**, niet alleen in de CDN. Verander je de CSS zonder de
+stempel te verhogen, dan ziet niemand het — ook niet na `Clear cache` bij
+Hostinger, want dat raakt alleen hun eigen laag.
+
+```
+for f in $(grep -rl "v=20260907b" --include=*.html .); do sed -i "s/v=20260907b/v=20260907c/g" "$f"; done
+```
+
+Dit is op 7 september 2026 twee keer misgegaan: drie CSS-wijzigingen onder
+dezelfde stempel, waardoor de opdrachtgever dagenlang naar een oude versie keek
+en dacht dat er niets veranderde.
+
 ## Van staging naar live
 
 Zolang de site op een tijdelijk domein staat, is ze afgeschermd voor

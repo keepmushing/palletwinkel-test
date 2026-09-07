@@ -284,5 +284,42 @@
     save(fname(c, g) + '_config.json', JSON.stringify(out, null, 2), 'application/json');
   });
 
+  // ---- toevoegen aan de offerte ----
+  // De offerte zelf zit in assets/js/offerte.js; hier wordt alleen de huidige
+  // configuratie omgezet in een regel die een mens kan lezen.
+  const knopToevoegen = $('#toevoegen');
+  if (knopToevoegen && window.Offerte) {
+    knopToevoegen.addEventListener('click', () => {
+      if (!current) return;
+      const { c, g } = current;
+      const aantal = Math.max(1, +($('#bestelAantal') || {}).value || 1);
+      const maat = g.box
+        ? `${g.footprint.L} × ${g.footprint.W} × ${Math.round(g.height)} mm`
+        : `${g.footprint.L} × ${g.footprint.W} mm`;
+      const specs = Array.from(document.querySelectorAll('#summary dt'))
+        .map(dt => [dt.textContent, dt.nextElementSibling ? dt.nextElementSibling.textContent : ''])
+        .filter(p => p[1]);
+
+      Offerte.voegToe({
+        type: c.type,
+        naam: c.product.name,
+        maat: maat,
+        aantal: aantal,
+        opmerkingen: (($('#bestelOpmerking') || {}).value || '').trim(),
+        bijlagen: Array.from((($('#bestelBijlage') || {}).files) || []).map(f => f.name),
+        specs: specs,
+        beeld: Offerte.miniatuur(canvas, 220)
+      });
+
+      const melding = $('#toegevoegdMelding');
+      if (melding) {
+        melding.textContent = `${aantal} × ${c.product.name} toegevoegd. U kunt nog een product configureren of naar uw offerte gaan.`;
+        melding.classList.remove('hidden');
+      }
+      const naar = $('#naarOfferte');
+      if (naar) naar.hidden = false;
+    });
+  }
+
   setType('PBL');
 })();
