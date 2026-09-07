@@ -293,7 +293,7 @@ stempel te verhogen, dan ziet niemand het — ook niet na `Clear cache` bij
 Hostinger, want dat raakt alleen hun eigen laag.
 
 ```
-for f in $(grep -rl "v=20260907c" --include=*.html .); do sed -i "s/v=20260907c/v=20260907c/g" "$f"; done
+for f in $(grep -rl "v=20260907d" --include=*.html .); do sed -i "s/v=20260907d/v=20260907d/g" "$f"; done
 ```
 
 Dit is op 7 september 2026 twee keer misgegaan: drie CSS-wijzigingen onder

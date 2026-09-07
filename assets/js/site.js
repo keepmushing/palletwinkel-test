@@ -11,6 +11,17 @@
   const $  = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
+  /* ====== 0. VERSIESTEMPEL VOOR BEELDEN ======
+     Hostinger stuurt bij elk bestand `Cache-Control: max-age=604800` mee: zeven
+     dagen in de browser van de bezoeker. Vervang je een foto zonder de naam te
+     wijzigen, dan blijft de oude een week hangen — dat is hier al twee keer
+     gebeurd. Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld
+     vervangen wordt. */
+  const ASSET_V = "20260907d";
+  const metStempel = src => !src || /^data:|^https?:/.test(src)
+    ? src
+    : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
+
   /* ====== 1. CONFIGURATOR — pas deze twee regels aan en alle knoppen kloppen ====== */
   const CONFIGURATOR_URL = "/configurator/";
   const PRODUCT_PARAM    = "product";   // wordt CONFIGURATOR_URL?product=pallet
@@ -364,7 +375,7 @@
       const s = document.createElement('div');
       s.className = 'slide' + (n === 0 ? ' on' : '');
       const img = new Image();
-      img.src = f.src; img.alt = f.bijschrift; img.loading = n === 0 ? 'eager' : 'lazy';
+      img.src = metStempel(f.src); img.alt = f.bijschrift; img.loading = n === 0 ? 'eager' : 'lazy';
       img.onerror = () => img.remove();          // geen bestand? dan blijft het blauwe vlak staan
       s.append(img);
       const bs = document.createElement('span');
@@ -413,7 +424,7 @@
       const stage = $('#lbStage', lb);
       stage.innerHTML = '';
       const img = new Image();
-      img.src = f.src; img.alt = f.bijschrift;
+      img.src = metStempel(f.src); img.alt = f.bijschrift;
       img.onerror = () => {
         img.remove();
         const leegvak = document.createElement('div');
