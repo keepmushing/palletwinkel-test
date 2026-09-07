@@ -749,3 +749,23 @@ footer .brand .woordmerk{color:#fff}
   .raster-2,.raster-3,.raster-4,.verwant{grid-template-columns:1fr}
   .pillar,.stap{padding:20px}
 }
+
+/* --- Hero: panoramisch, met foto ---------------------------------------
+   Overgenomen uit "kanshebber 1.html" (Voorstel 3 — panoramisch en
+   uitgesproken), waarden gemeten in de browser, niet geschat. Dit blok staat
+   achteraan omdat het het lichte herothema hierboven bewust overschrijft.
+   Alles wat de kleur van tekst en knoppen bepaalt staat er expliciet in, zodat
+   het niet afhangt van de volgorde van de blokken erboven. */
+.hero{min-height:clamp(600px,78vh,820px);background:#031c30;color:#fff}
+.hero .ph-hero{background:url('/assets/img/hero-panorama.jpg') center center/cover no-repeat;transform:scale(1.01)}
+.hero::after{background:linear-gradient(90deg,rgba(2,19,33,.52) 0%,rgba(2,19,33,.28) 42%,rgba(2,19,33,.06) 70%)}
+.hero-inner{padding:92px 0}
+.hero h1{max-width:760px;color:#fff;text-shadow:0 3px 28px rgba(0,0,0,.28)}
+.hero p{color:#edf6fb;text-shadow:0 2px 16px rgba(0,0,0,.25)}
+.hero .eyebrow{color:#b8ddf2}
+.hero-note{color:#edf6fb}
+.hero .dot{background:#91d5fc}
+.hero .btn-primary{background:#fff;color:var(--navy)}
+.hero .btn-primary:hover{background:#ccecff}
+.hero .btn-secondary{background:transparent;color:#fff;border-color:rgba(255,255,255,.55)}
+.hero .btn-secondary:hover{border-color:#fff;background:rgba(255,255,255,.1)}
