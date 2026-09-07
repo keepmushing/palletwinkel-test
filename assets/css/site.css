@@ -763,8 +763,17 @@ footer .brand .woordmerk{color:#fff}
    achteraan omdat het het lichte herothema hierboven bewust overschrijft.
    Alles wat de kleur van tekst en knoppen bepaalt staat er expliciet in, zodat
    het niet afhangt van de volgorde van de blokken erboven. */
+/* Geen aspect-ratio hier: die zou het vlak precies de verhouding van de foto
+   geven (geen donkere banden), maar dan wordt de onderste tekstregel afgesneden
+   — de inhoud is hoger dan de foto toelaat. De hoogte volgt dus de tekst, en
+   contain laat de rest van het vlak in #031c30 staan. Dat valt niet op omdat de
+   randen van de foto zelf ook donker zijn. */
 .hero{min-height:clamp(600px,78vh,820px);background:#031c30;color:#fff}
-.hero .ph-hero{background:url('/assets/img/hero-panorama.jpg') center center/cover no-repeat;transform:scale(1.01)}
+/* contain in plaats van cover: de hele foto blijft zichtbaar, ook de ruimte
+   achter de heftruck. Waar het beeld het vlak niet vult, staat de donkere
+   achtergrond van .hero eronder. scale(1.01) is weg — dat verborg de naden bij
+   cover en zou nu net weer randen wegsnijden. */
+.hero .ph-hero{background:url('/assets/img/hero-panorama.jpg') center center/contain no-repeat}
 .hero::after{background:linear-gradient(90deg,rgba(2,19,33,.52) 0%,rgba(2,19,33,.28) 42%,rgba(2,19,33,.06) 70%)}
 .hero-inner{padding:92px 0}
 .hero h1{max-width:760px;color:#fff;text-shadow:0 3px 28px rgba(0,0,0,.28)}
@@ -800,3 +809,11 @@ footer .brand .woordmerk{color:#fff}
 .kiezer-terug:hover{border-color:var(--blue);color:var(--blue)}
 
 @media (max-width:540px){ .kiezer-grid{grid-template-columns:1fr} }
+
+/* Op smalle schermen wordt een panoramafoto van 1915x821 met contain een strook
+   van een vijfde van het vlak, dwars door de tekst. Daar vult hij dus wel,
+   en snijdt hij links en rechts weg — op die breedte is de hele foto toch niet
+   te lezen. Vanaf 980px past de volledige foto wel en blijft contain staan. */
+@media (max-width: 980px) {
+  .hero .ph-hero { background-size: cover; }
+}
