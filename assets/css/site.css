@@ -832,3 +832,69 @@ footer .brand .woordmerk{color:#fff}
    lichter dan de sectie, zodat die ruimte als kader leest en niet als gat. */
 .export-beeld { aspect-ratio: 1.5; background: #0b3552; }
 .export-beeld img { object-fit: contain; padding: 16px; }
+
+/* --- de offertepagina (/offerte-aanvraag/) ---------------------------------
+   Eén regel per configuratie: links het beeld dat de configurator meegaf,
+   in het midden de specificaties, rechts het aantal. Op een smal scherm
+   klapt dat onder elkaar. */
+.offerteregels{display:flex;flex-direction:column;gap:16px;margin-top:34px}
+.offerteregel{display:grid;grid-template-columns:150px minmax(0,1fr) auto;gap:22px;align-items:start;
+  border:1px solid var(--line);border-radius:var(--r-md);background:#fff;padding:18px 20px}
+.offerteregel-beeld{aspect-ratio:1.35;background:#f4f7f9;border-radius:var(--r-sm);overflow:hidden;
+  display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.72rem;letter-spacing:.08em}
+.offerteregel-beeld img{width:100%;height:100%;object-fit:contain}
+.offerteregel-body h3{margin:0;font-size:1.12rem;color:var(--navy);letter-spacing:-.02em}
+.offerteregel-maat{margin:3px 0 0;color:var(--blue);font-weight:700;font-size:.9rem}
+.offerteregel-specs{display:grid;grid-template-columns:auto minmax(0,1fr);gap:2px 14px;margin:12px 0 0;
+  font-size:.83rem;line-height:1.45}
+.offerteregel-specs dt{color:var(--muted)}
+.offerteregel-specs dd{margin:0;color:var(--ink)}
+.offerteregel-opmerking{margin:12px 0 0;font-size:.86rem;color:var(--ink);
+  border-left:2px solid var(--line);padding-left:11px}
+.offerteregel-bijlage{margin:8px 0 0;font-size:.8rem;color:var(--muted)}
+.offerteregel-acties{display:flex;flex-direction:column;align-items:flex-end;gap:10px}
+.aantalveld label{display:block;font-size:.78rem;font-weight:700;color:var(--navy);margin-bottom:5px}
+.aantalveld input{width:88px;padding:9px 10px;border:1px solid var(--line);border-radius:var(--r-sm);
+  font:inherit;font-size:.95rem;text-align:center;background:#fff}
+.aantalveld input:focus{outline:2px solid var(--blue);outline-offset:-2px}
+
+/* Een knop die eruitziet als een link. Wegdoen mag geen zware knop zijn. */
+.linkweg{background:none;border:0;padding:0;font:inherit;font-size:.83rem;color:var(--muted);
+  cursor:pointer;border-bottom:1px solid var(--line)}
+.linkweg:hover{color:var(--wood);border-bottom-color:var(--wood)}
+
+.offerte-onder{display:flex;justify-content:space-between;align-items:center;gap:18px;
+  flex-wrap:wrap;margin-top:24px}
+
+.veldgroep{border-top:1px solid var(--line);padding-top:22px;margin-top:26px}
+.veldgroep:first-child{border-top:0;padding-top:0;margin-top:0}
+.veldgroep h3{margin:0 0 16px;font-size:1.02rem;color:var(--navy);letter-spacing:-.02em}
+
+.keuzerij{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:20px}
+.keuze{display:flex;gap:11px;align-items:flex-start;border:1px solid var(--line);border-radius:var(--r-sm);
+  padding:13px 15px;cursor:pointer;background:#fff}
+.keuze:hover{border-color:var(--blue)}
+.keuze:has(input:checked){border-color:var(--blue);background:#f2f8fc}
+.keuze input{margin-top:3px;accent-color:var(--blue);flex:0 0 auto}
+.keuze b{display:block;font-size:.94rem;color:var(--navy)}
+.keuze small{display:block;font-size:.79rem;color:var(--muted);margin-top:2px;line-height:1.4}
+
+.aanvink{display:flex;gap:10px;align-items:flex-start;font-size:.88rem;color:var(--ink);
+  margin:0 0 14px;cursor:pointer;line-height:1.45}
+.aanvink input{margin-top:3px;accent-color:var(--blue);flex:0 0 auto}
+
+.foutmelding{background:#fdf3e3;border:1px solid var(--wood);border-radius:var(--r-sm);
+  padding:11px 13px;font-size:.86rem;color:#8a6224;margin:0 0 14px}
+.melding{font-size:.83rem;color:var(--blue);align-self:center}
+.verzendblok .btn{margin-top:4px}
+
+@media(max-width:860px){
+  .offerteregel{grid-template-columns:110px minmax(0,1fr);gap:16px}
+  .offerteregel-acties{grid-column:1 / -1;flex-direction:row;align-items:flex-end;
+    justify-content:space-between;border-top:1px solid var(--line);padding-top:14px}
+  .keuzerij{grid-template-columns:1fr}
+}
+@media(max-width:560px){
+  .offerteregel{grid-template-columns:1fr}
+  .offerteregel-beeld{max-width:200px}
+}

@@ -296,9 +296,11 @@
       const maat = g.box
         ? `${g.footprint.L} × ${g.footprint.W} × ${Math.round(g.height)} mm`
         : `${g.footprint.L} × ${g.footprint.W} mm`;
+      /* "Afmeting" staat al als maat op de offerteregel; nog eens in de
+         specificaties zou hem twee keer in de aanvraag zetten. */
       const specs = Array.from(document.querySelectorAll('#summary dt'))
         .map(dt => [dt.textContent, dt.nextElementSibling ? dt.nextElementSibling.textContent : ''])
-        .filter(p => p[1]);
+        .filter(p => p[1] && p[0].trim() !== 'Afmeting');
 
       Offerte.voegToe({
         type: c.type,

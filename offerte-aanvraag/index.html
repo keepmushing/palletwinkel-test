@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="nl-BE">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Uw offerte-aanvraag | 't Palletje</title>
+<meta name="description" content="Controleer uw configuraties, vul uw gegevens aan en stuur de offerte-aanvraag door. Wij rekenen prijs en levertijd uit.">
+
+<link rel="canonical" href="https://palletje.be/offerte-aanvraag/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_BE">
+<meta property="og:title" content="Uw offerte-aanvraag | 't Palletje">
+<meta property="og:description" content="Controleer uw configuraties, vul uw gegevens aan en stuur de offerte-aanvraag door.">
+<meta property="og:url" content="https://palletje.be/offerte-aanvraag/">
+
+<!-- BLIJFT STAAN, ook na livegang. Dit is het persoonlijke mandje van de
+     bezoeker: zonder zijn eigen localStorage is de pagina leeg, en in Google
+     hoort ze dus niet thuis. Niet mee opruimen bij de staging-sweep. -->
+<meta name="robots" content="noindex, nofollow">
+
+<link rel="icon" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=20260908d">
+</head>
+<body data-pagina="offerte-aanvraag">
+
+<a class="skip" href="#top">Naar de inhoud</a>
+
+<div class="topstrip"></div>
+
+<div class="utility">
+  <div class="wrap utility-inner">
+    <a href="/werkwijze/">Werkwijze</a>
+    <a href="/over-ons/">Over ons</a>
+    <div class="dropdown">
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <div class="dropdown-menu" id="ddMenu">
+        <a href="/#ispm15">ISPM-15 en export</a>
+        <a href="/ppwr/">PPWR-wetgeving</a>
+      </div>
+    </div>
+    <a href="/faq/">FAQ</a>
+    <a href="/contact/">Contact</a>
+    <a class="utility-tel" href="tel:+32499196802">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
+      0499 19 68 02
+    </a>
+    <span class="taal">NL</span>
+  </div>
+</div>
+
+<header>
+  <nav class="nav wrap">
+    <a class="brand" href="/"><img class="logomark" src="/assets/img/logo.png" alt="" width="90" height="90"><span class="woordmerk">&rsquo;t Palletje</span></a>
+    <div class="links" id="menu">
+      <a href="/producten/">Producten</a>
+      <a href="/diensten/">Diensten</a>
+      <a href="/realisaties/">Realisaties</a>
+      <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
+      <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
+      <a class="alleen-mobiel" href="/ppwr/">PPWR-wetgeving</a>
+      <a class="alleen-mobiel" href="/faq/">FAQ</a>
+      <a class="alleen-mobiel" href="/contact/">Contact</a>
+      <a class="alleen-mobiel" href="tel:+32499196802">0499 19 68 02</a>
+    </div>
+    <div class="nav-acties">
+      <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      </button>
+      <a class="nav-cta cfg" href="/configurator/">Start configurator
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="zoekbalk" id="zoekbalk">
+    <div class="wrap">
+      <div class="zoekveld">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="zoekveld" type="search" placeholder="Zoek een product, dienst of vraag…" autocomplete="off" aria-label="Zoekterm">
+        <button class="zoeksluit" id="zoeksluit" aria-label="Zoeken sluiten">&times;</button>
+      </div>
+      <ul class="zoekresultaten" id="zoekresultaten"></ul>
+    </div>
+  </div>
+</header>
+
+<nav class="crumbs" aria-label="Kruimelpad">
+  <div class="wrap">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <a href="/offerte/">Offerte aanvragen</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Uw offerte-aanvraag</span>
+  </div>
+</nav>
+
+<main id="top">
+
+  <section class="page-hero">
+    <div class="ph-hero"></div>
+    <div class="wrap">
+      <div class="eyebrow">Offerte</div>
+      <h1>Uw offerte-aanvraag.</h1>
+      <p class="lead">Alles wat u in de configurator hebt samengesteld staat hieronder. Vul uw gegevens aan, controleer de lijst en stuur ze door. Wij rekenen prijs en levertijd uit en sturen een voorstel terug.</p>
+      <div class="hero-actions">
+        <a class="btn btn-secondary cfg" href="/configurator/">Nog een product toevoegen</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Leeg mandje. Zichtbaar tot offerte-pagina.js vaststelt dat er regels zijn. -->
+  <section class="op-wit" id="leegBlok" hidden>
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Nog leeg</div>
+        <h2>Er staat nog niets in uw offerte.</h2>
+        <p>Stel eerst een pallet, kist of krat samen in de configurator. Gaat het om glasbokken, opzetranden, constructies of hout op maat, stuur dan uw project rechtstreeks door.</p>
+        <div class="btn-row">
+          <a class="btn btn-navy cfg" href="/configurator/">Start configurator</a>
+          <a class="btn btn-line" href="/offerte/">Stuur uw project</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="op-wit" id="mandBlok" hidden>
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Stap 1 van 2</div>
+        <h2>Uw configuraties.</h2>
+        <p>Pas het aantal aan of haal een regel weg. Alles wat hier staat, gaat mee in de aanvraag.</p>
+      </div>
+
+      <div class="offerteregels" id="regels"></div>
+
+      <div class="offerte-onder">
+        <a class="btn btn-line cfg" href="/configurator/">Nog een product toevoegen</a>
+        <button type="button" class="linkweg" id="leegmaken">Alles wissen</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="op-zacht" id="gegevensBlok" hidden>
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Stap 2 van 2</div>
+        <h2>Uw gegevens.</h2>
+        <p>Wij hebben deze gegevens nodig om een voorstel te kunnen maken en te weten waar de bestelling naartoe gaat.</p>
+      </div>
+
+      <!-- TE VERVANGEN VOOR LIVE: action van dit formulier.
+           Nog geen backend. offerte-pagina.js zet de regels en de velden om in
+           een e-mail die in het programma van de bezoeker opent. Zie README,
+           "Formulier-backend". Het action-attribuut is de terugval voor wie
+           JavaScript uit heeft staan. -->
+      <form id="aanvraagformulier" method="post" action="mailto:palettenopmaat@gmail.com" enctype="text/plain" novalidate>
+
+        <div class="veldgroep">
+          <h3>Contact</h3>
+          <div class="two">
+            <div class="field"><label for="naam">Naam *</label><input id="naam" name="naam" autocomplete="name" required></div>
+            <div class="field"><label for="bedrijf">Bedrijf *</label><input id="bedrijf" name="bedrijf" autocomplete="organization" required></div>
+          </div>
+          <div class="two">
+            <div class="field"><label for="email">E-mail *</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+            <div class="field"><label for="tel">Telefoon</label><input type="tel" id="tel" name="telefoon" autocomplete="tel"></div>
+          </div>
+          <div class="field"><label for="btw">BTW-nummer</label><input id="btw" name="btw" placeholder="BE 0123.456.789"></div>
+        </div>
+
+        <div class="veldgroep">
+          <h3>Facturatieadres</h3>
+          <div class="field"><label for="fStraat">Straat en nummer *</label><input id="fStraat" name="factuurStraat" autocomplete="street-address" required></div>
+          <div class="two">
+            <div class="field"><label for="fPost">Postcode *</label><input id="fPost" name="factuurPostcode" autocomplete="postal-code" required></div>
+            <div class="field"><label for="fGem">Gemeente *</label><input id="fGem" name="factuurGemeente" autocomplete="address-level2" required></div>
+          </div>
+          <div class="field"><label for="fLand">Land</label><input id="fLand" name="factuurLand" value="België" autocomplete="country-name"></div>
+        </div>
+
+        <div class="veldgroep">
+          <h3>Levering</h3>
+          <div class="keuzerij" role="radiogroup" aria-label="Verzendingsmethode">
+            <label class="keuze"><input type="radio" name="verzending" value="Bezorging" checked> <span><b>Bezorging</b><small>Wij leveren op uw adres of rechtstreeks op de bestemming.</small></span></label>
+            <label class="keuze"><input type="radio" name="verzending" value="Afhaling"> <span><b>Afhaling</b><small>U haalt af in Wingene, Morellestraat 1.</small></span></label>
+          </div>
+
+          <div id="leveradresBlok">
+            <label class="aanvink"><input type="checkbox" id="zelfdeAdres" checked> Leveren op het facturatieadres</label>
+            <div id="leveradresVelden" hidden>
+              <div class="field"><label for="lStraat">Straat en nummer</label><input id="lStraat" name="leverStraat" autocomplete="shipping street-address"></div>
+              <div class="two">
+                <div class="field"><label for="lPost">Postcode</label><input id="lPost" name="leverPostcode" autocomplete="shipping postal-code"></div>
+                <div class="field"><label for="lGem">Gemeente</label><input id="lGem" name="leverGemeente" autocomplete="shipping address-level2"></div>
+              </div>
+              <div class="field"><label for="lLand">Land</label><input id="lLand" name="leverLand" value="België"></div>
+            </div>
+          </div>
+
+          <div class="two">
+            <div class="field"><label for="datum">Gewenste leverdatum</label><input type="date" id="datum" name="leverdatum"><p class="hint">Bij benadering volstaat. Wij laten weten wat haalbaar is.</p></div>
+            <div class="field"><label for="laadwijze">Laden en lossen</label>
+              <select id="laadwijze" name="laadwijze">
+                <option value="">Kies…</option>
+                <option>Heftruck aanwezig</option>
+                <option>Laadkade aanwezig</option>
+                <option>Kraan of hoogwerker nodig</option>
+                <option>Handmatig lossen</option>
+                <option>Weet ik nog niet</option>
+              </select>
+            </div>
+          </div>
+          <div class="field"><label for="risico">Bijzondere risico's of aandachtspunten</label><textarea id="risico" name="risico" rows="2" placeholder="Bijvoorbeeld: breekbaar, zware punt&shy;belasting, buiten opgeslagen, smalle toegangsweg."></textarea></div>
+        </div>
+
+        <div class="veldgroep">
+          <h3>Nog iets kwijt?</h3>
+          <div class="field"><label for="bericht">Opmerkingen bij deze aanvraag</label><textarea id="bericht" name="bericht" rows="3"></textarea></div>
+          <label class="aanvink"><input type="checkbox" id="onthoud"> Bewaar mijn gegevens in deze browser, zodat ik ze de volgende keer niet opnieuw moet invullen</label>
+          <p class="hint">De gegevens blijven op dit toestel staan en gaan nergens anders heen. Wissen kan met de knop hieronder.</p>
+          <button type="button" class="linkweg" id="vergeetmij" hidden>Bewaarde gegevens wissen</button>
+        </div>
+
+        <div class="veldgroep verzendblok">
+          <p class="hint" id="mailtoWaarschuwing"><span class="ph">Deze aanvraag is nog niet op een server aangesloten: ze opent in uw eigen e-mailprogramma, klaar om te versturen. Liever rechtstreeks? Mail <a href="mailto:palettenopmaat@gmail.com">palettenopmaat@gmail.com</a> of bel <a href="tel:+32499196802">0499 19 68 02</a>.</span></p>
+          <p class="foutmelding" id="fouten" role="alert" hidden></p>
+          <button class="btn btn-navy" type="submit" style="width:100%">Bevestig offerte-aanvraag</button>
+          <p class="hint">U ontvangt van ons een voorstel met prijs en levertijd. Een aanvraag verplicht u tot niets.</p>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="op-wit" id="bedanktBlok" hidden>
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Verzonden</div>
+        <h2>Uw aanvraag staat klaar in uw e-mailprogramma.</h2>
+        <p>Controleer daar of alle regels erin staan, voeg eventuele tekeningen of foto's toe als bijlage, en verstuur. Zodra ze binnen is, rekenen wij uit wat het wordt.</p>
+        <div class="btn-row">
+          <button type="button" class="btn btn-navy" id="opnieuwTonen">Terug naar mijn offerte</button>
+          <a class="btn btn-line" href="/">Naar de homepage</a>
+        </div>
+      </div>
+      <article class="pillar" style="margin-top:26px">
+        <h3>Kopie voor uzelf</h3>
+        <p>Hieronder staat dezelfde tekst. Handig als de e-mail niet opende of als u ze in uw eigen systeem wilt bewaren.</p>
+        <textarea id="kopieTekst" rows="12" readonly style="width:100%;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem"></textarea>
+        <div class="btn-row">
+          <button type="button" class="btn btn-line" id="kopieerKnop">Kopieer als tekst</button>
+          <span class="melding" id="kopieMelding" role="status"></span>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="final">
+    <div class="wrap">
+      <div class="eyebrow b">Liever even overleggen?</div>
+      <h2>Een telefoontje scheelt vaak een mail of drie.</h2>
+      <p>Twijfelt u over de uitvoering, de maat of het aantal? Bel gerust. Wij denken mee voor u iets vastlegt.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="tel:+32499196802">0499 19 68 02</a>
+        <a class="btn btn-secondary" href="mailto:info@palletje.be">info@palletje.be</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+        <div class="footer-top">
+      <div class="footer-brand">
+        <a class="brand" href="/" style="color:#fff"><span class="woordmerk">&rsquo;t Palletje</span></a>
+        <p>Houten transportoplossingen op maat<br>voor industrie, logistiek en export.</p>
+      </div>
+      <nav class="footer-pages" aria-label="Voetnavigatie">
+        <h3>Pagina&rsquo;s</h3>
+        <div class="footer-links">
+          <a href="/producten/pallet-op-maat/">Pallets op maat</a><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
+          <a href="/producten/exportkisten/">Exportkisten</a><a href="/producten/glasbokken/">Glasbokken</a>
+          <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
+          <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a><a href="/diensten/">Diensten</a>
+          <a href="/werkwijze/">Werkwijze</a><a href="/realisaties/">Realisaties</a>
+          <a href="/over-ons/">Over ons</a><a href="/#ispm15">ISPM-15</a>
+          <a href="/ppwr/">PPWR</a><a href="/faq/">FAQ</a>
+          <a href="/contact/">Contact</a>
+        </div>
+      </nav>
+    </div>
+    <div class="footer-contact">
+      <div>
+        <h3>Bedrijfsgegevens</h3>
+        <p>&rsquo;t Palletje<br>Morellestraat 1<br>8750 Wingene<br>Belgi&euml;</p>
+        <p>BTW BE 0863.163.507</p>
+        <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=Morellestraat+1%2C+8750+Wingene" target="_blank" rel="noopener">Google Maps</a>
+      </div>
+      <div>
+        <h3>Rechtstreeks contact</h3>
+        <a href="tel:+32499196802">0499 19 68 02</a>
+        <a href="mailto:info@palletje.be">info@palletje.be</a>
+        <a href="/offerte/">Offerte aanvragen</a>
+      </div>
+    </div>
+    <div class="legal">&copy; <span data-jaar>2026</span> &rsquo;t Palletje &middot;
+      <a href="/privacy/">Privacy</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a></div>
+  </div>
+</footer>
+
+<script src="/assets/js/offerte.js?v=20260908d"></script>
+<script src="/assets/js/site.js?v=20260908d"></script>
+<script src="/assets/js/offerte-pagina.js?v=20260908d"></script>
+</body>
+</html>

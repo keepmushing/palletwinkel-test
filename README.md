@@ -306,16 +306,60 @@ en dacht dat er niets veranderde.
 
 ### En de HTML zelf?
 
-Die kan geen stempel dragen — `/werkwijze/` is nu eenmaal `/werkwijze/`. Daarom
-zet `server.js` er sinds 8 september 2026 zelf `Cache-Control: no-cache` op,
-plus een `ETag`. Zonder die regel plakt de hosting er ongevraagd
-`max-age=604800` op en ziet een bezoeker de nieuwe opbouw pas een week later.
-`Clear cache` bij Hostinger helpt daar niet tegen: dat raakt alleen hun eigen
-laag, niet de browser van de bezoeker.
+Die kan geen stempel dragen — `/werkwijze/` is nu eenmaal `/werkwijze/`. Gemeten
+op palletwinkel.com op 8 september 2026 stuurt de hosting mee:
 
-Dat kostte een hele avond zoeken: de knop "Toevoegen aan offerte" werkte al,
-maar de opdrachtgever kreeg de oude paginaopbouw te zien en dacht dat er niets
-was veranderd.
+```
+HTML   Cache-Control: public, s-maxage=604800, max-age=0
+assets Cache-Control: public, max-age=604800
+```
+
+`s-maxage` geldt voor hun CDN, `max-age=0` voor de browser. De HTML blijft dus
+tot zeven dagen in de CDN staan terwijl de browser wel netjes hervalideert. Een
+bezoeker kan daardoor na een nieuwe versie nog dagen de oude opbouw krijgen,
+zonder dat er iets mis is met zijn eigen cache.
+
+Sinds 8 september 2026 zet `server.js` daarom zelf `Cache-Control: no-cache`
+op HTML, plus een `ETag` zodat hervalideren bijna niets kost. Bestanden met
+`?v=` in de URL krijgen juist een jaar; die zonder stempel één dag, zodat een
+vervangen foto onder dezelfde naam vanzelf doorkomt.
+
+Zit je toch nog naar een oude pagina te kijken: één harde herlaadbeurt
+(Ctrl+F5) haalt hem binnen. Dat kostte een avond zoeken — de knop "Toevoegen
+aan offerte" werkte al lang, maar de opdrachtgever kreeg de oude paginaopbouw
+te zien en dacht dat er niets was veranderd.
+
+
+## De offerteroute
+
+Drie bestanden, in deze volgorde geladen:
+
+```
+assets/js/offerte.js         het mandje zelf (localStorage)
+configurator/app.js          "Toevoegen aan offerte" vult het mandje
+assets/js/offerte-pagina.js  /offerte-aanvraag/ toont en verstuurt het
+```
+
+De volgorde is niet vrijblijvend: `app.js` kijkt bij het laden of
+`window.Offerte` bestaat. Staat `offerte.js` erná, dan doet de knop niets. Dat
+is één keer misgegaan en kostte een avond.
+
+Twee sleutels in localStorage: `palletje-offerte` (de regels) en
+`palletje-klant` (naam en adres, alleen als de bezoeker dat zelf aanvinkt).
+Beide blijven op het toestel van de bezoeker.
+
+`/offerte-aanvraag/` staat bewust **niet** in `sitemap.xml` en niet in `PAGINAS`
+van de zoekfunctie, en houdt `noindex` ook na livegang: zonder het mandje van
+die ene bezoeker is de pagina leeg.
+
+### Nog te doen: een echte verwerker
+
+Vandaag opent de aanvraag in het e-mailprogramma van de bezoeker
+(`mailto:palettenopmaat@gmail.com`). Dat is eerlijk gemarkeerd op de pagina,
+maar het betekent dat u niet ziet wat u misloopt. Zoek in
+`assets/js/offerte-pagina.js` op **VERZENDEN**: dat blok is het enige dat
+verandert zodra er een formulierdienst gekozen is.
+
 ## Van staging naar live
 
 Zolang de site op een tijdelijk domein staat, is ze afgeschermd voor
