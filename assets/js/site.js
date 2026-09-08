@@ -11,6 +11,7 @@
   const $  = (s, r = document) => r.querySelector(s);
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
+
   /* ====== 0. VERSIESTEMPEL VOOR BEELDEN ======
      Gemeten op palletwinkel.com op 8 september 2026:
          HTML     Cache-Control: public, s-maxage=604800, max-age=0
@@ -21,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260908e";
+  const ASSET_V = "20260908f";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -358,51 +359,56 @@
      ========================================================================== */
   const ALBUMS = {
     pallets: { titel: 'Pallets op maat', pagina: '/producten/pallet-op-maat/', fotos: [
-      { src: '/assets/img/pallet-op-maat-1.jpg', bijschrift: 'Pallet op maat — 1200 × 800 mm' },
-      { src: '/assets/img/pallet-op-maat-2.jpg', bijschrift: 'Zware pallet voor machinetransport' },
-      { src: '/assets/img/pallet-op-maat-3.jpg', bijschrift: 'Serieproductie, klaar voor verzending' }
+      { src: '/assets/img/pallet-op-maat-blokpallet-1200x800.jpg', bijschrift: 'Pallet op maat — 1200 × 800 mm' },
+      { src: '/assets/img/pallet-op-maat-2.jpg', bijschrift: 'Zware pallet voor machinetransport', nogTeLeveren: true },
+      { src: '/assets/img/pallet-op-maat-3.jpg', bijschrift: 'Serieproductie, klaar voor verzending', nogTeLeveren: true }
     ]},
     kisten: { titel: 'Kisten & kratten', pagina: '/producten/kisten-en-kratten/', fotos: [
-      { src: '/assets/img/kist-1.jpg', bijschrift: 'Gesloten exportkist met ISPM-15-merk' },
-      { src: '/assets/img/kist-2.jpg', bijschrift: 'Open krat met deksel' },
-      { src: '/assets/img/kist-3.jpg', bijschrift: 'Kist in opbouw in het atelier' }
+      { src: '/assets/img/houten-exportkist-gesloten-machinetransport.jpg', bijschrift: 'Gesloten exportkist met ISPM-15-merk' },
+      { src: '/assets/img/kist-2.jpg', bijschrift: 'Open krat met deksel', nogTeLeveren: true },
+      { src: '/assets/img/kist-3.jpg', bijschrift: 'Kist in opbouw in het atelier', nogTeLeveren: true }
     ]},
     glas: { titel: 'Glasbokken', pagina: '/producten/glasbokken/', fotos: [
-      { src: '/assets/img/glasbok-1.jpg', bijschrift: 'Glasbok op maat' },
-      { src: '/assets/img/glasbok-3.webp', bijschrift: 'Dubbelzijdige A-bok voor grote glasplaten' },
-      { src: '/assets/img/glasbok-8.webp', bijschrift: 'Enkelzijdige bok met volledig beplankte voet' },
-      { src: '/assets/img/glasbok-7.webp', bijschrift: 'A-bok met schuine steunen, smalle voetafdruk' },
-      { src: '/assets/img/glasbok-9.webp', bijschrift: 'Bok met rubberen aanslagblokken tegen beschadiging' },
-      { src: '/assets/img/glasbok-4.webp', bijschrift: 'Meerlaagse bok voor plaatmateriaal' },
-      { src: '/assets/img/glasbok-5.webp', bijschrift: 'Lage transportbok, vooraanzicht' },
-      { src: '/assets/img/glasbok-6.webp', bijschrift: 'Reeks bokken, klaar voor levering' },
-      { src: '/assets/img/glasbok-2.webp', bijschrift: 'Multiplex glasbakjes voor restauratieglas' }
+      { src: '/assets/img/glasbok-op-maat-glastransport.jpg', bijschrift: 'Glasbok op maat' },
+      { src: '/assets/img/glasbok-a-frame-vlakglas.webp', bijschrift: 'Dubbelzijdige A-bok voor grote glasplaten' },
+      { src: '/assets/img/glasbok-a-frame-transportklaar.webp', bijschrift: 'Enkelzijdige bok met volledig beplankte voet' },
+      { src: '/assets/img/glasbok-a-frame-dubbelzijdig.webp', bijschrift: 'A-bok met schuine steunen, smalle voetafdruk' },
+      { src: '/assets/img/glasbok-a-frame-detail.webp', bijschrift: 'Bok met rubberen aanslagblokken tegen beschadiging' },
+      { src: '/assets/img/glasbok-a-frame-beladen.webp', bijschrift: 'Meerlaagse bok voor plaatmateriaal' },
+      { src: '/assets/img/glasbok-a-frame-werkplaats.webp', bijschrift: 'Lage transportbok, vooraanzicht' },
+      { src: '/assets/img/glasbok-liggend-glastransport.webp', bijschrift: 'Reeks bokken, klaar voor levering' },
+      { src: '/assets/img/glasbakjes-multiplex-restauratieglas.webp', bijschrift: 'Multiplex glasbakjes voor restauratieglas' }
     ]},
     randen: { titel: 'Palletranden / opzetranden', pagina: '/producten/opzetranden/', fotos: [
-      { src: '/assets/img/opzetrand-1.jpg', bijschrift: 'Opzetrand op europallet' },
-      { src: '/assets/img/opzetrand-2.jpg', bijschrift: 'Gestapelde randen' }
+      { src: '/assets/img/opzetrand-europallet-stapelen.jpg', bijschrift: 'Opzetrand op europallet' },
+      { src: '/assets/img/opzetrand-2.jpg', bijschrift: 'Gestapelde randen', nogTeLeveren: true }
     ]},
     platen: { titel: 'Hout en platen op maat', pagina: '/producten/hout-en-plaatmateriaal/', fotos: [
-      { src: '/assets/img/platen-1.jpg', bijschrift: 'Tijdelijk terras in pallethout' },
-      { src: '/assets/img/platen-2.jpg', bijschrift: 'Werfvloer over ruw terrein' },
-      { src: '/assets/img/platen-3.jpg', bijschrift: 'Wandpanelen' }
+      { src: '/assets/img/houten-vloerpaneel-pallethout-werfvloer.jpg', bijschrift: 'Tijdelijk terras in pallethout' },
+      { src: '/assets/img/platen-2.jpg', bijschrift: 'Werfvloer over ruw terrein', nogTeLeveren: true },
+      { src: '/assets/img/platen-3.jpg', bijschrift: 'Wandpanelen', nogTeLeveren: true }
     ]},
     constructies: { titel: 'Constructies op maat', pagina: '/producten/houten-constructies-op-maat/', fotos: [
-      { src: '/assets/img/constructie-1.jpg', bijschrift: 'Skid voor zware machine' },
-      { src: '/assets/img/constructie-2.jpg', bijschrift: 'Transportwieg' },
-      { src: '/assets/img/constructie-3.jpg', bijschrift: 'Verdeelbakjes voor onderdelen' }
+      { src: '/assets/img/houten-skid-zware-machine-transport.jpg', bijschrift: 'Skid voor zware machine' },
+      { src: '/assets/img/constructie-2.jpg', bijschrift: 'Transportwieg', nogTeLeveren: true },
+      { src: '/assets/img/constructie-3.jpg', bijschrift: 'Verdeelbakjes voor onderdelen', nogTeLeveren: true }
     ]},
     transport: { titel: 'Levering en transport', pagina: '/werkwijze/', fotos: [
-      { src: '/assets/img/transport-2.webp', bijschrift: 'Volle lading nieuwe pallets, klaar om te vertrekken' },
-      { src: '/assets/img/transport-3.webp', bijschrift: 'Laden met de heftruck op de oplegger' },
-      { src: '/assets/img/transport-7.webp', bijschrift: 'Vastgesjorde stapels pallets op de oplegger' },
-      { src: '/assets/img/transport-5.webp', bijschrift: 'Beladen zeiloplegger met verpakte goederen' },
-      { src: '/assets/img/transport-4.webp', bijschrift: 'Twee kisten vastgesjord op de aanhanger' },
-      { src: '/assets/img/transport-8.webp', bijschrift: 'Bestelwagen met aanhanger voor grote kisten' },
-      { src: '/assets/img/transport-6.webp', bijschrift: 'Zwaar hout en balken op de laadvloer' },
-      { src: '/assets/img/transport-1.webp', bijschrift: 'Levering tot in Parijs' }
+      { src: '/assets/img/levering-heftruck-laden.webp', bijschrift: 'Volle lading nieuwe pallets, klaar om te vertrekken' },
+      { src: '/assets/img/levering-heftruck-pallets-oplegger.webp', bijschrift: 'Laden met de heftruck op de oplegger' },
+      { src: '/assets/img/levering-zware-kist-heftruck.webp', bijschrift: 'Vastgesjorde stapels pallets op de oplegger' },
+      { src: '/assets/img/levering-kisten-op-oplegger.webp', bijschrift: 'Beladen zeiloplegger met verpakte goederen' },
+      { src: '/assets/img/levering-vrachtwagen-laadklep.webp', bijschrift: 'Twee kisten vastgesjord op de aanhanger' },
+      { src: '/assets/img/levering-oplegger-vertrek.webp', bijschrift: 'Bestelwagen met aanhanger voor grote kisten' },
+      { src: '/assets/img/levering-laadkade-lossen.webp', bijschrift: 'Zwaar hout en balken op de laadvloer' },
+      { src: '/assets/img/levering-oplegger-beladen.webp', bijschrift: 'Levering tot in Parijs' }
     ]}
   };
+
+  /* Foto's met nogTeLeveren staan hier al met hun bijschrift, zodat duidelijk is
+     welk beeld er nog moet komen. Tot dan slaan we ze over: anders toont de
+     lightbox een gebroken beeld en klopt de teller "2 / 3" niet. */
+  Object.values(ALBUMS).forEach(a => { a.fotos = a.fotos.filter(f => !f.nogTeLeveren); });
 
   const pijl = r => `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="${r < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'}"/></svg>`;
 

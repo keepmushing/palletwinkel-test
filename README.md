@@ -416,6 +416,47 @@ maar het betekent dat u niet ziet wat u misloopt. Zoek in
 `assets/js/offerte-pagina.js` op **VERZENDEN**: dat blok is het enige dat
 verandert zodra er een formulierdienst gekozen is.
 
+
+## Waar de formulieren naartoe gaan
+
+Twee formulieren: het projectformulier op `/offerte/` en het contactformulier op
+`/contact/`. Ze delen één schakelaar, bovenaan `assets/js/site.js`:
+
+```js
+const FORM_ENDPOINT = "";
+```
+
+**Leeg** — de velden worden omgezet in een e-mail die opengaat in het
+mailprogramma van de bezoeker. Eerlijk, maar de bijlage gaat niet vanzelf mee.
+Daarom staat er een waarschuwing bij, gemarkeerd met `data-mailto-waarschuwing`.
+
+**Ingevuld** — het adres van een formulierdienst (Web3Forms, Formspree, Basin;
+alles wat een gewone POST met FormData aanvaardt). Dan gaat de bijlage wél mee,
+wordt mislukken netjes gemeld, en gaat de bezoeker na verzenden naar `/bedankt/`.
+De waarschuwing wordt dan automatisch verwijderd, want ze klopt niet meer.
+
+Vraagt de dienst een sleutel, zet die dan in `FORM_SLEUTEL` eronder.
+
+Omschakelen is dus één regel. Verhoog daarna wel de `?v=`-stempel, anders houdt
+de CDN de oude `site.js` nog een week vast.
+
+Een nieuw formulier aansluiten? Geef het `data-formulier="onderwerp van de mail"`
+en het doet vanzelf mee.
+
+## Foto's die er nog niet zijn
+
+In `ALBUMS` in `site.js` staan negen foto's met `nogTeLeveren: true`. Die
+bestanden bestaan nog niet. Ze staan er wél al met hun bijschrift, zodat
+duidelijk is welk beeld er nog moet komen; tot dan worden ze overgeslagen, want
+anders toont de lightbox een gebroken beeld en klopt de teller "2 / 3" niet.
+
+Foto geleverd? Zet ze in `assets/img/` onder de naam die in `ALBUMS` staat en
+haal `nogTeLeveren` weg. Meer niet.
+
+Bestandsnamen zijn beschrijvend: `[product]-[spec]-[toepassing]`, bijvoorbeeld
+`houten-exportkist-ispm15-merkteken.jpg`. Wat er in `.jpg` ligt is nog niet naar
+`.webp` omgezet — op deze machine staat geen software die dat kan.
+
 ## Van staging naar live
 
 Zolang de site op een tijdelijk domein staat, is ze afgeschermd voor
