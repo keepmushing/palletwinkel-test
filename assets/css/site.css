@@ -974,3 +974,21 @@ footer .brand .woordmerk{color:#fff}
    Zodra er een echte foto in staat, moet die het verloop afdekken. */
 .case-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
 .feature-visual img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* --- tabel binnen een FAQ-antwoord ---
+   .maattabel werkt op een productpagina, maar staat in een uitklapantwoord op
+   een smal scherm te dringen. Onder 560 px wordt elke rij een blokje met het
+   kolomkopje ervoor; dat kopje komt uit data-label op de cel. */
+.faq-copy > p + p{margin-top:.7rem}
+.faq-copy .tabelwrap{margin:14px 0}
+.faq-copy .maattabel{font-size:.86rem}
+@media(max-width:560px){
+  .faq-copy .maattabel,.faq-copy .maattabel tbody,.faq-copy .maattabel tr,
+  .faq-copy .maattabel td,.faq-copy .maattabel th{display:block}
+  .faq-copy .maattabel thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .faq-copy .maattabel tbody tr{padding:8px 0;border-bottom:1px solid var(--line)}
+  .faq-copy .maattabel tbody tr:last-child{border-bottom:0}
+  .faq-copy .maattabel tbody th{padding:0 0 4px;border:0;color:var(--navy);font-weight:700}
+  .faq-copy .maattabel td{display:flex;justify-content:space-between;gap:16px;padding:3px 0;border:0}
+  .faq-copy .maattabel td::before{content:attr(data-label);color:var(--muted);font-weight:400}
+}

@@ -153,7 +153,11 @@ if ((Test-Path $faqPagina) -and (Test-Path $faqData)) {
     }
     $inData = @{}
     foreach ($m in [regex]::Matches($hd, "\{ id: '(?<id>[^']+)', topic: \d+, populair: (?:true|false),\s*\r?\n\s*vraag: '(?<q>.*?)',\s*\r?\n\s*antwoord: '(?<a>.*?)' \}")) {
-        $inData[$m.Groups['id'].Value] = @{ q = ($m.Groups['q'].Value -replace "\'","'"); a = ($m.Groups['a'].Value -replace "\'","'") }
+        # In faq-data.js staat een apostrof als \' omdat de tekst tussen enkele quotes staat.
+    # De regex hieronder moet dus de BACKSLASH weghalen: "\\'" is een echte backslash
+    # gevolgd door een quote. Met "\'" matcht .NET enkel de quote zelf en verandert er niets,
+    # waardoor elk antwoord met een apostrof onterecht als afwijking werd gemeld.
+    $inData[$m.Groups['id'].Value] = @{ q = ($m.Groups['q'].Value -replace "\\'","'"); a = ($m.Groups['a'].Value -replace "\\'","'") }
     }
 
     foreach ($id in $inPagina.Keys) {

@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260908f";
+  const ASSET_V = "20260908g";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -315,9 +315,16 @@
     items.forEach(d => d.addEventListener('toggle', () => {
       if (d.open && !d.hidden) { items.forEach(other => { if (other !== d) other.open = false; }); setHash('#' + d.id); }
     }));
+    /* De antwoorden verwijzen naar elkaar met /faq/#faq-… en niet met #faq-…,
+       want dezelfde tekst staat ook in de uittreksels op de productpagina's;
+       daar bestaat het doel niet en moet de link naar de FAQ springen. Zijn we
+       al op /faq/, dan handelen we hem hier af in plaats van te navigeren. */
     document.addEventListener('click', e => {
-      const a = e.target.closest('a[href^="#faq-"]'); if (!a) return;
-      const id = a.getAttribute('href').slice(1);
+      const a = e.target.closest('a[href*="#faq-"]'); if (!a) return;
+      const href = a.getAttribute('href');
+      const pad = href.slice(0, href.indexOf('#'));
+      if (pad && pad !== location.pathname) return;   // wijst echt naar een andere pagina
+      const id = href.slice(href.indexOf('#') + 1);
       if (!items.some(d => d.id === id)) return;
       e.preventDefault(); setHash('#' + id); openTarget();
     });
@@ -359,14 +366,26 @@
      ========================================================================== */
   const ALBUMS = {
     pallets: { titel: 'Pallets op maat', pagina: '/producten/pallet-op-maat/', fotos: [
-      { src: '/assets/img/pallet-op-maat-blokpallet-1200x800.jpg', bijschrift: 'Pallet op maat — 1200 × 800 mm' },
+      { src: '/assets/img/pallet-op-maat-blokpallet.jpg', bijschrift: 'Pallet op maat, blokuitvoering' },
       { src: '/assets/img/pallet-op-maat-2.jpg', bijschrift: 'Zware pallet voor machinetransport', nogTeLeveren: true },
       { src: '/assets/img/pallet-op-maat-3.jpg', bijschrift: 'Serieproductie, klaar voor verzending', nogTeLeveren: true }
     ]},
     kisten: { titel: 'Kisten & kratten', pagina: '/producten/kisten-en-kratten/', fotos: [
-      { src: '/assets/img/houten-exportkist-gesloten-machinetransport.jpg', bijschrift: 'Gesloten exportkist met ISPM-15-merk' },
-      { src: '/assets/img/kist-2.jpg', bijschrift: 'Open krat met deksel', nogTeLeveren: true },
-      { src: '/assets/img/kist-3.jpg', bijschrift: 'Kist in opbouw in het atelier', nogTeLeveren: true }
+      { src: '/assets/img/houten-exportkist-gesloten-machinetransport.jpg', bijschrift: 'Gesloten exportkist, blokken onderaan' },
+      { src: '/assets/img/houten-exportkist-gesloten-4weg.jpg', bijschrift: 'Gesloten kist met vieren onderrijdbare onderbouw' },
+      { src: '/assets/img/houten-krat-open-intern-transport.jpg', bijschrift: 'Open krat voor intern transport' },
+      { src: '/assets/img/houten-exportkist-gesloten-magazijn.webp', bijschrift: 'Kist op palletbodem, klaar in het magazijn' },
+      { src: '/assets/img/houten-exportkist-plaatmateriaal.webp', bijschrift: 'Kist in plaatmateriaal met verticale latten' },
+      { src: '/assets/img/houten-kist-hoog-plaatmateriaal.webp', bijschrift: 'Hoge kist, panelen op een houten frame' },
+      { src: '/assets/img/houten-kisten-twee-stuks-atelier.webp', bijschrift: 'Twee kisten naast elkaar in het atelier' },
+      { src: '/assets/img/houten-kist-groot-plaatdeksel.webp', bijschrift: 'Grote kist met vlak plaatdeksel' },
+      { src: '/assets/img/houten-kist-laag-gesloten.webp', bijschrift: 'Lage gesloten kist' },
+      { src: '/assets/img/houten-kist-lang-smal.webp', bijschrift: 'Lange smalle kist voor langwerpige onderdelen' },
+      { src: '/assets/img/houten-krat-lang-open-bovenzijde.webp', bijschrift: 'Lang krat, open aan de bovenzijde' },
+      { src: '/assets/img/houten-kist-in-opbouw-spanbanden.webp', bijschrift: 'Kist in opbouw, lading vastgezet met spanbanden' },
+      { src: '/assets/img/houten-kisten-serieproductie.webp', bijschrift: 'Reeks identieke kisten, klaar voor verzending' },
+      { src: '/assets/img/houten-kist-transportklaar-buiten.webp', bijschrift: 'Kist transportklaar buiten' },
+      { src: '/assets/img/houten-exportkist-op-aanhangwagen.webp', bijschrift: 'Kist geladen op een aanhangwagen' }
     ]},
     glas: { titel: 'Glasbokken', pagina: '/producten/glasbokken/', fotos: [
       { src: '/assets/img/glasbok-op-maat-glastransport.jpg', bijschrift: 'Glasbok op maat' },
