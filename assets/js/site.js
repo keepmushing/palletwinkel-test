@@ -12,10 +12,15 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
   /* ====== 0. VERSIESTEMPEL VOOR BEELDEN ======
-     Bestanden krijgen van de hosting `Cache-Control: max-age=604800` mee: zeven
-     dagen. Vervang je een foto zonder de naam te wijzigen, dan blijft de oude
-     hangen — dat is hier al twee keer gebeurd. Verhoog deze waarde samen met
-     de ?v= in de HTML zodra een beeld vervangen wordt. */
+     Gemeten op palletwinkel.com op 8 september 2026:
+         HTML     Cache-Control: public, s-maxage=604800, max-age=0
+         bestanden idem
+     max-age=0 betekent dat de browser elke keer navraag doet — daar zit het
+     probleem dus niet. s-maxage=604800 betekent dat de CDN van Hostinger een
+     pagina zeven dagen vasthoudt. Vervang je een foto zonder de naam te
+     wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
+     Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
+     wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
   const ASSET_V = "20260908e";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
