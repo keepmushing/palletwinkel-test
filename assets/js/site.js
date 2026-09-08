@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260908h";
+  const ASSET_V = "20260908i";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -609,6 +609,11 @@
         });
     });
   });
+
+  /* ====== 8b. afdrukknop op een juridisch document ======
+     Staat op /voorwaarden/. Los van site.js zou hier een inline onclick moeten
+     staan; dit houdt de HTML schoon en werkt op elke pagina met [data-print]. */
+  $$('[data-print]').forEach(k => k.addEventListener('click', () => window.print()));
 
   /* ====== 9. FAQ-uittreksel op een productpagina ===============================
      <div class="faq faq-uittreksel" data-faq="id,id,id"></div> wordt hier
