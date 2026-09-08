@@ -457,6 +457,16 @@ Bestandsnamen zijn beschrijvend: `[product]-[spec]-[toepassing]`, bijvoorbeeld
 `houten-exportkist-ispm15-merkteken.jpg`. Wat er in `.jpg` ligt is nog niet naar
 `.webp` omgezet — op deze machine staat geen software die dat kan.
 
+## De werklijst
+
+Wat er nog moet gebeuren staat niet in dit bestand maar op één plek die Bert kan
+afvinken en die de codesessie kan uitlezen:
+
+<https://claude.ai/code/artifact/a48f1388-dacd-4791-bfdc-415ed512de84>
+
+Per taak staat er wie aan zet is (jij, ik, samen), op welk gebied ze slaat, en
+waarom ze er staat. Zet een taak op `klaar` in plaats van ze te schrappen —
+dan blijft zichtbaar wat er beslist is.
 ## Van staging naar live
 
 Zolang de site op een tijdelijk domein staat, is ze afgeschermd voor
