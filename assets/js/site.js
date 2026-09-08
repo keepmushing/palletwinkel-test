@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260908i";
+  const ASSET_V = "20260908j";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -122,7 +122,7 @@
     { soort: 'Product', titel: 'Exportkisten', tekst: 'Houten exportkisten met ISPM-15-markering onder onze eigen registratie, voor zendingen buiten de Europese Unie.', url: '/producten/exportkisten/' },
     { soort: 'Product', titel: 'Glasbokken', tekst: 'Voor glas dat niet mag breken, verschuiven of beschadigen. Van standaard bokken tot multiplex bakjes op klanttekening.', url: '/producten/glasbokken/' },
     { soort: 'Product', titel: 'Palletranden en opzetranden', tekst: 'Standaard en op maat gemaakte randen om palletlading te verhogen, af te schermen en stapelbaar te maken.', url: '/producten/opzetranden/' },
-    { soort: 'Product', titel: 'Hout en plaatmateriaal op maat', tekst: 'Houten vloer- en wandpanelen uit pallethout. Voor een tijdelijk terras, een werfvloer of een overbrugging van ruw terrein.', url: '/producten/hout-en-plaatmateriaal/' },
+    { soort: 'Product', titel: 'Hout en plaatmateriaal op maat', tekst: 'Planken en plaatmateriaal op maat gezaagd, in grote en kleine oplagen. Ook als vloer- of wandpaneel.', url: '/producten/hout-en-plaatmateriaal/' },
     { soort: 'Product', titel: 'Houten constructies op maat', tekst: 'Skids, transportwiegen, machineverpakking, verdeelbakjes en inlays voor kwetsbare onderdelen.', url: '/producten/houten-constructies-op-maat/' },
     { soort: 'Pagina',  titel: 'Alle producten', tekst: 'Overzicht van alles wat wij maken: pallets, kisten, kratten, exportkisten, glasbokken, opzetranden, platen en constructies.', url: '/producten/' },
     { soort: 'Pagina',  titel: 'Configurator', tekst: 'Stel zelf uw pallet, kist, krat, houten vloer of wand samen. Met 3D-weergave en een bestand voor de zagerij.', url: '/configurator/' },
@@ -366,7 +366,7 @@
      ========================================================================== */
   const ALBUMS = {
     pallets: { titel: 'Pallets op maat', pagina: '/producten/pallet-op-maat/', fotos: [
-      { src: '/assets/img/pallet-op-maat-blokpallet.jpg', bijschrift: 'Pallet op maat, blokuitvoering' },
+      { src: '/assets/img/pallet-op-maat-blokpallet-1800x800.jpg', bijschrift: 'Pallet op maat — 1800 × 800 mm' },
       { src: '/assets/img/pallet-op-maat-2.jpg', bijschrift: 'Zware pallet voor machinetransport', nogTeLeveren: true },
       { src: '/assets/img/pallet-op-maat-3.jpg', bijschrift: 'Serieproductie, klaar voor verzending', nogTeLeveren: true }
     ]},
@@ -403,8 +403,8 @@
       { src: '/assets/img/opzetrand-2.jpg', bijschrift: 'Gestapelde randen', nogTeLeveren: true }
     ]},
     platen: { titel: 'Hout en platen op maat', pagina: '/producten/hout-en-plaatmateriaal/', fotos: [
-      { src: '/assets/img/houten-vloerpaneel-pallethout-werfvloer.jpg', bijschrift: 'Tijdelijk terras in pallethout' },
-      { src: '/assets/img/platen-2.jpg', bijschrift: 'Werfvloer over ruw terrein', nogTeLeveren: true },
+      { src: '/assets/img/houten-vloerpaneel-pallethout-werfvloer.jpg', bijschrift: 'Op maat gezaagde panelen' },
+      { src: '/assets/img/platen-2.jpg', bijschrift: 'Zaagwerk in serie', nogTeLeveren: true },
       { src: '/assets/img/platen-3.jpg', bijschrift: 'Wandpanelen', nogTeLeveren: true }
     ]},
     constructies: { titel: 'Constructies op maat', pagina: '/producten/houten-constructies-op-maat/', fotos: [

@@ -49,7 +49,7 @@ window.FAQ_DATA = {
       antwoord: 'Ja. Voorbereiding en instelling worden dan over meer stuks verdeeld. Vraag gerust een prijs voor twee of drie verschillende aantallen, dan ziet u meteen waar het kantelt.' },
     { id: 'faq-zijn-transportkosten-inbegrepen', topic: 0, populair: false,
       vraag: 'Zijn transportkosten inbegrepen?',
-      antwoord: '<span class="ph">Levering staat als aparte lijn op uw offerte, dus u ziet altijd wat het transport kost.</span> Geef leveradres en losmethode door, dan klopt die lijn meteen. Zelf afhalen in Wingene kan ook.' },
+      antwoord: 'Nee, levering staat altijd als aparte lijn op uw offerte, dus u ziet apart wat het transport kost. Geef leveradres en losmethode door, dan klopt die lijn meteen. Zelf afhalen in Wingene kan ook.' },
     { id: 'faq-kies-ik-een-pallet-kist-of-krat', topic: 1, populair: false,
       vraag: 'Kies ik een pallet, kist of krat?',
       antwoord: 'Een pallet draagt uw product. Een krat zet er een open houten ombouw op. Een kist sluit alles af. Kwetsbaar, waardevol of op weg naar het buitenland? Dan wordt het meestal een kist.' },
@@ -106,10 +106,10 @@ window.FAQ_DATA = {
       antwoord: 'Geef uw vorige offerte- of ordernummer door, met het aantal en de gewenste datum. Wij halen de specificaties erbij. Laat het weten als product, gewicht, bestemming of losmethode ondertussen veranderd zijn.' },
     { id: 'faq-wat-is-de-standaard-levertijd', topic: 3, populair: false,
       vraag: 'Wat is de standaard levertijd?',
-      antwoord: 'Tien werkdagen. De concrete leverdatum leggen we vast bij uw bestelling. Moet het sneller? Zeg het meteen, dan bekijken we het.' },
+      antwoord: 'Doorgaans tien werkdagen, maar wij pennen ons daar niet op vast: het hangt af van uitvoering, materiaal en planning. De concrete datum leggen we vast bij uw bestelling. Moet het sneller? Zeg het meteen.' },
     { id: 'faq-kan-mijn-bestelling-sneller-klaar-zijn', topic: 3, populair: true,
       vraag: 'Kan mijn bestelling sneller klaar zijn?',
-      antwoord: 'Ja, spoed kan — in sommige gevallen leveren we de volgende dag. Het hangt af van uitvoering, materiaal en planning, dus bel ons op <a href="tel:+32499196802">0499 19 68 02</a> vóór u bestelt.' },
+      antwoord: 'Ja. Zit u in nood, dan bekijken we wat er kan — soms is dat de volgende dag. Een vaste spoedtermijn beloven we niet, want ze hangt af van wat er op dat moment op de machines ligt. Bel ons op <a href="tel:+32499196802">0499 19 68 02</a> vóór u bestelt.' },
     { id: 'faq-waar-leveren-jullie', topic: 3, populair: false,
       vraag: 'Waar leveren jullie?',
       antwoord: 'België, Nederland en Noord-Frankrijk. Daarbuiten leveren we niet zelf, maar uw goederen kunnen in onze verpakking uiteraard de hele wereld rond. Geef het exacte leveradres door voor de transportafspraak.' },
@@ -160,10 +160,10 @@ window.FAQ_DATA = {
       antwoord: 'Duid de kwetsbare delen aan op een foto of tekening, en zeg waar het product niét geraakt of ondersteund mag worden. Wij stemmen fixatie en opvulling daarop af. Vertel er ook bij hoe vaak de zending onderweg overgeladen wordt.' },
     { id: 'faq-kunnen-jullie-mijn-product-verpakken', topic: 5, populair: false,
       vraag: 'Kunnen jullie mijn product verpakken?',
-      antwoord: 'Ja. <span class="ph">U levert of stuurt uw product naar Wingene</span>, wij verpakken het in ons atelier. Geef afmetingen, gewicht en de gewenste planning door.' },
+      antwoord: 'Ja, en dat kan op twee manieren: u brengt of stuurt uw product naar Wingene en wij verpakken het in ons atelier, of wij komen met het materiaal naar u toe. Geef afmetingen, gewicht en de gewenste planning door, dan zeggen we wat het handigst is.' },
     { id: 'faq-kunnen-jullie-bij-ons-komen-verpakken', topic: 5, populair: false,
       vraag: 'Kunnen jullie bij ons komen verpakken?',
-      antwoord: 'Ja, verpakken op locatie is een van onze diensten. Stuur foto\'s, maten, gewicht, locatie en de gewenste datum door. Vermeld ook welke werkruimte en hefmiddelen er ter plaatse zijn.' },
+      antwoord: 'Ja, verpakken op locatie is een van onze diensten — net zoals u uw product naar Wingene kan brengen. Stuur foto\'s, maten, gewicht, locatie en de gewenste datum door. Vermeld ook welke werkruimte en hefmiddelen er ter plaatse zijn.' },
     { id: 'faq-kunnen-jullie-een-verpakking-mee-ontwikkelen', topic: 5, populair: false,
       vraag: 'Kunnen jullie een verpakking mee ontwikkelen?',
       antwoord: 'Ja. We vertrekken van uw product, uw transport en uw manier van werken — een bestaande verpakking die niet voldoet, is ook een prima vertrekpunt. Samen bekijken we bescherming, handling en materiaalgebruik.' },
@@ -202,6 +202,6 @@ window.FAQ_DATA = {
       antwoord: 'Door de verpakking af te stemmen op het product en op de werkelijke transportbelasting, niet op een veiligheidsmarge die niemand kent. Passende afmetingen en hergebruik doen de rest. Vertel ons daarom niet alleen de maat, maar ook hoe de verpakking gebruikt wordt.' },
     { id: 'faq-werken-jullie-met-nieuw-of-gebruikt-hout', topic: 7, populair: false,
       vraag: 'Werken jullie met nieuw of gebruikt hout?',
-      antwoord: 'Uitsluitend nieuw hout. Wij verwerken geen gebruikte of gerecupereerde pallets, en verkopen ze ook niet. Herstellen van pallets doen wij sinds 2021 niet meer.' }
+      antwoord: 'Wij bouwen uitsluitend met nieuw hout. Gerecupereerd pallethout verwerken wij niet in onze verpakking, en herstellen van pallets doen wij sinds 2021 niet meer.' }
   ]
 };
