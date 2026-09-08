@@ -13,13 +13,29 @@
 <meta property="og:title" content="Offerte aanvragen — stuur foto, PDF of tekening | 't Palletje">
 <meta property="og:description" content="Stuur uw project door met foto, PDF of tekening. Wij rekenen uit wat u nodig hebt en bezorgen een voorstel met prijs en levertijd.">
 <meta property="og:url" content="https://palletje.be/offerte/">
+<meta property="og:image" content="https://palletje.be/assets/img/hero-panorama.jpg">
+<meta property="og:image:alt" content="Werkplaats van 't Palletje in Wingene: houten pallets en kisten op maat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Offerte aanvragen — stuur foto, PDF of tekening | 't Palletje">
+<meta name="twitter:description" content="Stuur uw project door met foto, PDF of tekening. Wij rekenen uit wat u nodig hebt en bezorgen een voorstel met prijs en levertijd.">
+<meta name="twitter:image" content="https://palletje.be/assets/img/hero-panorama.jpg">
 
 <!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
 <meta name="robots" content="noindex, nofollow">
 
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260908d">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260908e">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://palletje.be/" },
+    { "@type": "ListItem", "position": 2, "name": "Offerte aanvragen" }
+  ]
+}
+</script>
 </head>
 <body data-pagina="offerte">
 
@@ -31,8 +47,9 @@
   <div class="wrap utility-inner">
     <a href="/werkwijze/">Werkwijze</a>
     <a href="/over-ons/">Over ons</a>
+    <a href="/duurzaamheid/">Duurzaamheid</a>
     <div class="dropdown">
-      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Regelgeving</button>
       <div class="dropdown-menu" id="ddMenu">
         <a href="/#ispm15">ISPM-15 en export</a>
         <a href="/ppwr/">PPWR-wetgeving</a>
@@ -56,6 +73,7 @@
       <a href="/diensten/">Diensten</a>
       <a href="/realisaties/">Realisaties</a>
       <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
+      <a class="alleen-mobiel" href="/duurzaamheid/">Duurzaamheid</a>
       <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
       <a class="alleen-mobiel" href="/ppwr/">PPWR-wetgeving</a>
       <a class="alleen-mobiel" href="/faq/">FAQ</a>
@@ -147,10 +165,10 @@
         <!-- Nog geen backend: site.js zet de velden om in een e-mail. Zie
              README, "Formulier-backend". Het action-attribuut hieronder is de
              terugval voor bezoekers zonder JavaScript. -->
-        <form id="projectformulier" method="post" action="mailto:info@palletje.be" enctype="text/plain">
+        <form id="projectformulier" data-formulier="Projectaanvraag via de website" method="post" action="mailto:info@palletje.be" enctype="text/plain">
           <div class="eyebrow b">Projectaanvraag</div>
           <h3 style="margin:8px 0 18px;font-size:1.5rem;color:var(--navy);letter-spacing:-.03em">Stuur uw project</h3>
-          <p class="hint"><span class="ph">Dit formulier is nog niet op een server aangesloten: uw aanvraag opent in uw eigen e-mailprogramma. Liever rechtstreeks? Mail <a href="mailto:info@palletje.be">info@palletje.be</a> of bel <a href="tel:+32499196802">0499 19 68 02</a>.</span></p>
+          <p class="hint" data-mailto-waarschuwing><span class="ph">Dit formulier is nog niet op een server aangesloten: uw aanvraag opent in uw eigen e-mailprogramma. Liever rechtstreeks? Mail <a href="mailto:info@palletje.be">info@palletje.be</a> of bel <a href="tel:+32499196802">0499 19 68 02</a>.</span></p>
           <div class="two">
             <div class="field"><label for="naam">Naam *</label><input id="naam" name="naam" required></div>
             <div class="field"><label for="bedrijf">Bedrijf *</label><input id="bedrijf" name="bedrijf" required></div>
@@ -174,6 +192,10 @@
             </div>
           </div>
           <div class="field"><label for="bestemming">Bestemming</label><input id="bestemming" name="bestemming"></div>
+          <div class="two">
+            <div class="field"><label for="leverdatum">Gewenste leverdatum</label><input type="date" id="leverdatum" name="leverdatum"><p class="hint">Niet verplicht. Bij benadering volstaat; wij laten weten wat haalbaar is.</p></div>
+            <div class="field"><label for="risicos">Bijzondere risico's</label><textarea id="risicos" name="risicos" rows="3" placeholder="Bijvoorbeeld: breekbaar, zware puntbelasting, buiten opgeslagen, smalle toegangsweg."></textarea></div>
+          </div>
           <div class="field"><label for="bestand">Foto, PDF of tekening</label><input type="file" id="bestand" name="bestand" multiple accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png"><p class="hint">Kies uw bestanden hier, en <b>voeg ze daarna als bijlage toe</b> aan de e-mail die opent. Zolang het formulier niet op een server staat, kan het een bestand niet zelf meesturen. pdf, dwg, dxf, jpg of png.</p></div>
           <button class="btn btn-navy" type="submit" style="width:100%">Verstuur aanvraag</button>
         </form>
@@ -262,7 +284,8 @@
           <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
           <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a><a href="/diensten/">Diensten</a>
           <a href="/werkwijze/">Werkwijze</a><a href="/realisaties/">Realisaties</a>
-          <a href="/over-ons/">Over ons</a><a href="/#ispm15">ISPM-15</a>
+          <a href="/over-ons/">Over ons</a><a href="/duurzaamheid/">Duurzaamheid</a>
+          <a href="/#ispm15">ISPM-15</a>
           <a href="/ppwr/">PPWR</a><a href="/faq/">FAQ</a>
           <a href="/contact/">Contact</a>
         </div>
@@ -287,6 +310,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/site.js?v=20260908d"></script>
+<script src="/assets/js/site.js?v=20260908e"></script>
 </body>
 </html>

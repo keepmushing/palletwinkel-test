@@ -96,9 +96,8 @@ niets.
 
 ```
 palletwinkel/
-  index.html              Homepage (NL) — het volledige v43-ontwerp
-  en/                     Engelse samenvattingspagina
-  fr/                     Franse samenvattingspagina
+  index.html              Homepage (NL)
+  en/  fr/                Engelse en Franse samenvattingspagina
   producten/              Overzicht + zeven detailpagina's
   configurator/           De configurator, in dezelfde huisstijl
     index.html            De pagina; schil uit site.css, rest uit configurator.css
@@ -106,21 +105,31 @@ palletwinkel/
     app.js                Verbindt het formulier met de engine, tekent de 3D
     three.min.js          Three.js r128, meegeleverd zodat het offline werkt
     configurator.css      Alleen wat site.css niet heeft
-  ppwr/                   PPWR-beslisroute — zie hieronder
-  werkwijze/  realisaties/  over-ons/  faq/  contact/  offerte/
+    README.md             De enige onderhouden documentatie van de configurator
+  ppwr/                   PPWR-beslisroute (eigen css + js)
+  duurzaamheid/           Restafval, materiaal, maatvoering
+  offerte/                Projectformulier voor wat niet in de configurator past
+  offerte-aanvraag/       Het mandje uit de configurator + de afrekenvelden
+  bedankt/                Bevestiging na verzenden. Blijft noindex.
+  werkwijze/  realisaties/  over-ons/  faq/  contact/  diensten/
   privacy/  voorwaarden/  cookies/
   assets/
     css/site.css          Designsysteem — alle kleuren, maten en componenten
-    js/site.js            Menu, zoeken, vraagbaak, fotoalbums, configuratorlinks
+    css/ppwr.css          Alleen de beslisroute
+    js/site.js            Menu, zoeken, fotoalbums, formulieren, FAQ-uittreksels
+    js/faq-data.js        De vijftig FAQ-antwoorden als data — zie "De offerteroute"
+    js/offerte.js         Het offertemandje (localStorage)
+    js/offerte-pagina.js  /offerte-aanvraag/ tonen en versturen
+    js/ppwr.js            De beslisroute
     img/                  logo.png + de foto's (zie ALBUMS in site.js)
     fonts/                Inter, lokaal. Zie hieronder waarom.
-  404.html                Foutpagina, in dezelfde stijl
+  404.html                Foutpagina — maar zie "De echte 404"
+  .htaccess               Doet op deze hosting niets. Zie "De echte 404".
   sitemap.xml  robots.txt  Voor zoekmachines
   controleer.ps1          Nakijker — zie "De site nakijken"
-  server.js  package.json  Enkel voor de Node-hosting — zie "Hosting"
-  serve.ps1               Preview-server
+  server.js  package.json  Draait vandaag niet. Zie "De echte 404".
+  serve.ps1               Preview-server (localhost:8080)
 ```
-
 ### De configurator
 
 `/configurator/` is een kopie van
@@ -329,6 +338,53 @@ Zit je toch nog naar een oude pagina te kijken: één harde herlaadbeurt
 aan offerte" werkte al lang, maar de opdrachtgever kreeg de oude paginaopbouw
 te zien en dacht dat er niets was veranderd.
 
+
+
+## De echte 404, en welke laag eigenlijk antwoordt
+
+Op 8 september 2026 gemeten op palletwinkel.com:
+
+```
+Server: hcdn
+X-Powered-By: Hostinger Horizons
+
+/404.html                 -> 200   (de foutpagina zelf, correct opgemaakt)
+/bestaat-niet-xyz         -> 200   met de HOMEPAGE
+/producten/bestaat-niet/  -> 200   met de HOMEPAGE
+/assets/img/weg.jpg       -> 422   text/plain, geen ETag
+```
+
+Dat betekent iets belangrijkers dan alleen een verkeerde statuscode:
+**`server.js` draait niet.** Zou hij draaien, dan gaf `/bestaat-niet-xyz` de
+inhoud van `404.html` met status 404 — dat staat er letterlijk in. In plaats
+daarvan doet de statische laag van Hostinger Horizons een SPA-terugval naar
+`index.html`. De 422 op een ontbrekende afbeelding hoort bij diezelfde laag;
+een Node-server geeft daar 404.
+
+Gevolgen om te onthouden:
+
+- `server.js`, `package.json` en het `build`-script zijn vandaag **niet in
+  gebruik**. Ze zijn correct en blijven staan, want ze zijn precies wat er nodig
+  is zodra de app naar het Node-type gaat. Maar reken er niet op dat een
+  wijziging daar iets doet aan de live site.
+- De `Cache-Control: no-cache` die `server.js` op HTML zet, komt dus ook niet
+  aan. Wat de bezoeker krijgt, is wat de Horizons-laag stuurt:
+  `public, s-maxage=604800, max-age=0`.
+- `.htaccess` in deze map doet hier evenmin iets. Het staat klaar voor het geval
+  de site naar gewone Apache/LiteSpeed-hosting verhuist.
+
+**Dit is niet vanuit de repo op te lossen.** Het is een keuze in het
+hostingpaneel, en die hoort bij Bert:
+
+1. In hPanel de app openen en het type wijzigen van *Horizons* naar een gewone
+   **Node.js-webapp** (startbestand `server.js`, `npm start`). Dan gelden meteen
+   de 404, de statuscodes en de cache-instellingen uit dit project.
+2. Of, als de site statisch mag blijven: bij het statische hostingtype de
+   SPA-terugval uitzetten en `404.html` als foutpagina instellen.
+
+Zolang geen van beide gebeurd is, blijft elke dode link en elke typfout
+onzichtbaar — ook voor Google, dat elke onbekende URL als een geldige pagina met
+de homepage-inhoud te zien krijgt.
 
 ## De offerteroute
 

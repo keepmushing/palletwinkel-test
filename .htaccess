@@ -1,0 +1,48 @@
+# =============================================================================
+#  't Palletje — Apache/LiteSpeed-instellingen
+#
+#  LET OP: op de hosting van vandaag doet dit bestand NIETS. Gemeten op
+#  palletwinkel.com op 8 september 2026:
+#
+#      Server: hcdn
+#      X-Powered-By: Hostinger Horizons
+#      /bestaat-niet-xyz      -> 200 met de homepage   (SPA-terugval)
+#      /producten/bestaat-niet/ -> 200 met de homepage
+#      /assets/img/weg.jpg    -> 422, text/plain, geen ETag
+#      /404.html              -> 200
+#
+#  Dat is de statische laag van Hostinger Horizons, niet Apache en niet onze
+#  eigen server.js. Die laag stuurt elke onbekende route naar index.html met
+#  status 200. Vanuit deze map is dat niet recht te zetten: het is een
+#  instelling van het hostingtype. Zie README, "De echte 404".
+#
+#  Dit bestand staat er wel al klaar voor het geval de site naar gewone
+#  Apache- of LiteSpeed-hosting verhuist — dat is Hostingers andere product,
+#  en dan werkt het meteen.
+# =============================================================================
+
+# --- een onbekende URL geeft de foutpagina, met statuscode 404 ---
+ErrorDocument 404 /404.html
+
+# --- geen mappenlijst tonen ---
+Options -Indexes
+
+# --- caching: de pagina zelf mag nooit blijven hangen, bestanden met ?v= wel ---
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|xml|txt|json)$">
+    Header set Cache-Control "no-cache"
+  </FilesMatch>
+  <FilesMatch "\.(css|js|webp|jpg|jpeg|png|gif|svg|woff2?|ico|pdf)$">
+    Header set Cache-Control "public, max-age=604800"
+  </FilesMatch>
+  Header set X-Content-Type-Options "nosniff"
+</IfModule>
+
+# --- /contact serveert /contact/index.html, net als in server.js ---
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME}/index.html -f
+  RewriteRule ^(.*)$ /$1/index.html [L]
+</IfModule>

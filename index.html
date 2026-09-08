@@ -31,6 +31,10 @@
 <meta property="og:description" content="Pallets, kisten, glasbokken, opzetranden en houten constructies op maat voor industrie, logistiek en export.">
 <meta property="og:url" content="https://palletje.be/">
 <meta property="og:image" content="https://palletje.be/assets/img/logo.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Houten transportoplossingen op maat | 't Palletje">
+<meta name="twitter:description" content="Pallets, kisten, glasbokken, opzetranden en houten constructies op maat voor industrie, logistiek en export.">
+<meta name="twitter:image" content="https://palletje.be/assets/img/hero-panorama.jpg">
 
 <!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
 <meta name="robots" content="noindex, nofollow">
@@ -38,7 +42,7 @@
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="apple-touch-icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260908d">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260908e">
 
 <script type="application/ld+json">
 {
@@ -61,6 +65,26 @@
   "openingHours": "Mo-Fr 08:00-17:00"
 }
 </script>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "'t Palletje",
+  "url": "https://palletje.be/",
+  "logo": "https://palletje.be/assets/img/logo.png",
+  "telephone": "+32499196802",
+  "email": "info@palletje.be",
+  "vatID": "BE0863163507",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Morellestraat 1",
+    "postalCode": "8750",
+    "addressLocality": "Wingene",
+    "addressCountry": "BE"
+  }
+}
+</script>
 </head>
 <body data-pagina="home">
 
@@ -71,8 +95,9 @@
   <div class="wrap utility-inner">
     <a href="/werkwijze/">Werkwijze</a>
     <a href="/over-ons/">Over ons</a>
+    <a href="/duurzaamheid/">Duurzaamheid</a>
     <div class="dropdown">
-      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Regelgeving</button>
       <div class="dropdown-menu" id="ddMenu">
         <a href="/#ispm15">ISPM-15 en export</a>
         <a href="/ppwr/">PPWR-wetgeving</a>
@@ -96,6 +121,7 @@
       <a href="/diensten/">Diensten</a>
       <a href="/realisaties/">Realisaties</a>
       <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
+      <a class="alleen-mobiel" href="/duurzaamheid/">Duurzaamheid</a>
       <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
       <a class="alleen-mobiel" href="/ppwr/">PPWR-wetgeving</a>
       <a class="alleen-mobiel" href="/faq/">FAQ</a>
@@ -132,7 +158,8 @@
     <div class="wrap hero-inner">
       <div class="eyebrow">Houten transportoplossingen op maat</div>
       <h1>Moeilijk te vervoeren?<br>Wij bouwen uw oplossing.</h1>
-      <p>Configureer uw pallet of kist en ontvang prijs.<br>Iets complexer? Foto, schets of tekening volstaat.</p>
+      <!-- TODO: terugzetten naar "en ontvang prijs" zodra de automatische prijs live staat. -->
+      <p>Configureer uw pallet of kist, wij rekenen het voor u uit.<br>Iets complexer? Foto, schets of tekening volstaat.</p>
       <div class="hero-actions">
         <a class="btn btn-primary cfg" href="/configurator/">Start configurator</a>
         <a class="btn btn-secondary" href="/offerte/">Stuur uw project</a>
@@ -261,6 +288,42 @@
     </div>
   </section>
 
+  <section class="op-zacht" id="cijfers">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">In cijfers</div>
+        <h2>Wat we tot nu toe gebouwd hebben.</h2>
+      </div>
+      <div class="cijfers">
+
+        <div class="cijfer">
+          <span class="getal spec">1.250+</span>
+          <span class="wat">verschillende uitvoeringen gebouwd</span>
+          <span class="onder">Gebouwd rond wat onze klanten moeten vervoeren.</span>
+        </div>
+
+        <div class="cijfer">
+          <span class="getal spec"><span class="ph">160+</span></span>
+          <span class="wat">bedrijven geholpen sinds 2024</span>
+          <span class="onder">Nog te controleren: zitten er dubbels of niet-bedrijfsposten in deze telling?</span>
+        </div>
+
+        <div class="cijfer">
+          <span class="getal spec"><span class="ph">40 cm &ndash; 5 m+</span></span>
+          <span class="wat">gebouwd op maat</span>
+          <span class="onder">Nog te valideren: klopt dit maatbereik van de kleinste tot de grootste uitvoering?</span>
+        </div>
+
+        <div class="cijfer">
+          <span class="getal spec">Vanaf 1 dag</span>
+          <span class="wat">wanneer het echt dringend is</span>
+          <span class="onder">Soms kan het de volgende dag al. Dat hangt af van uitvoering, materiaal en planning, en spreken we vooraf af.</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
   <section class="services" id="diensten">
     <div class="wrap">
       <div class="section-head">
@@ -332,7 +395,7 @@
           </a>
         </div>
       </div>
-      <div class="export-beeld"><img src="/assets/img/ispm15-1.jpg?v=20260908d" alt="Houten exportkist met onze eigen ISPM-15-markering, klaar voor verzending" width="1200" height="800" loading="lazy"></div>
+      <div class="export-beeld"><img src="/assets/img/ispm15-1.jpg?v=20260908e" alt="Houten exportkist met onze eigen ISPM-15-markering, klaar voor verzending" width="1200" height="800" loading="lazy"></div>
     </div>
   </section>
 
@@ -383,15 +446,29 @@
     </div>
   </section>
 
+  <section class="op-zacht" id="service">
+    <div class="wrap">
+      <div class="intro">
+        <div class="eyebrow b">Als er iets misloopt</div>
+        <h2>Eerst oplossen. Dan uitzoeken.</h2>
+        <p>Ook bij &rsquo;t Palletje kan er iets verkeerd lopen. Dan beginnen we niet met de schuldvraag, maar met wat u nodig hebt om verder te kunnen.</p>
+      </div>
+      <p class="lead">Geen paniek. Even bellen. Wij maken het in orde.</p>
+      <div class="btn-row">
+        <a class="btn btn-line" href="/werkwijze/">Lees het volledige verhaal</a>
+      </div>
+    </div>
+  </section>
+
   <section id="realisaties">
     <div class="wrap case">
       <div>
         <div class="eyebrow b">Bewijs uit de praktijk</div>
-        <h2>Precisie voor restauratieglas.</h2>
+        <h2>Glasbakken voor restauratieglas.</h2>
         <p>Voor restaurateurs van kerkramen maken we multiplex glasbakjes op klanttekening, zodat authentiek glas en lood veilig kunnen worden vervoerd en behandeld.</p>
         <a class="btn btn-navy" href="/offerte/" style="margin-top:18px">Bespreek uw project</a>
       </div>
-      <div class="case-visual"><span>Foto — multiplex glasbakjes op klanttekening</span></div>
+      <div class="case-visual"><img src="/assets/img/glasbok-2.webp?v=20260908e" alt="Multiplex glasbakjes op klanttekening, gestapeld en klaar voor verzending" loading="lazy" decoding="async"><span>Multiplex glasbakjes op klanttekening, gestapeld en klaar voor verzending</span></div>
     </div>
   </section>
 
@@ -495,7 +572,8 @@
           <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
           <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a><a href="/diensten/">Diensten</a>
           <a href="/werkwijze/">Werkwijze</a><a href="/realisaties/">Realisaties</a>
-          <a href="/over-ons/">Over ons</a><a href="/#ispm15">ISPM-15</a>
+          <a href="/over-ons/">Over ons</a><a href="/duurzaamheid/">Duurzaamheid</a>
+          <a href="/#ispm15">ISPM-15</a>
           <a href="/ppwr/">PPWR</a><a href="/faq/">FAQ</a>
           <a href="/contact/">Contact</a>
         </div>
@@ -532,6 +610,6 @@
   </div>
 </dialog>
 
-<script src="/assets/js/site.js?v=20260908d"></script>
+<script src="/assets/js/site.js?v=20260908e"></script>
 </body>
 </html>

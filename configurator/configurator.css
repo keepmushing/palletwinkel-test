@@ -136,3 +136,36 @@ pre{margin:0;padding:12px;background:#f6fafc;border:1px solid var(--line);border
   .summary{font-size:.86rem}
   .summary dt{white-space:normal}
 }
+
+/* --- Bestelling: velden over de volle breedte -------------------------------
+   .vol, .knop en .ok werden wel in de HTML gebruikt maar stonden nergens in de
+   CSS. Gevolg: het label van "Opmerkingen" en "Bijlage" plakte tegen het veld
+   en het tekstvak bleef op zijn browserstandaard staan. controleer.ps1 vindt
+   zulke klassen nu automatisch. */
+.vol{display:block;margin-top:14px}
+.vol > textarea,
+.vol > input[type=file]{display:block;width:100%;margin-top:6px}
+.vol > textarea{min-height:76px;resize:vertical;padding:10px 12px;border:1px solid var(--line);
+  border-radius:var(--r-sm);font:inherit;font-size:.9rem;background:#fff;color:var(--ink)}
+.vol > textarea:focus{outline:2px solid var(--blue);outline-offset:-2px}
+.vol > input[type=file]{font-size:.85rem;color:var(--muted)}
+
+/* Een link die eruitziet als knop, naast de echte knop in .actions. */
+.knop{display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+
+/* Bevestiging na "Toevoegen aan offerte". */
+.note.ok{color:var(--blue);font-weight:700}
+
+/* --- uitleg onder een aanvinkvakje ------------------------------------------
+   "Droog hout" en "Schimmelvrij hout" stonden er zonder één woord uitleg,
+   terwijl het verschil (ht tegenover ht/kd) bepaalt of de latten nog krimpen.
+   De <small> hangt onder het label, uitgelijnd met de tekst en niet met het
+   vakje. */
+.checks label:has(> small){align-items:flex-start;flex-wrap:wrap}
+/* In de tweekolomsopmaak is een kolom te smal voor een zin uitleg: zo'n label
+   krijgt daarom de volle breedte. */
+.checks.kolommen label:has(> small){grid-column:1 / -1}
+.checks label > small{flex:0 0 100%;display:block;margin:3px 0 0 24px;font-size:.78rem;font-weight:400;
+  line-height:1.45;color:var(--muted)}
+.checks label > small b{color:var(--navy);font-weight:700}
+.checks label > small a{color:var(--blue)}

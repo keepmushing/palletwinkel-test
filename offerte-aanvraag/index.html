@@ -13,6 +13,12 @@
 <meta property="og:title" content="Uw offerte-aanvraag | 't Palletje">
 <meta property="og:description" content="Controleer uw configuraties, vul uw gegevens aan en stuur de offerte-aanvraag door.">
 <meta property="og:url" content="https://palletje.be/offerte-aanvraag/">
+<meta property="og:image" content="https://palletje.be/assets/img/hero-panorama.jpg">
+<meta property="og:image:alt" content="Werkplaats van 't Palletje in Wingene: houten pallets en kisten op maat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Uw offerte-aanvraag | 't Palletje">
+<meta name="twitter:description" content="Controleer uw configuraties, vul uw gegevens aan en stuur de offerte-aanvraag door.">
+<meta name="twitter:image" content="https://palletje.be/assets/img/hero-panorama.jpg">
 
 <!-- BLIJFT STAAN, ook na livegang. Dit is het persoonlijke mandje van de
      bezoeker: zonder zijn eigen localStorage is de pagina leeg, en in Google
@@ -21,7 +27,18 @@
 
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260908d">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260908e">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://palletje.be/" },
+    { "@type": "ListItem", "position": 2, "name": "Offerte aanvragen", "item": "https://palletje.be/offerte/" },
+    { "@type": "ListItem", "position": 3, "name": "Uw offerte-aanvraag" }
+  ]
+}
+</script>
 </head>
 <body data-pagina="offerte-aanvraag">
 
@@ -33,8 +50,9 @@
   <div class="wrap utility-inner">
     <a href="/werkwijze/">Werkwijze</a>
     <a href="/over-ons/">Over ons</a>
+    <a href="/duurzaamheid/">Duurzaamheid</a>
     <div class="dropdown">
-      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Duurzaamheid</button>
+      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Regelgeving</button>
       <div class="dropdown-menu" id="ddMenu">
         <a href="/#ispm15">ISPM-15 en export</a>
         <a href="/ppwr/">PPWR-wetgeving</a>
@@ -58,6 +76,7 @@
       <a href="/diensten/">Diensten</a>
       <a href="/realisaties/">Realisaties</a>
       <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
+      <a class="alleen-mobiel" href="/duurzaamheid/">Duurzaamheid</a>
       <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
       <a class="alleen-mobiel" href="/ppwr/">PPWR-wetgeving</a>
       <a class="alleen-mobiel" href="/faq/">FAQ</a>
@@ -285,7 +304,8 @@
           <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
           <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a><a href="/diensten/">Diensten</a>
           <a href="/werkwijze/">Werkwijze</a><a href="/realisaties/">Realisaties</a>
-          <a href="/over-ons/">Over ons</a><a href="/#ispm15">ISPM-15</a>
+          <a href="/over-ons/">Over ons</a><a href="/duurzaamheid/">Duurzaamheid</a>
+          <a href="/#ispm15">ISPM-15</a>
           <a href="/ppwr/">PPWR</a><a href="/faq/">FAQ</a>
           <a href="/contact/">Contact</a>
         </div>
@@ -310,8 +330,8 @@
   </div>
 </footer>
 
-<script src="/assets/js/offerte.js?v=20260908d"></script>
-<script src="/assets/js/site.js?v=20260908d"></script>
-<script src="/assets/js/offerte-pagina.js?v=20260908d"></script>
+<script src="/assets/js/offerte.js?v=20260908e"></script>
+<script src="/assets/js/site.js?v=20260908e"></script>
+<script src="/assets/js/offerte-pagina.js?v=20260908e"></script>
 </body>
 </html>
