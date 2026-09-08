@@ -12,15 +12,34 @@
   const $$ = (s, r = document) => Array.from(r.querySelectorAll(s));
 
   /* ====== 0. VERSIESTEMPEL VOOR BEELDEN ======
-     Hostinger stuurt bij elk bestand `Cache-Control: max-age=604800` mee: zeven
-     dagen in de browser van de bezoeker. Vervang je een foto zonder de naam te
-     wijzigen, dan blijft de oude een week hangen — dat is hier al twee keer
-     gebeurd. Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld
-     vervangen wordt. */
-  const ASSET_V = "20260908d";
+     Bestanden krijgen van de hosting `Cache-Control: max-age=604800` mee: zeven
+     dagen. Vervang je een foto zonder de naam te wijzigen, dan blijft de oude
+     hangen — dat is hier al twee keer gebeurd. Verhoog deze waarde samen met
+     de ?v= in de HTML zodra een beeld vervangen wordt. */
+  const ASSET_V = "20260908e";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
+
+  /* ====== 0b. WAAR DE FORMULIEREN NAARTOE GAAN ======
+     Vul hier het adres van de formulierdienst in (Web3Forms, Formspree,
+     Basin — om het even welke die een gewone POST met FormData aanvaardt).
+     Bijvoorbeeld: "https://api.web3forms.com/submit".
+
+     Leeg  → de formulieren blijven werken zoals nu: de velden worden omgezet
+             in een e-mail die opent in het programma van de bezoeker, met de
+             gele waarschuwing erbij dat bijlagen niet vanzelf meegaan.
+     Ingevuld → gewone POST met FormData, bijlage inbegrepen, en daarna door
+             naar /bedankt/. De gele waarschuwing verdwijnt vanzelf.
+
+     Meer staat er niet te gebeuren: dit is de enige regel die moet wijzigen.
+     Vergeet dan wel de ?v=-stempel te verhogen, anders blijft de oude versie
+     van dit bestand in de cache hangen. */
+  const FORM_ENDPOINT = "";
+
+  /* Sommige diensten willen een sleutel als verborgen veld. Laat leeg als
+     die van u dat niet vraagt. */
+  const FORM_SLEUTEL  = { naam: "access_key", waarde: "" };
 
   /* ====== 1. CONFIGURATOR — pas deze twee regels aan en alle knoppen kloppen ====== */
   const CONFIGURATOR_URL = "/configurator/";
@@ -103,6 +122,7 @@
     { soort: 'Pagina',  titel: 'Configurator', tekst: 'Stel zelf uw pallet, kist, krat, houten vloer of wand samen. Met 3D-weergave en een bestand voor de zagerij.', url: '/configurator/' },
     { soort: 'Pagina',  titel: 'Werkwijze', tekst: 'Van vraag naar veilige oplossing: u bezorgt de info, wij bezorgen een voorstel, produceren en leveren.', url: '/werkwijze/' },
     { soort: 'Pagina',  titel: 'Realisaties', tekst: 'Bewijs uit de praktijk. Glasbakjes voor restauratieglas, exportkisten, skids en maatwerkconstructies.', url: '/realisaties/' },
+    { soort: 'Pagina',  titel: 'Duurzaamheid', tekst: 'Wat er van een maand produceren aan restafval overblijft, waar het hout vandaan komt, en waarom maatwerk minder materiaal gebruikt dan een te grote standaardmaat.', url: '/duurzaamheid/' },
     { soort: 'Pagina',  titel: 'Over ons', tekst: 'Houten transportoplossingen op maat uit Wingene. Technisch genoeg om mee te denken, praktisch genoeg om vooruit te gaan.', url: '/over-ons/' },
     { soort: 'Pagina',  titel: 'Veelgestelde vragen', tekst: 'Prijs en offerte, kiezen en afmetingen, bestellen, levering, laden en lossen, verpakken, export en hergebruik.', url: '/faq/' },
     { soort: 'Pagina',  titel: 'Contact', tekst: 'Morellestraat 1, 8750 Wingene. Bel 0499 19 68 02 of mail info@palletje.be.', url: '/contact/' },
@@ -391,7 +411,7 @@
       const s = document.createElement('div');
       s.className = 'slide' + (n === 0 ? ' on' : '');
       const img = new Image();
-      img.src = metStempel(f.src); img.alt = f.bijschrift; img.loading = n === 0 ? 'eager' : 'lazy';
+      img.src = metStempel(f.src); img.alt = f.bijschrift; img.loading = 'lazy'; img.decoding = 'async';
       img.onerror = () => img.remove();          // geen bestand? dan blijft het blauwe vlak staan
       s.append(img);
       const bs = document.createElement('span');
@@ -477,21 +497,42 @@
   /* ====== 7. jaartal in de voettekst ====== */
   $$('[data-year], [data-jaar]').forEach(el => { el.textContent = new Date().getFullYear(); });
 
-  /* ====== 8. projectformulier ==================================================
-     Er is nog geen server die inzendingen opvangt (README, "Formulier-backend").
+  /* ====== 8. de formulieren ====================================================
+     Twee formulieren gedragen zich hetzelfde: het projectformulier op /offerte/
+     en het contactformulier op /contact/. Beide dragen data-formulier met een
+     onderwerp erin.
+
+     Werkt met FORM_ENDPOINT bovenaan dit bestand:
+       leeg     → mailto, zoals vandaag, met de gele waarschuwing erbij
+       ingevuld → POST met FormData (bijlage gaat mee) en door naar /bedankt/
+
      Zonder deze afhandeling levert de knop niets op: de hosting stuurt een POST
-     gewoon dezelfde pagina terug, met status 200. De bezoeker denkt dan dat zijn
+     gewoon dezelfde pagina terug met status 200, en de bezoeker denkt dat zijn
      aanvraag verstuurd is terwijl er niets gebeurd is.
-
-     Zolang de backend er niet is, zetten we de ingevulde velden om in een
-     e-mail die in het mailprogramma van de bezoeker opengaat. Niet elegant,
-     wel eerlijk: hij ziet wat er verstuurd wordt en aan wie.
-
-     Komt er een echte backend? Verwijder dan dit hele blok en zet het juiste
-     adres in het action-attribuut van het formulier.
      ========================================================================== */
   const ONTVANGER = 'info@palletje.be';
-  $$('form#projectformulier').forEach(formulier => {
+
+  function velden(formulier) {
+    const regels = [];
+    $$('input, select, textarea', formulier).forEach(veld => {
+      if (!veld.name || veld.type === 'file') return;
+      if ((veld.type === 'checkbox' || veld.type === 'radio') && !veld.checked) return;
+      const label = formulier.querySelector('label[for="' + veld.id + '"]');
+      const naam = label ? label.textContent.replace('*', '').trim() : veld.name;
+      const waarde = (veld.value || '').trim();
+      if (waarde) regels.push(naam + ': ' + waarde);
+    });
+    return regels;
+  }
+
+  $$('form[data-formulier]').forEach(formulier => {
+    const onderwerp = formulier.dataset.formulier || 'Aanvraag via de website';
+    const bestand = $('input[type=file]', formulier);
+
+    /* De waarschuwing over bijlagen geldt alleen zolang er geen endpoint is.
+       Staat die er wel, dan gaat de bijlage gewoon mee en is de tekst onjuist. */
+    if (FORM_ENDPOINT) $$('[data-mailto-waarschuwing]', formulier).forEach(el => el.remove());
+
     const melding = document.createElement('p');
     melding.className = 'hint';
     melding.setAttribute('role', 'status');
@@ -502,30 +543,63 @@
       ev.preventDefault();
       if (!formulier.reportValidity()) return;
 
-      const regels = [];
-      $$('input, select, textarea', formulier).forEach(veld => {
-        if (!veld.name || veld.type === 'file') return;
-        const label = formulier.querySelector('label[for="' + veld.id + '"]');
-        const naam = label ? label.textContent.replace('*', '').trim() : veld.name;
-        const waarde = (veld.value || '').trim();
-        if (waarde) regels.push(naam + ': ' + waarde);
-      });
+      if (!FORM_ENDPOINT) {
+        const regels = velden(formulier);
+        if (bestand && bestand.files && bestand.files.length) {
+          regels.push('', 'Bijlagen (voeg ze toe in uw e-mail): ' +
+            Array.from(bestand.files).map(f => f.name).join(', '));
+        }
+        location.href = 'mailto:' + ONTVANGER +
+          '?subject=' + encodeURIComponent(onderwerp) +
+          '&body=' + encodeURIComponent(regels.join('\n') + '\n\n— verstuurd via palletje.be');
 
-      const bestand = $('input[type=file]', formulier);
-      if (bestand && bestand.files && bestand.files.length) {
-        regels.push('', 'Bijlagen (voeg ze toe in uw e-mail): ' +
-          Array.from(bestand.files).map(f => f.name).join(', '));
+        melding.textContent = 'Uw aanvraag staat klaar in uw e-mailprogramma. ' +
+          (bestand && bestand.files && bestand.files.length
+            ? 'Voeg daar uw bestand nog toe en verstuur de mail. '
+            : 'Verstuur de mail om ze bij ons te krijgen. ') +
+          'Gaat er niets open? Mail dan rechtstreeks naar ' + ONTVANGER + ' of bel 0499 19 68 02.';
+        return;
       }
 
-      const onderwerp = 'Projectaanvraag via de website';
-      const body = regels.join('\n') + '\n\n— verstuurd via palletje.be';
-      location.href = 'mailto:' + ONTVANGER +
-        '?subject=' + encodeURIComponent(onderwerp) +
-        '&body=' + encodeURIComponent(body);
+      const knop = $('button[type=submit]', formulier);
+      if (knop) { knop.disabled = true; knop.dataset.tekst = knop.textContent; knop.textContent = 'Bezig met versturen…'; }
+      melding.textContent = '';
 
-      melding.textContent = 'Uw aanvraag staat klaar in uw e-mailprogramma. ' +
-        (bestand && bestand.files && bestand.files.length ? 'Voeg daar uw bestand nog toe en verstuur de mail. ' : 'Verstuur de mail om ze bij ons te krijgen. ') +
-        'Gaat er niets open? Mail dan rechtstreeks naar ' + ONTVANGER + ' of bel 0499 19 68 02.';
+      const data = new FormData(formulier);
+      data.append('_onderwerp', onderwerp);
+      if (FORM_SLEUTEL.waarde) data.append(FORM_SLEUTEL.naam, FORM_SLEUTEL.waarde);
+
+      fetch(FORM_ENDPOINT, { method: 'POST', body: data, headers: { Accept: 'application/json' } })
+        .then(r => { if (!r.ok) throw new Error('status ' + r.status); return r; })
+        .then(() => { location.href = '/bedankt/'; })
+        .catch(() => {
+          if (knop) { knop.disabled = false; knop.textContent = knop.dataset.tekst; }
+          melding.textContent = 'Het versturen is niet gelukt. Probeer het opnieuw, ' +
+            'of mail rechtstreeks naar ' + ONTVANGER + ' of bel 0499 19 68 02.';
+        });
     });
+  });
+
+  /* ====== 9. FAQ-uittreksel op een productpagina ===============================
+     <div class="faq faq-uittreksel" data-faq="id,id,id"></div> wordt hier
+     gevuld uit assets/js/faq-data.js — hetzelfde uitklapcomponent als op /faq/,
+     maar zonder de tekst een tweede keer in de HTML te zetten. Staat het
+     databestand er niet, dan blijft het blok gewoon leeg.
+     ========================================================================== */
+  $$('[data-faq]').forEach(vak => {
+    const data = window.FAQ_DATA;
+    if (!data) return;
+    const gevraagd = vak.dataset.faq.split(',').map(s => s.trim()).filter(Boolean);
+    const stukken = gevraagd.map(id => data.vragen.find(v => v.id === id)).filter(Boolean);
+
+    const ontbreekt = gevraagd.filter(id => !data.vragen.some(v => v.id === id));
+    if (ontbreekt.length) console.warn('FAQ-uittreksel: onbekende id(s)', ontbreekt);
+
+    vak.innerHTML = stukken.map(v =>
+      '<details id="' + v.id + '" data-topic="' + v.topic + '">' +
+        '<summary>' + v.vraag + '</summary>' +
+        '<div class="faq-answer"><div class="faq-copy">' + v.antwoord + '</div>' +
+        '<div class="faq-share"><a href="/faq/#' + v.id + '" class="faq-permalink">Lees dit antwoord op de FAQ</a></div>' +
+      '</div></details>').join('');
   });
 })();

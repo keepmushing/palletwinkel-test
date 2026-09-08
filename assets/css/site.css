@@ -898,3 +898,79 @@ footer .brand .woordmerk{color:#fff}
   .offerteregel{grid-template-columns:1fr}
   .offerteregel-beeld{max-width:200px}
 }
+
+/* --- nog te bevestigen: heel blok -------------------------------------------
+   .ph markeert één woord of zin. Voor een heel blok dat nog bevestigd moet
+   worden was er nog niets, terwijl de bouwopdracht daar wel op rekent. Zelfde
+   bruinfamilie als .ph, maar als kader met een strookje erboven dat zegt wát er
+   bevestigd moet worden (data-ph="…"). */
+.ph-block{position:relative;border:1px dashed var(--wood);background:#fdf9f2;
+  border-radius:var(--r-md);padding:44px 22px 22px;margin:22px 0}
+.ph-block::before{content:attr(data-ph);position:absolute;top:0;left:0;right:0;
+  background:#f6e7cf;color:#8a6224;font-size:.72rem;font-weight:700;letter-spacing:.04em;
+  padding:7px 14px;border-radius:var(--r-md) var(--r-md) 0 0}
+.ph-block > :first-child{margin-top:0}
+.ph-block > :last-child{margin-bottom:0}
+
+/* --- FAQ-uittreksel op een productpagina ---
+   Zelfde uitklapcomponent als op /faq/, gevuld uit faq-data.js. */
+.faq-uittreksel{margin-top:26px}
+.faq-onder{margin-top:18px;font-size:.9rem}
+
+/* --- tijdlijn (Over ons) --- */
+.tijdlijn{list-style:none;margin:32px 0 0;padding:0;position:relative}
+.tijdlijn::before{content:"";position:absolute;left:7px;top:10px;bottom:10px;width:1px;background:var(--line)}
+.tijdlijn li{position:relative;padding:0 0 26px 34px}
+.tijdlijn li:last-child{padding-bottom:0}
+.tijdlijn li::before{content:"";position:absolute;left:0;top:7px;width:15px;height:15px;border-radius:50%;
+  background:#fff;border:2px solid var(--blue)}
+.tijdlijn .jaar{display:block;font-weight:800;color:var(--navy);font-size:1.15rem;letter-spacing:-.02em}
+.tijdlijn p{margin:4px 0 0;color:var(--muted)}
+
+/* --- bewijscijfers op de homepage --- */
+.cijfers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:38px}
+.cijfer{border:1px solid var(--line);border-radius:var(--r-md);background:#fff;padding:22px}
+.cijfer .getal{display:block;font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;color:var(--navy);
+  letter-spacing:-.04em;line-height:1}
+.cijfer .wat{display:block;margin-top:8px;font-weight:700;color:var(--ink);font-size:.95rem}
+.cijfer .onder{display:block;margin-top:6px;color:var(--muted);font-size:.86rem;line-height:1.45}
+@media(max-width:900px){.cijfers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){.cijfers{grid-template-columns:1fr}}
+
+/* --- keuzeladder (beschermingsniveaus) --- */
+.trappen{list-style:none;counter-reset:trap;margin:26px 0 0;padding:0;display:grid;gap:14px}
+.trappen li{counter-increment:trap;position:relative;border:1px solid var(--line);border-radius:var(--r-md);
+  background:#fff;padding:18px 20px 18px 62px}
+.trappen li::before{content:counter(trap);position:absolute;left:20px;top:18px;width:26px;height:26px;
+  border-radius:50%;background:var(--sky);color:var(--navy);font-weight:800;font-size:.85rem;
+  display:flex;align-items:center;justify-content:center}
+.trappen b{display:block;color:var(--navy);font-size:1rem}
+.trappen p{margin:5px 0 0;color:var(--muted);font-size:.92rem;line-height:1.5}
+
+/* --- sectorvraag als H2 op een productpagina --- */
+.sectorvraag{border-top:1px solid var(--line);padding-top:24px;margin-top:30px}
+.sectorvraag h2{font-size:clamp(1.25rem,2.2vw,1.6rem);color:var(--navy);letter-spacing:-.03em;margin:0 0 10px}
+.sectorvraag p{margin:0 0 10px;color:var(--muted)}
+.sectorvraag p:last-child{margin-bottom:0}
+
+/* --- maten- en sectietabel --- */
+.maattabel{width:100%;border-collapse:collapse;margin:16px 0 0;font-size:.9rem}
+.maattabel th,.maattabel td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--line)}
+.maattabel th{background:var(--sky);color:var(--navy);font-size:.78rem;letter-spacing:.05em;
+  text-transform:uppercase;font-weight:700}
+.maattabel td:first-child{white-space:nowrap}
+.tabelwrap{overflow-x:auto}
+
+/* --- 2-weg / 4-weg schema --- */
+.schema{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:22px}
+.schema figure{margin:0;border:1px solid var(--line);border-radius:var(--r-md);background:#fff;padding:18px}
+.schema svg{width:100%;height:auto;display:block}
+.schema figcaption{margin-top:12px;font-size:.88rem;color:var(--muted);line-height:1.5}
+.schema figcaption b{color:var(--navy)}
+@media(max-width:640px){.schema{grid-template-columns:1fr}}
+
+/* --- foto in een case-visual ---
+   .case-visual toonde tot nu toe alleen het blauwe verloop met een bijschrift.
+   Zodra er een echte foto in staat, moet die het verloop afdekken. */
+.case-visual img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block}
+.feature-visual img{width:100%;height:100%;object-fit:cover;display:block}

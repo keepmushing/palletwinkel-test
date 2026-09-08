@@ -135,6 +135,50 @@ foreach ($p in $paginas) {
     foreach ($c in $onbekend) { Meld $rel "klasse" "onbekende klasse: $c" }
 }
 
+
+# --- 10. loopt faq-data.js gelijk met faq/index.html? -------------------------
+#  De vijftig antwoorden staan op twee plaatsen: uitgeschreven in faq/index.html
+#  (dat is de pagina die Google moet indexeren) en als data in faq-data.js (dat
+#  voedt de uittreksels op de productpagina's). Wijkt er één af, dan leest een
+#  bezoeker op de productpagina iets anders dan op de FAQ. Vandaar deze controle.
+$faqPagina = Join-Path $Root "faq\index.html"
+$faqData   = Join-Path $Root "assets\js\faq-data.js"
+if ((Test-Path $faqPagina) -and (Test-Path $faqData)) {
+    $hp = Get-Content $faqPagina -Raw
+    $hd = Get-Content $faqData -Raw
+
+    $inPagina = @{}
+    foreach ($m in [regex]::Matches($hp, '<details id="(?<id>[^"]+)"[^>]*><summary>(?<q>.*?)</summary><div class="faq-answer"><div class="faq-copy">(?<a>.*?)</div><div class="faq-share">')) {
+        $inPagina[$m.Groups['id'].Value] = @{ q = $m.Groups['q'].Value; a = $m.Groups['a'].Value }
+    }
+    $inData = @{}
+    foreach ($m in [regex]::Matches($hd, "\{ id: '(?<id>[^']+)', topic: \d+, populair: (?:true|false),\s*\r?\n\s*vraag: '(?<q>.*?)',\s*\r?\n\s*antwoord: '(?<a>.*?)' \}")) {
+        $inData[$m.Groups['id'].Value] = @{ q = ($m.Groups['q'].Value -replace "\'","'"); a = ($m.Groups['a'].Value -replace "\'","'") }
+    }
+
+    foreach ($id in $inPagina.Keys) {
+        if (-not $inData.ContainsKey($id)) { Meld "faq-data.js" "faq" "ontbreekt in faq-data.js: $id" ; continue }
+        if ($inData[$id].q -ne $inPagina[$id].q) { Meld "faq-data.js" "faq" "vraag wijkt af: $id" }
+        if ($inData[$id].a -ne $inPagina[$id].a) { Meld "faq-data.js" "faq" "antwoord wijkt af: $id" }
+    }
+    foreach ($id in $inData.Keys) {
+        if (-not $inPagina.ContainsKey($id)) { Meld "faq/index.html" "faq" "staat wel in faq-data.js maar niet op de FAQ-pagina: $id" }
+    }
+
+    # elke data-faq="…" op een productpagina moet naar bestaande id's wijzen
+    foreach ($p in $paginas) {
+        $h = Get-Content $p.FullName -Raw
+        $r = $p.FullName.Substring($Root.Length).TrimStart("\")
+        foreach ($m in [regex]::Matches($h, 'data-faq="([^"]+)"')) {
+            foreach ($id in ($m.Groups[1].Value -split ',')) {
+                $id = $id.Trim()
+                if ($id -eq "") { continue }
+                if (-not $inData.ContainsKey($id)) { Meld $r "faq" "data-faq verwijst naar onbekende id: $id" }
+            }
+        }
+    }
+}
+
 # --- rapport ---
 if ($fouten.Count -eq 0) {
     Write-Output "GEEN FOUTEN. $($paginas.Count) pagina's gecontroleerd."
