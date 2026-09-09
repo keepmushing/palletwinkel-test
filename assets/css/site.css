@@ -933,19 +933,21 @@ footer .brand .woordmerk{color:#fff}
 .tijdlijn p{margin:4px 0 0;color:var(--muted)}
 
 /* --- bewijscijfers op de homepage --- */
-/* Zelfde beeldtaal als de vertrouwensstrook: lijnicoon in het navy bovenaan,
-   gecentreerd, daaronder het cijfer en de uitleg. Het cijfer blijft het
-   zwaarste element — het icoon is er om de vier kaarten sneller te laten lezen,
-   niet om te concurreren. */
-.cijfers{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:20px;margin-top:38px}
-.cijfer{border:1px solid var(--line);border-radius:var(--r-md);background:#fff;padding:26px 22px;
-  display:flex;flex-direction:column;align-items:center;text-align:center;gap:0}
-.cijfer svg{color:var(--navy);stroke-width:2.4;margin-bottom:16px;flex:none}
-.cijfer .getal{display:block;font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:800;color:var(--navy);
-  letter-spacing:-.04em;line-height:1}
-.cijfer .wat{display:block;margin-top:10px;font-weight:700;color:var(--ink);font-size:.95rem}
-.cijfer .onder{display:block;margin-top:8px;color:var(--muted);font-size:.86rem;line-height:1.45}
-@media(max-width:900px){.cijfers{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Bewijscijfers als strook, met dezelfde opbouw als de vertrouwensstrook
+   eronder: witte grond, een randje, lijnicoon in het navy en gecentreerde
+   tekst. Er stond eerst een kop met vier kaarten boven; dat maakte er een hele
+   sectie van terwijl vier cijfers een banner horen te zijn. De toelichtingen
+   per kaart zijn daarbij weggevallen — wat nog bevestigd moet worden, blijft
+   gemarkeerd op het cijfer zelf. */
+.cijferstrook{background:#fff;border-bottom:1px solid var(--line);padding:52px 0}
+.cijfers{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.cijfer{display:flex;flex-direction:column;align-items:center;text-align:center}
+.cijfer svg{color:var(--navy);width:60px;height:60px;stroke-width:2.4;flex:none}
+.cijfer .getal{display:block;margin-top:12px;font-size:clamp(1.5rem,3vw,2rem);font-weight:800;
+  color:var(--navy);letter-spacing:-.04em;line-height:1.1}
+.cijfer .wat{display:block;margin-top:8px;font-size:.78rem;font-weight:700;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--muted);line-height:1.4;max-width:22ch}
+@media(max-width:900px){.cijfers{grid-template-columns:repeat(2,1fr);gap:34px}}
 @media(max-width:520px){.cijfers{grid-template-columns:1fr}}
 
 /* --- keuzeladder (beschermingsniveaus) --- */

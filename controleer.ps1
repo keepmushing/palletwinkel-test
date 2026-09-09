@@ -18,7 +18,7 @@ foreach ($m in [regex]::Matches($cssTekst, '\.(-?[A-Za-z_][A-Za-z0-9_-]*)')) {
     [void]$gedefinieerd.Add($m.Groups[1].Value)
 }
 # klassen die alleen door JavaScript gezet of gelezen worden
-foreach ($extra in @('cfg','active','open','on','is-active','is-manual','hidden','slide','dots','photo-nav','bijschrift','lb-leeg','num','is-header','is-blank','rownum','corner','tabs-select','group','tab','soort','titel','fragment','zoekleeg','show-box','show-wall','show-pallet','show-floor','show-krat','show-kist','hide-wall','hide-kist','show-PBL','show-PBA','show-KIS','show-KIB','show-KIP','show-KRS','show-KRB','show-KRP','show-HVL','show-HWA','paaltype','kolommen','lbl','unit','faq-permalink','met-teller','foto-teller','vergrootbaar')) {
+foreach ($extra in @('cfg','active','open','on','is-active','is-manual','hidden','slide','dots','photo-nav','bijschrift','lb-leeg','num','is-header','is-blank','rownum','corner','tabs-select','group','tab','soort','titel','fragment','zoekleeg','show-box','show-wall','show-pallet','show-floor','show-krat','show-kist','hide-wall','hide-kist','show-PBL','show-PBA','show-KIS','show-KIB','show-KIP','show-KRS','show-KRB','show-KRP','show-HVL','show-HWA','paaltype','kolommen','lbl','unit','faq-permalink','met-teller','foto-teller','vergrootbaar','cijferstrook')) {
     [void]$gedefinieerd.Add($extra)
 }
 
