@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260909c";
+  const ASSET_V = "20260909d";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -486,11 +486,21 @@
       vak.append(s);
     });
 
+    /* Bolletjes zijn 28 px breed. Bij een album van 23 foto's wordt die rij
+       688 px, terwijl de kaart er 379 is — de rij liep dan dwars door het
+       bijschrift en zag eruit als strepen door de tekst. Vanaf zeven foto's
+       tonen we daarom een teller in plaats van bolletjes: die blijft even
+       breed, hoeveel foto's er ook bij komen. */
+    const VEEL = 7;
+    const metTeller = album.fotos.length >= VEEL;
+
     function toon(n) {
       const s = vak.querySelectorAll('.slide'), d = vak.querySelectorAll('.dots button');
       i = (n + s.length) % s.length;
       s.forEach((el, k) => el.classList.toggle('on', k === i));
       d.forEach((el, k) => el.classList.toggle('on', k === i));
+      const t = $('.foto-teller', vak);
+      if (t) t.textContent = (i + 1) + ' / ' + s.length;
     }
 
     if (album.fotos.length > 1) {
@@ -502,15 +512,25 @@
         b.onclick = e => { e.stopPropagation(); toon(i + (n === 0 ? -1 : 1)); };
         vak.append(b);
       });
-      const dots = document.createElement('div'); dots.className = 'dots';
-      album.fotos.forEach((_, n) => {
-        const d = document.createElement('button');
-        d.type = 'button'; d.setAttribute('aria-label', `Foto ${n + 1}`);
-        if (n === 0) d.classList.add('on');
-        d.onclick = e => { e.stopPropagation(); toon(n); };
-        dots.append(d);
-      });
-      vak.append(dots);
+
+      if (metTeller) {
+        const t = document.createElement('span');
+        t.className = 'foto-teller';
+        t.setAttribute('aria-hidden', 'true');   // de knoppen dragen al een label
+        t.textContent = '1 / ' + album.fotos.length;
+        vak.classList.add('met-teller');
+        vak.append(t);
+      } else {
+        const dots = document.createElement('div'); dots.className = 'dots';
+        album.fotos.forEach((_, n) => {
+          const d = document.createElement('button');
+          d.type = 'button'; d.setAttribute('aria-label', `Foto ${n + 1}`);
+          if (n === 0) d.classList.add('on');
+          d.onclick = e => { e.stopPropagation(); toon(n); };
+          dots.append(d);
+        });
+        vak.append(dots);
+      }
     }
   });
 
