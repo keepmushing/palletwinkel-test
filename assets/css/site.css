@@ -1147,3 +1147,12 @@ footer .brand .woordmerk{color:#fff}
 .export-beeld .foto-teller{left:auto;right:12px;bottom:9px;width:auto;
   background:rgba(8,42,69,.92);border-radius:var(--r-sm);padding:5px 8px}
 .export-beeld:hover .photo-nav,.export-beeld:focus-within .photo-nav{opacity:1}
+
+/* --- illustratie binnen een FAQ-antwoord of op een productpagina ---
+   De tekening reist ook los mee in mails en straks in de offerte-PDF, dus ze
+   draagt haar eigen titel. Hier staat ze binnen de tekstkolom, met breedte en
+   hoogte in de tag zodat het uitklappende antwoord niet verspringt. */
+.faq-figure{margin:18px 0 4px;max-width:760px}
+.faq-figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
+.faq-figure figcaption{margin-top:10px;font-size:.84rem;line-height:1.5;color:var(--muted)}
+.faq-copy .faq-figure{margin-top:16px}

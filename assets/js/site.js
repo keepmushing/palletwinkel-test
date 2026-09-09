@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260909m";
+  const ASSET_V = "20260909n";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -391,7 +391,7 @@
       { src: '/assets/img/pallets-geladen-bestelwagen-aanhangwagen.webp', bijschrift: 'Kleinere levering met bestelwagen en aanhangwagen' }
     ]},
     kisten: { titel: 'Kisten & kratten', pagina: '/producten/kisten-en-kratten/', fotos: [
-      { src: '/assets/img/houten-exportkist-gesloten-machinetransport.jpg', bijschrift: 'Gesloten exportkist, blokken onderaan', render: true },
+      { src: '/assets/img/houten-exportkist-gesloten-machinebouw.jpg', bijschrift: 'Gesloten exportkist, blokken onderaan', render: true },
       { src: '/assets/img/houten-exportkist-gesloten-4weg.jpg', bijschrift: 'Gesloten kist met vieren onderrijdbare onderbouw', render: true },
       { src: '/assets/img/houten-krat-open-intern-transport.jpg', bijschrift: 'Open krat voor intern transport', render: true },
       { src: '/assets/img/houten-exportkist-gesloten-magazijn.webp', bijschrift: 'Kist op palletbodem, klaar in het magazijn' },
