@@ -124,10 +124,17 @@
   const l1 = new THREE.DirectionalLight(0xffffff, 1.1); l1.position.set(500, 1000, 2000); scene.add(l1);
   const l2 = new THREE.DirectionalLight(0xffffff, .6); l2.position.set(-500, -1000, -2000); scene.add(l2);
   scene.add(new THREE.AmbientLight(0xffffff, .55));
-  const COL = { lat: 0xd9b477, dwarslat: 0xc9a262, blok: 0x9c7a44, ligger: 0xd1ab6c, onderlat: 0xc9a262, balk: 0x9c7a44, kaderbalk: 0xa88650,
-    wandlat: 0xe0c08a, kopwandlat: 0xd6b57e, staander: 0xb8925a, deksellat: 0xd9b477, dekselbalk: 0xb8925a, paal: 0x9c7a44 };
+  /* Houtkleuren van de onderdelen.
+     Deze stonden op geel-oranje tinten en liepen daardoor uit de pas met de
+     productpictogrammen op de site. Die zijn opgemeten: het hout daar is een
+     bleke, warme creme (#f1d3b6 is veruit de dominante tint) met schaduwvlakken
+     tot ongeveer #7c5431. De waarden hieronder komen uit die meting, waarbij de
+     oude verhouding licht/donker bewaard blijft: dekvlakken het lichtst,
+     blokken en palen het donkerst, zodat de opbouw leesbaar blijft in 3D. */
+  const COL = { lat: 0xf1d3b6, dwarslat: 0xdcbb9a, blok: 0x9b7150, ligger: 0xe8cbab, onderlat: 0xdcbb9a, balk: 0x9b7150, kaderbalk: 0xb28761,
+    wandlat: 0xf2d4b9, kopwandlat: 0xe0c1a0, staander: 0xb98f6b, deksellat: 0xf1d3b6, dekselbalk: 0xb98f6b, paal: 0x9b7150 };
   const mats = Object.fromEntries(Object.entries(COL).map(([k, c]) => [k, new THREE.MeshStandardMaterial({ color: c, roughness: .85 })]));
-  const edgeMat = new THREE.LineBasicMaterial({ color: 0x4a3a1f, transparent: true, opacity: .35 });
+  const edgeMat = new THREE.LineBasicMaterial({ color: 0x6f4e30, transparent: true, opacity: .35 });
   let group = new THREE.Group(); scene.add(group);
 
   const orbit = { theta: .8, phi: 1.05, r: 2600, target: new THREE.Vector3() };
