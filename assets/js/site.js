@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260909e";
+  const ASSET_V = "20260909g";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -366,7 +366,7 @@
      ========================================================================== */
   const ALBUMS = {
     pallets: { titel: 'Pallets op maat', pagina: '/producten/pallet-op-maat/', fotos: [
-      { src: '/assets/img/pallet-op-maat-blokpallet-1800x800.jpg', bijschrift: 'Pallet op maat — 1800 × 800 mm' },
+      { src: '/assets/img/pallet-op-maat-blokpallet-1800x800.jpg', bijschrift: 'Pallet op maat — 1800 × 800 mm', render: true },
       { src: '/assets/img/pallet-op-maat-blokuitvoering.webp', bijschrift: 'Blokuitvoering, langs vier zijden onderrijdbaar' },
       { src: '/assets/img/pallet-op-maat-1000x1000-met-onderlat.webp', bijschrift: 'Pallet 1000 × 1000 mm met onderlatten' },
       { src: '/assets/img/pallet-op-maat-brede-planken.webp', bijschrift: 'Brede vloerplanken voor puntlast' },
@@ -391,9 +391,9 @@
       { src: '/assets/img/pallets-geladen-bestelwagen-aanhangwagen.webp', bijschrift: 'Kleinere levering met bestelwagen en aanhangwagen' }
     ]},
     kisten: { titel: 'Kisten & kratten', pagina: '/producten/kisten-en-kratten/', fotos: [
-      { src: '/assets/img/houten-exportkist-gesloten-machinetransport.jpg', bijschrift: 'Gesloten exportkist, blokken onderaan' },
-      { src: '/assets/img/houten-exportkist-gesloten-4weg.jpg', bijschrift: 'Gesloten kist met vieren onderrijdbare onderbouw' },
-      { src: '/assets/img/houten-krat-open-intern-transport.jpg', bijschrift: 'Open krat voor intern transport' },
+      { src: '/assets/img/houten-exportkist-gesloten-machinetransport.jpg', bijschrift: 'Gesloten exportkist, blokken onderaan', render: true },
+      { src: '/assets/img/houten-exportkist-gesloten-4weg.jpg', bijschrift: 'Gesloten kist met vieren onderrijdbare onderbouw', render: true },
+      { src: '/assets/img/houten-krat-open-intern-transport.jpg', bijschrift: 'Open krat voor intern transport', render: true },
       { src: '/assets/img/houten-exportkist-gesloten-magazijn.webp', bijschrift: 'Kist op palletbodem, klaar in het magazijn' },
       { src: '/assets/img/houten-exportkist-plaatmateriaal.webp', bijschrift: 'Kist in plaatmateriaal met verticale latten' },
       { src: '/assets/img/houten-kist-hoog-plaatmateriaal.webp', bijschrift: 'Hoge kist, panelen op een houten frame' },
@@ -408,7 +408,7 @@
       { src: '/assets/img/houten-exportkist-op-aanhangwagen.webp', bijschrift: 'Kist geladen op een aanhangwagen' }
     ]},
     glas: { titel: 'Glasbokken', pagina: '/producten/glasbokken/', fotos: [
-      { src: '/assets/img/glasbok-op-maat-glastransport.jpg', bijschrift: 'Glasbok op maat' },
+      { src: '/assets/img/glasbok-op-maat-glastransport.jpg', bijschrift: 'Glasbok op maat', render: true },
       { src: '/assets/img/glasbok-a-frame-vlakglas.webp', bijschrift: 'Dubbelzijdige A-bok voor grote glasplaten' },
       { src: '/assets/img/glasbok-a-frame-transportklaar.webp', bijschrift: 'Enkelzijdige bok met volledig beplankte voet' },
       { src: '/assets/img/glasbok-a-frame-dubbelzijdig.webp', bijschrift: 'A-bok met schuine steunen, smalle voetafdruk' },
@@ -419,16 +419,16 @@
       { src: '/assets/img/glasbakjes-multiplex-restauratieglas.webp', bijschrift: 'Multiplex glasbakjes voor restauratieglas' }
     ]},
     randen: { titel: 'Palletranden / opzetranden', pagina: '/producten/opzetranden/', fotos: [
-      { src: '/assets/img/opzetrand-europallet-stapelen.jpg', bijschrift: 'Opzetrand op europallet' },
+      { src: '/assets/img/opzetrand-europallet-stapelen.jpg', bijschrift: 'Opzetrand op europallet', render: true },
       { src: '/assets/img/opzetrand-2.jpg', bijschrift: 'Gestapelde randen', nogTeLeveren: true }
     ]},
     platen: { titel: 'Hout en platen op maat', pagina: '/producten/hout-en-plaatmateriaal/', fotos: [
-      { src: '/assets/img/houten-vloerpaneel-pallethout-werfvloer.jpg', bijschrift: 'Op maat gezaagde panelen' },
+      { src: '/assets/img/houten-vloerpaneel-pallethout-werfvloer.jpg', bijschrift: 'Op maat gezaagde panelen', render: true },
       { src: '/assets/img/platen-2.jpg', bijschrift: 'Zaagwerk in serie', nogTeLeveren: true },
       { src: '/assets/img/platen-3.jpg', bijschrift: 'Wandpanelen', nogTeLeveren: true }
     ]},
     constructies: { titel: 'Constructies op maat', pagina: '/producten/houten-constructies-op-maat/', fotos: [
-      { src: '/assets/img/houten-skid-zware-machine-transport.jpg', bijschrift: 'Skid voor een zware machine' },
+      { src: '/assets/img/houten-skid-zware-machine-transport.jpg', bijschrift: 'Skid voor een zware machine', render: true },
       { src: '/assets/img/houten-kader-op-maat.webp', bijschrift: 'Houten kader op maat' },
       { src: '/assets/img/houten-kist-ronde-lading-vastgezet.webp', bijschrift: 'Ronde lading vastgezet in een open kist' },
       { src: '/assets/img/houten-stellingen-op-maat.webp', bijschrift: 'Stellingen op maat, in serie' },
@@ -467,15 +467,21 @@
 
   const pijl = r => `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="${r < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'}"/></svg>`;
 
-  /* --- carrousel op elke productkaart --- */
-  $$('.photo[data-album]').forEach(vak => {
+  /* --- carrousel op elk vak met data-album ---
+     Werkt op de productkaarten (.photo) én op een uitgelicht beeld
+     (.feature-visual): zet data-album="transport" op het vak en het krijgt
+     dezelfde pijltjes en teller. Stond er al een vaste <img> of <span> in de
+     HTML, dan gaan die eruit — de carrousel vult het vak zelf. */
+  $$('[data-album]').forEach(vak => {
     const album = ALBUMS[vak.dataset.album];
-    if (!album) return;
+    if (!album || !album.fotos.length) return;
     let i = 0;
+
+    vak.querySelectorAll(':scope > img, :scope > span').forEach(el => el.remove());
 
     album.fotos.forEach((f, n) => {
       const s = document.createElement('div');
-      s.className = 'slide' + (n === 0 ? ' on' : '');
+      s.className = 'slide' + (n === 0 ? ' on' : '') + (f.render ? ' render' : '');
       const img = new Image();
       img.src = metStempel(f.src); img.alt = f.bijschrift; img.loading = 'lazy'; img.decoding = 'async';
       img.onerror = () => img.remove();          // geen bestand? dan blijft het blauwe vlak staan

@@ -180,13 +180,17 @@ section{padding:92px 0}
 /* De productrenders staan op wit en vulden hun vak tot tegen de rand. Met
    contain en wat lucht eromheen ademt de kaart, en omdat de renders zelf ook
    wit zijn loopt de achtergrond naadloos door. Onderaan wat meer ruimte, zodat
-   het product niet achter het bijschrift verdwijnt. Komen er later echte
-   werkplaatsfotos, dan wil je voor die albums cover terug. */
-.slide img{object-fit:contain;padding:30px 30px 46px;background:#fff}
+   het product niet achter het bijschrift verdwijnt.
+   Dit gold eerst voor elke slide. Nu de albums vol echte werkplaatsfotos staan
+   klopt dat niet meer: die zweefden in een wit kader in plaats van hun vak te
+   vullen. De regel geldt daarom alleen nog voor slides die in site.js met
+   render: true gemarkeerd zijn. */
+.slide.render img{object-fit:contain;padding:30px 30px 46px;background:#fff}
 .slide .bijschrift{position:relative;background:rgba(8,42,69,.82);color:#fff;font-size:.7rem;letter-spacing:.03em;padding:6px 8px;border-radius:var(--r-sm);max-width:85%}
 .photo-nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.94);color:var(--navy);display:grid;place-items:center;cursor:pointer;opacity:0;transition:.2s;box-shadow:0 2px 10px rgba(8,42,69,.25);z-index:3}
 .photo-nav:hover{background:#fff}
-.photo:hover .photo-nav,.photo:focus-within .photo-nav{opacity:1}
+.photo:hover .photo-nav,.photo:focus-within .photo-nav,
+.feature-visual:hover .photo-nav,.feature-visual:focus-within .photo-nav{opacity:1}
 @media(hover:none){.photo-nav{opacity:1}}
 .photo-nav.prev{left:10px}
 .photo-nav.next{right:10px}
@@ -1091,3 +1095,20 @@ footer .brand .woordmerk{color:#fff}
   letter-spacing:.03em;padding:5px 8px;border-radius:var(--r-sm);
   font-variant-numeric:tabular-nums;pointer-events:none}
 .photo.met-teller .slide .bijschrift{max-width:calc(100% - 62px)}
+
+/* --- carrousel in een uitgelicht beeld ---
+   .feature-visual toonde tot nu toe één vaste foto met een balk eronder. Met
+   data-album erop wordt het een carrousel; deze regels laten de slides het vak
+   vullen en zetten het bijschrift terug als volle balk, zoals bij het vaste
+   beeld. De pijltjes en de teller komen uit dezelfde regels als de kaarten. */
+.feature-visual .slide{padding:0}
+.feature-visual .slide img{object-fit:cover}
+.feature-visual .slide .bijschrift{position:absolute;left:0;right:0;bottom:0;
+  max-width:none;border-radius:0;padding:10px 13px;background:rgba(8,42,69,.85);
+  color:#dcecf5;font-size:.72rem;letter-spacing:0}
+.feature-visual.met-teller .slide .bijschrift{padding-right:70px}
+/* .feature-visual span zet left:0;right:0 voor de bijschriftbalk. De teller is
+   ook een span en werd daardoor over de volle breedte getrokken, dwars over het
+   bijschrift. Vandaar left:auto en een selector die wint op specificiteit. */
+.feature-visual .foto-teller{left:auto;right:12px;bottom:9px;width:auto;
+  background:rgba(8,42,69,.92);border-radius:var(--r-sm);padding:5px 8px}
