@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260909k";
+  const ASSET_V = "20260909l";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -453,6 +453,7 @@
        bewust niet in: hier hoort te zien wat er echt buitengaat. */
     export: { titel: 'Exportkisten', pagina: '/producten/exportkisten/', fotos: [
       { src: '/assets/img/houten-exportkist-ispm15-merkteken.jpg', bijschrift: 'Onze eigen ISPM-15-markering, hier aangebracht' },
+      { src: '/assets/img/houten-kisten-serieproductie.webp', bijschrift: 'Reeks identieke kisten, klaar voor verzending' },
       { src: '/assets/img/houten-exportkist-gesloten-magazijn.webp', bijschrift: 'Kist op palletbodem, klaar in het magazijn' },
       { src: '/assets/img/houten-exportkist-plaatmateriaal.webp', bijschrift: 'Kist in plaatmateriaal met verticale latten' },
       { src: '/assets/img/houten-kist-hoog-plaatmateriaal.webp', bijschrift: 'Hoge kist, panelen op een houten frame' },
@@ -461,7 +462,6 @@
       { src: '/assets/img/houten-kist-laag-gesloten.webp', bijschrift: 'Lage gesloten kist' },
       { src: '/assets/img/houten-kist-lang-smal.webp', bijschrift: 'Lange smalle kist voor langwerpige onderdelen' },
       { src: '/assets/img/houten-kist-in-opbouw-spanbanden.webp', bijschrift: 'Kist in opbouw, lading vastgezet met spanbanden' },
-      { src: '/assets/img/houten-kisten-serieproductie.webp', bijschrift: 'Reeks identieke kisten, klaar voor verzending' },
       { src: '/assets/img/houten-kist-transportklaar-buiten.webp', bijschrift: 'Kist transportklaar buiten' },
       { src: '/assets/img/houten-exportkist-op-aanhangwagen.webp', bijschrift: 'Kist geladen op een aanhangwagen' }
     ]},
