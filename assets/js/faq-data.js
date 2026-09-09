@@ -88,7 +88,7 @@ window.FAQ_DATA = {
       antwoord: 'Er is geen vaste bovengrens. De grootste die wij tot nu toe bouwden meet <span class="spec">9 &times; 4 m</span>. Bij dat formaat bepalen transport en de manier van hijsen mee wat verstandig is, dus bel ons even voor u rekent.' },
     { id: 'faq-vanaf-hoeveel-stuks-kan-ik-bestellen', topic: 2, populair: false,
       vraag: 'Vanaf hoeveel stuks kan ik bestellen?',
-      antwoord: 'Vanaf één stuk. Voor één exemplaar weegt de voorbereiding zwaarder door in de prijs — dat zegt niets over of het kan, wel over wat het kost. Geef eventuele vervolgaantallen mee, dan stemmen we de uitvoering daarop af.' },
+      antwoord: 'Vanaf &eacute;&eacute;n stuk, en dat geldt voor alles wat wij maken: een pallet, een kist, een glasbok of &eacute;&eacute;n op maat gezaagde plank. Er is geen minimumbestelling. Voor &eacute;&eacute;n exemplaar weegt de voorbereiding wel zwaarder door in de prijs &mdash; dat zegt niets over of het kan, wel over wat het kost.' },
     { id: 'faq-wanneer-gebruik-ik-de-configurator', topic: 2, populair: false,
       vraag: 'Wanneer gebruik ik de configurator?',
       antwoord: 'Voor pallets, kisten en platen binnen de standaardopties. U stelt ze zelf samen, ziet het resultaat in 3D en zet ze meteen op uw offerteaanvraag. Wijkt uw project daarvan af? Kies dan &ldquo;Stuur uw project&rdquo;.' },
