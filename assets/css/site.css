@@ -1156,3 +1156,45 @@ footer .brand .woordmerk{color:#fff}
 .faq-figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:var(--r-md);background:#fff}
 .faq-figure figcaption{margin-top:10px;font-size:.84rem;line-height:1.5;color:var(--muted)}
 .faq-copy .faq-figure{margin-top:16px}
+
+/* --- 2-weg tegenover 4-weg -------------------------------------------------
+   De opmaak van de infographic, maar in HTML: beeld en tekst wisselen van kant
+   per blok, en elk punt krijgt een rond vinkje. Zo blijft de tekst selecteerbaar
+   en vertaalbaar, schaalt ze mee met de tekstgrootte van de bezoeker, en hoeft
+   er geen tekening opnieuw gemaakt te worden als de tekst wijzigt.
+   Het vinkje zit als data-URI in de achtergrond; daar kan geen CSS-variabele in,
+   vandaar dat --blue hier één keer uitgeschreven staat als 230b5f92. */
+.onderbouw{margin:34px 0 0}
+.onderbouw-kop{max-width:56ch;margin-bottom:30px}
+.onderbouw-kop h3{margin:0;font-size:clamp(1.3rem,2.6vw,1.75rem);font-weight:800;
+  letter-spacing:-.03em;color:var(--navy);text-wrap:balance}
+.onderbouw-kop p{margin:8px 0 0;color:var(--muted)}
+
+.onderbouw-blok{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);
+  gap:42px;align-items:center;padding:26px 0}
+.onderbouw-blok + .onderbouw-blok{border-top:1px solid var(--line)}
+.onderbouw-blok.omgekeerd .onderbouw-beeld{order:2}
+
+/* De render staat zelf al op #f6f6f4, dus het vlak eronder krijgt dezelfde
+   kleur: de rand van het beeld valt weg en de kist lijkt op het vlak te staan,
+   zoals op de oorspronkelijke tekening. */
+.onderbouw-beeld{background:#f6f6f4;border-radius:var(--r-md);overflow:hidden}
+.onderbouw-beeld img{display:block;width:100%;height:auto}
+
+.onderbouw-tekst h4{margin:0;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:800;
+  letter-spacing:-.02em;line-height:1.15;color:var(--navy);text-transform:uppercase}
+.onderbouw-tekst h4 em{font-style:normal;color:var(--blue)}
+.onderbouw-tekst h4::before{content:"";display:block;width:56px;height:3px;
+  background:var(--blue);border-radius:2px;margin-bottom:14px}
+.onderbouw-sub{margin:6px 0 20px;font-size:.78rem;font-weight:700;letter-spacing:.12em;
+  text-transform:uppercase;color:var(--muted)}
+
+.vinkjes{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.vinkjes li{position:relative;padding-left:40px;line-height:1.55;color:var(--ink)}
+.vinkjes li::before{content:"";position:absolute;left:0;top:1px;width:24px;height:24px;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='12' fill='%230b5f92'/%3E%3Cpath d='M7 12.4l3.3 3.3L17 9' fill='none' stroke='%23fff' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/contain no-repeat}
+
+@media(max-width:760px){
+  .onderbouw-blok{grid-template-columns:1fr;gap:22px}
+  .onderbouw-blok.omgekeerd .onderbouw-beeld{order:0}
+}
