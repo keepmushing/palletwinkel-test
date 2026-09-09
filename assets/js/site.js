@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260909g";
+  const ASSET_V = "20260909j";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -448,6 +448,23 @@
       { src: '/assets/img/verpakken-schuimblokken-fixatie.webp', bijschrift: 'Fixatie met schuimblokken op maat' },
       { src: '/assets/img/verpakken-op-locatie-lange-kist.webp', bijschrift: 'Lange kist, ter plaatse gevuld' }
     ]},
+    /* Voor het ISPM-blok op de homepage. Begint met het merkteken zelf en toont
+       daarna de kisten die wij bouwen. De renders uit het kistenalbum staan er
+       bewust niet in: hier hoort te zien wat er echt buitengaat. */
+    export: { titel: 'Exportkisten', pagina: '/producten/exportkisten/', fotos: [
+      { src: '/assets/img/houten-exportkist-ispm15-merkteken.jpg', bijschrift: 'Onze eigen ISPM-15-markering, hier aangebracht' },
+      { src: '/assets/img/houten-exportkist-gesloten-magazijn.webp', bijschrift: 'Kist op palletbodem, klaar in het magazijn' },
+      { src: '/assets/img/houten-exportkist-plaatmateriaal.webp', bijschrift: 'Kist in plaatmateriaal met verticale latten' },
+      { src: '/assets/img/houten-kist-hoog-plaatmateriaal.webp', bijschrift: 'Hoge kist, panelen op een houten frame' },
+      { src: '/assets/img/houten-kisten-twee-stuks-atelier.webp', bijschrift: 'Twee kisten naast elkaar in het atelier' },
+      { src: '/assets/img/houten-kist-groot-plaatdeksel.webp', bijschrift: 'Grote kist met vlak plaatdeksel' },
+      { src: '/assets/img/houten-kist-laag-gesloten.webp', bijschrift: 'Lage gesloten kist' },
+      { src: '/assets/img/houten-kist-lang-smal.webp', bijschrift: 'Lange smalle kist voor langwerpige onderdelen' },
+      { src: '/assets/img/houten-kist-in-opbouw-spanbanden.webp', bijschrift: 'Kist in opbouw, lading vastgezet met spanbanden' },
+      { src: '/assets/img/houten-kisten-serieproductie.webp', bijschrift: 'Reeks identieke kisten, klaar voor verzending' },
+      { src: '/assets/img/houten-kist-transportklaar-buiten.webp', bijschrift: 'Kist transportklaar buiten' },
+      { src: '/assets/img/houten-exportkist-op-aanhangwagen.webp', bijschrift: 'Kist geladen op een aanhangwagen' }
+    ]},
     transport: { titel: 'Levering en transport', pagina: '/werkwijze/', fotos: [
       { src: '/assets/img/levering-heftruck-laden.webp', bijschrift: 'Volle lading nieuwe pallets, klaar om te vertrekken' },
       { src: '/assets/img/levering-heftruck-pallets-oplegger.webp', bijschrift: 'Laden met de heftruck op de oplegger' },
@@ -588,14 +605,57 @@
       $('#lbTeller', lb).textContent = `${lbI + 1} / ${lbFotos.length}`;
       $$('.lb-nav', lb).forEach(b => b.hidden = lbFotos.length < 2);
     }
-    function lbOpen(slug) {
-      const a = ALBUMS[slug]; if (!a) return;
-      lbFotos = a.fotos; lbTitelTekst = a.titel;
+    function lbStart(fotos, titel, pagina, begin) {
+      if (!fotos.length) return;
+      lbFotos = fotos; lbTitelTekst = titel || '';
       const meer = $('#lbMeer', lb);
-      if (meer) { meer.href = a.pagina || '/producten/'; meer.hidden = false; }
-      lbToon(0); lb.showModal();
+      if (meer) { meer.hidden = !pagina; if (pagina) meer.href = pagina; }
+      lbToon(begin || 0); lb.showModal();
+    }
+    function lbOpen(slug, begin) {
+      const a = ALBUMS[slug]; if (!a) return;
+      lbStart(a.fotos, a.titel, a.pagina || '/producten/', begin);
     }
     $$('[data-album-open]').forEach(b => b.addEventListener('click', () => lbOpen(b.dataset.albumOpen)));
+
+    /* ---- klik op een foto en ze springt groot op het scherm ----
+       Tot nu toe kon dat alleen via de knop "Bekijk realisaties". Een bezoeker
+       klikt echter op het beeld zelf. Een carrousel opent op de foto die op dat
+       moment zichtbaar is, niet op de eerste — anders verlies je waar je was.
+       De pijltjes en de bolletjes staan hun klik niet af (stopPropagation), dus
+       die blijven gewoon bladeren. */
+    function vergrootbaar(el, openen, label) {
+      el.classList.add('vergrootbaar');
+      el.setAttribute('role', 'button');
+      el.tabIndex = 0;
+      el.setAttribute('aria-label', label);
+      el.addEventListener('click', e => { if (e.target.closest('button, a')) return; openen(); });
+      el.addEventListener('keydown', e => {
+        if (e.key !== 'Enter' && e.key !== ' ') return;
+        e.preventDefault(); openen();
+      });
+    }
+
+    $$('[data-album]').forEach(vak => {
+      const a = ALBUMS[vak.dataset.album];
+      if (!a || !a.fotos.length) return;
+      vergrootbaar(vak, () => {
+        const slides = Array.from(vak.querySelectorAll('.slide'));
+        const n = slides.findIndex(s => s.classList.contains('on'));
+        lbOpen(vak.dataset.album, n < 0 ? 0 : n);
+      }, 'Bekijk ' + a.titel + ' in het groot');
+    });
+
+    /* Losse foto's buiten een album — het ISPM-beeld, een realisatiebeeld, een
+       uitgelicht beeld zonder carrousel. Die openen als album van één. */
+    $$('.case-visual:not([data-album]), .export-beeld:not([data-album]), .feature-visual:not([data-album])').forEach(vak => {
+      const img = $('img', vak);
+      if (!img) return;
+      const bijschrift = ($('span', vak) || {}).textContent || img.alt || '';
+      vergrootbaar(vak, () => lbStart(
+        [{ src: img.getAttribute('src').split('?')[0], bijschrift }], bijschrift, null, 0
+      ), 'Bekijk deze foto in het groot');
+    });
     $$('[data-lb]', lb).forEach(b => b.addEventListener('click', () => lbToon(lbI + Number(b.dataset.lb))));
     const sluit = $('[data-lb-sluit]', lb);
     if (sluit) sluit.addEventListener('click', () => lb.close());
