@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260909b";
+  const ASSET_V = "20260909c";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -367,8 +367,28 @@
   const ALBUMS = {
     pallets: { titel: 'Pallets op maat', pagina: '/producten/pallet-op-maat/', fotos: [
       { src: '/assets/img/pallet-op-maat-blokpallet-1800x800.jpg', bijschrift: 'Pallet op maat — 1800 × 800 mm' },
-      { src: '/assets/img/pallet-op-maat-2.jpg', bijschrift: 'Zware pallet voor machinetransport', nogTeLeveren: true },
-      { src: '/assets/img/pallet-op-maat-3.jpg', bijschrift: 'Serieproductie, klaar voor verzending', nogTeLeveren: true }
+      { src: '/assets/img/pallet-op-maat-blokuitvoering.webp', bijschrift: 'Blokuitvoering, langs vier zijden onderrijdbaar' },
+      { src: '/assets/img/pallet-op-maat-1000x1000-met-onderlat.webp', bijschrift: 'Pallet 1000 × 1000 mm met onderlatten' },
+      { src: '/assets/img/pallet-op-maat-brede-planken.webp', bijschrift: 'Brede vloerplanken voor puntlast' },
+      { src: '/assets/img/pallet-op-maat-gesloten-dek.webp', bijschrift: 'Gesloten dek, voor kleine of losse onderdelen' },
+      { src: '/assets/img/pallet-op-maat-plaatdek.webp', bijschrift: 'Pallet met plaatdek' },
+      { src: '/assets/img/pallet-op-maat-zwaar-dek.webp', bijschrift: 'Zware uitvoering met dubbele dekplanken' },
+      { src: '/assets/img/pallet-op-maat-onderbouw.webp', bijschrift: 'De onderbouw bepaalt van welke kant de vorken erin kunnen' },
+      { src: '/assets/img/pallet-op-maat-open-kader.webp', bijschrift: 'Open kader, licht in gewicht' },
+      { src: '/assets/img/pallet-op-maat-vloerlatten.webp', bijschrift: 'Vloerlatten op maat verdeeld' },
+      { src: '/assets/img/pallet-op-maat-bovenaanzicht.webp', bijschrift: 'Bovenaanzicht: de latverdeling volgt de last' },
+      { src: '/assets/img/pallet-op-maat-dichte-vloer.webp', bijschrift: 'Dichte vloer, zonder tussenruimte' },
+      { src: '/assets/img/pallet-op-maat-gesloten-dek-detail.webp', bijschrift: 'Detail van een gesloten dek' },
+      { src: '/assets/img/pallet-op-maat-plaatdek-buiten.webp', bijschrift: 'Plaatdek, klaar om geladen te worden' },
+      { src: '/assets/img/pallet-op-maat-werkplaats.webp', bijschrift: 'Net van de machine' },
+      { src: '/assets/img/pallet-onderdelen-latten.webp', bijschrift: 'Latten op maat, klaar om te monteren' },
+      { src: '/assets/img/pallets-productie-stapels.webp', bijschrift: 'Productie in serie' },
+      { src: '/assets/img/pallets-magazijn-voorraad.webp', bijschrift: 'Voorraad in het magazijn' },
+      { src: '/assets/img/pallets-gestapeld-zijaanzicht.webp', bijschrift: 'Gestapeld voor transport' },
+      { src: '/assets/img/pallets-stapels-magazijn.webp', bijschrift: 'Serieproductie in het magazijn' },
+      { src: '/assets/img/pallets-stapelen-met-heftruck.webp', bijschrift: 'Stapelen met de heftruck' },
+      { src: '/assets/img/pallets-geladen-op-oplegger.webp', bijschrift: 'Volle oplegger, klaar voor vertrek' },
+      { src: '/assets/img/pallets-geladen-bestelwagen-aanhangwagen.webp', bijschrift: 'Kleinere levering met bestelwagen en aanhangwagen' }
     ]},
     kisten: { titel: 'Kisten & kratten', pagina: '/producten/kisten-en-kratten/', fotos: [
       { src: '/assets/img/houten-exportkist-gesloten-machinetransport.jpg', bijschrift: 'Gesloten exportkist, blokken onderaan' },
@@ -408,9 +428,25 @@
       { src: '/assets/img/platen-3.jpg', bijschrift: 'Wandpanelen', nogTeLeveren: true }
     ]},
     constructies: { titel: 'Constructies op maat', pagina: '/producten/houten-constructies-op-maat/', fotos: [
-      { src: '/assets/img/houten-skid-zware-machine-transport.jpg', bijschrift: 'Skid voor zware machine' },
-      { src: '/assets/img/constructie-2.jpg', bijschrift: 'Transportwieg', nogTeLeveren: true },
-      { src: '/assets/img/constructie-3.jpg', bijschrift: 'Verdeelbakjes voor onderdelen', nogTeLeveren: true }
+      { src: '/assets/img/houten-skid-zware-machine-transport.jpg', bijschrift: 'Skid voor een zware machine' },
+      { src: '/assets/img/houten-kader-op-maat.webp', bijschrift: 'Houten kader op maat' },
+      { src: '/assets/img/houten-kist-ronde-lading-vastgezet.webp', bijschrift: 'Ronde lading vastgezet in een open kist' },
+      { src: '/assets/img/houten-stellingen-op-maat.webp', bijschrift: 'Stellingen op maat, in serie' },
+      { src: '/assets/img/houten-stelling-detail.webp', bijschrift: 'Detail van de opbouw' },
+      { src: '/assets/img/houten-kaders-gebundeld.webp', bijschrift: 'Kaders gebundeld voor verzending' },
+      { src: '/assets/img/houten-kaders-gestapeld.webp', bijschrift: 'Gestapeld nemen ze weinig plaats in' },
+      { src: '/assets/img/houten-kaders-op-maat-stapel.webp', bijschrift: 'Kaders op maat, klaar in het atelier' },
+      { src: '/assets/img/houten-kaders-stapel-buiten.webp', bijschrift: 'Klaar om opgehaald te worden' },
+      { src: '/assets/img/houten-constructies-klaar-voor-vertrek.webp', bijschrift: 'Constructies klaar voor vertrek' },
+      { src: '/assets/img/houten-constructies-buiten-opgesteld.webp', bijschrift: 'Opgesteld op de werf' }
+    ]},
+    verpakken: { titel: 'Verpakken, in het atelier en op locatie', pagina: '/diensten/', fotos: [
+      { src: '/assets/img/verpakken-atelier-machine-in-kist.webp', bijschrift: 'Machine ingepakt en vastgezet in ons atelier' },
+      { src: '/assets/img/verpakken-op-locatie-kist-gevuld.webp', bijschrift: 'Op locatie: de kist wordt rond de lading gebouwd' },
+      { src: '/assets/img/verpakken-op-locatie-product-ingepakt.webp', bijschrift: 'Product ingepakt en klaar om te sluiten' },
+      { src: '/assets/img/verpakken-lading-vastgezet-in-kist.webp', bijschrift: 'Lading vastgezet zodat ze niet kan schuiven' },
+      { src: '/assets/img/verpakken-schuimblokken-fixatie.webp', bijschrift: 'Fixatie met schuimblokken op maat' },
+      { src: '/assets/img/verpakken-op-locatie-lange-kist.webp', bijschrift: 'Lange kist, ter plaatse gevuld' }
     ]},
     transport: { titel: 'Levering en transport', pagina: '/werkwijze/', fotos: [
       { src: '/assets/img/levering-heftruck-laden.webp', bijschrift: 'Volle lading nieuwe pallets, klaar om te vertrekken' },
@@ -478,7 +514,28 @@
     }
   });
 
-  /* --- het fotoalbum (lightbox) --- */
+  /* --- het fotoalbum (lightbox) ---
+     De markup stond met de hand in drie pagina's, terwijl er op vier pagina's
+     een albumknop staat. Op /diensten/ deed die knop dus niets. In plaats van
+     dezelfde twaalf regels een vierde keer te kopiëren, bouwt het script het
+     venster nu zelf zodra er een knop op de pagina staat. Staat #lightbox al in
+     de HTML, dan blijft die gewoon gebruikt worden. */
+  if (!$('#lightbox') && $('[data-album-open]')) {
+    const pijltje = r => `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="${r < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'}"/></svg>`;
+    const d = document.createElement('dialog');
+    d.id = 'lightbox';
+    d.setAttribute('aria-label', 'Fotoalbum');
+    d.innerHTML =
+      '<button class="lb-sluit" data-lb-sluit aria-label="Sluiten">&times;</button>' +
+      '<div class="lb-stage" id="lbStage"></div>' +
+      '<button class="lb-nav prev" data-lb="-1" aria-label="Vorige foto">' + pijltje(-1) + '</button>' +
+      '<button class="lb-nav next" data-lb="1" aria-label="Volgende foto">' + pijltje(1) + '</button>' +
+      '<div class="lb-bar"><div><strong id="lbTitel"></strong><span id="lbBijschrift"></span></div>' +
+      '<a class="lb-teller" id="lbMeer" href="/producten/" hidden>Naar de productpagina</a>' +
+      '<span class="lb-teller" id="lbTeller"></span></div>';
+    document.body.appendChild(d);
+  }
+
   const lb = $('#lightbox');
   if (lb) {
     let lbFotos = [], lbI = 0, lbTitelTekst = '';
