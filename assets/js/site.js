@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260909p";
+  const ASSET_V = "20260910a";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -481,6 +481,20 @@
      welk beeld er nog moet komen. Tot dan slaan we ze over: anders toont de
      lightbox een gebroken beeld en klopt de teller "2 / 3" niet. */
   Object.values(ALBUMS).forEach(a => { a.fotos = a.fotos.filter(f => !f.nogTeLeveren); });
+
+  /* Eén album met alles erin, voor de knop "Bekijk realisaties" bovenaan de
+     homepage. Om beurten een foto uit elke familie, zodat de bezoeker niet
+     eerst vijftien kisten voorbij moet voor hij een pallet ziet.
+     De pictogrammen blijven eruit — dit gaat over werk dat geleverd is — en het
+     exportalbum ook, want dat is een selectie uit de kisten en zou de foto's
+     dubbel tonen. Nieuwe foto's in een familie komen hier vanzelf in mee. */
+  ALBUMS.alles = { titel: 'Realisaties', pagina: '/realisaties/', fotos: (() => {
+    const families = ['pallets', 'kisten', 'glas', 'constructies', 'verpakken', 'transport', 'randen', 'platen']
+      .map(k => (ALBUMS[k] ? ALBUMS[k].fotos.filter(f => !f.render) : []));
+    const uit = [], langste = Math.max(0, ...families.map(f => f.length));
+    for (let i = 0; i < langste; i++) families.forEach(f => { if (f[i]) uit.push(f[i]); });
+    return uit;
+  })() };
 
   const pijl = r => `<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="${r < 0 ? 'M15 5l-7 7 7 7' : 'M9 5l7 7-7 7'}"/></svg>`;
 
