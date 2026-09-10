@@ -6,7 +6,14 @@
 (function (root) {
   'use strict';
 
-  const LIMITS = { length: { min: 200, max: 9000 }, width: { min: 200, max: 2500 }, height: { min: 200, max: 2500 } };
+  /* De breedte stond op 2500 mm. Dat was geen rekenfout: het is de grens uit
+     pallet-configurator-spec.md, teruggewonnen uit de oorspronkelijke
+     configurator. Bert meldde ze wel als hinderlijk, en gaf door dat de
+     grootste die zij tot nu toe bouwden 9 x 4 m meet. De breedte staat daarom
+     nu op 4000 mm, zodat dat formaat er door komt. Dit is dus een BEWUSTE
+     PRODUCTWIJZIGING, geen herstel — wie de oude regel terug wil, zet hier
+     weer 2500. De hoogte is niet aangeraakt. */
+  const LIMITS = { length: { min: 200, max: 9000 }, width: { min: 200, max: 4000 }, height: { min: 200, max: 2500 } };
 
   const DIST_20 = [-1, 0, 50, 100, 150, 200];   // pallets, floors, box floor
   const DIST_40 = [-1, 0, 100, 200, 300, 400];  // crate sides and lid

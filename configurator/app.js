@@ -9,6 +9,12 @@
   const state = { type: 'PBL', overrides: {}, onderlattenCount: 2 };
   let current = null;
 
+  /* De stand waarop de drie tussenafstand-lijsten beginnen. Hiernaar keren ze
+     terug bij "herstel automatisch" en bij een productwissel: bleef zo'n lijst
+     op "Manueel kiezen" staan terwijl de handmatige aantallen gewist werden,
+     dan begon je met twee latten over de volle breedte. */
+  const STANDAARDLIJST = { distance: '100', sideDistance: '300', coverDistance: '300' };
+
   // ---- tabs (grouped) + mobile select ----
   const tabs = $('#tabs');
   const groups = {};
@@ -27,7 +33,10 @@
   sel.addEventListener('change', () => setType(sel.value));
 
   function setType(code) {
-    state.type = code; state.overrides = {};
+    /* Ook de keuzelijsten terug naar automatisch. Bleven ze op "Manueel
+       kiezen" staan terwijl de overrides gewist werden, dan begon het volgende
+       product met twee latten over de volle breedte. */
+    state.type = code; state.overrides = {}; lijstenAutomatisch();
     const P = E.PRODUCTS[code];
     $$('.tab').forEach(x => x.classList.toggle('is-active', x.dataset.type === code));
     sel.value = code;
@@ -45,9 +54,9 @@
     });
     // distance lists per product
     const dist = form.elements.distance;
-    fill(dist, E.distOptions(E.DIST_20), '100');
-    fill(form.elements.sideDistance, E.distOptions(E.DIST_40), '300');
-    fill(form.elements.coverDistance, E.distOptions(E.DIST_40), '300');
+    fill(dist, E.distOptions(E.DIST_20), STANDAARDLIJST.distance);
+    fill(form.elements.sideDistance, E.distOptions(E.DIST_40), STANDAARDLIJST.sideDistance);
+    fill(form.elements.coverDistance, E.distOptions(E.DIST_40), STANDAARDLIJST.coverDistance);
     $('#distLabel').firstChild.textContent = P.kind === 'wall' ? 'Tussenafstand latten' : P.kind === 'box' ? 'Tussenafstand vloer' : 'Tussenafstand latten';
     const hIn = form.querySelector('[name=height]'); if (P.kind === 'wall' && +hIn.value === 300) hIn.value = 800; if (P.kind === 'box' && +hIn.value === 800) hIn.value = 300;
     $('#dimsTitle').textContent = P.kind === 'box' ? 'Goederen' : P.kind === 'wall' ? 'Wand' : P.kind === 'floor' ? 'Vloer' : 'Pallet';
@@ -80,19 +89,46 @@
   }
 
   const CORE = ['length', 'width', 'height', 'weight', 'distance', 'sideDistance', 'coverDistance', 'heavyDuty', 'transpallet', 'latTypeKey', 'balkTypeKey', 'balken'];
+  /* Elk lattenaantal hoort bij zijn eigen keuzelijst. Hier stond eerst één vlag
+     die alleen naar de VLOERlijst keek en bij elke wijziging alle overrides
+     weggooide. Gevolg: wie het aantal wandlatten of deksellatten met de hand
+     had gezet, zag dat stilzwijgend terugvallen naar het minimum zodra hij een
+     gewicht of een maat aanraakte — met een gat van een halve meter in de wand
+     als resultaat. Nu overleeft een handmatig aantal zolang zijn eigen lijst op
+     "Manueel kiezen" staat. */
+  const MANUEEL = { latten: 'distance', sideLatten: 'sideDistance', coverLatten: 'coverDistance' };
+  const opManueel = k => { const v = form.elements[MANUEEL[k]]; return !!v && v.value === '-1'; };
+
+  const lijstenAutomatisch = () => Object.entries(STANDAARDLIJST).forEach(([naam, waarde]) => {
+    const v = form.elements[naam]; if (v) v.value = waarde;
+  });
+
   form.addEventListener('input', ev => {
     const n = ev.target.name;
     if (CORE.includes(n)) {
-      const manual = form.elements.distance.value === '-1' && n !== 'distance';
       const heavyNow = form.elements.heavyDuty.checked || (+form.querySelector('[name=weight]').value || 0) >= 600;
-      state.overrides = manual ? { latten: state.overrides.latten, latType: heavyNow ? undefined : state.overrides.latType } : {};
+      const bewaard = {};
+      Object.keys(MANUEEL).forEach(k => {
+        if (n === MANUEEL[k]) {
+          /* De gebruiker wijzigt juist deze lijst. Zet hij ze op "Manueel
+             kiezen", dan vertrekken we van het aantal dat nu op het scherm
+             staat in plaats van van het minimum — anders klapt een dek van vijf
+             planken in tot twee. Kiest hij een afstand, dan vervalt de
+             handmatige waarde; dat is precies wat hij vraagt. */
+          if (ev.target.value === '-1' && current) bewaard[k] = current.c[k];
+          return;
+        }
+        if (state.overrides[k] !== undefined && opManueel(k)) bewaard[k] = state.overrides[k];
+      });
+      if (state.overrides.latType !== undefined && !heavyNow && n !== 'latTypeKey') bewaard.latType = state.overrides.latType;
+      state.overrides = bewaard;
     }
     if (n === 'onderlatten' && ev.target.checked && form.elements.nestelen) form.elements.nestelen.checked = false;
     if (n === 'nestelen' && ev.target.checked) form.elements.onderlatten.checked = false;
     update();
   });
   form.addEventListener('submit', e => e.preventDefault());
-  $('#resetOv').addEventListener('click', () => { state.overrides = {}; update(); });
+  $('#resetOv').addEventListener('click', () => { state.overrides = {}; lijstenAutomatisch(); update(); });
 
   $$('.stepper').forEach(st => {
     const key = st.dataset.key;
