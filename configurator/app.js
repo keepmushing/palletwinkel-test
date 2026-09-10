@@ -15,6 +15,32 @@
      dan begon je met twee latten over de volle breedte. */
   const STANDAARDLIJST = { distance: '100', sideDistance: '300', coverDistance: '300' };
 
+  /* De maatvelden hadden hun eigen min/max in de HTML staan. Toen de
+     breedtegrens in engine.js naar 4000 ging, bleef het invoerveld op 2500
+     hangen — twee bronnen voor dezelfde regel lopen altijd uit elkaar. De
+     grenzen komen nu uit de engine, zodat de rode rand van de browser klopt
+     met wat de berekening aanvaardt. */
+  ['length', 'width', 'height'].forEach(naam => {
+    const veld = form.querySelector('[name=' + naam + ']'), grens = E.LIMITS[naam];
+    if (veld && grens) { veld.min = grens.min; veld.max = grens.max; }
+  });
+
+  const toevoegKnop = () => $('#toevoegen');
+  function zetToevoegen(aan) {
+    const k = toevoegKnop();
+    if (!k) return;
+    k.disabled = !aan;
+    k.title = aan ? '' : 'Pas eerst de afmetingen aan; deze maat valt buiten wat de configurator aankan.';
+  }
+
+  /* De knop naar de offerte stond alleen aan na een toevoeging in dezelfde
+     sessie. Wie eerder iets toevoegde, wegnavigeerde en terugkwam, zag zijn
+     mand wel meetellen maar kon er niet naartoe. */
+  function toonOfferteKnop() {
+    const k = $('#naarOfferte');
+    if (k && window.Offerte) k.hidden = window.Offerte.aantal() === 0;
+  }
+
   // ---- tabs (grouped) + mobile select ----
   const tabs = $('#tabs');
   const groups = {};
@@ -264,9 +290,22 @@
     $('.stepper[data-key=onderlattenCount]').classList.toggle('hidden', !(inp.onderlatten && !['PBL', 'KIP', 'KRP'].includes(c.type) && P.kind !== 'floor' && P.kind !== 'wall'));
     $('#balkTypeRow').classList.toggle('hidden', !(P.kind === 'wall' && inp.balken));
     if (!c.valid) {
-      $('#gapNote').textContent = 'Lengte 200–9000 mm, breedte en hoogte 200–2500 mm.';
+      /* Buiten bereik gaf enkel een grijs regeltje met de grenzen erin, terwijl
+         het 3D-vlak leeg werd en de knop "Toevoegen aan offerte" gewoon
+         aanklikbaar bleef en niets deed. De klant wist dus niet wat er scheelde.
+         Nu: een echte foutmelding, en de knop uit. */
+      const L = E.LIMITS;
+      $('#gapNote').textContent =
+        'Deze maat kunnen wij niet configureren. Lengte ' + L.length.min + '–' + L.length.max +
+        ' mm, breedte ' + L.width.min + '–' + L.width.max +
+        ' mm, hoogte ' + L.height.min + '–' + L.height.max + ' mm. ' +
+        'Grotere stukken maken wij wel, maar niet via de configurator — stuur uw project door.';
+      $('#gapNote').classList.add('fout');
+      zetToevoegen(false);
       current = null; $('#summary').innerHTML = ''; $('#preview').textContent = ''; sheetTable.replaceChildren(); scene.remove(group); render(); return;
     }
+    $('#gapNote').classList.remove('fout');
+    zetToevoegen(true);
     const g = E.geometry(c);
     const first = !current || current.c.type !== c.type;
     current = { c, g, inp };
@@ -361,10 +400,11 @@
         melding.textContent = `${aantal} × ${c.product.name} toegevoegd. U kunt nog een product configureren of naar uw offerte gaan.`;
         melding.classList.remove('hidden');
       }
-      const naar = $('#naarOfferte');
-      if (naar) naar.hidden = false;
+      toonOfferteKnop();
     });
   }
 
   setType('PBL');
+  toonOfferteKnop();                       // ook als de mand uit een vorig bezoek komt
+  document.addEventListener('offerte:gewijzigd', toonOfferteKnop);
 })();

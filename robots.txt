@@ -1,8 +1,12 @@
 # 't Palletje
 #
-# TIJDELIJK — STAGING. De site staat vol nog niet bevestigde teksten en mag
+# TIJDELIJK - STAGING. De site staat vol nog niet bevestigde teksten en mag
 # niet geindexeerd worden. Zie README, "Van staging naar live", voor hoe je
 # dit terugzet op de dag van de livegang.
+#
+# Let op: gebruik hier alleen gewone letters en tekens. De hosting levert .txt
+# uit zonder charset, waardoor een lang streepje als mojibake op het scherm
+# komt. server.js doet het wel goed, maar die draait op Hostinger niet.
 
 User-agent: *
 Disallow: /

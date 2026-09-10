@@ -169,3 +169,10 @@ pre{margin:0;padding:12px;background:#f6fafc;border:1px solid var(--line);border
   line-height:1.45;color:var(--muted)}
 .checks label > small b{color:var(--navy);font-weight:700}
 .checks label > small a{color:var(--blue)}
+
+/* Buiten bereik: een echte foutmelding in plaats van een grijs regeltje.
+   Het 3D-vlak wordt dan leeg en de knop "Toevoegen aan offerte" gaat uit; zonder
+   dit klikte de klant op een knop die stilzwijgend niets deed. */
+.note.fout{margin-top:14px;padding:11px 14px;background:#fdf2f0;border-left:3px solid #c0392b;
+  border-radius:var(--r-sm);color:#8d2b1e;font-weight:600}
+button.primary:disabled{background:#b9c7d1;border-color:#b9c7d1;cursor:not-allowed}

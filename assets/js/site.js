@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260910b";
+  const ASSET_V = "20260910c";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
