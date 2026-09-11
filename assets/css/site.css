@@ -141,7 +141,7 @@ section.hero{padding:0}
 .hero .ph-hero{position:absolute;inset:0;background:repeating-linear-gradient(112deg,#0d476e 0 20px,#0a3a5c 20px 40px)}
 .hero::after{content:'';position:absolute;inset:0;background:linear-gradient(100deg,rgba(4,28,48,.96) 0%,rgba(6,53,84,.86) 56%,rgba(6,53,84,.62) 100%)}
 .hero-inner{padding:72px 0;position:relative;z-index:2}
-.hero h1{max-width:760px;margin:14px 0 20px;font-size:clamp(3rem,7vw,6.4rem);letter-spacing:-.065em;line-height:.94;font-weight:800}
+.hero h1{max-width:760px;margin:0 0 20px;font-size:clamp(3rem,7vw,6.4rem);letter-spacing:-.065em;line-height:.94;font-weight:800}
 .hero p{max-width:610px;font-size:clamp(1.05rem,2vw,1.28rem);color:#dcecf5}
 .hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:32px}
 .hero-note{display:flex;gap:10px;align-items:center;margin-top:24px;font-size:.88rem;color:#d6e7f1}
