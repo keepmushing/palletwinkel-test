@@ -224,6 +224,7 @@
   <form id="form" class="panel" autocomplete="off">
 
     <section>
+      <div class="eyebrow b">Stap 2</div>
       <h2 id="dimsTitle">Afmetingen</h2>
       <p class="note show-box">Geef de afmetingen van de goederen op. De kist krijgt 50 mm speling en wordt afgerond op 100 mm.</p>
       <div class="grid2">
@@ -296,6 +297,7 @@
     </section>
 
     <section>
+      <div class="eyebrow b">Stap 3</div>
       <h2>Bestelling</h2>
       <div class="grid2">
         <label>Aantal <span class="unit">stuks</span><input type="number" id="bestelAantal" value="1" min="1" step="1"></label>
@@ -458,7 +460,13 @@
     const tab = document.querySelector('.tab[data-type="' + kaart.dataset.kies + '"]');
     if (tab) tab.click();
     toon(false);
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    /* Na de keuze sprong de pagina naar de bovenkant: de klant zag de
+       herotekst en moest zelf naar beneden om stap 2 te vinden. Nu schuift
+       de productbalk (met het gekozen product opgelicht) tegen de kopbalk en
+       staat het formulier er meteen onder. */
+    var kop = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--kop"), 10) || 0;
+    var doel = balk ? balk.getBoundingClientRect().top + window.scrollY - kop : 0;
+    window.scrollTo({ top: Math.max(0, doel), behavior: "smooth" });
   });
 
   const terug = document.getElementById("anderProduct");

@@ -72,8 +72,14 @@
   function positionsX(transpallet, n, L, d) {
     if (transpallet && n % 2 === 0 && L >= JACK_OPENING) {
       const gap = (L - d) / (n - 1) - d;
-      if (gap <= JACK_OPENING) {
-        const half = (L - JACK_OPENING) / 2;
+      const half = (L - JACK_OPENING) / 2;
+      /* Elke helft moet haar eigen blokken kunnen dragen. Bij een korte pallet
+         (700 mm met twee blokken) was de helft smaller dan één blok, en zette
+         spread() dat blok gecentreerd in die smalle helft: het stak dan buiten
+         de pallet. Past het niet, dan vervalt de opening en staan de blokken
+         gewoon verdeeld. Dat er bij een oneven aantal nooit een opening komt,
+         is een openstaande productvraag (werklijst t50), geen bug hier. */
+      if (gap <= JACK_OPENING && half >= (n / 2) * d) {
         const a = spread(n / 2, d, half);
         return a.concat(a.map(x => x + half + JACK_OPENING));
       }
@@ -160,23 +166,38 @@
     const t = latType.height, s = latType.width;
     const staander = heavy ? STAANDER_TYPES.heavyDuty : STAANDER_TYPES.normal;
     const balk = heavy ? BALK_TYPES.heavyDuty : inp.transpallet ? BALK_TYPES.transpallet : BALK_TYPES.normal;
-    // inner box dimensions = goods + 50 mm clearance, rounded up to 100 mm (length only + 50)
+    /* Binnenmaat = goederen + 50 mm speling, afgerond op 100 mm (lengte alleen + 50).
+       De afronding zit op de maat die in de werkplaats rond moet zijn: de
+       wandhoogte (een heel aantal latten van 100) en, bij een palletbodem, de
+       palletbreedte. De latdikte gaat daarbij mee in de afronding in plaats van
+       er achteraf af te gaan: zo blijft de speling van 50 mm gegarandeerd
+       (goederen van 350 mm hoog kregen eerder nog maar 18 mm).
+       De binnenhoogte is wat er werkelijk vrij is tussen het vloerdek en de
+       onderkant van het deksel. Bij S en B staan de wanden mee rond de
+       vloerlatten (vanaf de onderkant van het dek), bij P staan ze op het dek.
+       Eerder werd hier een latdikte te veel afgetrokken, waardoor de gemelde
+       binnenmaat 16 mm kleiner was dan wat er getekend werd. */
     const innerL = r.length + BOX_CLEARANCE;
-    const innerW = floor === 'P' ? roundUp(r.width) - 2 * t : roundUp(r.width);
-    const innerH = floor === 'P' ? roundUp(r.height) - t : roundUp(r.height) - 2 * t;
+    const innerW = floor === 'P' ? roundUp(r.width + 2 * t) - 2 * t : roundUp(r.width);
+    const wallH = floor === 'P' ? roundUp(r.height) : roundUp(r.height + t);
+    const innerH = floor === 'P' ? wallH : wallH - t;
     const outerL = innerL + 2 * t, outerW = innerW + 2 * t;                    // incl. wall slats
     const extL = outerL + 2 * staander.height, extW = outerW + 2 * staander.height; // incl. uprights
     const gapFloor = P.gaps ? +inp.distance : 0, gapSide = P.gaps ? +inp.sideDistance : 0, gapCover = P.gaps ? +inp.coverDistance : 0;
-    const wallH = floor === 'P' ? innerH + t : innerH + 2 * t; // on a pallet base the walls stand on the deck
     Object.assign(r, { heavy, latType, staander, balk, innerL, innerW, innerH, outerL, outerW, extL, extW, wallH, floor,
       cover: !!inp.cover, nails: heavy ? NAILS_HEAVY : NAILS_NORMAL, gaps: P.gaps });
 
     const side = slatCount(wallH, gapSide, s, ov.sideLatten);
     Object.assign(r, { sideLatten: side.n, sideLattenAuto: side.auto, sideLattenMax: side.max, sideGap: actualGap(wallH, side.n, s) });
-    const cov = slatCount(innerW, gapCover, s, ov.coverLatten);
-    Object.assign(r, { coverLatten: cov.n, coverLattenAuto: cov.auto, coverLattenMax: cov.max, coverGap: actualGap(innerW, cov.n, s) });
+    // the lid covers the whole top, uprights included (see geometry), so its slats are counted over extW
+    const cov = slatCount(extW, gapCover, s, ov.coverLatten);
+    Object.assign(r, { coverLatten: cov.n, coverLattenAuto: cov.auto, coverLattenMax: cov.max, coverGap: actualGap(extW, cov.n, s) });
     const endPostsAuto = floor === 'B' ? Math.max(Math.ceil((innerW + 4 * t) / 500), 2) : innerW < 1000 ? 2 : Math.floor((innerW - 1000) / 600) + 3;
-    Object.assign(r, { endPostsAuto, endPosts: clamp(ov.endPosts ?? endPostsAuto, 2, 16) });
+    /* Het maximum stond hard op 16, los van de breedte van de kist; bij een
+       smalle kist gingen de staanders dan over elkaar heen. Nu: zoveel als er
+       naast elkaar op de kopzijde passen. */
+    const endPostsMax = Math.max(2, Math.floor(outerW / staander.width));
+    Object.assign(r, { endPostsAuto, endPostsMax, endPosts: clamp(ov.endPosts ?? endPostsAuto, 2, endPostsMax) });
 
     if (floor === 'S') {          // slats along X over the inner width, on cross beams
       const fl = slatCount(innerW, gapFloor, s, ov.latten);
@@ -233,13 +254,21 @@
     function blockPallet(L, W, latten, blok, blokken, poten, onderlatten, transpallet) {
       const slatY = spread(latten, s, W);
       slatY.forEach(y => box('lat', L / 2, y, 0, L, s, t));
-      const colX = positionsX(transpallet, blokken, L, blok.length);
-      const rowY = spread(poten, blok.width, W);
+      /* Dwarslatten en liggers zijn s breed en liggen gecentreerd op de blokken.
+         Zijn de blokken smaller (95 tegenover 100), dan staken die latten
+         2,5 mm buiten de pallet. De breedste van de twee houdt de rij nu van
+         de rand. */
+      const colX = positionsX(transpallet, blokken, L, Math.max(blok.length, s));
+      const rowY = spread(poten, Math.max(blok.width, s), W);
       colX.forEach(x => box('dwarslat', x, W / 2, -t, s, W, t));
       rowY.forEach(y => colX.forEach(x => box('blok', x, y, -2 * t, blok.length, blok.width, blok.height)));
       rowY.forEach(y => box('ligger', L / 2, y, -2 * t - blok.height, L, s, t));
       if (onderlatten) colX.forEach(x => box('onderlat', x, W / 2, -3 * t - blok.height, s, W, t));
-      colX.forEach(x => slatY.forEach(y => jt(x, y, rowY.some(ry => Math.abs(ry - y) < (s + blok.width) / 2) ? 2 : 1)));
+      /* Twee lagen alleen als het nagelpunt zelf (het midden van de lat) boven
+         een blok ligt. De test keek eerst of lat en blok elkaar raakten: een
+         lat die het blok 2 mm overlapt, werd dan als 'in het blok' gemeld
+         terwijl de nagel er 45 mm naast in de dwarslat ging. */
+      colX.forEach(x => slatY.forEach(y => jt(x, y, rowY.some(ry => Math.abs(ry - y) <= blok.width / 2) ? 2 : 1)));
       rowY.forEach(y => colX.forEach(x => jb(x, y, onderlatten ? 2 : 1)));
       return 3 * t + blok.height + (onderlatten ? t : 0);
     }
@@ -256,9 +285,9 @@
       return t + balk.height + (onderlatten ? t : 0);
     }
 
-    if (c.type === 'PBL') return Object.assign(g, { footprint: { L: c.length, W: c.width }, height: blockPallet(c.length, c.width, c.latten, c.blok, c.blokken, c.poten, c.onderlatten, c.transpallet) });
-    if (c.type === 'PBA') return Object.assign(g, { footprint: { L: c.length, W: c.width }, height: beamDeck(c.length, c.width, 0, 0, c.length, c.latten, c.balk, c.balken, c.onderlatten, c.transpallet, c.width) });
-    if (c.type === 'HVL') return Object.assign(g, { footprint: { L: c.length, W: c.width }, height: beamDeck(c.length, c.width, 0, 0, c.length, c.latten, { width: s, height: t }, c.balken, 0, false, c.width) });
+    if (c.type === 'PBL') { blockPallet(c.length, c.width, c.latten, c.blok, c.blokken, c.poten, c.onderlatten, c.transpallet); return finish(Object.assign(g, { footprint: { L: c.length, W: c.width } })); }
+    if (c.type === 'PBA') { beamDeck(c.length, c.width, 0, 0, c.length, c.latten, c.balk, c.balken, c.onderlatten, c.transpallet, c.width); return finish(Object.assign(g, { footprint: { L: c.length, W: c.width } })); }
+    if (c.type === 'HVL') { beamDeck(c.length, c.width, 0, 0, c.length, c.latten, { width: s, height: t }, c.balken, 0, false, c.width); return finish(Object.assign(g, { footprint: { L: c.length, W: c.width } })); }
     if (c.type === 'HWA') { // drawn flat: X = length, Y = height, posts behind the slats
       const L = c.length, Hh = c.height, p = c.post;
       const slatY = spread(c.latten, s, Hh);
@@ -267,7 +296,7 @@
       const postLen = Hh + (c.grondpalen ? GROUND_POST : 0);
       colX.forEach(x => box('paal', x, Hh / 2 - (c.grondpalen ? GROUND_POST / 2 : 0), -t, p.width, postLen, p.height));
       colX.forEach(x => slatY.forEach(y => jt(x, y, 1)));
-      return Object.assign(g, { footprint: { L, W: Hh }, height: t + p.height, wall: true });
+      return finish(Object.assign(g, { footprint: { L, W: Hh }, wall: true }));
     }
 
     // ---- boxes: origin = corner of the outer floor footprint (outerL × outerW) ----
@@ -300,10 +329,44 @@
     sideX.forEach(x => { box('staander', x, -st.height / 2, zTop, st.width, st.height, postH); box('staander', x, outerW + st.height / 2, zTop, st.width, st.height, postH); });
     spread(c.endPosts, st.width, outerW).forEach(y => { box('staander', -st.height / 2, y, zTop, st.height, st.width, postH); box('staander', outerL + st.height / 2, y, zTop, st.height, st.width, postH); });
     if (c.cover) {
-      spread(c.coverLatten, s, innerW).map(y => y + t).forEach(y => box('deksellat', outerL / 2, y, zTop + t, innerL, s, t));
-      sideX.forEach(x => box('dekselbalk', x, outerW / 2, zTop + t + st.height, st.width, outerW + 2 * st.height, st.height));
+      /* Het deksel ligt op de wanden én op de staanders en dekt dus de hele
+         bovenkant (extL × extW). Eerder waren de deksellatten maar zo lang en
+         breed als de opening: rondom bleef een strook van een latdikte open en
+         de dekselbalken hingen boven de staanders in de lucht. */
+      const extL = outerL + 2 * st.height, extW = outerW + 2 * st.height;
+      spread(c.coverLatten, s, extW).map(y => y - st.height).forEach(y => box('deksellat', outerL / 2, y, zTop + t, extL, s, t));
+      sideX.forEach(x => box('dekselbalk', x, outerW / 2, zTop + t + st.height, st.width, extW, st.height));
     }
-    return Object.assign(g, { footprint: { L: outerL, W: outerW }, height: depth + wallH + (c.cover ? st.height : 0), box: true });
+    return finish(Object.assign(g, { footprint: { L: outerL, W: outerW }, box: true }));
+  }
+
+  /* Buitenmaat en hoogte komen uit de tekening zelf: het kleinste blok dat om
+     alle onderdelen past, staanders en deksel inbegrepen. Zo kan de gemelde
+     maat niet meer afwijken van wat er getekend en gezaagd wordt (eerder
+     telde de hoogte van een kist zonder deksel een latdikte te veel, en liet de
+     buitenmaat de staanders weg). `footprint` blijft de oorsprong van de
+     nagelpunten: de buitenkant van de vloer, zonder staanders.
+     Samenvallende nagelpunten worden samengevoegd met de lagen opgeteld: bij
+     een balkenonderkader met een oneven aantal onderlatten én kaderbalken
+     vallen de middelste samen, en dan gaat één nagel door onderlat en
+     dwarsbalk in de kaderbalk. */
+  function finish(g) {
+    let x0 = Infinity, x1 = -Infinity, y0 = Infinity, y1 = -Infinity, z0 = Infinity, z1 = -Infinity;
+    g.parts.forEach(p => {
+      x0 = Math.min(x0, p.x - p.sx / 2); x1 = Math.max(x1, p.x + p.sx / 2);
+      y0 = Math.min(y0, p.y - p.sy / 2); y1 = Math.max(y1, p.y + p.sy / 2);
+      z0 = Math.min(z0, p.z - p.sz / 2); z1 = Math.max(z1, p.z + p.sz / 2);
+    });
+    const r1 = v => Math.round(v * 10) / 10;
+    g.outer = { L: r1(x1 - x0), W: r1(y1 - y0), H: r1(z1 - z0) };
+    g.height = g.outer.H;
+    const merge = list => {
+      const m = new Map();
+      list.forEach(j => { const k = r1(j.x) + ',' + r1(j.y); const e = m.get(k); if (e) e.layers += j.layers; else m.set(k, Object.assign({}, j)); });
+      return Array.from(m.values());
+    };
+    g.top = merge(g.top); g.bottom = merge(g.bottom);
+    return g;
   }
 
   // ---- cut list: parts grouped by kind and dimensions (length ≥ width ≥ thickness) ----
@@ -328,7 +391,8 @@
       const a = g.top[i], b = g.bottom[i];
       lines.push([a ? fmt(a.x) : '', a ? fmt(a.y) : '', a ? a.nails : '', a ? a.layers : '', b ? fmt(b.x) : '', b ? fmt(b.y) : '', b ? b.nails : '', b ? b.layers : ''].join(sep));
     }
-    lines.push('', ['Zaaglijst', c.product.name, `${c.type} ${g.footprint.L} x ${g.footprint.W}${g.box ? ' x ' + c.wallH : ''} mm`].join(sep));
+    // dezelfde buitenmaat als op het scherm: alles inbegrepen, ook staanders en deksel
+    lines.push('', ['Zaaglijst', c.product.name, `${c.type} buitenmaat ${fmt(g.outer.L)} x ${fmt(g.outer.W)} x ${fmt(g.outer.H)} mm`].join(sep));
     lines.push(['Onderdeel', 'Aantal', 'Lengte', 'Breedte', 'Dikte'].join(sep));
     cutList(g).forEach(p => lines.push([p.label, p.count, fmt(p.length), fmt(p.width), fmt(p.thickness)].join(sep)));
     return lines.join('\r\n') + '\r\n';

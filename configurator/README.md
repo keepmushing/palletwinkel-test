@@ -62,6 +62,9 @@ X_boven;Y_boven;Nagels_boven;Lagen_boven;X_onder;Y_onder;Nagels_onder;Lagen_onde
 
 - Origin (0,0) = bottom-left corner of the floor footprint. X runs along the length, Y along the width. Values in mm, centre of the joint.
   For boxes the footprint is the outer floor (wall thickness included, uprights excluded); the floor slats of a KIS/KRS start 16 mm in from the edge.
+- The `Zaaglijst` line names the **buitenmaat**: the bounding box of every part, uprights and lid included. It is the same number the customer sees on screen and on the quote line, and it is computed from the drawn parts (`finish()` in `engine.js`), so it cannot drift from the geometry.
+- Coinciding joints are merged with their layers added up. That happens on a KIB/KRB floor when the onderlatten and the frame beams both have an odd count: the middle ones share a line, and one nail then goes through onderlat and cross beam into the frame beam.
+- `Lagen = 2` on a block pallet only when the joint itself (the slat centre) lies over a block; a slat that merely overlaps the edge of a block is nailed into the cross board (1 layer).
 - Left four columns: joints made from the top (through the deck). Right four: joints made from the bottom.
   Rows are independent lists; when one side has fewer joints its columns are simply empty.
 - `Nagels`: 3, or 4 when the pallet is heavy (heavy-duty ticked or load ≥ 600 kg).
@@ -88,7 +91,9 @@ Expected: `5 3 3` (the same as the original site for its default pallet).
 
 ## Boxes (kisten/kratten) — how the sizes work
 
-The customer enters the size of the **goods**. Inner size = length + 50, width and height rounded up to the next 100 mm after adding 50 (as the original did).
+The customer enters the size of the **goods**. Inner length = length + 50. Width and height are rounded up to the next 100 mm after adding 50, and the rounding sits on the measure that has to be round in the workshop: the wall height (a whole number of 100 mm slats) and, on a pallet base, the pallet width. The slat thickness goes *into* the rounding rather than being subtracted afterwards, so the 50 mm clearance is guaranteed (the original subtracted afterwards and left 18 mm for goods of 350 mm).
+The reported inner height is the real clear height between the floor deck and the underside of the lid: walls of an S or B box run down around the floor slats, walls of a P box stand on the deck.
+The lid covers the whole top, uprights included (extL × extW); its battens sit on the lid slats above the long-side uprights. The number of end uprights is capped by what fits side by side on the end wall (`endPostsMax`).
 Kisten are closed (slats flush), kratten have three gap choices (floor, sides, lid). Suffix = floor type:
 S = slats on cross beams, B = slats across on long frame beams plus cross beams, P = a block pallet.
 Heavy for boxes = heavy-duty ticked, or `(weight−500)/50 + (height−800)/100 ≥ 15`; heavy uses 100×22 slats, 63×110 beams and 50×100 uprights.

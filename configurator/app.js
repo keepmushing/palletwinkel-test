@@ -310,11 +310,11 @@
     const first = !current || current.c.type !== c.type;
     current = { c, g, inp };
     $('#gapNote').textContent = P.kind === 'box'
-      ? `Binnenmaat ${c.innerL} × ${c.innerW} × ${c.innerH} mm · buitenmaat ${g.footprint.L} × ${g.footprint.W} × ${g.height} mm · latten ${c.latType.label}`
+      ? `Binnenmaat ${c.innerL} × ${c.innerW} × ${c.innerH} mm · buitenmaat ${g.outer.L} × ${g.outer.W} × ${g.outer.H} mm (staanders en deksel inbegrepen) · latten ${c.latType.label}`
       : `Werkelijke tussenafstand: ${c.gap} mm · lattype ${c.latType.label} mm`;
 
     const vals = { latten: c.latten, poten: c.poten, blokken: c.blokken, balken: c.balken, sideLatten: c.sideLatten, coverLatten: c.coverLatten, endPosts: c.endPosts, onderlattenCount: c.onderlatten || state.onderlattenCount };
-    const maxes = { latten: c.lattenMax, poten: c.potenMax, blokken: c.blokkenMax, balken: c.balkenMax, sideLatten: c.sideLattenMax, coverLatten: c.coverLattenMax, endPosts: 16, onderlattenCount: c.onderMax || 16 };
+    const maxes = { latten: c.lattenMax, poten: c.potenMax, blokken: c.blokkenMax, balken: c.balkenMax, sideLatten: c.sideLattenMax, coverLatten: c.coverLattenMax, endPosts: c.endPostsMax || 16, onderlattenCount: c.onderMax || 16 };
     const mins = { latten: 2, poten: 2, blokken: c.type === 'PBL' ? 3 : 2, balken: 2, sideLatten: 2, coverLatten: 2, endPosts: 2, onderlattenCount: 2 };
     $$('.stepper').forEach(st => {
       const k = st.dataset.key; if (k === 'latType') return;
@@ -326,7 +326,9 @@
     latTypeSel.value = c.latType.key;
 
     const rows = [];
-    if (P.kind === 'box') rows.push(['Buitenmaat', `${g.footprint.L} × ${g.footprint.W} × ${g.height} mm`], ['Binnenmaat', `${c.innerL} × ${c.innerW} × ${c.innerH} mm`]);
+    /* Buitenmaat = alles inbegrepen (staanders, deksel), uit de tekening zelf.
+       Wie hierop een vrachtwagen boekt, moet het juiste getal krijgen. */
+    if (P.kind === 'box') rows.push(['Buitenmaat', `${g.outer.L} × ${g.outer.W} × ${g.outer.H} mm`], ['Binnenmaat', `${c.innerL} × ${c.innerW} × ${c.innerH} mm`]);
     else if (P.kind === 'wall') rows.push(['Afmeting', `${c.length} × ${c.height} mm`]);
     else rows.push(['Afmeting', `${c.length} × ${c.width} mm`]);
     rows.push([P.kind === 'wall' ? 'Latten' : 'Vloerlatten', `${c.latten} × ${c.latType.label} mm${c.gap ? `, tussenafstand ${c.gap} mm` : ''}`]);
@@ -356,12 +358,12 @@
     a.href = URL.createObjectURL(new Blob([text], { type: mime })); a.download = name; a.click();
     setTimeout(() => URL.revokeObjectURL(a.href), 1000);
   }
-  const fname = (c, g) => `${c.type}_${g.footprint.L}x${g.footprint.W}${g.box ? 'x' + Math.round(g.height) : ''}${c.heavy ? '_zwaar' : ''}${c.transpallet ? '_transpallet' : ''}`;
+  const fname = (c, g) => `${c.type}_${Math.round(g.outer.L)}x${Math.round(g.outer.W)}${g.box ? 'x' + Math.round(g.outer.H) : ''}${c.heavy ? '_zwaar' : ''}${c.transpallet ? '_transpallet' : ''}`;
   $('#download').addEventListener('click', () => { if (current) save(fname(current.c, current.g) + '.csv', E.csv(current.c, current.g), 'text/csv;charset=utf-8'); });
   $('#downloadJson').addEventListener('click', () => {
     if (!current) return;
     const { c, g, inp } = current;
-    const out = { ...c, product: c.product.name, options: inp.options, footprint: g.footprint, totalHeight: g.height,
+    const out = { ...c, product: c.product.name, options: inp.options, footprint: g.footprint, outer: g.outer, totalHeight: g.height,
       cutList: E.cutList(g), parts: g.parts, joints: { top: g.top, bottom: g.bottom }, image: canvas.toDataURL('image/png') };
     save(fname(c, g) + '_config.json', JSON.stringify(out, null, 2), 'application/json');
   });
@@ -376,8 +378,8 @@
       const { c, g } = current;
       const aantal = Math.max(1, +($('#bestelAantal') || {}).value || 1);
       const maat = g.box
-        ? `${g.footprint.L} × ${g.footprint.W} × ${Math.round(g.height)} mm`
-        : `${g.footprint.L} × ${g.footprint.W} mm`;
+        ? `${g.outer.L} × ${g.outer.W} × ${Math.round(g.outer.H)} mm`
+        : `${g.outer.L} × ${g.outer.W} mm`;
       /* "Afmeting" staat al als maat op de offerteregel; nog eens in de
          specificaties zou hem twee keer in de aanvraag zetten. */
       const specs = Array.from(document.querySelectorAll('#summary dt'))
