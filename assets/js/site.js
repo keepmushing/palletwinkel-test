@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260911a";
+  const ASSET_V = "20260914a";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -48,12 +48,18 @@
   const FORM_SLEUTEL  = { naam: "access_key", waarde: "" };
 
   /* ====== 1. CONFIGURATOR — pas deze twee regels aan en alle knoppen kloppen ====== */
-  const CONFIGURATOR_URL = "/configurator/";
+  /* TIJDELIJK: de nieuwe configurator (/configurator/nieuw.html) is nog niet af,
+     dus alle knoppen gaan naar de oorspronkelijke. Terugzetten = hier weer
+     "/configurator/" invullen en configurator/nieuw.html terug index.html noemen. */
+  const CONFIGURATOR_URL = "https://configurator.palletje.be/";
   const PRODUCT_PARAM    = "product";   // wordt CONFIGURATOR_URL?product=pallet
 
   /* data-product springt meteen naar dat product; data-anker laat de bezoeker
-     eerst kiezen, maar dan wel bij de juiste groep in de productkiezer. */
+     eerst kiezen, maar dan wel bij de juiste groep in de productkiezer.
+     De oude configurator kent die twee niet, dus naar buiten gaat de kale URL. */
+  const CONFIGURATOR_EXTERN = /^https?:/.test(CONFIGURATOR_URL);
   $$('a.cfg').forEach(a => {
+    if (CONFIGURATOR_EXTERN) { a.href = CONFIGURATOR_URL; return; }
     const p = a.dataset.product;
     const anker = a.dataset.anker ? '#' + a.dataset.anker : '';
     a.href = (p ? `${CONFIGURATOR_URL}?${PRODUCT_PARAM}=${encodeURIComponent(p)}` : CONFIGURATOR_URL) + anker;
@@ -125,7 +131,7 @@
     { soort: 'Product', titel: 'Hout en plaatmateriaal op maat', tekst: 'Planken en plaatmateriaal op maat gezaagd, in grote en kleine oplagen. Ook als vloer- of wandpaneel.', url: '/producten/hout-en-plaatmateriaal/' },
     { soort: 'Product', titel: 'Houten constructies op maat', tekst: 'Skids, transportwiegen, machineverpakking, verdeelbakjes en inlays voor kwetsbare onderdelen.', url: '/producten/houten-constructies-op-maat/' },
     { soort: 'Pagina',  titel: 'Alle producten', tekst: 'Overzicht van alles wat wij maken: pallets, kisten, kratten, exportkisten, glasbokken, opzetranden, platen en constructies.', url: '/producten/' },
-    { soort: 'Pagina',  titel: 'Configurator', tekst: 'Stel zelf uw pallet, kist, krat, houten vloer of wand samen. Met 3D-weergave en een bestand voor de zagerij.', url: '/configurator/' },
+    { soort: 'Pagina',  titel: 'Configurator', tekst: 'Stel zelf uw pallet, kist, krat, houten vloer of wand samen. Met 3D-weergave en een bestand voor de zagerij.', url: CONFIGURATOR_URL },
     { soort: 'Pagina',  titel: 'Werkwijze', tekst: 'Van vraag naar veilige oplossing: u bezorgt de info, wij bezorgen een voorstel, produceren en leveren.', url: '/werkwijze/' },
     { soort: 'Pagina',  titel: 'Realisaties', tekst: 'Bewijs uit de praktijk. Glasbakjes voor restauratieglas, exportkisten, skids en maatwerkconstructies.', url: '/realisaties/' },
     { soort: 'Pagina',  titel: 'Duurzaamheid', tekst: 'Wat er van een maand produceren aan restafval overblijft, waar het hout vandaan komt, en waarom maatwerk minder materiaal gebruikt dan een te grote standaardmaat.', url: '/duurzaamheid/' },

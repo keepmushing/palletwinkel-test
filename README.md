@@ -149,6 +149,24 @@ Alle knoppen op de site die naar de configurator wijzen, dragen de klasse `cfg`.
 naar een eigen subdomein, dan pas je één regel aan: `CONFIGURATOR_URL` bovenaan
 `assets/js/site.js`.
 
+**Tijdelijk (sinds 14 september 2026): alles gaat naar de oude configurator.**
+De nieuwe is nog niet af. Daarom:
+
+- staat `CONFIGURATOR_URL` op `https://configurator.palletje.be/`; naar buiten
+  gaat de kale URL, zonder `?product=` of anker;
+- is `configurator/index.html` een doorverwijspagina (meta refresh +
+  `location.replace`) — een echte 301 kan op Horizons niet, zie "De echte 404";
+- staat de nieuwe configurator onder `/configurator/nieuw.html`, om verder te
+  testen;
+- is `/configurator/` uit `sitemap.xml` gehaald.
+
+Let op: de oude configurator vult het offertemandje van `/offerte-aanvraag/`
+niet — dat mandje leeft in de localStorage van dit domein.
+
+Terugzetten: `configurator/index.html` weg, `nieuw.html` terug `index.html`
+noemen, `CONFIGURATOR_URL` terug op `"/configurator/"`, de sitemap-regel terug,
+en de `?v=`-stempel verhogen.
+
 ### De PPWR-beslisroute
 
 `/ppwr/` is de interactieve beslisroute uit
