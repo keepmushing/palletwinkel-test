@@ -25,7 +25,7 @@
 
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260914g">
+<link rel="stylesheet" href="/assets/css/site.css?v=20260914h">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -116,25 +116,23 @@
   <section class="page-hero">
     <div class="ph-hero"></div>
     <div class="wrap">
-      <div class="eyebrow">Contact</div>
-      <h1>Bel gerust. Dat gaat het snelst.</h1>
-      <p class="lead">De meeste vragen over maten, gewichten en levertijden zijn in één telefoongesprek opgelost. Gaat het om een project met tekeningen of foto's, gebruik dan het projectformulier.</p>
+      <h1>Contact</h1>
+      <p class="lead">Voor algemene vragen, bekijk onze FAQ. De meeste antwoorden staan al klaar. Gaat het om een project met tekeningen of foto's, vraag dan je offerte via het projectformulier.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="tel:+32499196802">Bel 0499 19 68 02</a>
-        <a class="btn btn-secondary" href="/offerte/">Stuur uw project</a>
+        <a class="btn btn-primary" href="/faq/">Bekijk de FAQ</a>
+        <a class="btn btn-secondary" href="/offerte/">Vraag een offerte</a>
       </div>
     </div>
   </section>
 
-  <section class="op-wit">
+  <section class="op-zacht">
     <div class="wrap">
-      <div class="intro">
-        <div class="eyebrow b">Bereikbaar</div>
-        <h2>Zo bereikt u ons.</h2>
-        <p>U krijgt iemand die in de werkplaats staat, geen doorschakelmenu.</p>
-      </div>
-      <div class="contact-grid">
-        <div>
+      <div class="contact-canvas">
+        <div class="intro">
+          <div class="eyebrow b">Contacteer ons</div>
+          <h2>Bel, mail of kom langs</h2>
+        </div>
+        <div class="contact-blokken">
           <div class="contact-block">
             <span class="contact-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg></span>
             <div class="contact-tekst">
@@ -148,7 +146,6 @@
             <div class="contact-tekst">
               <span class="sr-only">Mailen</span>
               <a class="primair" href="mailto:info@palletje.be">info@palletje.be</a>
-              <p><a href="#contactformulier">Liever schrijven? Naar het contactformulier</a></p>
             </div>
           </div>
           <div class="contact-block">
@@ -160,48 +157,13 @@
             </div>
           </div>
         </div>
-
-        <article class="pillar">
-          <h3>Welke route past bij uw vraag?</h3>
-          <p>Voor pallets, kisten en platen rekent de configurator uw maten meteen door. Voor al de rest — glasbokken, opzetranden, constructies op maat en alles met een tekening erbij — stuurt u het <a href="/offerte/">projectformulier</a> door. Is het dringend, of weet u nog niet wat u nodig hebt, bel dan. Daar zijn wij het beste in.</p>
-          <div class="btn-row">
-            <a class="btn btn-navy cfg" href="/configurator/">Start configurator</a>
-            <a class="btn btn-line" href="/offerte/">Stuur uw project</a>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="op-lucht">
-    <div class="wrap">
-      <div class="intro">
-        <div class="eyebrow b">Schriftelijk</div>
-        <h2>Liever niet bellen?</h2>
-        <p>Laat uw vraag hier achter. De telefoon blijft de snelste weg; dit formulier is er voor wie liever schrijft.</p>
-      </div>
-
-      <div class="contact-grid">
-        <div>
-          <article class="pillar">
-            <h3>Wat helpt in uw bericht</h3>
-            <ul>
-              <li><strong>Maten</strong> — lengte, breedte en hoogte van de last, in mm.</li>
-              <li><strong>Gewicht</strong> — per stuk; bij benadering volstaat.</li>
-              <li><strong>Aantal</strong> — hoeveel stuks u nodig hebt.</li>
-              <li><strong>Bestemming</strong> — binnen of buiten Europa. Buiten Europa geldt de ISPM-15-eis; wij merken onder onze eigen registratie <span class="spec">BE-1689</span>.</li>
-            </ul>
-            <p>Hebt u een tekening of een foto, gebruik dan het <a href="/offerte/">projectformulier</a>. Daar kunt u een bestand meesturen.</p>
-          </article>
-        </div>
-
+        <div class="canvas-onder">
         <!-- TE VERVANGEN VOOR LIVE: action van het contactformulier. -->
         <!-- Nog geen backend: site.js zet de velden om in een e-mail. Zie
              README, "Formulier-backend". Het action-attribuut hieronder is de
              terugval voor bezoekers zonder JavaScript. -->
         <form id="contactformulier" data-formulier="Bericht via het contactformulier" method="post" action="mailto:info@palletje.be" enctype="text/plain">
-          <div class="eyebrow b">Bericht</div>
-          <h3 style="margin:8px 0 18px;font-size:1.5rem;color:var(--navy);letter-spacing:-.03em">Stuur uw vraag door</h3>
+          <h3 style="margin:8px 0 18px;font-size:1.5rem;color:var(--navy);letter-spacing:-.03em">Contactformulier</h3>
           <p class="hint" data-mailto-waarschuwing><span class="ph">Dit formulier is nog niet op een server aangesloten: uw bericht opent in uw eigen e-mailprogramma. Liever rechtstreeks? Mail <a href="mailto:info@palletje.be">info@palletje.be</a> of bel <a href="tel:+32499196802">0499 19 68 02</a>.</span></p>
           <div class="two">
             <div class="field"><label for="naam">Naam *</label><input id="naam" name="naam" required></div>
@@ -223,72 +185,29 @@
           <div class="field"><label for="bericht">Uw bericht *</label><textarea id="bericht" name="bericht" required></textarea><p class="hint">Zet er maten, gewicht en aantal bij als u die al kent.</p></div>
           <button class="btn btn-navy" type="submit" style="width:100%">Verstuur bericht</button>
         </form>
-      </div>
-    </div>
-  </section>
-
-  <section class="op-zacht">
-    <div class="wrap">
-      <div class="intro">
-        <div class="eyebrow b">Bedrijfsgegevens</div>
-        <h2>De formele gegevens.</h2>
-        <p>Voor uw administratie, en voor wie exporteert buiten Europa.</p>
-      </div>
-      <div class="raster raster-3">
-        <article class="pillar">
-          <h3>Adres</h3>
-          <p>Morellestraat 1, 8750 Wingene. Enkel op afspraak — bel of mail eerst even.</p>
-        </article>
-        <article class="pillar">
-          <h3>Onderneming</h3>
-          <p>&rsquo;t Palletje BV &middot; BTW <span class="spec">BE 0863.163.507</span> &middot; RPR Gent, afdeling Brugge.</p>
-        </article>
-        <article class="pillar">
-          <h3>ISPM-15-registratie</h3>
-          <p>Wij merken onder onze eigen registratie <span class="spec">BE-1689</span>.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="op-wit">
-    <div class="wrap">
-      <div class="intro">
-        <div class="eyebrow b">Voor u belt</div>
-        <h2>Misschien staat het antwoord er al.</h2>
-      </div>
-      <div class="verwant">
-        <a href="/faq/">
-          <strong>Veelgestelde vragen</strong>
-          <span>Wat de prijs bepaalt, welke info wij nodig hebben en hoe het met levering zit.</span>
-          <em>Naar de FAQ &rarr;</em>
-        </a>
-        <a href="/werkwijze/">
-          <strong>Werkwijze</strong>
-          <span>Van uw aanvraag tot de levering: wie wat doet en wanneer.</span>
-          <em>Bekijk de werkwijze &rarr;</em>
-        </a>
-        <a href="/producten/">
-          <strong>Producten</strong>
-          <span>Pallets, kisten, exportkisten, glasbokken, opzetranden, platen en constructies.</span>
-          <em>Bekijk alle producten &rarr;</em>
-        </a>
+          <aside class="canvas-hulp">
+            <h3>Wat helpt in uw bericht</h3>
+            <ul>
+              <li><strong>Maten</strong> — lengte, breedte en hoogte van de last, in mm.</li>
+              <li><strong>Gewicht</strong> — per stuk; bij benadering volstaat.</li>
+              <li><strong>Aantal</strong> — hoeveel stuks u nodig hebt.</li>
+              <li><strong>Bestemming</strong> — binnen of buiten Europa. Buiten Europa geldt de ISPM-15-eis; wij merken onder onze eigen registratie <span class="spec">BE-1689</span>.</li>
+            </ul>
+            <p>Hebt u een tekening of een foto, gebruik dan het <a href="/offerte/">projectformulier</a>. Daar kunt u een bestand meesturen.</p>
+          </aside>
+        </div>
       </div>
     </div>
   </section>
 
   <section class="final">
     <div class="wrap">
-      <div class="eyebrow b">Klaar om te starten?</div>
-      <h2>Liever meteen iemand spreken?</h2>
-      <p>Bel ons, of mail uw vraag door met uw maten en aantallen erbij.</p>
+      <h2>Klaar om te starten?</h2>
+      <p>Voor pallets, kisten en platen start de configurator.</p>
+      <p>Voor al uw andere vragen op maat vraag een offerte.</p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="tel:+32499196802">Bel 0499 19 68 02</a>
-        <a class="btn btn-secondary" href="mailto:info@palletje.be">Stuur een mail</a>
-      </div>
-      <div class="final-tel">
-        <p>Liever meteen iemand aan de lijn?</p>
-        <a href="tel:+32499196802">0499 19 68 02</a>
+        <a class="btn btn-primary cfg" href="/configurator/">Start configurator</a>
+        <a class="btn btn-secondary" href="/offerte/">Vraag een offerte</a>
       </div>
     </div>
   </section>
@@ -335,6 +254,6 @@
   </div>
 </footer>
 
-<script src="/assets/js/site.js?v=20260914g"></script>
+<script src="/assets/js/site.js?v=20260914h"></script>
 </body>
 </html>
