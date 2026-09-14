@@ -1,30 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- De juridische pagina's staan bewust niet in deze sitemap: zolang hun
      tekst nog niet opgesteld is, dragen ze meta robots noindex. -->
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://palletje.be/</loc>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://palletje.be/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://palletje.be/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://palletje.be/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://palletje.be/"/>
-    <lastmod>2026-09-06</lastmod>
-  </url>
-  <url>
-    <loc>https://palletje.be/en/</loc>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://palletje.be/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://palletje.be/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://palletje.be/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://palletje.be/"/>
-    <lastmod>2026-09-06</lastmod>
-  </url>
-  <url>
-    <loc>https://palletje.be/fr/</loc>
-    <xhtml:link rel="alternate" hreflang="nl" href="https://palletje.be/"/>
-    <xhtml:link rel="alternate" hreflang="en" href="https://palletje.be/en/"/>
-    <xhtml:link rel="alternate" hreflang="fr" href="https://palletje.be/fr/"/>
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://palletje.be/"/>
     <lastmod>2026-09-06</lastmod>
   </url>
   <url>

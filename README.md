@@ -97,7 +97,6 @@ niets.
 ```
 palletwinkel/
   index.html              Homepage (NL)
-  en/  fr/                Engelse en Franse samenvattingspagina
   producten/              Overzicht + zeven detailpagina's
   configurator/           De configurator, in dezelfde huisstijl
     index.html            De pagina; schil uit site.css, rest uit configurator.css

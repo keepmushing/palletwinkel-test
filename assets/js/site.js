@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260914a";
+  const ASSET_V = "20260914b";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -141,9 +141,7 @@
     { soort: 'Pagina',  titel: 'Offerte aanvragen', tekst: 'Stuur uw project door met maten, gewicht, aantal en bestemming. Een foto of tekening erbij versnelt alles.', url: '/offerte/' },
     { soort: 'Onderwerp', titel: 'ISPM-15 en export', tekst: 'Exportkisten met onze eigen ISPM-15-markering. Wij kopen behandeld hout aan, produceren zelf en merken onder onze eigen registratie.', url: '/#ispm15' },
     { soort: 'Onderwerp', titel: 'PPWR-beslisroute', tekst: 'Welke PPWR-route past bij uw onderneming? Loop de vragen door en zie welke beslissingen u moet nemen en welke documentatie wij kunnen aanleveren.', url: '/ppwr/' },
-    { soort: 'Onderwerp', titel: 'Diensten', tekst: 'Verpakkingsontwikkeling, prototyping, kleine testseries, R en D, verpakken in ons atelier, op locatie of inclusief levering.', url: '/#diensten' },
-    { soort: 'Pagina',  titel: 'English', tekst: 'Wooden transport solutions made to measure: pallets, crates, export boxes, glass racks.', url: '/en/' },
-    { soort: 'Pagina',  titel: 'Francais', tekst: 'Solutions de transport en bois sur mesure: palettes, caisses, caisses export, chevalets a verre.', url: '/fr/' },
+    { soort: 'Onderwerp', titel: 'Diensten', tekst: 'Verpakkingsontwikkeling, prototyping, kleine testseries, R en D, verpakken in ons atelier, op locatie of inclusief levering.', url: '/diensten/' },
     { soort: 'Pagina',  titel: 'Privacyverklaring', tekst: 'Hoe wij met uw gegevens omgaan.', url: '/privacy/' },
     { soort: 'Pagina',  titel: 'Cookiebeleid', tekst: 'Welke cookies deze site gebruikt.', url: '/cookies/' },
     { soort: 'Pagina',  titel: 'Algemene voorwaarden', tekst: 'De voorwaarden bij onze offertes en leveringen.', url: '/voorwaarden/' }
@@ -178,8 +176,7 @@
     }));
     [['#ispm15', 'Export', 'Exportkisten met onze eigen ISPM-15-markering'],
      ['#realisaties', 'Realisatie', 'Precisie voor restauratieglas'],
-     ['#contact', 'Contact', 'Liever meteen iemand spreken?'],
-     ['#over-ons', 'Over ons', 'Technisch genoeg om mee te denken']].forEach(([doel, soort, titel]) => {
+     ['#contact', 'Contact', 'Liever meteen iemand spreken?']].forEach(([doel, soort, titel]) => {
       const el = $(doel); if (!el) return;
       index.push({ soort, titel, tekst: kort(el.textContent).slice(0, 160), doel });
     });
