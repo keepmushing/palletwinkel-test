@@ -148,23 +148,23 @@ Alle knoppen op de site die naar de configurator wijzen, dragen de klasse `cfg`.
 naar een eigen subdomein, dan pas je één regel aan: `CONFIGURATOR_URL` bovenaan
 `assets/js/site.js`.
 
-**Tijdelijk (sinds 14 september 2026): alles gaat naar de oude configurator.**
-De nieuwe is nog niet af. Daarom:
+**Testsite (sinds 3 oktober 2026): weer de eigen configurator.** Op
+palletwinkel.com wijst `CONFIGURATOR_URL` weer naar `"/configurator/"` en is
+`configurator/index.html` opnieuw de configurator zelf (vroeger `nieuw.html`).
+Tussen 14 september en 3 oktober stuurde de site alles door naar de oude
+configurator op configurator.palletje.be; die vult het offertemandje van
+`/offerte-aanvraag/` niet, want dat leeft in de localStorage van dit domein.
+Moet het tijdelijk terug, zet `CONFIGURATOR_URL` dan op
+`"https://configurator.palletje.be/"`: de knoppen sturen dan de kale URL.
 
-- staat `CONFIGURATOR_URL` op `https://configurator.palletje.be/`; naar buiten
-  gaat de kale URL, zonder `?product=` of anker;
-- is `configurator/index.html` een doorverwijspagina (meta refresh +
-  `location.replace`) — een echte 301 kan op Horizons niet, zie "De echte 404";
-- staat de nieuwe configurator onder `/configurator/nieuw.html`, om verder te
-  testen;
-- is `/configurator/` uit `sitemap.xml` gehaald.
-
-Let op: de oude configurator vult het offertemandje van `/offerte-aanvraag/`
-niet — dat mandje leeft in de localStorage van dit domein.
-
-Terugzetten: `configurator/index.html` weg, `nieuw.html` terug `index.html`
-noemen, `CONFIGURATOR_URL` terug op `"/configurator/"`, de sitemap-regel terug,
-en de `?v=`-stempel verhogen.
+De productkiezer (feedback Durieu, okt 2026) toont alle producten op één
+scherm. Pallet, kist en krat openen eerst een pop-up "Van welke kant kunnen
+de vorken erin?" (2-weg met balken of 4-weg met blokken; bij kist en krat ook
+een vlakke bodem). Vloer gaat meteen naar het formulier; glasbok, opzetrand,
+constructie en "iets anders" gaan naar `/offerte/`. `?product=pallet`, `kist`
+of `krat` en de ankers `#grp-palletten`, `#grp-kisten` en `#grp-kratten`
+openen die pop-up meteen; `?product=blokpallet` of een code als `KIB` springt
+er voorbij.
 
 ### De PPWR-beslisroute
 
@@ -285,10 +285,12 @@ netwerkweergave van de browser: alles komt van het eigen domein.
 - [ ] **Domein bevestigen.** Overal staat nu `palletje.be` (canonical, hreflang,
       sitemap). Dat is afgeleid uit het configurator-subdomein, niet expliciet
       bevestigd — doc 01, blokker 4. Zet de andere domeinen op redirect.
-- [ ] Logo in SVG en een Open Graph-beeld 1200 × 630. Het logo staat er nu als
-      PNG van 360 × 360 (`assets/img/logo.png`), gebruikt als merkteken én als
-      favicon. Voor een scherpe weergave op grote schermen en in
-      deelvoorbeelden is een SVG en een echt OG-beeld beter.
+- [ ] Open Graph-beeld 1200 × 630 en een nieuw favicon. Sinds 3 oktober 2026
+      (testsite) is het merkteken het stencilwoordmerk van de configurator, als
+      SVG: `assets/img/woordmerk.svg` en, met verfresten, `woordmerk-verf.svg`.
+      `?logo=verf` toont de tweede versie, `?logo=strak` de eerste; de keuze
+      blijft bewaard in de browser. `assets/img/logo.png` (het ronde logo met
+      het figuurtje) is nog enkel favicon en het logo in de JSON-LD.
 - [ ] Privacybeleid, algemene voorwaarden en cookiebeleid laten opstellen. De
       pagina's staan er, met de structuur; de tekst moet van uw boekhouder of jurist
       komen. Ze staan op `noindex` tot dat gebeurd is.

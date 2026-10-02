@@ -25,7 +25,7 @@
 
 <link rel="icon" href="/assets/img/logo.png">
 <link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="stylesheet" href="/assets/css/site.css?v=20260926a">
+<link rel="stylesheet" href="/assets/css/site.css?v=20261003a">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -43,51 +43,36 @@
 
 <div class="topstrip"></div>
 
-<div class="utility">
-  <div class="wrap utility-inner">
-    <a href="/werkwijze/">Werkwijze</a>
-    <a href="/over-ons/">Over ons</a>
-    <a href="/duurzaamheid/">Duurzaamheid</a>
-    <div class="dropdown">
-      <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Regelgeving</button>
-      <div class="dropdown-menu" id="ddMenu">
-        <a href="/#ispm15">ISPM-15 en export</a>
-        <a href="/ppwr/">PPWR-wetgeving</a>
-      </div>
-    </div>
-    <a href="/faq/">FAQ</a>
-    <a href="/contact/">Contact</a>
-    <a class="utility-tel" href="tel:+32499196802">
-      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg>
-      0499 19 68 02
-    </a>
-    <span class="taal">NL</span>
-  </div>
-</div>
-
 <header>
-  <nav class="nav wrap">
-    <a class="brand" href="/"><img class="logomark" src="/assets/img/logo.png" alt="" width="90" height="90"><span class="woordmerk">&rsquo;t Palletje</span></a>
+  <nav class="nav wrap" aria-label="Hoofdmenu">
+    <a class="brand" href="/"><span class="woordmerk" aria-hidden="true"></span><span class="sr-only">&rsquo;t Palletje, naar de startpagina</span></a>
     <div class="links" id="menu">
       <a href="/producten/">Producten</a>
       <a href="/diensten/">Diensten</a>
       <a href="/realisaties/">Realisaties</a>
-      <a class="alleen-mobiel" href="/werkwijze/">Werkwijze</a>
-      <a class="alleen-mobiel" href="/duurzaamheid/">Duurzaamheid</a>
-      <a class="alleen-mobiel" href="/#ispm15">ISPM-15 en export</a>
-      <a class="alleen-mobiel" href="/ppwr/">PPWR-wetgeving</a>
-      <a class="alleen-mobiel" href="/faq/">FAQ</a>
-      <a class="alleen-mobiel" href="/contact/">Contact</a>
-      <a class="alleen-mobiel" href="tel:+32499196802">0499 19 68 02</a>
+      <a href="/werkwijze/">Werkwijze</a>
+      <a href="/over-ons/">Over ons</a>
+      <div class="dropdown">
+        <button type="button" id="ddBtn" class="active" aria-expanded="false" aria-controls="ddMenu">Regelgeving</button>
+        <div class="dropdown-menu" id="ddMenu">
+          <a href="/#ispm15">ISPM-15 en export</a>
+          <a href="/ppwr/">PPWR-wetgeving</a>
+          <a href="/duurzaamheid/">Duurzaamheid</a>
+        </div>
+      </div>
+      <a href="/faq/">FAQ</a>
+      <a href="/contact/">Contact</a>
+      <a class="alleen-mobiel menu-tel" href="tel:+32499196802"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg> +32 499 19 68 02</a>
     </div>
     <div class="nav-acties">
+      <a class="nav-tel" href="tel:+32499196802" aria-label="Bel +32 499 19 68 02"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg><span aria-hidden="true">+32 499 19 68 02</span></a>
       <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
         <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
       </button>
       <a class="nav-cta cfg" href="/configurator/">Start configurator
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
     </div>
   </nav>
 
@@ -196,7 +181,7 @@
       </div>
       <div class="final-tel">
         <p>Liever meteen iemand aan de lijn?</p>
-        <a href="tel:+32499196802">0499 19 68 02</a>
+        <a href="tel:+32499196802">+32 499 19 68 02</a>
       </div>
     </div>
   </section>
@@ -204,45 +189,61 @@
 
 <footer>
   <div class="wrap">
-        <div class="footer-top">
+    <div class="voet">
       <div class="footer-brand">
-        <a class="brand" href="/" style="color:#fff"><span class="woordmerk">&rsquo;t Palletje</span></a>
+        <a class="brand" href="/"><span class="woordmerk" aria-hidden="true"></span><span class="sr-only">&rsquo;t Palletje, naar de startpagina</span></a>
         <p>Houten transportoplossingen op maat<br>voor industrie, logistiek en export.</p>
+        <a class="voet-ispm" href="/#ispm15"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path stroke-width="2.4" d="M13 7h23l10 10v34H13V7Zm23 0v10h10"/><path stroke-width="3" d="M20 25h18M20 32h18M20 39h12"/><circle cx="47" cy="45" r="8" fill="#082a45" stroke-width="3"/><path stroke-width="3" d="m43 45 3 3 6-7M43 52l-2 6 6-3 5 3-1-7"/></svg><span><strong>ISPM-15</strong>Markering onder eigen registratie</span></a>
       </div>
-      <nav class="footer-pages" aria-label="Voetnavigatie">
-        <h3>Pagina&rsquo;s</h3>
-        <div class="footer-links">
-          <a href="/producten/pallet-op-maat/">Pallets op maat</a><a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
-          <a href="/producten/exportkisten/">Exportkisten</a><a href="/producten/glasbokken/">Glasbokken</a>
-          <a href="/producten/opzetranden/">Palletranden / opzetranden</a><a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
-          <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a><a href="/diensten/">Diensten</a>
-          <a href="/werkwijze/">Werkwijze</a><a href="/realisaties/">Realisaties</a>
-          <a href="/over-ons/">Over ons</a><a href="/duurzaamheid/">Duurzaamheid</a>
-          <a href="/#ispm15">ISPM-15</a>
-          <a href="/ppwr/">PPWR</a><a href="/faq/">FAQ</a>
-          <a href="/contact/">Contact</a>
-        </div>
+      <nav class="voet-kolom" aria-label="Producten">
+        <h3>Producten</h3>
+        <a href="/producten/pallet-op-maat/">Pallets op maat</a>
+        <a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
+        <a href="/producten/exportkisten/">Exportkisten</a>
+        <a href="/producten/glasbokken/">Glasbokken</a>
+        <a href="/producten/opzetranden/">Palletranden / opzetranden</a>
+        <a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
+        <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a>
       </nav>
-    </div>
-    <div class="footer-contact">
-      <div>
-        <h3>Bedrijfsgegevens</h3>
-        <p>&rsquo;t Palletje<br>Morellestraat 1<br>8750 Wingene<br>Belgi&euml;</p>
+      <nav class="voet-kolom" aria-label="Bedrijf">
+        <h3>Bedrijf</h3>
+        <a href="/over-ons/">Over ons</a>
+        <a href="/werkwijze/">Werkwijze</a>
+        <a href="/diensten/">Diensten</a>
+        <a href="/realisaties/">Realisaties</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <nav class="voet-kolom" aria-label="Regelgeving">
+        <h3>Regelgeving</h3>
+        <a href="/#ispm15">ISPM-15 en export</a>
+        <a href="/ppwr/">PPWR-wetgeving</a>
+        <a href="/duurzaamheid/">Duurzaamheid</a>
+      </nav>
+      <div class="voet-kolom voet-contact">
+        <h3>Contact</h3>
+        <a class="voet-tel" href="tel:+32499196802">+32 499 19 68 02</a>
+        <a href="mailto:info@palletje.be">info@palletje.be</a>
+        <p class="voet-uren">Ma&ndash;vr, 8u&ndash;17u</p>
+        <p>&rsquo;t Palletje<br>Morellestraat 1, 8750 Wingene<br>Belgi&euml; &middot; bezoek op afspraak</p>
         <p>BTW BE 0863.163.507</p>
         <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=Morellestraat+1%2C+8750+Wingene" target="_blank" rel="noopener">Google Maps</a>
-      </div>
-      <div>
-        <h3>Rechtstreeks contact</h3>
-        <a href="tel:+32499196802">0499 19 68 02</a>
-        <a href="mailto:info@palletje.be">info@palletje.be</a>
-        <a href="/offerte/">Offerte aanvragen</a>
+        <a class="voet-offerte" href="/offerte/">Offerte aanvragen</a>
       </div>
     </div>
+    <!-- Cijferband: stond als groot blok op de homepage ("ziet er AI uit"),
+         nu als subtiele regel onder de contactgegevens. .ph = nog te bevestigen. -->
+    <ul class="cijferband" aria-label="&rsquo;t Palletje in cijfers">
+      <li><strong>1.250+</strong> uitvoeringen gebouwd</li>
+      <li><strong><span class="ph">160+</span></strong> bedrijven geholpen sinds 2024</li>
+      <li><strong><span class="ph">40 cm &ndash; 5 m+</span></strong> gebouwd op maat</li>
+      <li><strong>Vanaf 1 dag</strong> wanneer het echt dringend is</li>
+    </ul>
     <div class="legal">&copy; <span data-jaar>2026</span> &rsquo;t Palletje &middot;
       <a href="/privacy/">Privacy</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a></div>
   </div>
 </footer>
 
-<script src="/assets/js/site.js?v=20260926a"></script>
+<script src="/assets/js/site.js?v=20261003a"></script>
 </body>
 </html>

@@ -158,7 +158,7 @@ var server = http.createServer(function (req, res) {
       405,
       '<!doctype html><meta charset="utf-8"><title>Nog niet aangesloten</title>' +
         '<p>Dit formulier verstuurt nog niet. Mail <a href="mailto:info@palletje.be">info@palletje.be</a> ' +
-        'of bel <a href="tel:+32499196802">0499 19 68 02</a>.</p>'
+        'of bel <a href="tel:+32499196802">+32 499 19 68 02</a>.</p>'
     );
     return;
   }

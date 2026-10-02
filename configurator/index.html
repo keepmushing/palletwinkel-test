@@ -1,29 +1,533 @@
 <!doctype html>
 <!-- ==========================================================
-     'T PALLETJE — CONFIGURATOR (TIJDELIJKE DOORVERWIJZING)
-     De nieuwe configurator is nog niet af en staat onder
-     /configurator/nieuw.html. Tot dan stuurt deze pagina elke
-     bezoeker door naar de oorspronkelijke configurator.
-
-     Een echte 301 kan op deze hosting niet: Hostinger Horizons
-     negeert .htaccess en server.js draait niet (README, "De echte
-     404"). Daarom meta refresh + location.replace.
-
-     Terugzetten: dit bestand weg, nieuw.html terug index.html
-     noemen, en CONFIGURATOR_URL in assets/js/site.js terug op
-     "/configurator/".
+     'T PALLETJE — CONFIGURATOR
+     Rekenwerk (engine.js), bediening (app.js) en de 3D-weergave
+     komen ongewijzigd uit github.com/djoeneuh/palletje-configurator.
+     De schil is die van de site: /assets/css/site.css levert
+     kleuren, kopbalk, knoppen en voettekst; configurator.css
+     alleen wat daar niet in zit.
      ========================================================== -->
 <html lang="nl-BE">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Configurator | 't Palletje</title>
+<meta name="description" content="Stel zelf uw pallet, kist, krat, houten vloer of wand samen. Directe 3D-weergave, samenvatting en een CSV-bestand voor de zagerij en de CNC.">
+
+<link rel="canonical" href="https://palletje.be/configurator/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_BE">
+<meta property="og:title" content="Configurator | 't Palletje">
+<meta property="og:description" content="Stel zelf uw pallet, kist, krat, houten vloer of wand samen.">
+<meta property="og:url" content="https://palletje.be/configurator/">
+<meta property="og:image" content="https://palletje.be/assets/img/werkplaats-wingene-houten-verpakking-panorama.jpg">
+<meta property="og:image:alt" content="Werkplaats van 't Palletje in Wingene: houten pallets en kisten op maat">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Configurator | 't Palletje">
+<meta name="twitter:description" content="Stel zelf uw pallet, kist, krat, houten vloer of wand samen.">
+<meta name="twitter:image" content="https://palletje.be/assets/img/werkplaats-wingene-houten-verpakking-panorama.jpg">
+
+<!-- TIJDELIJK — STAGING. Weg vóór livegang. Zie README, "Van staging naar live". -->
 <meta name="robots" content="noindex, nofollow">
-<meta http-equiv="refresh" content="0; url=https://configurator.palletje.be/">
-<link rel="canonical" href="https://configurator.palletje.be/">
-<script>location.replace("https://configurator.palletje.be/");</script>
+
+<link rel="icon" href="/assets/img/logo.png">
+<link rel="preload" href="/assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/site.css?v=20261003a">
+<link rel="stylesheet" href="/configurator/configurator.css?v=20261003a">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://palletje.be/" },
+    { "@type": "ListItem", "position": 2, "name": "Configurator" }
+  ]
+}
+</script>
 </head>
-<body>
-<p>U wordt doorgestuurd naar de configurator. Gebeurt er niets? <a href="https://configurator.palletje.be/">Open de configurator</a>.</p>
+<body data-pagina="configurator">
+
+<a class="skip" href="#top">Naar de inhoud</a>
+<div class="topstrip"></div>
+
+<header>
+  <nav class="nav wrap" aria-label="Hoofdmenu">
+    <a class="brand" href="/"><span class="woordmerk" aria-hidden="true"></span><span class="sr-only">&rsquo;t Palletje, naar de startpagina</span></a>
+    <div class="links" id="menu">
+      <a href="/producten/">Producten</a>
+      <a href="/diensten/">Diensten</a>
+      <a href="/realisaties/">Realisaties</a>
+      <a href="/werkwijze/">Werkwijze</a>
+      <a href="/over-ons/">Over ons</a>
+      <div class="dropdown">
+        <button type="button" id="ddBtn" aria-expanded="false" aria-controls="ddMenu">Regelgeving</button>
+        <div class="dropdown-menu" id="ddMenu">
+          <a href="/#ispm15">ISPM-15 en export</a>
+          <a href="/ppwr/">PPWR-wetgeving</a>
+          <a href="/duurzaamheid/">Duurzaamheid</a>
+        </div>
+      </div>
+      <a href="/faq/">FAQ</a>
+      <a href="/contact/">Contact</a>
+      <a class="alleen-mobiel menu-tel" href="tel:+32499196802"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg> +32 499 19 68 02</a>
+    </div>
+    <div class="nav-acties">
+      <a class="nav-tel" href="tel:+32499196802" aria-label="Bel +32 499 19 68 02"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.79 19.79 0 0 1 2.12 4.18 2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.68 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.32 1.85.55 2.81.68A2 2 0 0 1 22 16.92z"/></svg><span aria-hidden="true">+32 499 19 68 02</span></a>
+      <button class="zoekknop" id="zoekknop" aria-expanded="false" aria-controls="zoekbalk" aria-label="Zoeken op deze site">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+      </button>
+      <a class="nav-cta cfg" href="/configurator/">Start configurator
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+      </a>
+      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>
+    </div>
+  </nav>
+
+  <div class="zoekbalk" id="zoekbalk">
+    <div class="wrap">
+      <div class="zoekveld">
+        <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.6-3.6"/></svg>
+        <input id="zoekveld" type="search" placeholder="Zoek een product, dienst of vraag…" autocomplete="off" aria-label="Zoekterm">
+        <button class="zoeksluit" id="zoeksluit" aria-label="Zoeken sluiten">&times;</button>
+      </div>
+      <ul class="zoekresultaten" id="zoekresultaten"></ul>
+    </div>
+  </div>
+</header>
+
+<nav class="crumbs" aria-label="Kruimelpad">
+  <div class="wrap">
+    <a href="/">Home</a>
+    <span aria-hidden="true">/</span>
+    <span aria-current="page">Configurator</span>
+  </div>
+</nav>
+
+<section class="page-hero" id="top">
+  <div class="ph-hero"></div>
+  <div class="wrap">
+    <div class="eyebrow">Configurator</div>
+    <!-- app.js zet hier de naam van het gekozen product in -->
+    <h1 id="title">Pallet met blokken</h1>
+    <p class="lead">Vul de afmetingen en het gewicht in. De uitvoering wordt automatisch berekend en u past ze aan waar u wilt. U ziet het resultaat meteen in 3D en voegt het toe aan uw offerte.</p>
+    <div class="hero-note"><span class="dot"></span> Past uw vraag niet in de configurator? <a href="/offerte/" style="color:#8fd3fa;text-decoration:underline;margin-left:5px">Stuur uw project door</a>.</div>
+  </div>
+</section>
+<section id="kiezer" class="op-wit">
+  <div class="wrap">
+    <div class="intro">
+      <div class="eyebrow b">Stap 1</div>
+      <h2>Wat wilt u laten maken?</h2>
+      <p>Kies het product. Pallets, kisten, kratten en vloeren stelt u hier zelf samen en ziet u meteen in 3D. De rest rekenen wij uit op basis van uw tekening.</p>
+    </div>
+
+    <div class="kiezer-grid kiezer-families">
+      <button type="button" class="kiezer-kaart" id="grp-palletten" data-familie="pallet">
+        <span class="kiezer-beeld"><img src="/assets/img/pallet-op-maat-blokpallet-1800x800.jpg?v=20261003a" alt="" loading="lazy"></span>
+        <span class="kiezer-naam">Pallet</span>
+        <span class="kiezer-uitleg">Elke maat en elke belasting, met balken of met blokken.</span>
+      </button>
+      <button type="button" class="kiezer-kaart" id="grp-kisten" data-familie="kist">
+        <span class="kiezer-beeld"><img src="/assets/img/houten-exportkist-gesloten-machinebouw.jpg?v=20261003a" alt="" loading="lazy"></span>
+        <span class="kiezer-naam">Kist</span>
+        <span class="kiezer-uitleg">Gesloten wanden: beschermt tegen stof, vocht en zicht.</span>
+      </button>
+      <button type="button" class="kiezer-kaart" id="grp-kratten" data-familie="krat">
+        <span class="kiezer-beeld"><img src="/assets/img/houten-krat-open-intern-transport.jpg?v=20261003a" alt="" loading="lazy"></span>
+        <span class="kiezer-naam">Krat</span>
+        <span class="kiezer-uitleg">Open wanden met tussenruimte: lichter, en laat lucht door.</span>
+      </button>
+      <button type="button" class="kiezer-kaart" id="grp-vloeren" data-kies="HVL">
+        <span class="kiezer-beeld"><img src="/assets/img/houten-vloerpaneel-pallethout-werfvloer.jpg?v=20261003a" alt="" loading="lazy"></span>
+        <span class="kiezer-naam">Houten vloer of deksel</span>
+        <span class="kiezer-uitleg">Latten op een frame, in de maat die u opgeeft.</span>
+      </button>
+      <a class="kiezer-kaart" href="/offerte/">
+        <span class="kiezer-beeld"><img src="/assets/img/glasbok-op-maat-glastransport.jpg?v=20261003a" alt="" loading="lazy"><span class="kiezer-tag">Op tekening</span></span>
+        <span class="kiezer-naam">Glasbok</span>
+        <span class="kiezer-uitleg">Voor glas dat niet mag breken of verschuiven.</span>
+      </a>
+      <a class="kiezer-kaart" href="/offerte/">
+        <span class="kiezer-beeld"><img src="/assets/img/opzetrand-europallet-stapelen.jpg?v=20261003a" alt="" loading="lazy"><span class="kiezer-tag">Op tekening</span></span>
+        <span class="kiezer-naam">Opzetrand</span>
+        <span class="kiezer-uitleg">Standaard of op maat, om te stapelen en te stockeren.</span>
+      </a>
+      <a class="kiezer-kaart" href="/offerte/">
+        <span class="kiezer-beeld"><img src="/assets/img/houten-skid-zware-machine-transport.jpg?v=20261003a" alt="" loading="lazy"><span class="kiezer-tag">Op tekening</span></span>
+        <span class="kiezer-naam">Constructie op maat</span>
+        <span class="kiezer-uitleg">Skids, transportwiegen, machineverpakking en meer.</span>
+      </a>
+      <a class="kiezer-kaart" href="/offerte/">
+        <span class="kiezer-beeld"><svg class="kiezer-schets" viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8h28l10 10v38H12z"/><path d="M40 8v10h10"/><path d="M19 22h14M19 28h8"/><path d="M38 52l14-22 4 3-14 22-5 2z"/></svg><span class="kiezer-tag">Op tekening</span></span>
+        <span class="kiezer-naam">Iets anders</span>
+        <span class="kiezer-uitleg">Beschrijf wat u nodig hebt. Foto, schets of tekening volstaat.</span>
+      </a>
+    </div>
+    <p class="kiezer-anders">Bij <strong>Op tekening</strong> stuurt u uw maten, foto of schets door. Wij rekenen het uit en u krijgt een voorstel met prijs.</p>
+  </div>
+</section><div class="productbar">
+  <div class="wrap topbar">
+    <span class="eyebrow b">Product</span>
+    <!-- Geen tablist: app.js vult dit met groepskoppen en gewone knoppen, en er is geen tabpanel. -->
+    <div class="tabs" id="tabs" role="group" aria-label="Product"></div>
+    <button type="button" class="kiezer-terug" id="anderProduct">Ander product kiezen</button>
+  </div>
+</div>
+
+<main class="layout wrap">
+  <form id="form" class="panel" autocomplete="off">
+
+    <section>
+      <div class="eyebrow b">Stap 2</div>
+      <h2 id="dimsTitle">Afmetingen</h2>
+      <p class="note show-box">Geef de afmetingen van de goederen op. De kist krijgt 50 mm speling en wordt afgerond op 100 mm.</p>
+      <div class="grid2">
+        <label>Lengte <span class="unit">mm</span><input type="number" name="length" value="1200" min="200" max="9000" step="1" required></label>
+        <label class="hide-wall">Breedte <span class="unit">mm</span><input type="number" name="width" value="800" min="200" max="2500" step="1" required></label>
+        <label class="show-box show-wall">Hoogte <span class="unit">mm</span><input type="number" name="height" value="300" min="200" max="2500" step="1" required></label>
+        <label class="show-pallet show-box">Gewicht last <span class="unit">kg</span><input type="number" name="weight" value="300" min="0" step="1"></label>
+        <label class="show-floor show-wall">Lattype<select name="latTypeKey"></select></label>
+        <label class="hide-kist" id="distLabel">Tussenafstand latten<select name="distance"></select></label>
+        <label class="show-krat">Tussenafstand zijkanten<select name="sideDistance"></select></label>
+        <label class="show-krat">Tussenafstand deksel<select name="coverDistance"></select></label>
+      </div>
+      <p class="note" id="gapNote"></p>
+      <p class="note warn hidden" id="pbaHint">Een pallet met balken is een meer economische keuze voor pallets met een breedte van 700 mm of minder.</p>
+      <div class="checks">
+        <label class="show-pallet show-box"><input type="checkbox" name="heavyDuty"> Zwaardere uitvoering</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="transpallet"> Compatibel met transpallet</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="onderlatten"> Onderlatten</label>
+        <label class="show-box"><input type="checkbox" name="cover" checked> Deksel</label>
+        <label class="show-wall"><input type="checkbox" name="balken"> Zwaardere palen</label>
+        <label class="show-wall paaltype" id="balkTypeRow">Paaltype<select name="balkTypeKey"></select></label>
+        <label class="show-wall"><input type="checkbox" name="grondpalen"> Grondpalen (500 mm langer)</label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Uitvoering</h2>
+      <p class="note">Beginwaarden volgen uit de afmetingen en het gewicht. Pas ze aan met de knoppen; <button type="button" class="link" id="resetOv">herstel automatisch</button>.</p>
+      <div class="grid2" id="steppers">
+        <div class="stepper" data-key="latten"><span class="lbl">Vloerlatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-pallet" data-key="latType"><span class="lbl">Lattype</span><select id="latType"></select></div>
+        <div class="stepper show-PBL show-KIP show-KRP" data-key="poten"><span class="lbl">Poten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-PBL show-KIP show-KRP" data-key="blokken"><span class="lbl">Blokken per poot</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-PBA show-HVL show-KIS show-KIB show-KRS show-KRB" data-key="balken"><span class="lbl">Balken</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-HWA" data-key="balken"><span class="lbl">Palen</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-box" data-key="sideLatten"><span class="lbl">Wandlatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-box" data-key="coverLatten"><span class="lbl">Deksellatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper show-box" data-key="endPosts"><span class="lbl">Staanders kopzijde</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>0</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+        <div class="stepper" data-key="onderlattenCount"><span class="lbl">Onderlatten</span><button type="button" data-d="-1" aria-label="minder">&minus;</button><output>2</output><button type="button" data-d="1" aria-label="meer">+</button></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Opties</h2>
+      <div class="checks kolommen">
+        <label class="show-pallet show-box"><input type="checkbox" name="ht"> Moet voldoen aan de HT / ISPM-15-regelgeving</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="htCertificate"> Certificaat van HT behandeling</label>
+        <label><input type="checkbox" name="binden"> Samenbinden</label>
+        <label class="show-pallet"><input type="checkbox" name="nestelen"> Nestelen</label>
+        <label class="show-pallet show-box"><input type="checkbox" name="schimmelvrij"> Schimmelvrij hout<small>Hout dat vrij is van ongedierte maar nog licht nat kan zijn: latten kunnen nog krimpen. In de handel <b>ht</b>.</small></label>
+        <label class="show-pallet show-box"><input type="checkbox" name="droog"> Droog hout<small>Oven gedroogd bovenop de behandeling. Mooi droog, krimpt bijna niet meer. In de handel <b>ht / kd</b>. <a href="/producten/hout-en-plaatmateriaal/#houtsoorten" target="_blank" rel="noopener">Wat is het verschil?</a></small></label>
+        <label class="show-box"><input type="checkbox" name="unmountableFront"> Demonteerbare voorkant</label>
+        <label class="show-box"><input type="checkbox" name="hingingCover"> Scharnierend deksel</label>
+        <label class="show-box"><input type="checkbox" name="hookAnchors"> Hoekijzers</label>
+        <label class="show-box"><input type="checkbox" name="kit"> Bouwpakket</label>
+        <label class="show-box"><input type="checkbox" name="plasticInside"> Plastiek binnenbekleding</label>
+        <label class="show-box"><input type="checkbox" name="poTray"> PO-houder</label>
+        <label class="show-box"><input type="checkbox" name="airtag"> Airtag</label>
+        <label class="show-box"><input type="checkbox" name="spraySafetySymbols"> Veiligheidssymbolen spuiten</label>
+        <label class="show-box"><input type="checkbox" name="sprayLogo"> Logo spuiten</label>
+      </div>
+    </section>
+  </form>
+
+  <aside class="panel">
+    <section>
+      <h2>3D-weergave</h2>
+      <div class="canvas-wrap"><canvas id="canvas"></canvas><button type="button" class="ghost" id="resetCam">Camera herstellen</button></div>
+      <p class="note">Slepen draait het model, scrollen zoomt, shift ingedrukt houden verschuift.</p>
+    </section>
+
+    <section>
+      <div class="eyebrow b">Stap 3</div>
+      <h2>Bestelling</h2>
+      <div class="grid2">
+        <label>Aantal <span class="unit">stuks</span><input type="number" id="bestelAantal" value="1" min="1" step="1"></label>
+      </div>
+      <label class="vol">Opmerkingen
+        <textarea id="bestelOpmerking" rows="3" placeholder="Plaats extra opmerkingen hier…"></textarea>
+      </label>
+      <label class="vol">Bijlage
+        <input type="file" id="bestelBijlage" multiple accept=".pdf,.dwg,.dxf,.jpg,.jpeg,.png">
+      </label>
+      <p class="note">De namen van uw bestanden gaan mee met de aanvraag. De bestanden zelf voegt u toe aan de e-mail die straks opent.</p>
+      <div class="actions">
+        <button type="button" class="primary" id="toevoegen">Toevoegen aan offerte</button>
+        <a class="ghost knop" href="/offerte-aanvraag/" id="naarOfferte" hidden>Naar mijn offerte (<span data-offerte-teller>0</span>)</a>
+      </div>
+      <p class="note ok hidden" id="toegevoegdMelding" role="status"></p>
+    </section>
+
+    <!-- Verborgen op vraag van de klant. Niet verwijderd: app.js vult dit blok en
+         de offerteregel leest er de specificaties uit. -->
+    <section id="samenvattingBlok" hidden>
+      <h2>Samenvatting</h2>
+      <dl class="summary" id="summary"></dl>
+    </section>
+
+    <section id="cncBlok" hidden>
+      <h2>Bestand voor CNC en zagerij</h2>
+      <p class="note">Eén CSV: eerst de nagelpunten (oorsprong linksonder, X langs de lengte, Y langs de breedte, mm; kolommen X;Y;Nagels;Lagen voor boven, dan dezelfde vier voor onder), daarna een blanco regel en de zaaglijst met alle onderdelen.</p>
+      <div class="actions">
+        <button type="button" class="primary" id="download">Download CSV</button>
+        <button type="button" class="ghost" id="downloadJson">Download configuratie (JSON)</button>
+      </div>
+      <div class="sheet-head">
+        <h3>Live weergave van het CSV-bestand</h3>
+        <label class="sheet-toggle"><input type="checkbox" id="rawToggle"> Ruwe tekst</label>
+      </div>
+      <div class="sheet-wrap" id="sheetWrap"><table class="sheet" id="sheet"></table></div>
+      <pre id="preview" class="hidden"></pre>
+    </section>
+  </aside>
+</main>
+
+<section style="padding:0 0 80px">
+  <div class="wrap">
+    <div class="final" style="padding:64px 40px">
+      <div class="eyebrow b">Niet configureerbaar?</div>
+      <h2>Stuur uw tekening, wij rekenen het uit.</h2>
+      <p>Glasbokken, opzetranden en houten constructies op maat maken we op basis van uw plan of foto. U krijgt een voorstel met prijs.</p>
+      <div class="hero-actions">
+        <a class="btn btn-primary" href="/offerte/">Project doorsturen</a>
+        <a class="btn btn-secondary" href="tel:+32499196802">+32 499 19 68 02</a>
+      </div>
+    </div>
+  </div>
+</section>
+<footer>
+  <div class="wrap">
+    <div class="voet">
+      <div class="footer-brand">
+        <a class="brand" href="/"><span class="woordmerk" aria-hidden="true"></span><span class="sr-only">&rsquo;t Palletje, naar de startpagina</span></a>
+        <p>Houten transportoplossingen op maat<br>voor industrie, logistiek en export.</p>
+        <a class="voet-ispm" href="/#ispm15"><svg viewBox="0 0 64 64" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path stroke-width="2.4" d="M13 7h23l10 10v34H13V7Zm23 0v10h10"/><path stroke-width="3" d="M20 25h18M20 32h18M20 39h12"/><circle cx="47" cy="45" r="8" fill="#082a45" stroke-width="3"/><path stroke-width="3" d="m43 45 3 3 6-7M43 52l-2 6 6-3 5 3-1-7"/></svg><span><strong>ISPM-15</strong>Markering onder eigen registratie</span></a>
+      </div>
+      <nav class="voet-kolom" aria-label="Producten">
+        <h3>Producten</h3>
+        <a href="/producten/pallet-op-maat/">Pallets op maat</a>
+        <a href="/producten/kisten-en-kratten/">Kisten &amp; kratten</a>
+        <a href="/producten/exportkisten/">Exportkisten</a>
+        <a href="/producten/glasbokken/">Glasbokken</a>
+        <a href="/producten/opzetranden/">Palletranden / opzetranden</a>
+        <a href="/producten/hout-en-plaatmateriaal/">Hout en platen</a>
+        <a href="/producten/houten-constructies-op-maat/">Constructies op maat</a>
+      </nav>
+      <nav class="voet-kolom" aria-label="Bedrijf">
+        <h3>Bedrijf</h3>
+        <a href="/over-ons/">Over ons</a>
+        <a href="/werkwijze/">Werkwijze</a>
+        <a href="/diensten/">Diensten</a>
+        <a href="/realisaties/">Realisaties</a>
+        <a href="/faq/">FAQ</a>
+        <a href="/contact/">Contact</a>
+      </nav>
+      <nav class="voet-kolom" aria-label="Regelgeving">
+        <h3>Regelgeving</h3>
+        <a href="/#ispm15">ISPM-15 en export</a>
+        <a href="/ppwr/">PPWR-wetgeving</a>
+        <a href="/duurzaamheid/">Duurzaamheid</a>
+      </nav>
+      <div class="voet-kolom voet-contact">
+        <h3>Contact</h3>
+        <a class="voet-tel" href="tel:+32499196802">+32 499 19 68 02</a>
+        <a href="mailto:info@palletje.be">info@palletje.be</a>
+        <p class="voet-uren">Ma&ndash;vr, 8u&ndash;17u</p>
+        <p>&rsquo;t Palletje<br>Morellestraat 1, 8750 Wingene<br>Belgi&euml; &middot; bezoek op afspraak</p>
+        <p>BTW BE 0863.163.507</p>
+        <a class="maps" href="https://www.google.com/maps/search/?api=1&amp;query=Morellestraat+1%2C+8750+Wingene" target="_blank" rel="noopener">Google Maps</a>
+        <a class="voet-offerte" href="/offerte/">Offerte aanvragen</a>
+      </div>
+    </div>
+    <!-- Cijferband: stond als groot blok op de homepage ("ziet er AI uit"),
+         nu als subtiele regel onder de contactgegevens. .ph = nog te bevestigen. -->
+    <ul class="cijferband" aria-label="&rsquo;t Palletje in cijfers">
+      <li><strong>1.250+</strong> uitvoeringen gebouwd</li>
+      <li><strong><span class="ph">160+</span></strong> bedrijven geholpen sinds 2024</li>
+      <li><strong><span class="ph">40 cm &ndash; 5 m+</span></strong> gebouwd op maat</li>
+      <li><strong>Vanaf 1 dag</strong> wanneer het echt dringend is</li>
+    </ul>
+    <div class="legal">&copy; <span data-jaar>2026</span> &rsquo;t Palletje &middot;
+      <a href="/privacy/">Privacy</a> &middot; <a href="/cookies/">Cookies</a> &middot; <a href="/voorwaarden/">Algemene voorwaarden</a></div>
+  </div>
+</footer>
+
+<!-- Onderbouw kiezen: pop-up vóór de keuze tussen balken en blokken
+     (feedback Durieu, okt 2026). Inhoud uit de infographic "Van welke kant
+     kunnen de vorken erin?" (assets/img/infographic-van-welke-kant-vorken.webp),
+     in tekst gezet zodat ze ook op een telefoon leesbaar is. Geformuleerd als
+     oplossing ("kies dit als ..."), niet als probleem. Tekst gelijk aan het
+     blok #onderbouw op /producten/pallet-op-maat/ (daar nagekeken). -->
+<dialog id="onderbouwKeuze" class="ob-dialoog" aria-labelledby="obTitel">
+  <div class="ob">
+    <button type="button" class="dlg-close" data-ob-sluit aria-label="Sluiten">&times;</button>
+    <div class="ob-kop">
+      <div class="eyebrow b" id="obStap">Onderbouw</div>
+      <h2 id="obTitel">Van welke kant kunnen de vorken erin?</h2>
+      <p>De onderbouw bepaalt dit &mdash; achteraf wijzigen kan niet.</p>
+    </div>
+    <div class="ob-keuzes">
+      <article class="ob-keuze">
+        <img src="/assets/img/onderbouw-2-weg.webp?v=20261003a" alt="" width="570" height="360">
+        <h3>Bodem met <em>2-weg</em> pallet</h3>
+        <p class="ob-sub">Twee zijden open</p>
+        <ul class="vinkjes">
+          <li>Opnemen kan langs de twee kopse zijden. De doorlopende balken sluiten de lange zijden af.</li>
+          <li>Kies dit als heftruck of transpallet altijd vanaf de kopse kant kan komen.</li>
+          <li>Economischer dan een 4&#8209;weg onderbouw.</li>
+        </ul>
+        <button type="button" class="btn btn-navy" data-ob-kies="2">Kies 2-weg, met balken</button>
+      </article>
+      <article class="ob-keuze">
+        <img src="/assets/img/onderbouw-4-weg.webp?v=20261003a" alt="" width="645" height="433">
+        <h3>Bodem met <em>4-weg</em> pallet</h3>
+        <p class="ob-sub">Vier zijden open</p>
+        <ul class="vinkjes">
+          <li>Opnemen kan langs alle vier de zijden.</li>
+          <li>Flexibeler bij het laden: <span class="ph">tot ca. 2,40&nbsp;m schuift <span data-ob-wie>de kist</span> in de lengte een bestelwagen in, langer laadt u in een gesloten vrachtwagen</span>.</li>
+          <li>Kies dit als u niet weet van welke kant wordt opgenomen, of te weinig ruimte hebt om <span data-ob-wie>de kist</span> te draaien.</li>
+        </ul>
+        <button type="button" class="btn btn-navy" data-ob-kies="4">Kies 4-weg, met blokken</button>
+      </article>
+    </div>
+    <p class="ob-vlak" id="obVlak" hidden>Geen heftruck of transpallet nodig? <button type="button" class="link" data-ob-kies="0">Kies een vlakke bodem, zonder onderbouw</button>.</p>
+  </div>
+</dialog>
+
+<script src="/configurator/three.min.js?v=20261003a"></script>
+<script src="/configurator/engine.js?v=20261003a"></script>
+<script src="/assets/js/offerte.js?v=20261003a"></script>
+<script src="/configurator/app.js?v=20261003a"></script>
+<script src="/assets/js/site.js?v=20261003a"></script>
+<script>
+/* Intern blok: de CSV met nagelpunten en de zaaglijst zijn productiegegevens en
+   horen niet bij wat een klant te zien krijgt. Zet aan met ?intern=1, uit met
+   ?intern=0; de keuze blijft in deze browser bewaard.
+   LET OP: dit verbergt, het beveiligt niet. Moet het echt afgeschermd zijn, zet
+   dan een wachtwoord op de map via hPanel > Beveiliging > Mappen beveiligen. */
+(function () {
+  const q = new URLSearchParams(location.search).get("intern");
+  if (q === "1") localStorage.setItem("cnc", "1");
+  if (q === "0") localStorage.removeItem("cnc");
+  const blok = document.getElementById("cncBlok");
+  if (blok && localStorage.getItem("cnc") === "1") blok.hidden = false;
+})();
+
+/* Productkiezer: zonder ?product= begint de bezoeker bij de keuze, niet bij een
+   formulier voor een product dat hij niet gekozen heeft. */
+(function () {
+  const kiezer = document.getElementById("kiezer");
+  const balk   = document.querySelector(".productbar");
+  const layout = document.querySelector("main.layout");
+  const titel  = document.getElementById("title");
+  const lead   = document.querySelector(".page-hero .lead");
+  if (!kiezer) return;
+
+  const LEAD_KIEZEN = "Kies hieronder wat u wilt laten maken. Daarna vult u de afmetingen en het gewicht in, en ziet u het resultaat meteen in 3D.";
+  /* Een houten vloer en een wand hebben geen gewichtsveld, dus daar mag de
+     intro er ook niet om vragen. */
+  const LEAD_VULLEN = "Vul de afmetingen en het gewicht in. De uitvoering wordt automatisch berekend en u past ze aan waar u wilt. U ziet het resultaat meteen in 3D en voegt het toe aan uw offerte.";
+  const LEAD_VULLEN_ZONDER_GEWICHT = "Vul de afmetingen in. De uitvoering wordt automatisch berekend en u past ze aan waar u wilt. U ziet het resultaat meteen in 3D en voegt het toe aan uw offerte.";
+
+  function toon(kiezen) {
+    kiezer.hidden = !kiezen;
+    if (balk)   balk.hidden   = kiezen;
+    if (layout) layout.hidden = kiezen;
+    if (lead) {
+      var gewichtVeld = document.querySelector('[name=weight]');
+      var heeftGewicht = gewichtVeld && !gewichtVeld.closest('label').classList.contains('hidden');
+      lead.textContent = kiezen ? LEAD_KIEZEN : (heeftGewicht ? LEAD_VULLEN : LEAD_VULLEN_ZONDER_GEWICHT);
+    }
+    if (titel && kiezen) titel.textContent = "Configurator";
+  }
+
+  function kies(code) {
+    const tab = document.querySelector('.tab[data-type="' + code + '"]');
+    if (tab) tab.click();
+    toon(false);
+    /* Na de keuze sprong de pagina naar de bovenkant: de klant zag de
+       herotekst en moest zelf naar beneden om stap 2 te vinden. Nu schuift
+       de productbalk (met het gekozen product opgelicht) tegen de kopbalk en
+       staat het formulier er meteen onder. */
+    var kop = parseInt(getComputedStyle(document.documentElement).getPropertyValue("--kop"), 10) || 0;
+    var doel = balk ? balk.getBoundingClientRect().top + window.scrollY - kop : 0;
+    window.scrollTo({ top: Math.max(0, doel), behavior: "smooth" });
+  }
+
+  /* Pallet, kist en krat: eerst de onderbouw kiezen (2-weg of 4-weg), in een
+     pop-up met de uitleg uit de infographic. 0 = vlakke bodem, zonder
+     onderbouw; die bestaat alleen voor kisten en kratten. */
+  const FAMILIES = {
+    pallet: { naam: "Pallet op maat", wie: "de pallet", 2: "PBA", 4: "PBL" },
+    kist:   { naam: "Kist op maat",   wie: "de kist",   2: "KIB", 4: "KIP", 0: "KIS" },
+    krat:   { naam: "Krat op maat",   wie: "het krat",  2: "KRB", 4: "KRP", 0: "KRS" }
+  };
+  const ob = document.getElementById("onderbouwKeuze");
+  let familie = null;
+  function vraagOnderbouw(naam) {
+    const f = FAMILIES[naam];
+    if (!f) return;
+    if (!ob || typeof ob.showModal !== "function") { kies(f[4]); return; }
+    familie = f;
+    ob.querySelector("#obStap").textContent = f.naam + " · onderbouw";
+    ob.querySelectorAll("[data-ob-wie]").forEach(function (el) { el.textContent = f.wie; });
+    ob.querySelector("#obVlak").hidden = !f[0];
+    ob.showModal();
+  }
+  if (ob) {
+    ob.addEventListener("click", function (e) {
+      if (e.target === ob || e.target.closest("[data-ob-sluit]")) { ob.close(); return; }
+      const knop = e.target.closest("[data-ob-kies]");
+      if (!knop || !familie) return;
+      const code = familie[knop.dataset.obKies];
+      ob.close();
+      if (code) kies(code);
+    });
+  }
+
+  kiezer.addEventListener("click", function (e) {
+    const fam = e.target.closest("[data-familie]");
+    if (fam) { vraagOnderbouw(fam.dataset.familie); return; }
+    const kaart = e.target.closest("[data-kies]");
+    if (kaart) kies(kaart.dataset.kies);
+  });
+
+  const terug = document.getElementById("anderProduct");
+  if (terug) terug.addEventListener("click", function () {
+    toon(true);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+
+  /* Startpunt vanaf de site: ?product=... of een anker (#grp-kisten).
+     Een familie (pallet, kist, krat) opent eerst de keuze van de onderbouw;
+     een precieze uitvoering (blokpallet, KIB, ...) springt er meteen naartoe. */
+  const MAP = { pallet: "pallet", pallets: "pallet", blokpallet: "PBL", balkpallet: "PBA",
+    kist: "kist", kisten: "kist", exportkist: "kist", exportkisten: "kist",
+    krat: "krat", kratten: "krat",
+    vloer: "HVL", vloeren: "HVL", platen: "HVL", hout: "HVL", deksel: "HVL", deksels: "HVL" };
+  const ANKERS = { "#grp-palletten": "pallet", "#grp-kisten": "kist", "#grp-kratten": "krat" };
+  const gevraagd = (new URLSearchParams(location.search).get("product") || "").toLowerCase();
+  const doel = MAP[gevraagd] || (/^[a-z]{2,4}$/.test(gevraagd) ? gevraagd.toUpperCase() : "");
+  if (doel && document.querySelector('.tab[data-type="' + doel + '"]')) kies(doel);
+  else {
+    toon(true);
+    if (FAMILIES[doel]) vraagOnderbouw(doel);
+    else if (ANKERS[location.hash]) vraagOnderbouw(ANKERS[location.hash]);
+  }
+})();
+</script>
 </body>
 </html>

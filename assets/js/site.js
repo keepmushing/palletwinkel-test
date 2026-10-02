@@ -22,7 +22,7 @@
      wijzigen, dan blijft de oude daar hangen; dat is hier al twee keer gebeurd.
      Verhoog deze waarde samen met de ?v= in de HTML zodra een beeld vervangen
      wordt, dan is de URL nieuw en heeft de CDN niets om terug te geven. */
-  const ASSET_V = "20260926a";
+  const ASSET_V = "20261003a";
   const metStempel = src => !src || /^data:|^https?:/.test(src)
     ? src
     : src + (src.indexOf("?") === -1 ? "?v=" : "&v=") + ASSET_V;
@@ -48,10 +48,10 @@
   const FORM_SLEUTEL  = { naam: "access_key", waarde: "" };
 
   /* ====== 1. CONFIGURATOR — pas deze twee regels aan en alle knoppen kloppen ====== */
-  /* TIJDELIJK: de nieuwe configurator (/configurator/nieuw.html) is nog niet af,
-     dus alle knoppen gaan naar de oorspronkelijke. Terugzetten = hier weer
-     "/configurator/" invullen en configurator/nieuw.html terug index.html noemen. */
-  const CONFIGURATOR_URL = "https://configurator.palletje.be/";
+  /* Sinds 3 okt 2026 (testsite) weer de eigen configurator. Moet het tijdelijk
+     terug naar de oude, vul dan "https://configurator.palletje.be/" in: de
+     knoppen sturen dan de kale URL, zonder ?product= of anker. */
+  const CONFIGURATOR_URL = "/configurator/";
   const PRODUCT_PARAM    = "product";   // wordt CONFIGURATOR_URL?product=pallet
 
   /* data-product springt meteen naar dat product; data-anker laat de bezoeker
@@ -64,6 +64,32 @@
     const anker = a.dataset.anker ? '#' + a.dataset.anker : '';
     a.href = (p ? `${CONFIGURATOR_URL}?${PRODUCT_PARAM}=${encodeURIComponent(p)}` : CONFIGURATOR_URL) + anker;
   });
+
+  /* ====== 1b. woordmerk: strak of met verfresten ======
+     Feedback Durieu (okt 2026): het stencilwoordmerk van de configurator, en
+     "beide versies uitproberen". ?logo=verf toont de versie met verfresten,
+     ?logo=strak de gewone; de keuze blijft in deze browser bewaard. */
+  try {
+    const q = new URLSearchParams(location.search).get('logo');
+    if (q === 'verf' || q === 'strak') localStorage.setItem('logo', q);
+    if (localStorage.getItem('logo') === 'verf') document.documentElement.dataset.logo = 'verf';
+  } catch (e) { /* geen opslag: dan de strakke versie */ }
+
+  /* ====== 1c. kopbalk krimpt bij het scrollen ======
+     De hele kopbalk schuift mee (Durieu: "niet enkel producten en realisaties,
+     ook werkwijze, over ons"). Bovenaan krijgt hij lucht; zodra de bezoeker
+     scrolt, wordt hij smaller, zodat hij niet de helft van het scherm opeist.
+     De hoogte zelf staat in de CSS (--kop), hier zetten we enkel de klasse. */
+  {
+    const html = document.documentElement;
+    const meet = () => html.classList.toggle('kop-klein', window.scrollY > 24);
+    window.addEventListener('scroll', meet, { passive: true });
+    meet();
+  }
+
+  /* De menubalk klapt in tot een burgermenu onder deze breedte. Zelfde waarde
+     als in site.css (blok "Kopbalk, okt 2026"). */
+  const BREED = window.matchMedia('(min-width: 1241px)');
 
   /* ====== 2. mobiel menu ====== */
   const burger = $('#burger'), menu = $('#menu');
@@ -86,8 +112,8 @@
       const open = ddMenu.classList.toggle('open');
       ddBtn.setAttribute('aria-expanded', open);
     });
-    ddBtn.parentElement.addEventListener('mouseenter', () => { if (window.innerWidth > 820) { ddMenu.classList.add('open'); ddBtn.setAttribute('aria-expanded', 'true'); } });
-    ddBtn.parentElement.addEventListener('mouseleave', () => { if (window.innerWidth > 820) closeDd(); });
+    ddBtn.parentElement.addEventListener('mouseenter', () => { if (BREED.matches) { ddMenu.classList.add('open'); ddBtn.setAttribute('aria-expanded', 'true'); } });
+    ddBtn.parentElement.addEventListener('mouseleave', () => { if (BREED.matches) closeDd(); });
     document.addEventListener('click', closeDd);
     document.addEventListener('keydown', e => { if (e.key === 'Escape') closeDd(); });
   }
@@ -137,7 +163,7 @@
     { soort: 'Pagina',  titel: 'Duurzaamheid', tekst: 'Wat er van een maand produceren aan restafval overblijft, waar het hout vandaan komt, en waarom maatwerk minder materiaal gebruikt dan een te grote standaardmaat.', url: '/duurzaamheid/' },
     { soort: 'Pagina',  titel: 'Over ons', tekst: 'Houten transportoplossingen op maat uit Wingene. Technisch genoeg om mee te denken, praktisch genoeg om vooruit te gaan.', url: '/over-ons/' },
     { soort: 'Pagina',  titel: 'Veelgestelde vragen', tekst: 'Prijs en offerte, kiezen en afmetingen, bestellen, levering, laden en lossen, verpakken, export en hergebruik.', url: '/faq/' },
-    { soort: 'Pagina',  titel: 'Contact', tekst: 'Morellestraat 1, 8750 Wingene. Bel 0499 19 68 02 of mail info@palletje.be.', url: '/contact/' },
+    { soort: 'Pagina',  titel: 'Contact', tekst: 'Morellestraat 1, 8750 Wingene. Bel +32 499 19 68 02 of mail info@palletje.be.', url: '/contact/' },
     { soort: 'Pagina',  titel: 'Offerte aanvragen', tekst: 'Stuur uw project door met maten, gewicht, aantal en bestemming. Een foto of tekening erbij versnelt alles.', url: '/offerte/' },
     { soort: 'Onderwerp', titel: 'ISPM-15 en export', tekst: 'Exportkisten met onze eigen ISPM-15-markering. Wij kopen behandeld hout aan, produceren zelf en merken onder onze eigen registratie.', url: '/#ispm15' },
     { soort: 'Onderwerp', titel: 'PPWR-beslisroute', tekst: 'Welke PPWR-route past bij uw onderneming? Loop de vragen door en zie welke beslissingen u moet nemen en welke documentatie wij kunnen aanleveren.', url: '/ppwr/' },
@@ -374,21 +400,13 @@
       { src: '/assets/img/pallet-op-maat-1000x1000-met-onderlat.webp', bijschrift: 'Pallet 1000 × 1000 mm met onderlatten' },
       { src: '/assets/img/pallet-op-maat-brede-planken.webp', bijschrift: 'Brede vloerplanken voor puntlast' },
       { src: '/assets/img/pallet-op-maat-gesloten-dek.webp', bijschrift: 'Gesloten dek, voor kleine of losse onderdelen' },
-      { src: '/assets/img/pallet-op-maat-plaatdek.webp', bijschrift: 'Pallet met plaatdek' },
-      { src: '/assets/img/pallet-op-maat-zwaar-dek.webp', bijschrift: 'Zware uitvoering met dubbele dekplanken' },
       { src: '/assets/img/pallet-op-maat-onderbouw.webp', bijschrift: 'De onderbouw bepaalt van welke kant de vorken erin kunnen' },
       { src: '/assets/img/pallet-op-maat-open-kader.webp', bijschrift: 'Open kader, licht in gewicht' },
-      { src: '/assets/img/pallet-op-maat-vloerlatten.webp', bijschrift: 'Vloerlatten op maat verdeeld' },
       { src: '/assets/img/pallet-op-maat-bovenaanzicht.webp', bijschrift: 'Bovenaanzicht: de latverdeling volgt de last' },
-      { src: '/assets/img/pallet-op-maat-dichte-vloer.webp', bijschrift: 'Dichte vloer, zonder tussenruimte' },
-      { src: '/assets/img/pallet-op-maat-gesloten-dek-detail.webp', bijschrift: 'Detail van een gesloten dek' },
       { src: '/assets/img/pallet-op-maat-plaatdek-buiten.webp', bijschrift: 'Plaatdek, klaar om geladen te worden' },
-      { src: '/assets/img/pallet-op-maat-werkplaats.webp', bijschrift: 'Net van de machine' },
       { src: '/assets/img/pallet-onderdelen-latten.webp', bijschrift: 'Latten op maat, klaar om te monteren' },
       { src: '/assets/img/pallets-productie-stapels.webp', bijschrift: 'Productie in serie' },
-      { src: '/assets/img/pallets-magazijn-voorraad.webp', bijschrift: 'Voorraad in het magazijn' },
       { src: '/assets/img/pallets-gestapeld-zijaanzicht.webp', bijschrift: 'Gestapeld voor transport' },
-      { src: '/assets/img/pallets-stapels-magazijn.webp', bijschrift: 'Serieproductie in het magazijn' },
       { src: '/assets/img/pallets-stapelen-met-heftruck.webp', bijschrift: 'Stapelen met de heftruck' },
       { src: '/assets/img/pallets-geladen-op-oplegger.webp', bijschrift: 'Volle oplegger, klaar voor vertrek' },
       { src: '/assets/img/pallets-geladen-bestelwagen-aanhangwagen.webp', bijschrift: 'Kleinere levering met bestelwagen en aanhangwagen' }
@@ -574,6 +592,50 @@
     }
   });
 
+  /* --- productkaarten: eerst een icoon, dan de foto ---
+     Feedback Durieu (okt 2026): de kaarten openen rustig met een icoon. Om de
+     vijf seconden wordt één willekeurige kaart een foto, tot ze allemaal een
+     foto tonen. Het aftellen begint pas als de kaarten in beeld komen; anders
+     is alles al voorbij voor de bezoeker zo ver gescrold is. Wie een kaart
+     aanwijst of er met het toetsenbord op komt, krijgt die foto meteen. Vraagt
+     het systeem om minder beweging, dan staan de foto's er meteen.
+     Werkt op elk .photo-vak met data-icoon; het icoon is
+     /assets/img/iconen/<data-icoon>.svg. */
+  const ICOON_TEMPO = 5000;
+  const iconVakken = $$('.photo[data-icoon]').filter(v => v.querySelector('.slide'));
+  if (iconVakken.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    iconVakken.forEach(vak => {
+      const ic = document.createElement('div');
+      ic.className = 'foto-icoon';
+      ic.setAttribute('aria-hidden', 'true');
+      ic.style.setProperty('--icoon', `url("/assets/img/iconen/${vak.dataset.icoon}.svg?v=${ASSET_V}")`);
+      ic.append(document.createElement('span'));
+      vak.append(ic);
+      vak.classList.add('met-icoon');
+    });
+
+    let wachtrij = iconVakken.slice(), klok = null;
+    const onthul = vak => {
+      if (!vak.classList.contains('met-icoon')) return;
+      vak.classList.remove('met-icoon');
+      wachtrij = wachtrij.filter(v => v !== vak);
+      if (!wachtrij.length && klok) clearInterval(klok);
+    };
+    iconVakken.forEach(vak => {
+      const kaart = vak.closest('.card') || vak;
+      kaart.addEventListener('pointerenter', () => onthul(vak));
+      kaart.addEventListener('focusin', () => onthul(vak));
+    });
+    const tik = () => { if (wachtrij.length) onthul(wachtrij[Math.floor(Math.random() * wachtrij.length)]); };
+    const start = () => { if (!klok) klok = setInterval(tik, ICOON_TEMPO); };
+    if ('IntersectionObserver' in window) {
+      const io = new IntersectionObserver(en => {
+        if (en.some(e => e.isIntersecting)) { start(); io.disconnect(); }
+      }, { rootMargin: '0px 0px -30% 0px' });
+      io.observe(iconVakken[0].closest('.grid') || iconVakken[0]);
+    } else start();
+  }
+
   /* --- het fotoalbum (lightbox) ---
      De markup stond met de hand in drie pagina's, terwijl er op vier pagina's
      een albumknop staat. Op /diensten/ deed die knop dus niets. In plaats van
@@ -747,7 +809,7 @@
           (bestand && bestand.files && bestand.files.length
             ? 'Voeg daar uw bestand nog toe en verstuur de mail. '
             : 'Verstuur de mail om ze bij ons te krijgen. ') +
-          'Gaat er niets open? Mail dan rechtstreeks naar ' + ONTVANGER + ' of bel 0499 19 68 02.';
+          'Gaat er niets open? Mail dan rechtstreeks naar ' + ONTVANGER + ' of bel +32 499 19 68 02.';
         return;
       }
 
@@ -765,7 +827,7 @@
         .catch(() => {
           if (knop) { knop.disabled = false; knop.textContent = knop.dataset.tekst; }
           melding.textContent = 'Het versturen is niet gelukt. Probeer het opnieuw, ' +
-            'of mail rechtstreeks naar ' + ONTVANGER + ' of bel 0499 19 68 02.';
+            'of mail rechtstreeks naar ' + ONTVANGER + ' of bel +32 499 19 68 02.';
         });
     });
   });

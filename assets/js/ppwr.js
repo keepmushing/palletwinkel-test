@@ -462,7 +462,7 @@ function renderPrint(){
     </div>
     <div class="p-brief-rechts">
       Morellestraat 1 · 8750 Wingene · België<br>
-      0499 19 68 02 · info@palletje.be · palletje.be<br>
+      +32 499 19 68 02 · info@palletje.be · palletje.be<br>
       BTW BE 0863.163.507
     </div>
   </header>
@@ -495,7 +495,7 @@ function renderPrint(){
     <span class="p-sig">’t Palletje BV<br>PPWR-documentatie op productniveau</span>
   </div>
 
-  <div class="p-strook">’t Palletje BV · Morellestraat 1, 8750 Wingene · 0499 19 68 02 · info@palletje.be — werkfiche ${stamp}${S.ref.trim()?" · "+esc(S.ref.trim()):""}</div>`;
+  <div class="p-strook">’t Palletje BV · Morellestraat 1, 8750 Wingene · +32 499 19 68 02 · info@palletje.be — werkfiche ${stamp}${S.ref.trim()?" · "+esc(S.ref.trim()):""}</div>`;
 }
 
 /* ---------------- tekstexport ---------------- */
