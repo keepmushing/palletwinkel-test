@@ -120,7 +120,8 @@ palletwinkel/
     js/offerte.js         Het offertemandje (localStorage)
     js/offerte-pagina.js  /offerte-aanvraag/ tonen en versturen
     js/ppwr.js            De beslisroute
-    img/                  logo.png + de foto's (zie ALBUMS in site.js)
+    img/                  logo.png + de foto's (zie ALBUMS in site.js); renders:
+                          <naam>.jpg = bron, <naam>-podium.jpg = wat de site toont
     fonts/                Inter, lokaal. Zie hieronder waarom.
   404.html                Foutpagina — maar zie "De echte 404"
   .htaccess               Doet op deze hosting niets. Zie "De echte 404".
@@ -128,6 +129,7 @@ palletwinkel/
   controleer.ps1          Nakijker — zie "De site nakijken"
   server.js  package.json  Draait vandaag niet. Zie "De echte 404".
   serve.ps1               Preview-server (localhost:8080)
+  gereedschap/podium.py   Renders op de podiumkleur — zie "Productrenders"
 ```
 ### De configurator
 
@@ -461,6 +463,32 @@ de CDN de oude `site.js` nog een week vast.
 
 Een nieuw formulier aansluiten? Geef het `data-formulier="onderwerp van de mail"`
 en het doet vanzelf mee.
+
+## Productrenders
+
+De site toont de acht 3D-renders (`render: true` in `ALBUMS`, `site.js`) sinds
+3 oktober 2026 als `assets/img/<naam>-podium.jpg`. Die staan op exact dezelfde,
+vlakke achtergrond: `#f3f8fb`, in de CSS `--podium`. Het fotovak van de
+productkaarten heeft die kleur over de volle kaartbreedte, zodat beeld en vak
+één banner vormen. Vroeger had elk beeld een eigen grijs (van bijna wit tot
+warm lichtgrijs), en de kist een witte rechthoek op grijs.
+
+`assets/img/<naam>.jpg` zonder `-podium` is het **origineel**: dat is de bron
+voor het script. Laat het staan, ook al verwijst de HTML er niet meer naar.
+Het oude bestand blijft zo ook beschikbaar voor een verouderde pagina die nog
+in de CDN zit (die cachet tot zeven dagen). Daarom kreeg het nieuwe beeld een
+nieuwe naam en werd het oude niet overschreven.
+
+Een nieuwe render, of een andere bannerkleur? Zet het origineel in
+`assets/img/` en draai `python gereedschap/podium.py <naam>` (zonder `.jpg`;
+zonder naam verwerkt het alle acht). Je hebt Python nodig met numpy,
+opencv-python-headless en pillow (getest met numpy 2.5.3,
+opencv-python-headless 5.0.0.93 en pillow 12.3.0; met andere versies kunnen
+de bytes licht verschillen). Het script leest altijd het origineel, dus
+opnieuw draaien geeft hetzelfde resultaat. Het zet de achtergrond op de kleur
+`T` bovenaan, houdt de schaduwen en laat het hout ongemoeid. Controlebeelden
+komen in de tijdelijke map (`podium-qa`). Verander je `T`, pas dan ook
+`--podium` in `site.css` aan, en verhoog de `?v=`-stempel.
 
 ## Foto's die er nog niet zijn
 

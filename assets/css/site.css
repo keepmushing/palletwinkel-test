@@ -170,13 +170,21 @@ section{padding:92px 0}
 /* Op een productkaart moet het hele stuk te zien zijn. Met cover sneed de kaart
    een kist of een bok gewoon doormidden, en dat oogt slordig. Dus contain:
    liever wat lucht rond het product dan een half product.
-   De renders staan zelf op wit en krijgen daarom een witte grond die naadloos
-   doorloopt; de werkplaatsfotos staan op een neutrale grond, want die hebben
-   hun eigen achtergrond en zouden op wit uitgeknipt lijken. Onderaan bij allebei
-   wat meer ruimte, zodat het product niet achter het bijschrift verdwijnt. */
+   Renders en foto's staan op --podium (#f3f8fb, gedefinieerd in het blok
+   "Productkaarten" achteraan): de renders hebben sinds 3 okt 2026 exact die
+   kleur als achtergrond, dus beeld en vak lopen naadloos in elkaar over. De
+   bijschriften staan op de kaarten niet meer, dus onderaan geen extra ruimte.
+   Uitzondering: een foto met bijna de verhouding van het vak krijgt .vult
+   (site.js) en vult het dan helemaal (cover), zoals een banner. */
 .photo .slide img{object-fit:contain}
-.photo .slide.render img{padding:30px 30px 46px;background:#fff}
-.photo .slide:not(.render) img{padding:14px 14px 44px;background:#eef2f5}
+.photo .slide.render img{padding:16px 22px;background:var(--podium)}
+.photo .slide:not(.render) img{padding:14px;background:var(--podium)}
+.photo .slide.vult img{object-fit:cover;padding:0}
+/* Laadt een beeld op een productkaart niet (site.js haalt het dan weg), dan
+   toont de slide het oude blauwe verloop: zo valt een ontbrekende foto op in
+   plaats van een leeg podiumvlak. Idem (.photo.mist) voor een kaart waarvan het
+   album niet bestaat of leeg is: tikfout in data-album, alles nog te leveren. */
+.photo .slide.mist,.photo[data-album].mist{background:linear-gradient(135deg,#9bc3d9,#dceaf1)}
 .slide .bijschrift{position:relative;background:rgba(8,42,69,.82);color:#fff;font-size:.7rem;letter-spacing:.03em;padding:6px 8px;border-radius:var(--r-sm);max-width:85%}
 .photo-nav{position:absolute;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;border:0;background:rgba(255,255,255,.94);color:var(--navy);display:grid;place-items:center;cursor:pointer;opacity:0;transition:.2s;box-shadow:0 2px 10px rgba(8,42,69,.25);z-index:3}
 .photo-nav:hover{background:#fff}
@@ -1184,10 +1192,9 @@ body[data-pagina="home"] .final{background:#fff;border:1px solid var(--theme-bor
 .onderbouw-blok + .onderbouw-blok{border-top:1px solid var(--line)}
 .onderbouw-blok.omgekeerd .onderbouw-beeld{order:2}
 
-/* De render staat zelf al op #f6f6f4, dus het vlak eronder krijgt dezelfde
-   kleur: de rand van het beeld valt weg en de kist lijkt op het vlak te staan,
-   zoals op de oorspronkelijke tekening. */
-.onderbouw-beeld{background:#f6f6f4;border-radius:var(--r-md);overflow:hidden}
+/* De render staat op --podium, net als het vlak eronder: de rand van het beeld
+   valt weg en de kist lijkt op het vlak te staan. */
+.onderbouw-beeld{background:var(--podium);border-radius:var(--r-md);overflow:hidden}
 .onderbouw-beeld img{display:block;width:100%;height:auto}
 
 .onderbouw-tekst h4{margin:0;font-size:clamp(1.3rem,2.8vw,1.9rem);font-weight:800;
@@ -1293,16 +1300,22 @@ body[data-pagina="home"] main>section.op-lucht:not(#contact){background:#fff}
 
 /* ---------- Productkaarten: icoon eerst, dan de foto (site.js, blok 6) ----------
    Het blauwe bijschrift en de teller gaan weg op de kaarten; in het album
-   (lightbox) staat het bijschrift er nog. */
-.photo .foto-icoon{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:#f3f8fb;
+   (lightbox) staat het bijschrift er nog.
+   Het fotovak is een banner over de volle kaartbreedte in --podium. De acht
+   productrenders (<naam>-podium.jpg) hebben sinds 3 okt 2026 exact die kleur
+   als achtergrond (vroeger elk een eigen grijs, en de kist een witte rechthoek
+   op grijs), dus beeld en vak lopen naadloos in elkaar over, net als het icoon
+   ervoor. Padding en achtergrond van de slides: zie ".photo .slide" bovenaan.
+   Andere kleur nodig? Dan moeten de renders mee: zie README, "Productrenders". */
+:root{--podium:#f3f8fb}
+.photo[data-album]{background:var(--podium)}
+.photo .foto-icoon{position:absolute;inset:0;z-index:4;display:grid;place-items:center;background:var(--podium);
   opacity:0;visibility:hidden;pointer-events:none;transition:opacity .9s ease,visibility 0s linear .9s}
 .photo.met-icoon .foto-icoon{opacity:1;visibility:visible;transition:none}
 .foto-icoon span{width:42%;max-width:150px;aspect-ratio:1;background:#031c30;
   -webkit-mask:var(--icoon) center/contain no-repeat;mask:var(--icoon) center/contain no-repeat}
 .photo.met-icoon .photo-nav,.photo.met-icoon .dots{visibility:hidden}
 .photo .slide .bijschrift,.photo .foto-teller{display:none}
-.photo .slide.render img{padding:30px}
-.photo .slide:not(.render) img{padding:14px}
 
 /* ---------- Footer, okt 2026 ----------
    Gegroepeerd in plaats van één lijst van zestien links, telefoon met +32,
